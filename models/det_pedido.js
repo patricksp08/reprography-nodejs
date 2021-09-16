@@ -3,11 +3,16 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('det_pedido', {
     id_det_pedido: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     },
     id_pedido: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'pedido',
+        key: 'id_pedido'
+      }
     },
     num_copias: {
       type: DataTypes.INTEGER,
@@ -33,12 +38,12 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id_acabamento'
       }
     },
-    id_tamanho_pagina: {
+    id_tamanho: {
       type: DataTypes.STRING(50),
       allowNull: false,
       references: {
         model: 'tamanho_pagina',
-        key: 'id_tamanho_pagina'
+        key: 'id_tamanho'
       }
     },
     id_tipos_capa: {
@@ -48,12 +53,24 @@ module.exports = function(sequelize, DataTypes) {
         model: 'tipos_capa',
         key: 'id_tipos_capa'
       }
+    },
+    sub_total_copias: {
+      type: DataTypes.DECIMAL(10,0),
+      allowNull: true
     }
   }, {
     sequelize,
     tableName: 'det_pedido',
     timestamps: false,
     indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_det_pedido" },
+        ]
+      },
       {
         name: "id_tipos_copia",
         using: "BTREE",
@@ -69,10 +86,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "id_tamanho_pagina",
+        name: "id_tamanho",
         using: "BTREE",
         fields: [
-          { name: "id_tamanho_pagina" },
+          { name: "id_tamanho" },
         ]
       },
       {
@@ -80,6 +97,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id_tipos_capa" },
+        ]
+      },
+      {
+        name: "id_pedido",
+        using: "BTREE",
+        fields: [
+          { name: "id_pedido" },
         ]
       },
     ]

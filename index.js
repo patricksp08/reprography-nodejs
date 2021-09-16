@@ -13,8 +13,11 @@ app.use(cors());
 const db = require("./models");
 
 // Routers
-const usersRouter = require("./routes/Users");
+const usersRouter = require("./routes/Usuarios");
 app.use("/users", usersRouter);
+
+const pedidosRouter = require("./routes/Pedidos");
+app.use("/pedidos", pedidosRouter );
 
 db.sequelize.sync().then(() => {
   app.listen(3002, () => {

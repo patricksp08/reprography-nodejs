@@ -20,7 +20,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     id_depto: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'departamento',
+        key: 'id_depto'
+      }
     },
     id_tipo_usuario: {
       type: DataTypes.STRING(50),
@@ -32,10 +36,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
+      unique: "unique_email"
     },
-    cdf: {
+    cfp: {
       type: DataTypes.STRING(7),
+      allowNull: false
+    },
+    imagem: {
+      type: DataTypes.STRING(255),
       allowNull: false
     }
   }, {
@@ -52,10 +61,25 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
+        name: "unique_email",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "email" },
+        ]
+      },
+      {
         name: "id_tipo_usuario",
         using: "BTREE",
         fields: [
           { name: "id_tipo_usuario" },
+        ]
+      },
+      {
+        name: "id_depto",
+        using: "BTREE",
+        fields: [
+          { name: "id_depto" },
         ]
       },
     ]
