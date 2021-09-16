@@ -6,6 +6,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
+    id_centro_custos: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      references: {
+        model: 'centro_custos',
+        key: 'id_centro_custos'
+      }
+    },
     dt_pedido: {
       type: DataTypes.STRING(50),
       allowNull: true
@@ -41,10 +49,6 @@ module.exports = function(sequelize, DataTypes) {
         model: 'avaliacao_pedido',
         key: 'id_avaliacao_pedido'
       }
-    },
-    anexo: {
-      type: DataTypes.STRING(50),
-      allowNull: false
     },
     id_curso: {
       type: DataTypes.STRING(50),
@@ -97,6 +101,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id_curso" },
+        ]
+      },
+      {
+        name: "pedido_ibfk_3",
+        using: "BTREE",
+        fields: [
+          { name: "id_centro_custos" },
         ]
       },
     ]

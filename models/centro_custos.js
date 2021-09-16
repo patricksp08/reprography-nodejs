@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tamanho_pagina', {
-    id_tamanho: {
+  return sequelize.define('centro_custos', {
+    id_centro_custos: {
       type: DataTypes.STRING(50),
       allowNull: false,
       primaryKey: true
@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'tamanho_pagina',
+    tableName: 'centro_custos',
     timestamps: false,
     indexes: [
       {
@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_tamanho" },
+          { name: "id_centro_custos" },
         ]
       },
     ]
