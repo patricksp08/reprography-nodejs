@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('usuario', {
+  
+  const usuario = sequelize.define('usuario', {
     nif: {
       type: DataTypes.STRING(50),
       allowNull: false,
@@ -46,6 +47,12 @@ module.exports = function(sequelize, DataTypes) {
     imagem: {
       type: DataTypes.STRING(255),
       allowNull: false
+    },
+    createdAt: {
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      type: Sequelize.DATE
     }
   }, {
     sequelize,
@@ -84,4 +91,5 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  return usuario;
 };
