@@ -14,7 +14,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 <img align="center" alt="icon-js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" style="max-width:100%;"></img> **NodeJS - (https://nodejs.org/en/)**
 
-<img align="center" alt="icon-js" height="30" width="40" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img> **MySQL - (https://nodejs.org/en/)**
+<img align="center" alt="icon-js" height="30" width="40" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img> **MySQL - (https://www.mysql.com/downloads/)**
 
 
 
