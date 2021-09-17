@@ -57,6 +57,12 @@ module.exports = function(sequelize, DataTypes) {
     sub_total_copias: {
       type: DataTypes.DECIMAL(10,0),
       allowNull: true
+    },
+    createdAt: {
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      type: Sequelize.DATE
     }
   }, {
     sequelize,

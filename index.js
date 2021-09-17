@@ -1,23 +1,17 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-app.use(
-  cors({
-    origin: ["http://localhost:3000/login"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-}))
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 const db = require("./models");
 
 // Routers
-const usersRouter = require("./routes/Usuarios");
-app.use("/users", usersRouter);
+const usersRouter = require("./routes/usuario-routes");
+app.use("/usuario", usersRouter);
 
-const pedidosRouter = require("./routes/Pedidos");
-app.use("/pedidos", pedidosRouter );
+const pedidosRouter = require("./routes/pedido-routes");
+app.use("/pedido", pedidosRouter );
 
 db.sequelize.sync().then(() => {
   app.listen(3002, () => {

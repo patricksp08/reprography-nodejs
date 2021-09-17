@@ -61,6 +61,12 @@ module.exports = function(sequelize, DataTypes) {
     observacoes: {
       type: DataTypes.STRING(100),
       allowNull: true
+    },
+    createdAt: {
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      type: Sequelize.DATE
     }
   }, {
     sequelize,
