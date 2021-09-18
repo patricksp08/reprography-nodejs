@@ -30,10 +30,16 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
-//GET
+
+//Instanciando Controller
 const UsuarioController = require("../controllers/usuario-controller")
 
-const usuarioController = new UsuarioController () 
+const usuarioController = new UsuarioController() 
+
+
+//GET
+
+
 //Exibe todos os usuários da tabela usuario
 router.get("/", (req, res) => {
   usuarioController.buscarTodos(req,res)
@@ -41,7 +47,7 @@ router.get("/", (req, res) => {
 
 //Exibe o usuarío por nome na tabela usuario (exemplo: host:porta/usuariox)
 router.get("/:user", (req, res) => {
-  usuarioController.buscarPorUser(req,res)
+  usuarioController.buscarPorNome(req,res)
 })
 
 //Exibe o usuarío por nif na tabela usuario (exemplo: host:porta/33321)

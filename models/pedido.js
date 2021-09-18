@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('pedido', {
+  const pedido =  sequelize.define('pedido', {
     id_pedido: {
       type: DataTypes.STRING(50),
       allowNull: false,
@@ -118,4 +118,5 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  return pedido;
 };
