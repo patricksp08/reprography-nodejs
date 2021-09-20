@@ -1,6 +1,6 @@
 const { Usuario } = require("../models");
 
-class UsuarioRepositoryMariaDb {
+class UsuarioRepositoryMongo {
 
     constructor() {
         this.model = Usuario
@@ -18,7 +18,6 @@ class UsuarioRepositoryMariaDb {
     }
 
     alterar(usuario){
-
     }
 
     buscarTodos(){
@@ -26,4 +25,4 @@ class UsuarioRepositoryMariaDb {
     }
 }
 
-module.exports = UsuarioRepositoryMariaDb;
+module.exports = UsuarioRepositoryMongo;
