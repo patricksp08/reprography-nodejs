@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('curso', {
     id_curso: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
@@ -11,7 +11,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     id_depto: {
-      type: DataTypes.STRING(50),
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'departamento',
