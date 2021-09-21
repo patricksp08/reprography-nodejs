@@ -1,13 +1,14 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  const pedido =  sequelize.define('pedido', {
+  const pedido = sequelize.define('pedido', {
     id_pedido: {
-      type: DataTypes.STRING(50),
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
     id_centro_custos: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'centro_custos',
@@ -19,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     nif: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'usuario',
@@ -35,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     id_modo_envio: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'modo_envio',
@@ -43,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     id_avaliacao_pedido: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'avaliacao_pedido',
@@ -51,7 +52,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     id_curso: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'curso',
@@ -61,12 +62,6 @@ module.exports = function(sequelize, DataTypes) {
     observacoes: {
       type: DataTypes.STRING(100),
       allowNull: true
-    },
-    createdAt: {
-      type: Sequelize.DATE
-    },
-    updatedAt: {
-      type: Sequelize.DATE
     }
   }, {
     sequelize,

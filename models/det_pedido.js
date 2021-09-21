@@ -1,14 +1,15 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('det_pedido', {
+  const detalhePedido = sequelize.define('det_pedido', {
     id_det_pedido: {
-      type: DataTypes.STRING(50),
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
     id_pedido: {
-      type: DataTypes.STRING(50),
-      allowNull: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'pedido',
         key: 'id_pedido'
@@ -23,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     id_tipos_copia: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'tipos_copia',
@@ -31,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     id_acabamento: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'acabamento',
@@ -39,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     id_tamanho: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'tamanho_pagina',
@@ -47,7 +48,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     id_tipos_capa: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'tipos_capa',
@@ -57,12 +58,6 @@ module.exports = function(sequelize, DataTypes) {
     sub_total_copias: {
       type: DataTypes.DECIMAL(10,0),
       allowNull: true
-    },
-    createdAt: {
-      type: Sequelize.DATE
-    },
-    updatedAt: {
-      type: Sequelize.DATE
     }
   }, {
     sequelize,
@@ -114,4 +109,5 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  return detalhePedido;
 };
