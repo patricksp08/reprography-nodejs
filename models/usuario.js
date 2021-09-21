@@ -1,9 +1,8 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  
   const usuario = sequelize.define('usuario', {
     nif: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
@@ -20,15 +19,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     id_depto: {
-      type: DataTypes.STRING(50),
-      allowNull: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'departamento',
         key: 'id_depto'
       }
     },
     id_tipo_usuario: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'tipo_usuario',
@@ -47,12 +46,6 @@ module.exports = function(sequelize, DataTypes) {
     imagem: {
       type: DataTypes.STRING(255),
       allowNull: false
-    },
-    createdAt: {
-      type: Sequelize.DATE
-    },
-    updatedAt: {
-      type: Sequelize.DATE
     }
   }, {
     sequelize,

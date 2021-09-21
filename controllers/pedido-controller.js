@@ -1,4 +1,5 @@
 const { pedido } = require("../models");
+const { detalhePedido } = require("../models");
 const express = require("express")
 const router = express.Router();
 
@@ -44,9 +45,19 @@ class PedidoController {
 
     async adicionar(req, res) {
         let { centro_custos, dt_pedido,
-            titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes } = req.body;
-        let nif = req.user.nif;
-        usuario.create({
+            titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes, nif } = req.body;
+        // let nif = req.user.nif;
+
+
+        //Criando acabamento
+        const novoDetalhePedido = await detalhePedido.create({
+            id_pedido: 1,
+
+        }) 
+
+
+        //Criando pedido
+        await usuario.create({
             id_centro_custos: centro_custos,
             dt_pedido: dt_pedido,
             nif: nif,
@@ -55,7 +66,8 @@ class PedidoController {
             id_modo_envio: modo_envio,
             id_avaliacao_pedido: avaliacao_pedido,
             id_curso: curso,
-            observacoes: observacoes
+            observacoes: observacoes,
+            id_acabamento: novoAcabamento.id
         });
         res.status(200).json({ message: "Pedido realizado com sucesso" });
     }

@@ -7,6 +7,7 @@ var _departamento = require("./departamento");
 var _det_pedido = require("./det_pedido");
 var _modo_envio = require("./modo_envio");
 var _pedido = require("./pedido");
+var _resettoken = require("./resettoken");
 var _tamanho_pagina = require("./tamanho_pagina");
 var _tipo_usuario = require("./tipo_usuario");
 var _tipos_capa = require("./tipos_capa");
@@ -22,6 +23,7 @@ function initModels(sequelize) {
   var det_pedido = _det_pedido(sequelize, DataTypes);
   var modo_envio = _modo_envio(sequelize, DataTypes);
   var pedido = _pedido(sequelize, DataTypes);
+  var resettoken = _resettoken(sequelize, DataTypes);
   var tamanho_pagina = _tamanho_pagina(sequelize, DataTypes);
   var tipo_usuario = _tipo_usuario(sequelize, DataTypes);
   var tipos_capa = _tipos_capa(sequelize, DataTypes);
@@ -64,6 +66,7 @@ function initModels(sequelize) {
     det_pedido,
     modo_envio,
     pedido,
+    resettoken,
     tamanho_pagina,
     tipo_usuario,
     tipos_capa,
