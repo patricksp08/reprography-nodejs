@@ -15,7 +15,10 @@ router.get("/", (req, res) => {
 })
 
 router.get("/:id", (req, res) => {
-  pedidoController.buscarPorId(req,res);
+  pedidoController.buscarPorIdPedido(req,res);
+})
+router.get("/detalheid/:id", (req, res) => {
+  pedidoController.buscarPorIdDetalhe(req,res);
 })
 
 router.get("/nif/:nif", (req, res) => {

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 module.exports = function(sequelize, DataTypes) {
-  const pedido = sequelize.define('pedido', {
+  return sequelize.define('pedido', {
     id_pedido: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -15,10 +15,6 @@ module.exports = function(sequelize, DataTypes) {
         model: 'centro_custos',
         key: 'id_centro_custos'
       }
-    },
-    dt_pedido: {
-      type: DataTypes.STRING(50),
-      allowNull: true
     },
     nif: {
       type: DataTypes.INTEGER,
@@ -114,6 +110,7 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+<<<<<<< HEAD
   // pedido.associate = function(models){
   //   this.belongsTo(models.detalhePedido)
   //   this.hasMany(models.detalhePedido, {
@@ -121,4 +118,6 @@ module.exports = function(sequelize, DataTypes) {
   //   })
   // }
   return pedido;
+=======
+>>>>>>> e804787b0918ff89ddb9649a5a76131acb5b5878
 };
