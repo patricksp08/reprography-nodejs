@@ -1,6 +1,7 @@
 {
     "development": {
         "username": "root",
+        "password": "123",
         "database": "bdrepro",
         "host": "localhost",
         "port": 3306,
