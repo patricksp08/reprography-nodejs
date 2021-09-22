@@ -54,7 +54,7 @@ function initModels(sequelize) {
   tipos_capa.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tipos_capa"});
   det_pedido.belongsTo(tipos_copia, { as: "id_tipos_copia_tipos_copium", foreignKey: "id_tipos_copia"});
   tipos_copia.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tipos_copia"});
-  pedido.belongsTo(usuario, { as: "nif_usuario", foreignKey: "nif"});
+  pedido.belongsTo(usuario, { as: "nif_usuario ", foreignKey: "nif"});
   usuario.hasMany(pedido, { as: "pedidos", foreignKey: "nif"});
 
   return {

@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     id_depto: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'departamento',
@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     id_tipo_usuario: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'tipo_usuario',

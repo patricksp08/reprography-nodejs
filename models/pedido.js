@@ -110,14 +110,11 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
-<<<<<<< HEAD
   // pedido.associate = function(models){
   //   this.belongsTo(models.detalhePedido)
   //   this.hasMany(models.detalhePedido, {
   //     foreingKey: 'id_pedido'
   //   })
   // }
-  return pedido;
-=======
->>>>>>> e804787b0918ff89ddb9649a5a76131acb5b5878
+  // return pedido;
 };

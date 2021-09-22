@@ -11,8 +11,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     id_depto: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'departamento',
