@@ -16,7 +16,9 @@ class UsuarioController {
         let { nif, senha, nome, telefone, depto, tipo_usuario, email, cfp, imagem } = req.body;
         imagem = 'uploads/user-img/default/usuario.png';
 
-        //Tratar com front-end ---->
+
+        // ------------------> //Tratar com front-end 
+        
         // if (tipo_usuario === "true") {
         //     tipo_usuario = 1;
         // } else {
@@ -28,7 +30,9 @@ class UsuarioController {
         // } else {
         //     depto = 0;
         // }
-         //Tratar com front-end <----
+
+        //Tratar com front-end // <-----------------
+         
 
         if (req.file) {
             imagem = req.file.path;
