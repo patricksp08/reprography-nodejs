@@ -1,21 +1,22 @@
-const UsuarioService = require("../services/usuario-service")
+// const UsuarioService = require("../services/usuario-service")
+const sequelize = require("sequelize");
 const { usuario } = require("../models");
-
-const bcrypt = require("bcryptjs");
-const saltRounds = 10;
 const { sign } = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 
 class UsuarioController {
 
     constructor() {
-        this.usuarioService = new UsuarioService();
+        
     }
 
     async adicionar(req, res) {
         let { nif, senha, nome, telefone, depto, tipo_usuario, email, cfp, imagem } = req.body;
         imagem = 'uploads/user-img/default/usuario.png';
 
+        //Tratar com front-end ---->
         // if (tipo_usuario === "true") {
         //     tipo_usuario = 1;
         // } else {
@@ -27,6 +28,7 @@ class UsuarioController {
         // } else {
         //     depto = 0;
         // }
+         //Tratar com front-end <----
 
         if (req.file) {
             imagem = req.file.path;
@@ -36,8 +38,9 @@ class UsuarioController {
         // 	select = "Nenhum"
         // }
 
+        // usuario.sequelize.query("SET foreign_key_checks = 0;", null);
         bcrypt.hash(senha, saltRounds).then((hash) => {
-            usuario.create({
+             usuario.create({
                 nif: nif,
                 senha: hash,
                 nome: nome,
@@ -104,22 +107,21 @@ class UsuarioController {
         res.json(usuarios);
     };
 
-     logar(req, res) {
-        const { nif, senha } =  req.body;
-
-        const user =  usuario.findOne({ where: { nif: nif } });
-
-        if (!user) res.json({ error: "Usuário não existente" });
-
+     async logar(req, res) {
+        let {nif, senha} = await req.body;
+        
+        var user = await usuario.findOne({ where: { nif : nif } });
+        
+        if (!user) res.json({ error: "User Doesn't Exist" });
+        
         bcrypt.compare(senha, user.senha).then(async (match) => {
-            if (!match) res.json({ error: "Usuário ou senha inválidos" });
-
-            const accessToken = sign(
-                { email: user.email, nif: user.nif },
-                "importantsecret", {
-                expiresIn: 86400 // 24 horas
-            });
-            res.status(200).json({ token: accessToken, nif: nif, email: user.email});
+          if (!match) res.json({ error: "Wrong Username And Password Combination" });
+      
+          const accessToken = sign(
+            { nif: user.nif, email: user.email, nome: user.nome },
+            "importantsecret"
+          );
+          res.json({ token: accessToken, nif: nif, email: user.email, nome: user.nome });
         });
     }
 

@@ -81,10 +81,9 @@ class PedidoController {
     };
 
     async buscarPorIdDetalhe(req, res) {
-        const { nif } = req.params;
         const pedidos = await this.models.pedido.findAll({
             where: {
-                id_
+                
             }
         })
         res.json(pedidos);
@@ -96,34 +95,49 @@ class PedidoController {
     async adicionar(req, res) {
         let { centro_custos, dt_pedido,
             titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes, nif } = req.body;
-        // let nif = req.user.nif;
+      
+            // let nif = req.user.nif;
 
 
         //Criando acabamento
-        const novoDetalhePedido = await this.models.detalhePedido.create({
-            id_pedido: 1,
 
-        })
+        // const novoDetalhePedido = await this.models.detalhePedido.create({
+        //     id_pedido: 1,
+
+        // })
 
 
         //Criando pedido
+        // this.models.pedido.sequelize.query("SET foreign_key_checks = 0;", null);
+        // this.models.det_pedido.sequelize.query("SET foreign_key_checks = 0;", null);
+        // this.models.usuario.sequelize.query("SET foreign_key_checks = 0;", null);
+
         const novoPedido = await this.models.pedido.create({
             id_centro_custos: 1,
-            nif: 123,
+            nif: 34343,
             titulo_pedido: 'titulo_pedido',
-            custo_total: 666,
-            id_modo_envio: 4,
+            custo_total: 6366,
+            id_modo_envio: 1,
             id_avaliacao_pedido: 3,
-            id_curso: 1,
-            observacoes: 'nenhuma',
+            id_curso: 2,
+            observacoes: 'nenhudsdsma',
             id_acabamento: 2,
             det_pedidos: {
-                id_pedido: novoPedido.id,
+                id_pedido: 1,
+                num_copias: 2,
+                num_paginas: 1,
+                id_tipos_copia: 2,
+                id_acabamento: 2,
+                id_tamanho: 1,
+                id_tipos_capa: 2,
+                sub_total_copias: 234
             }
-     
         },
         {
-            include: ['det_pedidos']
+            include: ['det_pedidos'] 
+        },
+        {
+            include: ['nif_usuario']
         }
         );
         res.status(200).json({ message: "Pedido realizado com sucesso" });

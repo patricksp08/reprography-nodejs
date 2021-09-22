@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('pedido', {
     id_pedido: {
@@ -109,4 +110,11 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  // pedido.associate = function(models){
+  //   this.belongsTo(models.detalhePedido)
+  //   this.hasMany(models.detalhePedido, {
+  //     foreingKey: 'id_pedido'
+  //   })
+  // }
+  // return pedido;
 };
