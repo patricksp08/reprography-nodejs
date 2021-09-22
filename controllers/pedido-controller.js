@@ -15,6 +15,38 @@ class PedidoController {
     models = initModels(sequelize);
 
 
+    //EXEMPLO ->
+    // it('should create data for BelongsTo relations with alias', async function () {
+    //     const Product = this.sequelize.define('Product', {
+    //       title: Sequelize.STRING
+    //     });
+    //     const User = this.sequelize.define('User', {
+    //       first_name: Sequelize.STRING,
+    //       last_name: Sequelize.STRING
+    //     });
+
+    //     const Creator = Product.belongsTo(User, { as: 'creator' });
+
+    //     await this.sequelize.sync({ force: true });
+
+    //     const savedProduct = await Product.create(
+    //       {
+    //         title: 'Chair',
+    //         creator: {
+    //           first_name: 'Matt',
+    //           last_name: 'Hansen'
+    //         }
+    //       },
+    //       {
+    //         include: [Creator]
+    //       }
+    //     );
+
+    //     const persistedProduct = await Product.findOne({
+    //       where: { id: savedProduct.id },
+    //       include: [Creator]
+    //     });
+
 
     //GET 
 
@@ -75,20 +107,25 @@ class PedidoController {
 
 
         //Criando pedido
-        await this.models.pedido.create({
+        const novoPedido = await this.models.pedido.create({
             id_centro_custos: 1,
-            nif: 1234,
+            nif: 123,
             titulo_pedido: 'titulo_pedido',
             custo_total: 666,
             id_modo_envio: 4,
             id_avaliacao_pedido: 3,
             id_curso: 1,
             observacoes: 'nenhuma',
-            id_acabamento: 2
-            
-        }).then(function(pedido){
-            pedido.setdet_pedido([{}])
-        })
+            id_acabamento: 2,
+            det_pedidos: {
+                id_pedido: novoPedido.id,
+            }
+     
+        },
+        {
+            include: ['det_pedidos']
+        }
+        );
         res.status(200).json({ message: "Pedido realizado com sucesso" });
     }
 }
