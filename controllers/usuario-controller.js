@@ -1,15 +1,15 @@
-const UsuarioService = require("../services/usuario-service")
+// const UsuarioService = require("../services/usuario-service")
+const sequelize = require("sequelize");
 const { usuario } = require("../models");
-
+const { sign } = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
-const { sign } = require("jsonwebtoken");
 
 
 class UsuarioController {
 
     constructor() {
-        this.usuarioService = new UsuarioService();
+        
     }
 
     async adicionar(req, res) {
@@ -36,8 +36,9 @@ class UsuarioController {
         // 	select = "Nenhum"
         // }
 
+        usuario.sequelize.query("SET foreign_key_checks = 0;", null);
         bcrypt.hash(senha, saltRounds).then((hash) => {
-            usuario.create({
+             usuario.create({
                 nif: nif,
                 senha: hash,
                 nome: nome,
