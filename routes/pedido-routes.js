@@ -25,7 +25,6 @@ router.get("/nif/:nif", (req, res) => {
   pedidoController.buscarPorNif(req,res);
 })
 
-
 //Post
 router.post("/", (req, res) => {
   pedidoController.adicionar(req,res);

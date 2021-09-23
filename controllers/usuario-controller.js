@@ -64,7 +64,7 @@ class UsuarioController {
     async alterarPorNif(req, res) {
         const { nif, senha, nome, telefone, depto, tipo_usuario, email, cfp, imagem } = req.body;
 
-        await Product.update(
+        await usuario.update(
             { nif, senha, nome, telefone, depto, tipo_usuario, email, cfp, imagem },
             {
                 where: { nif: req.params.nif },
@@ -76,7 +76,7 @@ class UsuarioController {
 
 
     async excluirPorNif(req, res) {
-        await Product.destroy({
+        await usuario.destroy({
             where: {
                 nif: req.params.nif,
             },
@@ -112,7 +112,7 @@ class UsuarioController {
     };
 
      async logar(req, res) {
-        let {nif, senha} = await req.body;
+        let {nif, senha} = req.body;
         
         var user = await usuario.findOne({ where: { nif : nif } });
         

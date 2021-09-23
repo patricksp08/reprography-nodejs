@@ -1,16 +1,25 @@
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
+
+const { usuario } = require("../models");
+const { resettoken } = require("../models");
+
 const express = require("express");
 const router = express.Router();
+
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
-
-const transport = nodemailer.createTransport({
-  host: "smtp.mailtrap.io",
-  port: 2525,
+var transport = nodemailer.createTransport({
+  secureConnection: false,
+  service: "hotmail",
   auth: {
-    user: "5b237201069e7c",
-    pass: "af6e47d7d723cc"
-  }
+      user: "grupo777.backend@outlook.com",
+      pass: "Senai115senai115"
+  },
+tls: {
+  ciphers:'SSLv3'
+}
 });
 
 //GET
@@ -25,14 +34,14 @@ router.get('/reset-password', async function(req, res, next) {
    * grande site. Nós apenas incluímos isso aqui como um
    demonstração.
    **/
-  await ResetToken.destroy({
+  await resettoken.destroy({
     where: {
       expiration: { [Op.lt]: Sequelize.fn('CURDATE')},
     }
   });
- 
+
   //Encontrando o token
-  var record = await ResetToken.findOne({
+  var record = await resettoken.findOne({
     where: {
       email: req.query.email,
       expiration: { [Op.gt]: Sequelize.fn('CURDATE')},
@@ -55,12 +64,13 @@ router.get('/reset-password', async function(req, res, next) {
 });
 
 
-
-
 //POST
 router.post('/forgot-password', async function(req, res, next) {
     //Assegure que você tem um usuário com esse email
-    var email = await User.findOne({where: { email: req.body.email }});
+
+    // const { mail } = req.body;
+    var mail = 'caliu700@hotmail.com'
+    var email = await usuario.findOne({where: { email: mail }});
     if (email == null) {
     /**
      * Nós não queremos avisar á atacantes
@@ -74,25 +84,25 @@ router.post('/forgot-password', async function(req, res, next) {
      * anteriormente para este usuário. Isso preveni
      * que tokens antigas sejam usadas.
      **/
-    await ResetToken.update({
+    await resettoken.update({
         used: 1
       },
       {
         where: {
-          email: req.body.email
+          email: mail
         }
     });
    
     //Cria um resete de token aleatório
-    var fpSalt = crypto.randomBytes(64).toString('base64');
+    var token = crypto.randomBytes(64).toString('base64');
    
     //token expira depois de uma hora
     var expireDate = new Date();
     expireDate.setDate(expireDate.getDate() + 1/24);
    
     //Inserindo dados da token dentro do BD
-    await ResetToken.create({
-      email: req.body.email,
+    await resettoken.create({
+      email: mail,
       expiration: expireDate,
       token: token,
       used: 0
@@ -100,10 +110,10 @@ router.post('/forgot-password', async function(req, res, next) {
    
     //Menssagem enviada para o email
     const message = {
-        from: 'Adm <953212ad5c-38952e@inbox.mailtrap.io>',
-        to: req.body.email,
+        from: 'grupo777.backend@outlook.com',
+        to: mail,
         replyTo: process.env.REPLYTO_ADDRESS,
-        subject: process.env.FORGOT_PASS_SUBJECT_LINE,
+        subject: "Recuperação de Senha",
         text: 'Para resetar sua senha, por favor clique no link abaixo.\n\nhttps://'+process.env.DOMAIN+'/user/reset-password?token='+encodeURIComponent(token)+'&email='+req.body.email
     };
    
@@ -115,6 +125,10 @@ router.post('/forgot-password', async function(req, res, next) {
    
     return res.json({status: 'ok'});
   });
+
+
+
+  //RESET PASSWORD 
 
   //
   router.post('/reset-password', async function(req, res, next) {
@@ -132,7 +146,7 @@ router.post('/forgot-password', async function(req, res, next) {
       return res.json({status: 'error', message: 'Senha não contêm os requerimentos minímos. Por favor, tente novamente.'});
     }
    
-    var record = await ResetToken.findOne({
+    var record = await resettoken.findOne({
       where: {
         email: req.body.email,
         expiration: { [Op.gt]: Sequelize.fn('CURDATE')},
@@ -145,7 +159,7 @@ router.post('/forgot-password', async function(req, res, next) {
       return res.json({status: 'error', message: 'Token não encontrado. Por favor, faça o processo de resetar a senha novamente.'});
     }
    
-    var upd = await ResetToken.update({
+    var upd = await resettoken.update({
         used: 1
       },
       {
@@ -169,3 +183,5 @@ router.post('/forgot-password', async function(req, res, next) {
    
     return res.json({status: 'ok', message: 'Senha resetada. Por favor, tente efetuar o login com sua nova senha'});
   });
+
+  module.exports = router;
