@@ -13,6 +13,9 @@ app.use("/usuario", usersRouter);
 const pedidosRouter = require("./routes/pedido-routes");
 app.use("/pedido", pedidosRouter );
 
+const resetRouter = require("./routes/resettoken-routes")
+app.use("/reset", resetRouter);
+
 db.sequelize.sync().then(() => {
   app.listen(3002, () => {
     console.log("/////////////---Server running on port 3002---/////////////");
