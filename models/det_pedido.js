@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id_tipos_copia'
       }
     },
-    id_acabamento: {
+    id_acabamento: { 
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {

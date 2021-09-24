@@ -31,10 +31,11 @@ app.use("/pedido", pedidosRouter );
 
 db.sequelize.sync().then(() => {
   app.listen(3002, () => {
-    console.log("Server running on port 3002");
+    console.log("/////////////---Server running on port 3002---/////////////");
   });
 });
 
+<<<<<<< HEAD
 function initial() {
   Role.create({
     id: 1,
@@ -51,3 +52,5 @@ function initial() {
     name: "admin"
   });
 }
+=======
+>>>>>>> 7cd3467302024fe587e2226f0b3bdd214d78ccc5

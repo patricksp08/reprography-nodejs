@@ -4,7 +4,7 @@ const config = require("../config/auth.config.js");
 const validateToken = (req, res, next) => {
   const accessToken = req.header("accessToken");
 
-  if (!accessToken) return res.json({ error: "User not logged in!" });
+  if (!accessToken) return res.json({ error: "Você não está logado!" });
 
   try {
     const validToken = verify(accessToken, config.secret);

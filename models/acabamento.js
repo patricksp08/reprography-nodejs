@@ -1,6 +1,6 @@
-const Sequelize = require('sequelize');
+const sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('acabamento', {
+  const acabamento = sequelize.define('acabamento', {
     id_acabamento: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -25,4 +25,5 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  return acabamento;
 };

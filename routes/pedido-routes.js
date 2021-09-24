@@ -26,7 +26,7 @@ router.get("/nif/:nif", (req, res) => {
 
 
 //Post
-router.post("/", validateToken, (req, res) => {
+router.post("/", (req, res) => {
   pedidoController.adicionar(req,res);
 })
 
