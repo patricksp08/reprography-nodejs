@@ -9,7 +9,6 @@ const pedidoController = new PedidoController();
 
 
 //Get
-
 router.get("/", (req, res) => {
   pedidoController.buscarTodos(req,res);
 })

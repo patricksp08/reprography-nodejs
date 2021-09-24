@@ -13,28 +13,7 @@ class UsuarioController {
     }
 
     async adicionar(req, res) {
-        let { nif, senha, nome, telefone, depto, tipo_usuario, email, cfp, imagem } = req.body;
-        imagem = 'uploads/user-img/default/usuario.png';
 
-        // if (tipo_usuario === "true") {
-        //     tipo_usuario = 1;
-        // } else {
-        //     tipo_usuario = 0;
-        // }
-
-        // if (depto === "true") {
-        //     depto = 1;
-        // } else {
-        //     depto = 0;
-        // }
-
-        if (req.file) {
-            imagem = req.file.path;
-        }
-
-        // if (select === "Escolha um departamento") {
-        // 	select = "Nenhum"
-        // }
 
         bcrypt.hash(senha, saltRounds).then((hash) => {
             usuario.create({

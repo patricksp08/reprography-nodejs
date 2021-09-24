@@ -81,10 +81,9 @@ class PedidoController {
     };
 
     async buscarPorIdDetalhe(req, res) {
-        const { nif } = req.params;
         const pedidos = await this.models.pedido.findAll({
             where: {
-                id_
+                
             }
         })
         res.json(pedidos);
@@ -96,14 +95,16 @@ class PedidoController {
     async adicionar(req, res) {
         let { centro_custos, dt_pedido,
             titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes, nif } = req.body;
-        // let nif = req.user.nif;
+      
+            // let nif = req.user.nif;
 
 
         //Criando acabamento
-        const novoDetalhePedido = await this.models.detalhePedido.create({
-            id_pedido: 1,
 
-        })
+        // const novoDetalhePedido = await this.models.detalhePedido.create({
+        //     id_pedido: 1,
+
+        // })
 
 
         //Criando pedido
