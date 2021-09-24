@@ -1,50 +1,31 @@
-const express = require("express");
-const router = express.Router();
 const { validateToken } = require("../middlewares/AuthMiddleware");
+const controller = require("../controllers/usuario-controller");
 
-//Instanciando Controller
-const UsuarioController = require("../controllers/usuario-controller")
+module.exports = function (app) {
 
-const usuarioController = new UsuarioController() 
+  //GET
+  //Exibe todos os usuários da tabela usuario
+  app.get("/usuarios", controller.buscarTodos);
 
-//GET
-//Exibe todos os usuários da tabela usuario
-router.get("/", (req, res) => {
-  usuarioController.buscarTodos(req,res)
-})
+  //Exibe o usuarío por nome na tabela usuario (exemplo: host:porta/usuariox)
+  app.get("/usuario/:user", controller.buscarPorNome);
 
-//Exibe o usuarío por nome na tabela usuario (exemplo: host:porta/usuariox)
-router.get("/:user", (req, res) => {
-  usuarioController.buscarPorNome(req,res)
-})
+  //Exibe o usuarío por nif na tabela usuario (exemplo: host:porta/33321)
+  app.get("/usuario/nif/:nif", controller.buscarPorNif);
 
-//Exibe o usuarío por nif na tabela usuario (exemplo: host:porta/33321)
-router.get("/nif/:nif", (req, res) => {
-  usuarioController.buscarPorNif(req,res)
-})
+  //Rota para verificar se o usuário está logado (validateToken do Middleware AuthMiddleware)
+  app.get("/auth", validateToken, (req, res) => {
+    res.json(req.userId);
+  });
 
-//Rota para verificar se o usuário está logado (validateToken do Middleware AuthMiddleware)
-router.get("/auth", validateToken, (req, res) => {
-  res.json(req.user);
-});
+  //PUT
+  //Rota para alterar um usuario da tabela usuario por ID
+  app.put('/usuario/:nif', controller.alterarPorNif);
 
+  //Rota para atualizar a senha
+  app.put("/changepassword", validateToken, controller.mudarSenha);
 
-//PUT
-//Rota para alterar um usuario da tabela usuario por ID
-router.put('/:nif', (req, res) => {
-  usuarioController.alterarPorNif(req,res)
-});
-
-//Rota para atualizar a senha
-router.put("/changepassword", validateToken, (req, res) => {
-  usuarioController.mudarSenha(req,res)
-});
-
-
-//Delete
-//Rota para deletar um usuario da tabela usuario por nif
-router.delete('/:nif', (req, res) => {
-  usuarioController.excluirPorNif(req,res)
-});
-
-module.exports = router;
+  //Delete
+  //Rota para deletar um usuario da tabela usuario por nif
+  app.delete('/usuario/:nif', controller.excluirPorNif);
+};

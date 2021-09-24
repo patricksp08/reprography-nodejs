@@ -3,12 +3,10 @@ const config = require("../config/auth.config");
 
 const User = db.user;
 const Role = db.role;
-
 const Op = db.Sequelize.Op;
 
 var { sign } = require("jsonwebtoken");
 var bcrypt = require("bcrypt");
-
 const saltRounds = 10;
 
 exports.signup = (req, res) => {
