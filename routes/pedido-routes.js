@@ -1,32 +1,21 @@
-const express = require("express");
-const router = express.Router();
 const { validateToken } = require("../middlewares/AuthMiddleware");
+const controller = require("../controllers/pedido-controller");
 
-//Instanciando Controller
-const PedidoController = require("../controllers/pedido-controller");
+module.exports = function (app) {
+  //Get
 
-const pedidoController = new PedidoController();
+  //Buscar todos os pedidos
+  app.get("/pedidos", controller.buscarTodos)
 
+  //Buscar pedido por id do pedido
+  app.get("/pedido/:id", controller.buscarPorIdPedido)
 
-//Get
-router.get("/", (req, res) => {
-  pedidoController.buscarTodos(req,res);
-})
+  //Buscar pedido por id da tabela det_pedido (foreignkey)
+  app.get("/pedido/detalheid/:id", controller.buscarPorIdDetalhe)
 
-router.get("/:id", (req, res) => {
-  pedidoController.buscarPorIdPedido(req,res);
-})
-router.get("/detalheid/:id", (req, res) => {
-  pedidoController.buscarPorIdDetalhe(req,res);
-})
+  //Buscar pedido por nif da tabela usuario (foreignKey)
+  app.get("/pedido/nif/:nif", controller.buscarPorNif)
 
-router.get("/nif/:nif", (req, res) => {
-  pedidoController.buscarPorNif(req,res);
-})
-
-//Post
-router.post("/", (req, res) => {
-  pedidoController.adicionar(req,res);
-})
-
-module.exports = router;
+  //Post
+  app.post("/pedido", controller.adicionar)
+};

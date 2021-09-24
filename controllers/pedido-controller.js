@@ -1,147 +1,89 @@
-const Sequelize = require("sequelize");
-const { initModels, pedido } = require("../models/init-models.js").initModels;
-const config = require("../config/config.json");
-const sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, 
-    { host: config.development.host, dialect: config.development.dialect }
-);
+const { sequelize } = require("../models/")
+const { initModels } = require("../models/init-models.js");
 
-class PedidoController {
+////Inicializando as models e recebendo nas configurando
+models = initModels(sequelize);
 
-    constructor() {
-        
-    }
+////GET 
 
-    //Inicializando as models e recebendo nas configurando
-    models = initModels(sequelize);
+//Buscar todos os pedidos da tabela pedido
+exports.buscarTodos = async (req, res) => {
+    const pedidos = await models.pedido.findAll({
+        include: [
+            'det_pedidos'
+        ]
+    })
+    console.log(pedidos)
+    res.json(pedidos)
+}
 
+//Buscar os pedidos por ID do pedido
+exports.buscarPorIdPedido = async (req, res) => {
+    const pedidos = await models.pedido.findByPk(req.params.id)
+    console.log(pedidos)
+    res.json(pedidos)
+}
 
-    //EXEMPLO ->
-    // it('should create data for BelongsTo relations with alias', async function () {
-    //     const Product = this.sequelize.define('Product', {
-    //       title: Sequelize.STRING
-    //     });
-    //     const User = this.sequelize.define('User', {
-    //       first_name: Sequelize.STRING,
-    //       last_name: Sequelize.STRING
-    //     });
+//Todos os pedidos feito por tal pessoa (nif)
+exports.buscarPorNif = async (req, res) => {
+    const { nif } = req.params;
+    const pedidos = await models.pedido.findAll({
+        where: {
+            nif: nif
+        }
+    })
+    res.json(pedidos);
+};
 
-    //     const Creator = Product.belongsTo(User, { as: 'creator' });
+//Buscar por detalhe do ID
+exports.buscarPorIdDetalhe = async (req, res) => {
+    const pedidos = await models.pedido.findAll({
+        where: {
 
-    //     await this.sequelize.sync({ force: true });
+        }
+    })
+    res.json(pedidos);
+};
 
-    //     const savedProduct = await Product.create(
-    //       {
-    //         title: 'Chair',
-    //         creator: {
-    //           first_name: 'Matt',
-    //           last_name: 'Hansen'
-    //         }
-    //       },
-    //       {
-    //         include: [Creator]
-    //       }
-    //     );
+//POST
 
-    //     const persistedProduct = await Product.findOne({
-    //       where: { id: savedProduct.id },
-    //       include: [Creator]
-    //     });
+//Adicionar pedido com detalhe solicitado por nif (usuario)
+exports.adicionar = async (req, res) => {
+    let { centro_custos, dt_pedido,
+        titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes, nif } = req.body;
 
+    let { num_copias, num_paginas, tipos_copia, acabamento, tamanho, tipos_capa, sub_total_copias } = req.body
+    //Lógica para sub_total - Switch
 
-    //GET 
+    //Lógica para custo total
 
-    //Buscar todos os pedidos da tabela pedido
-    async buscarTodos(req, res) {
-
-        const pedidos = await this.models.pedido.findAll({
-            include: [
-                'det_pedidos'
-            ]
-        })
-        console.log(pedidos)
-        res.json(pedidos)
-    }
-
-    //Buscar os pedidos por ID do pedido
-    async buscarPorIdPedido(req, res) {
-        const pedidos = await this.models.pedido.findByPk(req.params.id)
-        console.log(pedidos)
-        res.json(pedidos)
-    }
-
-    //Todos os pedidos feito por tal pessoa (nif)
-    async buscarPorNif(req, res) {
-        const { nif } = req.params;
-        const pedidos = await this.models.pedido.findAll({
-            where: {
-                nif: nif
-            }
-        })
-        res.json(pedidos);
-    };
-
-    async buscarPorIdDetalhe(req, res) {
-        const pedidos = await this.models.pedido.findAll({
-            where: {
-                
-            }
-        })
-        res.json(pedidos);
-    };
-
-
-    //POST
-
-    async adicionar(req, res) {
-        let { centro_custos, dt_pedido,
-            titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes, nif } = req.body;
-      
-            // let nif = req.user.nif;
-
-
-        //Criando acabamento
-
-        // const novoDetalhePedido = await this.models.detalhePedido.create({
-        //     id_pedido: 1,
-
-        // })
-
-
-        //Criando pedido
-        // this.models.pedido.sequelize.query("SET foreign_key_checks = 0;", null);
-        // this.models.det_pedido.sequelize.query("SET foreign_key_checks = 0;", null);
-        // this.models.usuario.sequelize.query("SET foreign_key_checks = 0;", null);
-
-        const novoPedido = await this.models.pedido.create({
-            id_centro_custos: 1,
-            nif: 34343,
-            titulo_pedido: 'titulo_pedido',
-            custo_total: 6366,
-            id_modo_envio: 1,
-            id_avaliacao_pedido: 3,
-            id_curso: 2,
-            observacoes: 'nenhudsdsma',
-            id_acabamento: 2,
-            det_pedidos: {
-                id_pedido: 1,
-                num_copias: 2,
-                num_paginas: 1,
-                id_tipos_copia: 2,
-                id_acabamento: 2,
-                id_tamanho: 1,
-                id_tipos_capa: 2,
-                sub_total_copias: 234
-            }
-        },
+    await models.pedido.create({
+        id_centro_custos: centro_custos,
+        nif: nif,
+        titulo_pedido: titulo_pedido,
+        custo_total: custo_total,
+        id_modo_envio: modo_envio,
+        id_avaliacao_pedido: avaliacao_pedido,
+        id_curso: curso,
+        observacoes: observacoes,
+        id_acabamento: 2,
+        det_pedidos: {
+            // id_pedido: 1,
+            num_copias: num_copias,
+            num_paginas: num_paginas,
+            id_tipos_copia: tipos_copia,
+            id_acabamento: acabamento,
+            id_tamanho: tamanho,
+            id_tipos_capa: tipos_capa,
+            sub_total_copias: sub_total_copias
+        }
+    },
         {
-            include: ['det_pedidos'] 
+            include: ['det_pedidos']
         },
         {
             include: ['nif_usuario']
         }
-        );
-        res.status(200).json({ message: "Pedido realizado com sucesso" });
-    }
+    );
+    res.status(200).json({ message: "Pedido realizado com sucesso" });
 }
-
-module.exports = PedidoController;

@@ -23,19 +23,19 @@ const db = require("./models");
 const Role = db.role;
 
 // Routers
-const usersRouter = require("./routes/usuario-routes");
-app.use("/usuario", usersRouter);
 
-const pedidosRouter = require("./routes/pedido-routes");
-app.use("/pedido", pedidosRouter );
-
-const resetRouter = require("./routes/resettoken-routes")
-app.use("/reset", resetRouter);
-
-// const authRouter = require("./routes/auth-routes")(app)
-// app.use("/auth", authRouter);
-
+//Usuario router
+require("./routes/usuario-routes")(app)
+//Pedido router
+require("./routes/pedido-routes")(app)
+//Deatlhes do Pedido router
+require("./routes/det_pedido-routes")(app)
+//Auth Router
 require('./routes/auth-routes')(app)
+
+const resetRouter = require("./controllers/resettoken-controller")
+app.use(resetRouter);
+
 
 db.sequelize.sync().then(() => {
   app.listen(3002, () => {
