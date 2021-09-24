@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 
 // var corsOptions = {
-//   origin: "http://localhost:8081"
+//   origin: "http://localhost:3000"
 // };
 // app.use(cors(corsOptions));
 
@@ -32,28 +32,31 @@ app.use("/pedido", pedidosRouter );
 const resetRouter = require("./routes/resettoken-routes")
 app.use("/reset", resetRouter);
 
+// const authRouter = require("./routes/auth-routes")(app)
+// app.use("/auth", authRouter);
+
+require('./routes/auth-routes')(app)
+
 db.sequelize.sync().then(() => {
   app.listen(3002, () => {
     console.log("/////////////---Server running on port 3002---/////////////");
+    // initial();
   });
 });
 
-<<<<<<< HEAD
-function initial() {
-  Role.create({
-    id: 1,
-    name: "user"
-  });
+// function initial() {
+//   Role.create({
+//     id: 1,
+//     name: "user"
+//   });
  
-  Role.create({
-    id: 2,
-    name: "moderator"
-  });
+//   Role.create({
+//     id: 2,
+//     name: "moderator"
+//   });
  
-  Role.create({
-    id: 3,
-    name: "admin"
-  });
-}
-=======
->>>>>>> 7cd3467302024fe587e2226f0b3bdd214d78ccc5
+//   Role.create({
+//     id: 3,
+//     name: "admin"
+//   });
+// }

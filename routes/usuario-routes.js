@@ -48,16 +48,3 @@ router.delete('/:nif', (req, res) => {
 });
 
 module.exports = router;
-
-//ROTA FOI PARA AUTH-ROUTER
-//POST
-
-// //Rota para logar utilizando email ou nif com autenticação da senha registrada com hash na tabela usuario 
-// router.post("/login", (req, res) => {
-//   usuarioController.logar(req,res)
-// })
-
-// //Rota para registrar usuários na tabela usuario
-// router.post("/", (req, res) => {
-//   usuarioController.adicionar(req,res)
-// })

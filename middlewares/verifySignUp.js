@@ -2,16 +2,16 @@ const db = require("../models");
 const ROLES = db.ROLES;
 const User = db.user;
 
-checkDuplicateUsernameOrEmail = (req, res, next) => {
-  // Username
+checkDuplicateNifOrEmail = (req, res, next) => {
+  // NIF
   User.findOne({
     where: {
-      username: req.body.username
+      nif: req.body.nif
     }
   }).then(user => {
     if (user) {
       res.status(400).send({
-        message: "Failed! Username is already in use!"
+        message: "Error! Usuário já cadastrado!"
       });
       return;
     }
@@ -24,7 +24,7 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
     }).then(user => {
       if (user) {
         res.status(400).send({
-          message: "Failed! Email is already in use!"
+          message: "Error! Email já cadastrado!"
         });
         return;
       }
@@ -36,12 +36,12 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
 
 checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
-    for (let i = 0; i < req.body.roles.length; i++) {
+    for(let i = 0; i < req.body.roles.length; i++) {
       if (!ROLES.includes(req.body.roles[i])) {
         res.status(400).send({
-          message: "Failed! Role does not exist = " + req.body.roles[i]
+          message: "Error! Role inexistente = " + req.body.roles[i]
         });
-        return;
+        return
       }
     }
   }
@@ -50,7 +50,7 @@ checkRolesExisted = (req, res, next) => {
 };
 
 const verifySignUp = {
-  checkDuplicateUsernameOrEmail: checkDuplicateUsernameOrEmail,
+  checkDuplicateNifOrEmail: checkDuplicateNifOrEmail,
   checkRolesExisted: checkRolesExisted
 };
 

@@ -1,5 +1,8 @@
 const { verify } = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
+const db = require("../models");
+const User = db.user;
+
 
 const validateToken = (req, res, next) => {
   const accessToken = req.header("accessToken");
@@ -8,7 +11,7 @@ const validateToken = (req, res, next) => {
 
   try {
     const validToken = verify(accessToken, config.secret);
-    req.user = validToken;
+    req.userId = validToken;
     if (validToken) {
       return next();
     }
@@ -18,7 +21,7 @@ const validateToken = (req, res, next) => {
 };
 
 isAdmin = (req, res, next) => {
-  User.findByPk(req.user).then(user => {
+  User.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === "admin") {
@@ -36,7 +39,7 @@ isAdmin = (req, res, next) => {
 };
 
 isModerator = (req, res, next) => {
-  User.findByPk(req.user).then(user => {
+  User.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === "moderator") {
@@ -53,7 +56,7 @@ isModerator = (req, res, next) => {
 };
 
 isModeratorOrAdmin = (req, res, next) => {
-  User.findByPk(req.user).then(user => {
+  User.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === "moderator") {
