@@ -13,6 +13,9 @@ class UsuarioController {
     }
 
     async adicionar(req, res) {
+<<<<<<< HEAD
+
+=======
         let { nif, senha, nome, telefone, depto, tipo_usuario, email, cfp, imagem } = req.body;
         imagem = 'uploads/user-img/default/usuario.png';
 
@@ -41,6 +44,7 @@ class UsuarioController {
         // if (select === "Escolha um departamento") {
         // 	select = "Nenhum"
         // }
+>>>>>>> 7cd3467302024fe587e2226f0b3bdd214d78ccc5
 
         // usuario.sequelize.query("SET foreign_key_checks = 0;", null);
         bcrypt.hash(senha, saltRounds).then((hash) => {
