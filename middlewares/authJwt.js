@@ -1,11 +1,16 @@
-const { verify } = require("jsonwebtoken");
-const config = require("../config/auth.config.js");
+const config = require("../config/auth.config.json");
 const db = require("../models");
-const User = db.user;
 
+////Inicializando as models e recebendo nas configurando
+const sequelize = db.sequelize;
+const { initModels } = require("../models/init-models.js");
+var models = initModels(sequelize); 
+usuario = models.usuario;
+
+const { verify } = require("jsonwebtoken");
 
 const validateToken = (req, res, next) => {
-  const accessToken = req.header("accessToken");
+  const accessToken = req.header(config.header);
 
   if (!accessToken) return res.json({ error: "Você não está logado!" });
 
@@ -21,10 +26,10 @@ const validateToken = (req, res, next) => {
 };
 
 isAdmin = (req, res, next) => {
-  User.findByPk(req.userId).then(user => {
+  usuario.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "admin") {
+        if (roles[i].descricao === "admin") {
           next();
           return;
         }
@@ -39,10 +44,10 @@ isAdmin = (req, res, next) => {
 };
 
 isModerator = (req, res, next) => {
-  User.findByPk(req.userId).then(user => {
+  usuario.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "moderator") {
+        if (roles[i].descricao === "moderator") {
           next();
           return;
         }
@@ -56,15 +61,15 @@ isModerator = (req, res, next) => {
 };
 
 isModeratorOrAdmin = (req, res, next) => {
-  User.findByPk(req.userId).then(user => {
+  usuario.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "moderator") {
+        if (roles[i].descricao === "moderator") {
           next();
           return;
         }
 
-        if (roles[i].name === "admin") {
+        if (roles[i].descricao === "admin") {
           next();
           return;
         }

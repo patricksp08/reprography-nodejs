@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
- return sequelize.define('usuario', {
+  return sequelize.define('usuario', {
     nif: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -19,19 +19,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     id_depto: {
-      type: DataTypes.UUID,
+      type: DataTypes.CHAR(36),
       allowNull: false,
       references: {
         model: 'departamento',
         key: 'id_depto'
-      }
-    },
-    id_tipo_usuario: {
-      type: DataTypes.UUID,
-      allowNull: false,
-      references: {
-        model: 'tipo_usuario',
-        key: 'id_tipo_usuario'
       }
     },
     email: {
@@ -66,13 +58,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "email" },
-        ]
-      },
-      {
-        name: "id_tipo_usuario",
-        using: "BTREE",
-        fields: [
-          { name: "id_tipo_usuario" },
         ]
       },
       {

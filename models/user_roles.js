@@ -1,41 +1,43 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('curso', {
-    id_curso: {
+  return sequelize.define('user_roles', {
+    roleId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
-    },
-    descricao: {
-      type: DataTypes.STRING(50),
-      allowNull: false
-    },
-    id_depto: {
-      type: DataTypes.CHAR(36),
-      allowNull: false,
+      primaryKey: true,
       references: {
-        model: 'departamento',
-        key: 'id_depto'
+        model: 'tipo_usuario',
+        key: 'id'
+      }
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      references: {
+        model: 'usuario',
+        key: 'nif'
       }
     }
   }, {
     sequelize,
-    tableName: 'curso',
-    timestamps: false,
+    tableName: 'user_roles',
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_curso" },
+          { name: "roleId" },
+          { name: "userId" },
         ]
       },
       {
-        name: "id_depto",
+        name: "userId",
         using: "BTREE",
         fields: [
-          { name: "id_depto" },
+          { name: "userId" },
         ]
       },
     ]

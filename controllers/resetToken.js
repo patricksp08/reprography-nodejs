@@ -1,39 +1,39 @@
-const sequelize = require("sequelize");
-const Op = sequelize.Op;
+//Biblioteca do sequelize 
+const Sequelize = require("sequelize");
+//Operadores do sequelize
+const Op = Sequelize.Op;
 
-const { usuario } = require("../models");
-const { resettoken } = require("../models");
-
-const express = require("express");
-const router = express.Router();
+//Inicializando as models e recebendo elas na variavel models
+const { sequelize } = require("../models/");
+const { initModels } = require("../models/init-models.js");
+var models = initModels(sequelize);
+var { resettoken, usuario } = models
 
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const config = require('../config/mailer.config');
 
 var transport = nodemailer.createTransport({
-  secureConnection: false,
-  service: "hotmail",
+  secureConnection: config.hotmail.secureConnection,
+  service: config.hotmail.service,
   auth: {
-    user: "grupo777.backend@outlook.com",
-    pass: "Senai115senai115"
+    user: config.hotmail.auth.user,
+    pass: config.hotmail.auth.pass
   },
   tls: {
-    ciphers: 'SSLv3'
+    ciphers: config.hotmail.tls.ciphers
   }
 });
 
 
 //GET
-router.get('/forgot-password', function (req, res, next) {
+
+exports.forgotPasswordGet = (req, res, next) => {
   res.render('usuario/forgot-password', {});
-});
+};
 
 
-
-
-
-
-router.get('/reset-password', async function (req, res, next) {
+exports.resetTokenExpired = async (req, res, next) => {
   /**
    * Este código limpa todos os tokens expirados. 
    * Vocêdeve mover isso para um cronjob, se você tem um
@@ -67,14 +67,12 @@ router.get('/reset-password', async function (req, res, next) {
     showForm: true,
     record: record
   });
-});
-
-
+};
 
 
 
 //POST
-router.post('/forgot-password', async function (req, res, next) {
+exports.forgotPasswordPost = async (req, res, next) => {
   //Assegure que você tem um usuário com esse email
 
   // const { mail } = req.body;
@@ -147,14 +145,14 @@ router.post('/forgot-password', async function (req, res, next) {
   });
 
   return res.json({ status: 'ok' });
-});
+};
 
 
 
 //RESET PASSWORD 
 
 //
-router.post('/reset-password', async function (req, res, next) {
+exports.resetPassword = async (req, res, next) => {
   //comparar senhas
   if (req.body.password1 !== req.body.password2) {
     return res.json({ status: 'error', message: 'Senha não encontrada. Por favor, tente novamente.' });
@@ -205,6 +203,4 @@ router.post('/reset-password', async function (req, res, next) {
     });
 
   return res.json({ status: 'ok', message: 'Senha resetada. Por favor, tente efetuar o login com sua nova senha' });
-});
-
-module.exports = router;
+};

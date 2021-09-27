@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id_tipos_copia'
       }
     },
-    id_acabamento: { 
+    id_acabamento: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -73,6 +73,13 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
+        name: "id_pedido",
+        using: "BTREE",
+        fields: [
+          { name: "id_pedido" },
+        ]
+      },
+      {
         name: "id_tipos_copia",
         using: "BTREE",
         fields: [
@@ -98,13 +105,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id_tipos_capa" },
-        ]
-      },
-      {
-        name: "id_pedido",
-        using: "BTREE",
-        fields: [
-          { name: "id_pedido" },
         ]
       },
     ]

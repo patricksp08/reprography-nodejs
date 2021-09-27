@@ -1,10 +1,15 @@
 const db = require("../models");
 const ROLES = db.ROLES;
-const User = db.user;
+
+////Inicializando as models e recebendo nas configurando
+const sequelize = db.sequelize
+const { initModels } = require("../models/init-models.js");
+var models = initModels(sequelize); 
+usuario = models.usuario;
 
 checkDuplicateNifOrEmail = (req, res, next) => {
   // NIF
-  User.findOne({
+  usuario.findOne({
     where: {
       nif: req.body.nif
     }
@@ -17,7 +22,7 @@ checkDuplicateNifOrEmail = (req, res, next) => {
     }
 
     // Email
-    User.findOne({
+    usuario.findOne({
       where: {
         email: req.body.email
       }
