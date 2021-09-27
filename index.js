@@ -22,6 +22,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./models");
 const Role = db.role;
 
+const { sequelize } = require("./models/")
+const { initModels } = require("./models/init-models.js");
+models = initModels(sequelize);
 // Routers
 
 //Usuario router
@@ -32,9 +35,8 @@ require("./routes/pedido-routes")(app)
 require("./routes/det_pedido-routes")(app)
 //Auth Router
 require('./routes/auth-routes')(app)
-
-const resetRouter = require("./controllers/resettoken-controller")
-app.use(resetRouter);
+//ResetToken Router
+require('./routes/resettoken-routes')(app)
 
 
 db.sequelize.sync().then(() => {
@@ -45,18 +47,20 @@ db.sequelize.sync().then(() => {
 });
 
 // function initial() {
-//   Role.create({
-//     id: 1,
-//     name: "user"
-//   });
- 
-//   Role.create({
-//     id: 2,
-//     name: "moderator"
-//   });
- 
-//   Role.create({
-//     id: 3,
-//     name: "admin"
-//   });
+//   models.tipo_usuario.bulkCreate([
+//     {
+//       id: 1,
+//       descricao: "user"
+//     },
+//     {
+//       id: 2,
+//       descricao: "moderator"
+//     },
+//     {
+//       id: 3,
+//       descricao: "admin"
+//     }
+//   ])
+  // models.acabamento.bulkCreate([{ id_acabamento: 1,
+  // }, { /* record two */ }])
 // }

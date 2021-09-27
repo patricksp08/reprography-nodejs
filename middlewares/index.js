@@ -1,4 +1,4 @@
-const authJwt = require("./AuthMiddleware");
+const authJwt = require("./authJwt");
 const verifySignUp = require("./verifySignUp");
 const uploadFile = require("./upload");
 

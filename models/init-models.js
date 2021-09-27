@@ -12,6 +12,7 @@ var _tamanho_pagina = require("./tamanho_pagina");
 var _tipo_usuario = require("./tipo_usuario");
 var _tipos_capa = require("./tipos_capa");
 var _tipos_copia = require("./tipos_copia");
+var _user_roles = require("./user_roles");
 var _usuario = require("./usuario");
 
 function initModels(sequelize) {
@@ -28,8 +29,11 @@ function initModels(sequelize) {
   var tipo_usuario = _tipo_usuario(sequelize, DataTypes);
   var tipos_capa = _tipos_capa(sequelize, DataTypes);
   var tipos_copia = _tipos_copia(sequelize, DataTypes);
+  var user_roles = _user_roles(sequelize, DataTypes);
   var usuario = _usuario(sequelize, DataTypes);
 
+  tipo_usuario.belongsToMany(usuario, { as: 'userId_usuarios', through: user_roles, foreignKey: "roleId", otherKey: "userId" });
+  usuario.belongsToMany(tipo_usuario, { as: 'roles', through: user_roles, foreignKey: "userId", otherKey: "roleId" });
   det_pedido.belongsTo(acabamento, { as: "id_acabamento_acabamento", foreignKey: "id_acabamento"});
   acabamento.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_acabamento"});
   pedido.belongsTo(avaliacao_pedido, { as: "id_avaliacao_pedido_avaliacao_pedido", foreignKey: "id_avaliacao_pedido"});
@@ -48,14 +52,16 @@ function initModels(sequelize) {
   pedido.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_pedido"});
   det_pedido.belongsTo(tamanho_pagina, { as: "id_tamanho_tamanho_pagina", foreignKey: "id_tamanho"});
   tamanho_pagina.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tamanho"});
-  usuario.belongsTo(tipo_usuario, { as: "id_tipo_usuario_tipo_usuario", foreignKey: "id_tipo_usuario"});
-  tipo_usuario.hasMany(usuario, { as: "usuarios", foreignKey: "id_tipo_usuario"});
+  user_roles.belongsTo(tipo_usuario, { as: "role", foreignKey: "roleId"});
+  tipo_usuario.hasMany(user_roles, { as: "user_roles", foreignKey: "roleId"});
   det_pedido.belongsTo(tipos_capa, { as: "id_tipos_capa_tipos_capa", foreignKey: "id_tipos_capa"});
   tipos_capa.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tipos_capa"});
   det_pedido.belongsTo(tipos_copia, { as: "id_tipos_copia_tipos_copium", foreignKey: "id_tipos_copia"});
   tipos_copia.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tipos_copia"});
-  pedido.belongsTo(usuario, { as: "nif_usuario ", foreignKey: "nif"});
+  pedido.belongsTo(usuario, { as: "nif_usuario", foreignKey: "nif"});
   usuario.hasMany(pedido, { as: "pedidos", foreignKey: "nif"});
+  user_roles.belongsTo(usuario, { as: "user", foreignKey: "userId"});
+  usuario.hasMany(user_roles, { as: "user_roles", foreignKey: "userId"});
 
   return {
     acabamento,
@@ -71,6 +77,7 @@ function initModels(sequelize) {
     tipo_usuario,
     tipos_capa,
     tipos_copia,
+    user_roles,
     usuario,
   };
 }

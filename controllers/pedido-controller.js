@@ -2,13 +2,14 @@ const { sequelize } = require("../models/")
 const { initModels } = require("../models/init-models.js");
 
 ////Inicializando as models e recebendo nas configurando
-models = initModels(sequelize);
+var models = initModels(sequelize);
+var { pedido } = models
 
 ////GET 
 
 //Buscar todos os pedidos da tabela pedido
 exports.buscarTodos = async (req, res) => {
-    const pedidos = await models.pedido.findAll({
+    const pedidos = await pedido.findAll({
         include: [
             'det_pedidos'
         ]
@@ -19,7 +20,7 @@ exports.buscarTodos = async (req, res) => {
 
 //Buscar os pedidos por ID do pedido
 exports.buscarPorIdPedido = async (req, res) => {
-    const pedidos = await models.pedido.findByPk(req.params.id)
+    const pedidos = await pedido.findByPk(req.params.id)
     console.log(pedidos)
     res.json(pedidos)
 }
@@ -27,20 +28,27 @@ exports.buscarPorIdPedido = async (req, res) => {
 //Todos os pedidos feito por tal pessoa (nif)
 exports.buscarPorNif = async (req, res) => {
     const { nif } = req.params;
-    const pedidos = await models.pedido.findAll({
+    const pedidos = await pedido.findAll({
         where: {
             nif: nif
-        }
+        },
+        include: [
+            'det_pedidos'
+        ]
     })
     res.json(pedidos);
 };
 
 //Buscar por detalhe do ID
 exports.buscarPorIdDetalhe = async (req, res) => {
-    const pedidos = await models.pedido.findAll({
-        where: {
-
-        }
+    const pedidos = await pedido.findAll({
+        include: {
+            model: models.det_pedido,
+            as: "det_pedidos",
+            where: {
+                id_det_pedido: req.params.id
+            },
+        },
     })
     res.json(pedidos);
 };
@@ -49,7 +57,7 @@ exports.buscarPorIdDetalhe = async (req, res) => {
 
 //Adicionar pedido com detalhe solicitado por nif (usuario)
 exports.adicionar = async (req, res) => {
-    let { centro_custos, dt_pedido,
+    let { centro_custos,
         titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes, nif } = req.body;
 
     let { num_copias, num_paginas, tipos_copia, acabamento, tamanho, tipos_capa, sub_total_copias } = req.body
@@ -57,7 +65,7 @@ exports.adicionar = async (req, res) => {
 
     //Lógica para custo total
 
-    await models.pedido.create({
+    await pedido.create({
         id_centro_custos: centro_custos,
         nif: nif,
         titulo_pedido: titulo_pedido,

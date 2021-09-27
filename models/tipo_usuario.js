@@ -1,26 +1,26 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('tipo_usuario', {
-    id_tipo_usuario: {
-      type: DataTypes.UUID,
+    id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
     descricao: {
-      type: DataTypes.STRING(50),
-      allowNull: false
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     sequelize,
     tableName: 'tipo_usuario',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_tipo_usuario" },
+          { name: "id" },
         ]
       },
     ]

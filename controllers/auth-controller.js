@@ -1,24 +1,30 @@
-const db = require("../models");
-const config = require("../config/auth.config");
+'use strict'
 
-const User = db.user;
-const Role = db.role;
-const Op = db.Sequelize.Op;
+const config = require("../config/auth.config.json");
+//Biblioteca do sequelize 
+const Sequelize = require("sequelize");
+//Operadores do sequelize
+const Op = Sequelize.Op;
 
-var { sign } = require("jsonwebtoken");
-var bcrypt = require("bcrypt");
-const saltRounds = 10;
+////Inicializando as models e recebendo nas configurando
+const { sequelize } = require("../models/");
+const { initModels } = require("../models/init-models.js");
+var models = initModels(sequelize);
+var { usuario, tipo_usuario } = models;
+
+const bcrypt = require("bcrypt");
+const { sign } = require("jsonwebtoken");
 
 exports.signup = (req, res) => {
-    let { nif, senha, nome, telefone, depto, tipo_usuario, email, cfp, imagem } = req.body;
-    
+    let { nif, senha, nome, telefone, depto, email, cfp, imagem } = req.body;
+
     //Imagem padrão caso não seja inserida nenhuma imagem.
     imagem = 'uploads/user-img/default/usuario.png';
-    
+
     // if (req.file == undefined) {
     //     return res.send("Você precisa selecionar um arquivo.");
     // }
-    if(req.file){
+    if (req.file) {
         imagem = req.file.path;
     }
 
@@ -37,119 +43,122 @@ exports.signup = (req, res) => {
     // if (select === "Escolha um departamento") {
     // 	select = "Nenhum"
     // }
-    
+
     // Save User to Database
-    bcrypt.hash(senha, saltRounds).then((hash) => {
-        User.create({
+    bcrypt.hash(senha, config.saltRounds).then((hash) => {
+        usuario.create({
             nif: nif,
             senha: hash,
             nome: nome,
             telefone: telefone,
             id_depto: depto,
-            id_tipo_usuario: tipo_usuario,
             email: email,
             cfp: cfp,
             imagem: imagem
         })
-        .then(user => {
+            .then(user => {
                 if (req.body.roles) {
-                    Role.findAll({
+                    tipo_usuario.findAll({
                         where: {
-                            name: {
+                            descricao: {
                                 [Op.or]: req.body.roles
                             }
                         }
                     }).then(roles => {
-                        user.setRoles(roles).then(() => {
-                            res.send({ message: "User was registered successfully!" });
-                        });
-                    });
-                } else {
-                    // user role = 1
-                    user.setRoles([1]).then(() => {
-                        res.send({ message: "User was registered successfully!" });
+                        user.setRoles(roles)
+                        // .then(roles => {
+                        // res.status(200).send("User was registered successfully!");
+                        // });
+
                     });
                 }
-                res.status(200).json({ message: "Usuário criado com sucesso!"});
+                else {
+                    // user role = 1
+                    user.setRoles([1])
+                    // .then(roles => {
+                    // res.status(200).send({ message: "User was registered successfully!" });
+                    // });
+                }
+                res.status(200).json({ message: "Usuário criado com sucesso!" });
             })
     })
+        .catch(err => {
+            res.status(500).json({ message: err.message });
+        });
+};
+
+exports.signin = (req, res) => {
+
+    usuario.findOne({
+        where: {
+            nif: req.body.nif
+        }
+    })
+        .then(user => {
+            if (!user) {
+                return res.status(404).send({ message: "User Not found." });
+            }
+
+            bcrypt.compare(req.body.senha, user.senha).then((match) => {
+                if (!match) {
+                    return res.status(401).send({
+                        accessToken: null,
+                        message: "Invalid Password!"
+                    });
+                }
+
+                // var passwordIsValid = bcrypt.compare(
+                //     req.body.senha,
+                //     user.senha
+                //   );
+
+                //   if (!passwordIsValid) {
+                //     return res.status(401).send({
+                //       accessToken: null,
+                //       message: "Invalid Password!"
+                //     });
+                //   }
+
+                var token = sign({ nif: user.nif, email: user.email, nome: user.nome }, config.secret, {
+                    expiresIn: 86400 // 24 hours
+                });
+
+                var authorities = [];
+                user.getRoles().then(roles => {
+                    for (let i = 0; i < roles.length; i++) {
+                        authorities.push("ROLE_" + roles[i].descricao.toUpperCase());
+                    }
+                    res.status(200).send({
+                        id: user.nif,
+                        nome: user.nome,
+                        email: user.email,
+                        roles: authorities,
+                        accessToken: token
+                    });
+                });
+            })
+        })
         .catch(err => {
             res.status(500).send({ message: err.message });
         });
 };
 
-// exports.signin =  (req, res) => {
 
-//      User.findOne({
-//         where: {
-//             nif: req.body.nif
-//         }
-//     })
-//      .then(user  => {
-//             if (!user) {
-//                 return res.status(404).send({ message: "User Not found." });
-//             }
+// exports.signin = async (req, res) => {
+//     let {nif, senha} = req.body;
 
-//             bcrypt.compare(req.body.senha, user.senha).then((match) => {
-//             if (!match) {
-//                 return res.status(401).send({
-//                     accessToken: null,
-//                     message: "Invalid Password!"
-//                 });
-//             }
+//      var user = await User.findOne({ where: { nif : nif } });
 
-//             // var passwordIsValid = bcrypt.compare(
-//             //     req.body.senha,
-//             //     user.senha
-//             //   );
-        
-//             //   if (!passwordIsValid) {
-//             //     return res.status(401).send({
-//             //       accessToken: null,
-//             //       message: "Invalid Password!"
-//             //     });
-//             //   }
+//      if (!user) return res.json({ error: "User Doesn't Exist" });
 
-//             var token = jwt.sign({ nif: user.nif, email: user.email, nome: user.nome }, config.secret, {
-//                 expiresIn: 86400 // 24 hours
-//             });
+//      bcrypt.compare(senha, user.senha).then(async (match) => {
+//        if (!match) return res.json({ error: "Wrong Username And Password Combination" });
 
-//             var authorities = [];
-//             user.getRoles().then(roles => {
-//                 for (let i = 0; i < roles.length; i++) {
-//                     authorities.push("ROLE_" + roles[i].name.toUpperCase());
-//                 }
-//                 res.status(200).send({
-//                     id: user.nif,
-//                     nome: user.nome,
-//                     email: user.email,
-//                     roles: authorities,
-//                     accessToken: token
-//                 });
-//             });
-//         })
-//     })
-//         .catch(err => {
-//             res.status(500).send({ message: err.message });
-//         });
-// };
+//        const accessToken = await sign(
+//          { nif: user.nif, email: user.email, nome: user.nome },
+//          config.secret
+//        );
 
-
-exports.signin = async (req, res) => {
-    let {nif, senha} = req.body;
-
-     var user = await User.findOne({ where: { nif : nif } });
-     
-     if (!user) return res.json({ error: "User Doesn't Exist" });
-     
-     bcrypt.compare(senha, user.senha).then(async (match) => {
-       if (!match) return res.json({ error: "Wrong Username And Password Combination" });
-   
-       const accessToken = await sign(
-         { nif: user.nif, email: user.email, nome: user.nome },
-         config.secret
-       );
-       
-       return res.json({ token: accessToken, nif: nif, email: user.email, nome: user.nome });
-     });
- }
+//        return res.json({ token: accessToken, nif: nif, email: user.email, nome: user.nome });
+//      });
+//  }

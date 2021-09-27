@@ -1,5 +1,16 @@
-const { usuario } = require("../models");
+//Biblioteca do sequelize 
+const Sequelize = require("sequelize");
+//Operadores do sequelize
+const Op = Sequelize.Op;
+
+////Inicializando as models e recebendo elas na variavel models
+const { sequelize } = require("../models/");
+const { initModels } = require("../models/init-models.js");
+var models = initModels(sequelize);
+var { usuario } = models;
+
 const bcrypt = require("bcrypt");
+
 
 exports.alterarPorNif = async (req, res) => {
     const { nif, senha, nome, telefone, depto, tipo_usuario, email, cfp, imagem } = req.body;
@@ -14,7 +25,6 @@ exports.alterarPorNif = async (req, res) => {
     res.status(200).json({ message: 'Usuário atualizado com sucesso' });
 }
 
-
 exports.excluirPorNif = async (req, res) => {
     await usuario.destroy({
         where: {
@@ -26,17 +36,28 @@ exports.excluirPorNif = async (req, res) => {
 }
 
 exports.buscarTodos = async (req, res) => {
-    let usuarios = await usuario.findAll()
+    let usuarios = await usuario.findAll({
+        include: [
+            'roles'
+        ]
+    })
     console.log(usuarios)
     res.json(usuarios)
 }
 
 exports.buscarPorNome = async (req, res) => {
     const user = req.params.user;
+    // const query = `%${req.query.search}`;
     let usuarios = await usuario.findAll({
         where: {
-            nome: `${user}`
-        }
+            nome:{
+                [Op.like] : `${user}%`
+            } 
+        },
+        include: [
+            'roles'
+        ],
+        attributes: { exclude: ["senha"] }
     })
     console.log(usuarios)
     res.json(usuarios)
@@ -50,7 +71,6 @@ exports.buscarPorNif = async (req, res) => {
 
     res.json(usuarios);
 };
-
 
 exports.mudarSenha = async (req, res) => {
     const { oldPassword, newPassword } = req.body;
