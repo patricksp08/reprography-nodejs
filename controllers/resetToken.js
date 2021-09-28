@@ -8,20 +8,21 @@ const { sequelize } = require("../models/");
 const { initModels } = require("../models/init-models.js");
 var models = initModels(sequelize);
 var { resettoken, usuario } = models
-
+const bcrypt = require("bcrypt")
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-const config = require('../config/mailer.config');
+const mailer = require('../config/mailer.config');
+const auth = require("../config/auth.config.json");
 
 var transport = nodemailer.createTransport({
-  secureConnection: config.hotmail.secureConnection,
-  service: config.hotmail.service,
+  secureConnection: mailer.hotmail.secureConnection,
+  service: mailer.hotmail.service,
   auth: {
-    user: config.hotmail.auth.user,
-    pass: config.hotmail.auth.pass
+    user: mailer.hotmail.auth.user,
+    pass: mailer.hotmail.auth.pass
   },
   tls: {
-    ciphers: config.hotmail.tls.ciphers
+    ciphers: mailer.hotmail.tls.ciphers
   }
 });
 
@@ -77,6 +78,7 @@ exports.forgotPasswordPost = async (req, res, next) => {
 
   // const { mail } = req.body;
   var mail = req.body.mail
+
   var email = await usuario.findOne({ where: { email: mail } });
   if (email == null) {
     /**
@@ -123,8 +125,8 @@ exports.forgotPasswordPost = async (req, res, next) => {
     subject: "Recuperação de Senha",
     html: `<h1>Recuperação de senha</h1>  <br>
     <p>Para resetar sua senha, por favor clique no link abaixo:</p>
-    <a href="https://${process.env.DOMAIN}/user/reset-password?token=${encodeURIComponent(token)}&email=${mail}">
-    \n\nhttps://${process.env.DOMAIN}/user/reset-password?token=${encodeURIComponent(token)}&email=${mail}
+    <a href="http://localhost:3000/newPassword?token=${encodeURIComponent(token)}&email=${mail}">
+    \n\nhttp://localhost:3000/newPassword?token=${encodeURIComponent(token)}&email=${mail}
     </a>
     <br>
     <p>Caso você não tenha realizado essa solicitação, por favor <span id="span">ignore</span> esse email!</p>
@@ -153,8 +155,11 @@ exports.forgotPasswordPost = async (req, res, next) => {
 
 //
 exports.resetPassword = async (req, res, next) => {
+
+  const {email, token, senha, senha2} = req.body;
+
   //comparar senhas
-  if (req.body.password1 !== req.body.password2) {
+     if (senha !== senha2) {
     return res.json({ status: 'error', message: 'Senha não encontrada. Por favor, tente novamente.' });
   }
 
@@ -163,15 +168,15 @@ exports.resetPassword = async (req, res, next) => {
   * function checa se sua senha tem >= 8 caracteres, alfanumerico,
   * caracter especial, etc)
   **/
-  if (!isValidPassword(req.body.password1)) {
-    return res.json({ status: 'error', message: 'Senha não contêm os requerimentos minímos. Por favor, tente novamente.' });
-  }
+  // if (!isValidPassword(req.body.password1)) {
+  //   return res.json({ status: 'error', message: 'Senha não contêm os requerimentos minímos. Por favor, tente novamente.' });
+  // }
 
   var record = await resettoken.findOne({
     where: {
-      email: req.body.email,
+      email: email,
       expiration: { [Op.gt]: Sequelize.fn('CURDATE') },
-      token: req.body.token,
+      token: token,
       used: 0
     }
   });
@@ -185,20 +190,18 @@ exports.resetPassword = async (req, res, next) => {
   },
     {
       where: {
-        email: req.body.email
+        email: email
       }
     });
 
-  var newSalt = crypto.randomBytes(64).toString('hex');
-  var newPassword = crypto.pbkdf2Sync(req.body.password1, newSalt, 10000, 64, 'sha512').toString('base64');
+  const newPassword = await bcrypt.hash(senha, auth.saltRounds);
 
   await usuario.update({
     senha: newPassword,
-    salt: newSalt
   },
     {
       where: {
-        email: req.body.email
+        email: email
       }
     });
 

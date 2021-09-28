@@ -43,81 +43,71 @@ exports.signup = (req, res) => {
     // if (select === "Escolha um departamento") {
     // 	select = "Nenhum"
     // }
-
-    // Save User to Database
-    bcrypt.hash(senha, config.saltRounds).then((hash) => {
-        usuario.create({
-            nif: nif,
-            senha: hash,
-            nome: nome,
-            telefone: telefone,
-            id_depto: depto,
-            email: email,
-            cfp: cfp,
-            imagem: imagem
-        })
-            .then(user => {
-                if (req.body.roles) {
-                    tipo_usuario.findAll({
-                        where: {
-                            descricao: {
-                                [Op.or]: req.body.roles
-                            }
-                        }
-                    }).then(roles => {
-                        user.setRoles(roles)
-                        // .then(roles => {
-                        // res.status(200).send("User was registered successfully!");
-                        // });
-
-                    });
-                }
-                else {
-                    // user role = 1
-                    user.setRoles([1])
-                    // .then(roles => {
-                    // res.status(200).send({ message: "User was registered successfully!" });
-                    // });
-                }
-                res.status(200).json({ message: "Usuário criado com sucesso!" });
-            })
+    bcrypt.hash(senha, config.saltRounds, function(err, hash) {
+    if (err) throw (err); 
+    usuario.create({
+        nif: nif,
+        senha: hash,
+        nome: nome,
+        telefone: telefone,
+        id_depto: depto,
+        email: email,
+        cfp: cfp,
+        imagem: imagem
     })
+        .then(user => {
+            if (req.body.roles) {
+                tipo_usuario.findAll({
+                    where: {
+                        descricao: {
+                            [Op.or]: req.body.roles
+                        }
+                    }
+                }).then(roles => {
+                    user.setRoles(roles)
+                    // .then(roles => {
+                    // res.status(200).send("User was registered successfully!");
+                    // });
+
+                });
+            }
+            else {
+                // user role = 1
+                user.setRoles([1])
+                // .then(roles => {
+                // res.status(200).send({ message: "User was registered successfully!" });
+                // });
+            }
+            res.status(200).json({ message: "Usuário criado com sucesso!" });
+        })
+        
         .catch(err => {
             res.status(500).json({ message: err.message });
         });
+    })
 };
 
 exports.signin = (req, res) => {
 
+    const {email, senha} = req.body;
+
     usuario.findOne({
         where: {
-            nif: req.body.nif
+            email: email
         }
     })
         .then(user => {
             if (!user) {
-                return res.status(404).send({ message: "User Not found." });
+                return res.json({ status: 'error', error: "E-mail não encontrado."})
             }
 
-            bcrypt.compare(req.body.senha, user.senha).then((match) => {
+            bcrypt.compare(senha, user.senha).then((match) => {
                 if (!match) {
-                    return res.status(401).send({
+                    return res.json({
                         accessToken: null,
-                        message: "Invalid Password!"
+                        error: "Senha Invalida!"
                     });
                 }
-
-                // var passwordIsValid = bcrypt.compare(
-                //     req.body.senha,
-                //     user.senha
-                //   );
-
-                //   if (!passwordIsValid) {
-                //     return res.status(401).send({
-                //       accessToken: null,
-                //       message: "Invalid Password!"
-                //     });
-                //   }
 
                 var token = sign({ nif: user.nif, email: user.email, nome: user.nome }, config.secret, {
                     expiresIn: 86400 // 24 hours
@@ -128,8 +118,8 @@ exports.signin = (req, res) => {
                     for (let i = 0; i < roles.length; i++) {
                         authorities.push("ROLE_" + roles[i].descricao.toUpperCase());
                     }
-                    res.status(200).send({
-                        id: user.nif,
+                    res.status(200).json({
+                        nif: user.nif,
                         nome: user.nome,
                         email: user.email,
                         roles: authorities,
@@ -139,26 +129,6 @@ exports.signin = (req, res) => {
             })
         })
         .catch(err => {
-            res.status(500).send({ message: err.message });
+            res.status(500).json({ message: err.message });
         });
 };
-
-
-// exports.signin = async (req, res) => {
-//     let {nif, senha} = req.body;
-
-//      var user = await User.findOne({ where: { nif : nif } });
-
-//      if (!user) return res.json({ error: "User Doesn't Exist" });
-
-//      bcrypt.compare(senha, user.senha).then(async (match) => {
-//        if (!match) return res.json({ error: "Wrong Username And Password Combination" });
-
-//        const accessToken = await sign(
-//          { nif: user.nif, email: user.email, nome: user.nome },
-//          config.secret
-//        );
-
-//        return res.json({ token: accessToken, nif: nif, email: user.email, nome: user.nome });
-//      });
-//  }
