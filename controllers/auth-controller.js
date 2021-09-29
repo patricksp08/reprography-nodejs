@@ -1,5 +1,5 @@
 'use strict'
-
+//Arquivo de config
 const config = require("../config/auth.config.json");
 //Biblioteca do sequelize 
 const Sequelize = require("sequelize");
@@ -7,14 +7,16 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 ////Inicializando as models e recebendo nas configurando
-const { sequelize } = require("../models/");
-const { initModels } = require("../models/init-models.js");
-var models = initModels(sequelize);
-var { usuario, tipo_usuario } = models;
+const {initModels} = require("../models/init-models")
+var { usuario, tipo_usuario } = initModels(sequelize)
 
+//Usado para criptografar as senhas no banco
 const bcrypt = require("bcrypt");
+
+//Usado para enviar o token e informações do usuário pro front quando ele Logar
 const { sign } = require("jsonwebtoken");
 
+//Registrar usuário
 exports.signup = (req, res) => {
     let { nif, senha, nome, telefone, depto, email, cfp, imagem } = req.body;
 
@@ -87,6 +89,7 @@ exports.signup = (req, res) => {
     })
 };
 
+//Logar
 exports.signin = (req, res) => {
 
     const {email, senha} = req.body;

@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('usuario', {
     nif: {
@@ -7,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     senha: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(100),
       allowNull: false
     },
     nome: {

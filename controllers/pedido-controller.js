@@ -1,9 +1,6 @@
-const { sequelize } = require("../models/")
-const { initModels } = require("../models/init-models.js");
-
-////Inicializando as models e recebendo nas configurando
-var models = initModels(sequelize);
-var { pedido } = models
+//Inicializando as models e as recebendo
+const { initModels } = require("../models/init-models")
+var { pedido, det_pedido } = initModels(sequelize)
 
 ////GET 
 
@@ -20,7 +17,11 @@ exports.buscarTodos = async (req, res) => {
 
 //Buscar os pedidos por ID do pedido
 exports.buscarPorIdPedido = async (req, res) => {
-    const pedidos = await pedido.findByPk(req.params.id)
+    const pedidos = await pedido.findByPk(req.params.id, {
+        include: [
+            'det_pedidos'
+        ]
+    })
     console.log(pedidos)
     res.json(pedidos)
 }
@@ -43,7 +44,7 @@ exports.buscarPorNif = async (req, res) => {
 exports.buscarPorIdDetalhe = async (req, res) => {
     const pedidos = await pedido.findAll({
         include: {
-            model: models.det_pedido,
+            model: det_pedido,
             as: "det_pedidos",
             where: {
                 id_det_pedido: req.params.id
@@ -58,7 +59,7 @@ exports.buscarPorIdDetalhe = async (req, res) => {
 //Adicionar pedido com detalhe solicitado por nif (usuario)
 exports.adicionar = async (req, res) => {
     let { centro_custos,
-        titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes, nif } = req.body;
+        titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes } = req.body;
 
     let { num_copias, num_paginas, tipos_copia, acabamento, tamanho, tipos_capa, sub_total_copias } = req.body
     //Lógica para sub_total - Switch
@@ -67,14 +68,13 @@ exports.adicionar = async (req, res) => {
 
     await pedido.create({
         id_centro_custos: centro_custos,
-        nif: nif,
+        nif: req.user.nif,
         titulo_pedido: titulo_pedido,
         custo_total: custo_total,
         id_modo_envio: modo_envio,
         id_avaliacao_pedido: avaliacao_pedido,
         id_curso: curso,
         observacoes: observacoes,
-        id_acabamento: 2,
         det_pedidos: {
             // id_pedido: 1,
             num_copias: num_copias,

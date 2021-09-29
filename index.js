@@ -20,11 +20,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Models
 const db = require("./models");
-const Role = db.role;
 
-const { sequelize } = require("./models/")
-const { initModels } = require("./models/init-models.js");
-models = initModels(sequelize);
+//Função para inserir os registros fixos de alguams tabelas (como tipo_usuario, tipo_copia, etc...)
+const registros = require("./controllers/inserirRegistros")
+
 // Routers
 
 //Usuario router
@@ -39,28 +38,10 @@ require('./routes/auth-routes')(app)
 require('./routes/resettoken-routes')(app)
 
 
-db.sequelize.sync().then(() => {
-  app.listen(3002, () => {
-    console.log("/////////////---Server running on port 3002---/////////////");
-    // initial();
+db.sequelize.sync({force: true}).then(() => {
+  app.listen(3002, async () => {
+    await registros.Initial();
+    console.log("(||||||||| | | -------- Server running on port 3002 -------- | | |||||||||)");
   });
 });
 
-// function initial() {
-//   models.tipo_usuario.bulkCreate([
-//     {
-//       id: 1,
-//       descricao: "user"
-//     },
-//     {
-//       id: 2,
-//       descricao: "moderator"
-//     },
-//     {
-//       id: 3,
-//       descricao: "admin"
-//     }
-//   ])
-  // models.acabamento.bulkCreate([{ id_acabamento: 1,
-  // }, { /* record two */ }])
-// }

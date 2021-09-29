@@ -1,16 +1,20 @@
 'use strict';
 
+const config = require("../config/config.json");
+
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(
+  config.development.database, 
+  config.development.username, 
+  config.development.password, 
+  { host: config.development.host, 
+    dialect: config.development.dialect });
+
 const fs = require('fs');
 const path = require('path');
-const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require("../config/config.json");
+// const env = process.env.NODE_ENV || 'development';
 const db = {};
-
-let sequelize;
-  sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, 
-    { host: config.development.host, dialect: config.development.dialect });
 
 fs
   .readdirSync(__dirname)
@@ -30,6 +34,20 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+// db.user = require("../models/usuario")(sequelize, Sequelize);
+// db.role = require("../models/tipo_usuario")(sequelize, Sequelize);
+
+// db.role.belongsToMany(db.user, {
+//   through: "user_roles",
+//   foreignKey: "roleId",
+//   otherKey: "userId"
+// });
+// db.user.belongsToMany(db.role, {
+//   through: "user_roles",
+//   foreignKey: "userId",
+//   otherKey: "roleId"
+// });
 
 db.ROLES = ["user", "moderator", "admin"];
 

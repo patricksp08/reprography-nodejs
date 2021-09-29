@@ -3,17 +3,25 @@ const Sequelize = require("sequelize");
 //Operadores do sequelize
 const Op = Sequelize.Op;
 
-//Inicializando as models e recebendo elas na variavel models
-const { sequelize } = require("../models/");
-const { initModels } = require("../models/init-models.js");
-var models = initModels(sequelize);
-var { resettoken, usuario } = models
-const bcrypt = require("bcrypt")
-const nodemailer = require('nodemailer');
-const crypto = require('crypto');
+//Arquivos de config
 const mailer = require('../config/mailer.config');
 const auth = require("../config/auth.config.json");
 
+//Inicializando as models e as recebendo
+const {initModels} = require("../models/init-models")
+var { resettoken, usuario } = initModels(sequelize)
+
+//Uitlizado para criptografar as senhas no banco de dados
+const bcrypt = require("bcrypt")
+
+//Usado para enviar o email (serviço SMTP)
+const nodemailer = require('nodemailer');
+
+//Usado para criar o token de reset aleatório
+const crypto = require('crypto');
+
+
+//Criando conexão SMTP
 var transport = nodemailer.createTransport({
   secureConnection: mailer.hotmail.secureConnection,
   service: mailer.hotmail.service,
@@ -27,7 +35,7 @@ var transport = nodemailer.createTransport({
 });
 
 
-//GET
+// ROTAS GET
 
 exports.forgotPasswordGet = (req, res, next) => {
   res.render('usuario/forgot-password', {});
@@ -72,7 +80,7 @@ exports.resetTokenExpired = async (req, res, next) => {
 
 
 
-//POST
+// ROTAS POST
 exports.forgotPasswordPost = async (req, res, next) => {
   //Assegure que você tem um usuário com esse email
 

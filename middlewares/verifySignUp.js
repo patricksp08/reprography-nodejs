@@ -7,6 +7,7 @@ const { initModels } = require("../models/init-models.js");
 var models = initModels(sequelize); 
 usuario = models.usuario;
 
+//Verifica se já existe um usuário com NIF e/ou email passados pelo input 
 checkDuplicateNifOrEmail = (req, res, next) => {
   // NIF
   usuario.findOne({
@@ -39,6 +40,7 @@ checkDuplicateNifOrEmail = (req, res, next) => {
   });
 };
 
+//Verifica se o Cargo passado na hora do registro existe no back-end (existentes: User, Moderator, Admin)
 checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for(let i = 0; i < req.body.roles.length; i++) {

@@ -1,21 +1,29 @@
-const { validateToken } = require("../middlewares/authJwt");
+const { authJwt } = require("../middlewares");
 const controller = require("../controllers/pedido-controller");
 
 module.exports = function (app) {
+  app.use(function (req, res, next) {
+    res.header(
+      "Access-Control-Allow-Headers",
+      "accessToken, Origin, Content-Type, Accept"
+    );
+    next();
+  });
+  
   //Get
 
   //Buscar todos os pedidos
-  app.get("/pedidos", controller.buscarTodos)
+  app.get("/pedidos", [authJwt.validateToken],controller.buscarTodos)
 
   //Buscar pedido por id do pedido
-  app.get("/pedido/:id", controller.buscarPorIdPedido)
+  app.get("/pedido/:id", [authJwt.validateToken],controller.buscarPorIdPedido)
 
   //Buscar pedido por id da tabela det_pedido (foreignkey)
-  app.get("/pedido/detalheid/:id", controller.buscarPorIdDetalhe)
+  app.get("/pedido/detalheid/:id", [authJwt.validateToken],controller.buscarPorIdDetalhe)
 
   //Buscar pedido por nif da tabela usuario (foreignKey)
-  app.get("/pedido/nif/:nif", controller.buscarPorNif)
+  app.get("/pedido/nif/:nif", [authJwt.validateToken], controller.buscarPorNif)
 
   //Post
-  app.post("/pedido", controller.adicionar)
+  app.post("/pedido", [authJwt.validateToken], controller.adicionar)
 };
