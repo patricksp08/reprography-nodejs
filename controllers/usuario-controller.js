@@ -3,12 +3,12 @@ const Sequelize = require("sequelize");
 //Operadores do sequelize
 const Op = Sequelize.Op;
 
-////Inicializando as models e recebendo elas na variavel models
-const { sequelize } = require("../models/");
-const { initModels } = require("../models/init-models.js");
-var models = initModels(sequelize);
-var { usuario } = models;
+//Inicializando as models e as recebendo
+const { initModels } = require("../models/init-models")
+var { usuario } = initModels(sequelize)
 
+//Usado para criptografar as senhas no banco -> Nesse caso para comparar a senha 
+//quando o usuário solicitar mudança de senha.
 const bcrypt = require("bcrypt");
 
 

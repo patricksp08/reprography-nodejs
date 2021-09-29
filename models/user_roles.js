@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('user_roles', {
     roleId: {
@@ -6,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'tipo_usuario',
+        model: 'roles',
         key: 'id'
       }
     },
@@ -30,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "roleId" },
-          { name: "userId" },
+          { name: "userNif" },
         ]
       },
       {

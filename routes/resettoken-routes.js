@@ -1,7 +1,13 @@
-const { validateToken } = require("../middlewares/authJwt");
 const controller = require("../controllers/resetToken");
 
 module.exports = function (app) {
+    app.use(function (req, res, next) {
+        res.header(
+            "Access-Control-Allow-Headers",
+            "accessToken, Origin, Content-Type, Accept"
+        );
+        next();
+    });
 
     //Get
 
