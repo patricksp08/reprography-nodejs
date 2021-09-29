@@ -7,7 +7,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 ////Inicializando as models e recebendo nas configurando
-const {initModels} = require("../models/init-models")
+const { initModels } = require("../models/init-models")
 var { usuario, tipo_usuario } = initModels(sequelize)
 
 //Usado para criptografar as senhas no banco

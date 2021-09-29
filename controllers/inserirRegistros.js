@@ -121,5 +121,5 @@ exports.Initial = async () => {
             descricao: "Color",
         },
     ]);
-     console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
+      console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
 }

@@ -38,9 +38,8 @@ require('./routes/auth-routes')(app)
 require('./routes/resettoken-routes')(app)
 
 
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync().then(() => {
   app.listen(3002, async () => {
-    await registros.Initial();
     console.log("(||||||||| | | -------- Server running on port 3002 -------- | | |||||||||)");
   });
 });
