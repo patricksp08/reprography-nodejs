@@ -106,33 +106,53 @@ exports.adicionar = async (req, res) => {
 
     switch (tipos_copia && tamanho_pagina) {
         case 1 && 3:
-            sub_total_copias = 0.600
+            sub_total_copias = 0.0600
             break;
 
         case 1 && 2:
             sub_total_copias = 0.0240
             break;
 
-        case x && y:
-            sub_total_copias = z
+        case 1 && 1:
+            sub_total_copias = 0.1500
             break;
 
-        case x && y:
-            sub_total_copias = z
+        case 2 && 2:
+            sub_total_copias = 0.1000
             break;
-
-        case x && y:
-            sub_total_copias = z
-            break;
-
-        case x && y:
-            sub_total_copias = z
-            break;
-
+        
         default:
             sub_total_copias = 0
             break;
     }
+
+//Reduzidas ou amplidas Preto e Branco
+//    if(redAmpl === 1 || 2 && tipos_copia === 1 ){
+//     sub_total_copias = 0.3000
+//    }
+
+//
+// switch (tipos_capa && acabamento) {
+//     case 1 && 3:
+//         sub_total_copias = 0.0700
+//         break;
+
+//     case 1 && 2:
+//         sub_total_copias = 0.0500
+//         break;
+
+//     case 1 && 1:
+//         sub_total_copias = 0.5000
+//         break;
+
+//     case 2 && 2:
+//         sub_total_copias = 0.4500
+//         break;
+    
+//     default:
+//         sub_total_copias = 0
+//         break;
+// }
 
 
     //Lógica para custo total
