@@ -41,9 +41,13 @@ require('./routes/resettoken-routes')(app)
 require('./routes/swagger')(app)
 
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force: true}).then(() => {
   app.listen(3002, async () => {
+<<<<<<< HEAD
     // await registros.Inserir();
+=======
+    await registros.Inserir()
+>>>>>>> 94523ed4fa8bde10e600f11f8eb470f5d2d0f308
     console.log("(||||||||| | | -------- Server running on port 3002 -------- | | |||||||||)");
   });
 });
