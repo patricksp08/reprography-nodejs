@@ -16,8 +16,9 @@ const bcrypt = require("bcrypt");
 //Usado para enviar o token e informações do usuário pro front quando ele Logar
 const { sign } = require("jsonwebtoken");
 
+module.exports = {
 //Registrar usuário
-exports.signup = (req, res) => {
+signup : (req, res) => {
     let { nif, senha, nome, telefone, depto, email, cfp, imagem } = req.body;
 
     //Imagem padrão caso não seja inserida nenhuma imagem.
@@ -26,6 +27,7 @@ exports.signup = (req, res) => {
     // if (req.file == undefined) {
     //     return res.send("Você precisa selecionar um arquivo.");
     // }
+    
     if (req.file) {
         imagem = req.file.path;
     }
@@ -87,10 +89,10 @@ exports.signup = (req, res) => {
             res.status(500).json({ message: err.message });
         });
     })
-};
+},
 
 //Logar
-exports.signin = (req, res) => {
+signin: (req, res) => {
 
     const {email, senha} = req.body;
 
@@ -102,7 +104,7 @@ exports.signin = (req, res) => {
         .then(user => {
             if (!user) {
                 return res.json({ status: 'error', error: "E-mail não encontrado."})
-            }
+            };
 
             bcrypt.compare(senha, user.senha).then((match) => {
                 if (!match) {
@@ -110,7 +112,7 @@ exports.signin = (req, res) => {
                         accessToken: null,
                         error: "Senha Invalida!"
                     });
-                }
+                };
 
                 var token = sign({ nif: user.nif, email: user.email, nome: user.nome }, config.secret, {
                     expiresIn: 86400 // 24 hours
@@ -129,9 +131,10 @@ exports.signin = (req, res) => {
                         accessToken: token
                     });
                 });
-            })
+            });
         })
         .catch(err => {
             res.status(500).json({ message: err.message });
         });
+    },
 };
