@@ -18,11 +18,12 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 //Models
 const db = require("./models");
 
 //Função para inserir os registros fixos de alguams tabelas (como tipo_usuario, tipo_copia, etc...)
-const registros = require("./controllers/inserirRegistros")
+const registros = require("./helpers/inserirRegistros")
 
 // Routers
 
@@ -36,11 +37,13 @@ require("./routes/det_pedido-routes")(app)
 require('./routes/auth-routes')(app)
 //ResetToken Router
 require('./routes/resettoken-routes')(app)
+//Swagger Routes
+require('./routes/swagger')(app)
 
 
 db.sequelize.sync().then(() => {
   app.listen(3002, async () => {
+    // await registros.Inserir();
     console.log("(||||||||| | | -------- Server running on port 3002 -------- | | |||||||||)");
   });
 });
-

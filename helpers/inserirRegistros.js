@@ -1,7 +1,7 @@
 const { initModels } = require("../models/init-models")
 var models = initModels(sequelize)
 
-exports.Initial = async () => {
+exports.Inserir = async () => {
     models.acabamento.bulkCreate([
         {
             id_acabamento: 1,
@@ -29,11 +29,35 @@ exports.Initial = async () => {
     models.centro_custos.bulkCreate([
         {
             id_centro_custos: 1,
-            descricao: "CT-DS"
+            descricao: "Aprendizagem Industrial Presencial"
         },
         {
-            id_centro_custos: 2,
-            descricao: "CT-MP"
+            id_centro_custos: 2, 
+            descricao: "Técnico de Nível Média Presencial"
+        },
+        {
+            id_centro_custos: 3, 
+            descricao: "Graduação Tecnológica Presencial"
+        },
+        {
+            id_centro_custos: 4, 
+            descricao: "Pós-Graduação Presencial"
+        },
+        {
+            id_centro_custos: 5, 
+            descricao: "Extensão Presencial"
+        },
+        {
+            id_centro_custos: 6, 
+            descricao: "Iniciação Profissional Presencial"
+        },
+        {
+            id_centro_custos: 7, 
+            descricao: "Qualificação Profissional Presencial"
+        },
+        {
+            id_centro_custos: 8, 
+            descricao: "Aperfeiç./Especializ. Profis. Presencial"
         }
     ]);
     models.departamento.bulkCreate([
