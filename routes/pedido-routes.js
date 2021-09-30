@@ -24,6 +24,9 @@ module.exports = function (app) {
   //Buscar pedido por nif da tabela usuario (foreignKey)
   app.get("/pedido/nif/:nif", [authJwt.validateToken], controller.buscarPorNif)
 
+    //Exibe o usuarío por nome na tabela usuario (exemplo: host:porta/usuariox)
+    app.get("/usuario/:pedido", [authJwt.validateToken], controller.buscarPorNome);
+
   //Post
   app.post("/pedido", [authJwt.validateToken], controller.adicionar)
 };

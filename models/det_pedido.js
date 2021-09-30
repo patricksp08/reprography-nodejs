@@ -56,7 +56,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     sub_total_copias: {
-      type: DataTypes.DECIMAL(10,0),
+      type: DataTypes.DECIMAL(10,5),
       allowNull: true
     }
   }, {

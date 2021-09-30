@@ -39,7 +39,7 @@ exports.Initial = async () => {
     models.departamento.bulkCreate([
         {
             id_depto: 1,
-            descricao: "Departamento",
+            descricao: "Informática",
         },
         {
             id_depto: 2,
@@ -86,6 +86,14 @@ exports.Initial = async () => {
             id_tamanho: 3,
             descricao: "A5",
         },
+        {
+            id_tamanho: 4,
+            descricao: "Reduzida",
+        },
+        {
+            id_tamanho: 5,
+            descricao: "Ampliada",
+        },
     ]);
     models.tipo_usuario.bulkCreate([
         {
@@ -121,5 +129,5 @@ exports.Initial = async () => {
             descricao: "Color",
         },
     ]);
-     console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
+      console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
 }
