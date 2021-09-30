@@ -106,19 +106,19 @@ exports.adicionar = async (req, res) => {
 
     switch (tipos_copia && tamanho_pagina) {
         case 1 && 3:
-            sub_total_copias = 0.0600
+            sub_total_copias += 0.0600
             break;
 
         case 1 && 2:
-            sub_total_copias = 0.0240
+            sub_total_copias += 0.0240
             break;
 
         case 1 && 1:
-            sub_total_copias = 0.1500
+            sub_total_copias += 0.1500
             break;
 
         case 2 && 2:
-            sub_total_copias = 0.1000
+            sub_total_copias += 0.1000
             break;
         
         default:
@@ -134,24 +134,24 @@ exports.adicionar = async (req, res) => {
 //
 // switch (tipos_capa && acabamento) {
 //     case 1 && 3:
-//         sub_total_copias = 0.0700
+//         sub_total_copias += 0.0700
 //         break;
 
 //     case 1 && 2:
-//         sub_total_copias = 0.0500
+//         sub_total_copias += 0.0500
 //         break;
 
 //     case 1 && 1:
-//         sub_total_copias = 0.5000
+//         sub_total_copias += 0.5000
 //         break;
 
 //     case 2 && 2:
-//         sub_total_copias = 0.4500
+//         sub_total_copias += 0.4500
 //         break;
     
 //     default:
 //         sub_total_copias = 0
-//         break;
+//         break;3
 // }
 
 
