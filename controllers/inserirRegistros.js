@@ -1,7 +1,7 @@
 const { initModels } = require("../models/init-models")
 var models = initModels(sequelize)
 
-exports.Initial = async () => {
+exports.Inserir = async () => {
     models.acabamento.bulkCreate([
         {
             id_acabamento: 1,
