@@ -15,7 +15,7 @@ exports.buscarTodos = async (req, res) => {
         include: [
             'det_pedidos'
         ]
-    })
+    });
     console.log(pedidos)
     res.json(pedidos)
 }
@@ -32,7 +32,7 @@ exports.buscarPorNome = async (req, res) => {
         include: [
             'det_pedidos'
         ]
-    })
+    });
     console.log(pedidos)
     res.json(pedidos)
 }
@@ -43,7 +43,7 @@ exports.buscarPorIdPedido = async (req, res) => {
         include: [
             'det_pedidos'
         ]
-    })
+    });
     console.log(pedidos)
     res.json(pedidos)
 }
@@ -58,7 +58,7 @@ exports.buscarPorNif = async (req, res) => {
         include: [
             'det_pedidos'
         ]
-    })
+    });
     res.json(pedidos);
 };
 
@@ -72,7 +72,7 @@ exports.buscarPorIdDetalhe = async (req, res) => {
                 id_det_pedido: req.params.id
             },
         },
-    })
+    });
     res.json(pedidos);
 };
 
@@ -81,12 +81,10 @@ exports.buscarPorIdDetalhe = async (req, res) => {
 //Adicionar pedido com detalhe solicitado por nif (usuario)
 exports.adicionar = async (req, res) => {
     //Input que será enviado para tabela Pedido
-    let { centro_custos,
-        titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes } = req.body;
+    let { centro_custos, titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes } = req.body;
 
     // Input que será enviado para tabela Det_Pedido
     let { num_copias, num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa, sub_total_copias } = req.body
-
 
 
     //Lógica para sub_total - Switch  
@@ -104,55 +102,91 @@ exports.adicionar = async (req, res) => {
     //Switch com Lógica, fornecer no parâmetro os campos 
     //a serem comparados e seus casos abaixo:
 
-    switch (tipos_copia && tamanho_pagina) {
-        case 1 && 3:
-            sub_total_copias += 0.0600
-            break;
 
-        case 1 && 2:
-            sub_total_copias += 0.0240
-            break;
 
-        case 1 && 1:
-            sub_total_copias += 0.1500
-            break;
 
-        case 2 && 2:
-            sub_total_copias += 0.1000
-            break;
-        
-        default:
-            sub_total_copias = 0
-            break;
-    }
 
-//Reduzidas ou amplidas Preto e Branco
-//    if(redAmpl === 1 || 2 && tipos_copia === 1 ){
-//     sub_total_copias = 0.3000
-//    }
+    //Guardando valores para definir um limite (Usar limite por valores ou solicitações?)
 
-//
-// switch (tipos_capa && acabamento) {
-//     case 1 && 3:
-//         sub_total_copias += 0.0700
-//         break;
+    //  var {serv1, serv2, serv3, serv4, serv5 } = null;
 
-//     case 1 && 2:
-//         sub_total_copias += 0.0500
-//         break;
+    // if (serv1 > 900){
+    //     return null
+    // }
+    // if (serv2 > 96000){
+    //     return null
+    // }
+    // if (serv3 > 600){
+    //     return null
+    // }
+    // if (serv4 > 400){
+    //     return null
+    // }
+    // if (serv5 > 30){
+    //     return null
+    // }
 
-//     case 1 && 1:
-//         sub_total_copias += 0.5000
-//         break;
+    //Lógica a ser utilizada ?
+    // switch (x) {
+    //     case 1:
+    //         tipos_copia = 1
+    //         tamanho_pagina = 3
+    //         sub_total_copias += 0.0600
 
-//     case 2 && 2:
-//         sub_total_copias += 0.4500
-//         break;
-    
-//     default:
-//         sub_total_copias = 0
-//         break;3
-// }
+    //         break;
+
+    //Incremento de valores dependendo do serviços
+    // switch (tipos_copia && tamanho_pagina) {
+    //     case 1 && 3:
+    //         sub_total_copias += 0.0600 
+    //         serv1 += 0.0600 
+    //         break;
+
+    //     case 1 && 2:
+    //         sub_total_copias += 0.0240
+    //         break;
+
+    //     case 1 && 1:
+    //         sub_total_copias += 0.1500
+    //         break;
+
+    //     case 2 && 2:
+    //         sub_total_copias += 0.1000
+    //         break;
+
+    //     default:
+    //         sub_total_copias = 0
+    //         break;
+    // };
+
+
+    //Reduzidas ou amplidas Preto e Branco
+    //    if(redAmpl === 1 || 2 && tipos_copia === 1 ){
+    //     sub_total_copias = 0.3000
+    //    }
+
+    //
+    // switch (tipos_capa && acabamento) {
+    //     case 1 && 3:
+    //         sub_total_copias += 0.0700
+    //         break;
+
+    //     case 1 && 2:
+    //         sub_total_copias += 0.0500
+    //         break;
+
+    //     case 1 && 1:
+    //         sub_total_copias += 0.5000
+    //         break;
+
+    //     case 2 && 2:
+    //         sub_total_copias += 0.4500
+    //         break;
+
+    //     default:
+    //         sub_total_copias = 0
+    //         break;
+    // }
 
 
     //Lógica para custo total
@@ -175,7 +209,7 @@ exports.adicionar = async (req, res) => {
             id_tamanho: tamanho_pagina,
             id_tipos_capa: tipos_capa,
             sub_total_copias: sub_total_copias
-        }
+        },
     },
         {
             include: ['det_pedidos']
@@ -185,4 +219,4 @@ exports.adicionar = async (req, res) => {
         }
     );
     res.status(200).json({ message: "Pedido realizado com sucesso" });
-}
+};

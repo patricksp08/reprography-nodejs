@@ -63,13 +63,38 @@ exports.Inserir = async () => {
     models.departamento.bulkCreate([
         {
             id_depto: 1,
-            descricao: "Informática",
+            descricao: "Aprendizagem Industrial Presencial",
         },
         {
             id_depto: 2,
-            descricao: "Mecânica",
+            descricao: "Técnico de Nível Média Presencial",
+        },
+        {
+            id_depto: 3,
+            descricao: "Graduação Tecnológica Presencial",
+        },
+        {
+            id_depto: 4,
+            descricao: "Pós-Graduação Presencial",
+        },
+        {
+            id_depto: 5,
+            descricao: "Extensão Presencial",
+        },
+        {
+            id_depto: 6,
+            descricao: "Iniciação Profissional Presencial",
+        },
+        {
+            id_depto: 7,
+            descricao: "Qualificação Profissional Presencial",
+        },
+        {
+            id_depto: 8,
+            descricao: "Aperfeiç./Especializ. Profis. Presencial",
         },
     ]);
+
     models.curso.bulkCreate([
         {
             id_curso: 1,
@@ -87,6 +112,7 @@ exports.Inserir = async () => {
             id_depto: 2
         }
     ]);
+
     models.modo_envio.bulkCreate([
         {
             id_modo_envio: 1,

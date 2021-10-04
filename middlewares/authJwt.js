@@ -10,7 +10,7 @@ const validateToken = (req, res, next) => {
 
   if (!accessToken) return res.status(403).json({ error: "Você não está logado!" });
 
-  const validToken = verify(accessToken, config.secret)
+  const validToken = verify(accessToken, config.secret);
   req.user = validToken; //  ==>  //Aqui ele passa os dados do usuário, nif: ... , email: ... 
                           //Importante para usarmospor exemplo quando alguém realizar um pedido, 
                           //para sabermos quem foi que realizou aquele pedido.

@@ -49,6 +49,6 @@ db.Sequelize = Sequelize;
 //   otherKey: "roleId"
 // });
 
-db.ROLES = ["user", "moderator", "admin"];
+db.ROLES = ["user", "moderator", "admin"]
 
 module.exports = db;

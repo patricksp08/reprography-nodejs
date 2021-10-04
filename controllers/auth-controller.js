@@ -121,7 +121,7 @@ signin: (req, res) => {
                 var authorities = [];
                 user.getRoles().then(roles => {
                     for (let i = 0; i < roles.length; i++) {
-                        authorities.push("ROLE_" + roles[i].descricao.toUpperCase());
+                        authorities.push( roles[i].id  + "_ROLE_" + roles[i].descricao.toUpperCase());
                     }
                     res.status(200).json({
                         nif: user.nif,
