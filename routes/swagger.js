@@ -11,10 +11,10 @@ const swaggerSpec = swaggerJsdoc({
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      title: "Swagger API Tutorial - Poopcode.com",
+      title: "Autenticação Swagger",
       version: "1.0.0",
       description:
-        "A sample project to understand how easy it is to document and Express API",
+        "Autenticação com Swagger e JWT",
     }
   },
     components: {
