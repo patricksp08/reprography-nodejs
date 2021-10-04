@@ -89,22 +89,10 @@ exports.adicionar = async (req, res) => {
 
     //Lógica para sub_total - Switch  
 
-    //EXEMPLO ==>
-    // if(tipos_copia === 1 && tamanho_pagina === 3 ) {
-    //     sub_total_copias = 0,0600
-    // }
 
-    // if(tipos_copia === 1 && tamanho_pagina === 2) {
-    //     sub_total_copias = 0,0240
-    // }
-
-    // -------- (pensar se total é realmente necessário...) --------------
-    //Switch com Lógica, fornecer no parâmetro os campos 
-    //a serem comparados e seus casos abaixo:
-
-
-
-
+    // *** -------- (pensar se total é realmente necessário...) --------------
+    // ** Switch com Lógica, fornecer no parâmetro os campos 
+    // *** a serem comparados e seus casos abaixo:
 
     //Guardando valores para definir um limite (Usar limite por valores ou solicitações?)
 

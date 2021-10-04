@@ -67,7 +67,7 @@ exports.Inserir = async () => {
         },
         {
             id_depto: 2,
-            descricao: "Técnico de Nível Média Presencial",
+            descricao: "Técnico de Nível Médio Presencial",
         },
         {
             id_depto: 3,
@@ -83,7 +83,7 @@ exports.Inserir = async () => {
         },
         {
             id_depto: 6,
-            descricao: "Iniciação Profissional Presencial",
+            descricao: "Iniciação Profissional Presencial", 
         },
         {
             id_depto: 7,
@@ -98,18 +98,23 @@ exports.Inserir = async () => {
     models.curso.bulkCreate([
         {
             id_curso: 1,
-            descricao: "CT-DS",
-            id_depto: 1
+            descricao: "CT-DS", //Curso Técnico de Desenvolvimento de Sistemas
+            id_depto: 2
         },
         {
             id_curso: 2,
-            descricao: "CT-MP",
+            descricao: "CT-MP", //Curso Técnico de Mecânica de Precisão
             id_depto: 2
         },
         {
             id_curso: 3,
-            descricao: "CST-MP",
-            id_depto: 2
+            descricao: "CST-MP", //Curso Superior Técnico de Mecânica de Precisão
+            id_depto: 3
+        },
+        {
+            id_curso: 4,
+            descricao: "Pós-Graduação", //Pós Graduação
+            id_depto: 4
         }
     ]);
 
@@ -176,7 +181,7 @@ exports.Inserir = async () => {
         },
         {
             id_tipos_copia: 2,
-            descricao: "Color",
+            descricao: "Colorida",
         },
     ]);
       console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
