@@ -32,31 +32,31 @@ exports.Inserir = async () => {
             descricao: "Aprendizagem Industrial Presencial"
         },
         {
-            id_centro_custos: 2, 
+            id_centro_custos: 2,
             descricao: "Técnico de Nível Média Presencial"
         },
         {
-            id_centro_custos: 3, 
+            id_centro_custos: 3,
             descricao: "Graduação Tecnológica Presencial"
         },
         {
-            id_centro_custos: 4, 
+            id_centro_custos: 4,
             descricao: "Pós-Graduação Presencial"
         },
         {
-            id_centro_custos: 5, 
+            id_centro_custos: 5,
             descricao: "Extensão Presencial"
         },
         {
-            id_centro_custos: 6, 
+            id_centro_custos: 6,
             descricao: "Iniciação Profissional Presencial"
         },
         {
-            id_centro_custos: 7, 
+            id_centro_custos: 7,
             descricao: "Qualificação Profissional Presencial"
         },
         {
-            id_centro_custos: 8, 
+            id_centro_custos: 8,
             descricao: "Aperfeiç./Especializ. Profis. Presencial"
         }
     ]);
@@ -83,7 +83,7 @@ exports.Inserir = async () => {
         },
         {
             id_depto: 6,
-            descricao: "Iniciação Profissional Presencial", 
+            descricao: "Iniciação Profissional Presencial",
         },
         {
             id_depto: 7,
@@ -184,5 +184,5 @@ exports.Inserir = async () => {
             descricao: "Colorida",
         },
     ]);
-      console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
+    console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
 }

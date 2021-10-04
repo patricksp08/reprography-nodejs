@@ -17,7 +17,7 @@ var _usuario = require("./usuario");
 
 const config = require("../config/config.json");
 const Sequelize = require("sequelize")
-sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, 
+sequelize = new Sequelize(config.development.database, config.development.username, config.development.password,
   { host: config.development.host, dialect: config.development.dialect });
 
 function initModels(sequelize) {
@@ -39,34 +39,34 @@ function initModels(sequelize) {
 
   tipo_usuario.belongsToMany(usuario, { as: 'userId_usuarios', through: user_roles, foreignKey: "roleId", otherKey: "userId" });
   usuario.belongsToMany(tipo_usuario, { as: 'roles', through: user_roles, foreignKey: "userId", otherKey: "roleId" });
-  det_pedido.belongsTo(acabamento, { as: "id_acabamento_acabamento", foreignKey: "id_acabamento"});
-  acabamento.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_acabamento"});
-  pedido.belongsTo(avaliacao_pedido, { as: "id_avaliacao_pedido_avaliacao_pedido", foreignKey: "id_avaliacao_pedido"});
-  avaliacao_pedido.hasMany(pedido, { as: "pedidos", foreignKey: "id_avaliacao_pedido"});
-  pedido.belongsTo(centro_custos, { as: "id_centro_custos_centro_custo", foreignKey: "id_centro_custos"});
-  centro_custos.hasMany(pedido, { as: "pedidos", foreignKey: "id_centro_custos"});
-  pedido.belongsTo(curso, { as: "id_curso_curso", foreignKey: "id_curso"});
-  curso.hasMany(pedido, { as: "pedidos", foreignKey: "id_curso"});
-  curso.belongsTo(departamento, { as: "id_depto_departamento", foreignKey: "id_depto"});
-  departamento.hasMany(curso, { as: "cursos", foreignKey: "id_depto"});
-  usuario.belongsTo(departamento, { as: "id_depto_departamento", foreignKey: "id_depto"});
-  departamento.hasMany(usuario, { as: "usuarios", foreignKey: "id_depto"});
-  pedido.belongsTo(modo_envio, { as: "id_modo_envio_modo_envio", foreignKey: "id_modo_envio"});
-  modo_envio.hasMany(pedido, { as: "pedidos", foreignKey: "id_modo_envio"});
-  det_pedido.belongsTo(pedido, { as: "id_pedido_pedido", foreignKey: "id_pedido"});
-  pedido.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_pedido"});
-  det_pedido.belongsTo(tamanho_pagina, { as: "id_tamanho_tamanho_pagina", foreignKey: "id_tamanho"});
-  tamanho_pagina.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tamanho"});
-  user_roles.belongsTo(tipo_usuario, { as: "role", foreignKey: "roleId"});
-  tipo_usuario.hasMany(user_roles, { as: "user_roles", foreignKey: "roleId"});
-  det_pedido.belongsTo(tipos_capa, { as: "id_tipos_capa_tipos_capa", foreignKey: "id_tipos_capa"});
-  tipos_capa.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tipos_capa"});
-  det_pedido.belongsTo(tipos_copia, { as: "id_tipos_copia_tipos_copium", foreignKey: "id_tipos_copia"});
-  tipos_copia.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tipos_copia"});
-  pedido.belongsTo(usuario, { as: "nif_usuario", foreignKey: "nif"});
-  usuario.hasMany(pedido, { as: "pedidos", foreignKey: "nif"});
-  user_roles.belongsTo(usuario, { as: "user", foreignKey: "userId"});
-  usuario.hasMany(user_roles, { as: "user_roles", foreignKey: "userId"});
+  det_pedido.belongsTo(acabamento, { as: "id_acabamento_acabamento", foreignKey: "id_acabamento" });
+  acabamento.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_acabamento" });
+  pedido.belongsTo(avaliacao_pedido, { as: "id_avaliacao_pedido_avaliacao_pedido", foreignKey: "id_avaliacao_pedido" });
+  avaliacao_pedido.hasMany(pedido, { as: "pedidos", foreignKey: "id_avaliacao_pedido" });
+  pedido.belongsTo(centro_custos, { as: "id_centro_custos_centro_custo", foreignKey: "id_centro_custos" });
+  centro_custos.hasMany(pedido, { as: "pedidos", foreignKey: "id_centro_custos" });
+  pedido.belongsTo(curso, { as: "id_curso_curso", foreignKey: "id_curso" });
+  curso.hasMany(pedido, { as: "pedidos", foreignKey: "id_curso" });
+  curso.belongsTo(departamento, { as: "id_depto_departamento", foreignKey: "id_depto" });
+  departamento.hasMany(curso, { as: "cursos", foreignKey: "id_depto" });
+  usuario.belongsTo(departamento, { as: "id_depto_departamento", foreignKey: "id_depto" });
+  departamento.hasMany(usuario, { as: "usuarios", foreignKey: "id_depto" });
+  pedido.belongsTo(modo_envio, { as: "id_modo_envio_modo_envio", foreignKey: "id_modo_envio" });
+  modo_envio.hasMany(pedido, { as: "pedidos", foreignKey: "id_modo_envio" });
+  det_pedido.belongsTo(pedido, { as: "id_pedido_pedido", foreignKey: "id_pedido" });
+  pedido.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_pedido" });
+  det_pedido.belongsTo(tamanho_pagina, { as: "id_tamanho_tamanho_pagina", foreignKey: "id_tamanho" });
+  tamanho_pagina.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tamanho" });
+  user_roles.belongsTo(tipo_usuario, { as: "role", foreignKey: "roleId" });
+  tipo_usuario.hasMany(user_roles, { as: "user_roles", foreignKey: "roleId" });
+  det_pedido.belongsTo(tipos_capa, { as: "id_tipos_capa_tipos_capa", foreignKey: "id_tipos_capa" });
+  tipos_capa.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tipos_capa" });
+  det_pedido.belongsTo(tipos_copia, { as: "id_tipos_copia_tipos_copium", foreignKey: "id_tipos_copia" });
+  tipos_copia.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_tipos_copia" });
+  pedido.belongsTo(usuario, { as: "nif_usuario", foreignKey: "nif" });
+  usuario.hasMany(pedido, { as: "pedidos", foreignKey: "nif" });
+  user_roles.belongsTo(usuario, { as: "user", foreignKey: "userId" });
+  usuario.hasMany(user_roles, { as: "user_roles", foreignKey: "userId" });
 
   return {
     acabamento,

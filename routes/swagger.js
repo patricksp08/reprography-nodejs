@@ -3,6 +3,6 @@ const swaggerDocs = require("../config/swagger.json");
 
 module.exports = function (app) {
   //Swagger Rota
-    app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+  app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 };
