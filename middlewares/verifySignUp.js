@@ -41,12 +41,21 @@ checkDuplicateNifOrEmail = (req, res, next) => {
 };
 
 //Verifica se o Cargo passado na hora do registro existe no back-end (existentes: User, Moderator, Admin)
-checkRolesExisted = (req, res, next) => {
-  if (req.body.roles) {
-    for (let i = 0; i < req.body.roles.length; i++) {
-      if (!ROLES.includes(req.body.roles[i])) {
+checkRolesExisted =  (req, res, next) => {
+
+  var { roles } = req.body;
+  if(roles == 1) {
+    roles = ["admin"]
+  }
+  else{
+    roles = ["user"]
+  }
+
+  if (roles) {
+    for (let i = 0; i < roles.length; i++) {
+      if (!ROLES.includes(roles[i])) {
         res.status(400).send({
-          message: "Error! Role inexistente = " + req.body.roles[i]
+          message: "Error! Role inexistente = " + roles[i]
         });
         return
       }

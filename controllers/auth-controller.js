@@ -19,7 +19,7 @@ const { sign } = require("jsonwebtoken");
 module.exports = {
     //Registrar usuário
     signup: (req, res) => {
-        let { nif, senha, nome, telefone, depto, email, cfp, imagem } = req.body;
+        let { nif, senha, nome, telefone, depto, email, cfp, imagem, roles } = req.body;
 
         //Imagem padrão caso não seja inserida nenhuma imagem.
         imagem = 'uploads/user-img/default/usuario.png';
@@ -30,6 +30,16 @@ module.exports = {
 
         if (req.file) {
             imagem = req.file.path;
+        }
+
+        //Regra de negócio para Controle de Usuário -> Se Input de Roles for 1 (usuário for ADM)
+        //Ele faz a busca de admin na tabela roles, e registra o id de Admin no usuário a ser criado 
+        //na tabela user_roles
+        if (roles == 1) {
+            roles = ["admin"]
+        }
+        else {
+            roles = ["user"]
         }
 
         // if (tipo_usuario === "true") {
@@ -60,20 +70,21 @@ module.exports = {
                 imagem: imagem
             })
                 .then(user => {
-                    if (req.body.roles) {
+                    if (roles) {
                         tipo_usuario.findAll({
                             where: {
                                 descricao: {
-                                    [Op.or]: req.body.roles
+                                    [Op.or]: roles
                                 }
                             }
-                        }).then(roles => {
-                            user.setRoles(roles)
-                            // .then(roles => {
-                            // res.status(200).send("User was registered successfully!");
-                            // });
+                        })
+                            .then(roles => {
+                                user.setRoles(roles)
+                                // .then(roles => {
+                                // res.status(200).send("User was registered successfully!");
+                                // });
 
-                        });
+                            });
                     }
                     else {
                         // user role = 1
@@ -84,7 +95,6 @@ module.exports = {
                     }
                     res.status(200).json({ message: "Usuário criado com sucesso!" });
                 })
-
                 .catch(err => {
                     res.status(500).json({ message: err.message });
                 });

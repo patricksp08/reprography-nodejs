@@ -26,7 +26,7 @@ const validateToken = (req, res, next) => {
 
 // Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models")
-var { usuario, tipo_usuario } = initModels(sequelize)
+var { usuario } = initModels(sequelize)
 
 isAdmin = (req, res, next) => {
   usuario.findByPk(req.user.nif).then(user => {

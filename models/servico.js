@@ -1,40 +1,38 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('resettoken', {
-    id: {
-      autoIncrement: true,
+  return sequelize.define('servico', {
+    id_servico: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    email: {
-      type: DataTypes.STRING(255),
+    descricao: {
+      type: DataTypes.STRING(45),
       allowNull: true
     },
-    token: {
-      type: DataTypes.STRING(255),
+    quantidade: {
+      type: DataTypes.STRING(45),
       allowNull: true
     },
-    expiration: {
-      type: DataTypes.DATE,
+    valor_unitario: {
+      type: DataTypes.STRING(45),
       allowNull: true
     },
-    used: {
+    total: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'resettoken',
-    timestamps: true,
+    tableName: 'servico',
+    timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id" },
+          { name: "id_servico" },
         ]
       },
     ]

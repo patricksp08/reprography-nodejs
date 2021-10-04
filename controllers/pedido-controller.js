@@ -3,7 +3,7 @@ const Op = Sequelize.Op;
 
 //Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
-var { pedido, det_pedido } = initModels(sequelize)
+var { pedido, det_pedido, servico } = initModels(sequelize)
 
 
 ////GET 
@@ -11,11 +11,11 @@ var { pedido, det_pedido } = initModels(sequelize)
 
 //Buscar todos os pedidos da tabela pedido
 exports.buscarTodos = async (req, res) => {
-    const pedidos = await pedido.findAll({
-        include: [
-            'det_pedidos'
-        ]
-    });
+    const pedidos = await pedido.findAll(
+        {
+            include: ['det_pedidos', 'servicos']
+        },
+    );
     console.log(pedidos)
     res.json(pedidos)
 }
@@ -205,6 +205,21 @@ exports.adicionar = async (req, res) => {
         {
             include: ['nif_usuario']
         }
-    );
+    ).then(pedido => {
+        servico.findAll({
+            where: {
+                id_servico: 
+                   req.body.servicos
+                
+            }
+        }).then(servicos => {
+            pedido.setServicos(servicos)
+            // .then(roles => {
+            // res.status(200).send("User was registered successfully!");
+            // });
+            
+
+        });
+    })
     res.status(200).json({ message: "Pedido realizado com sucesso" });
 };

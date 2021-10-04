@@ -1,4 +1,5 @@
-module.exports = function (sequelize, DataTypes) {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('tipo_usuario', {
     id: {
       type: DataTypes.INTEGER,

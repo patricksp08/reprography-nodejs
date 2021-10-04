@@ -8,7 +8,7 @@ exports.Inserir = async () => {
             descricao: "Papel 2 grampos laterais"
         },
         {
-            id: 2,
+            id_acabamento: 2,
             descricao: "Papel 2 grampos a cavalo"
         },
         {
@@ -174,7 +174,7 @@ exports.Inserir = async () => {
             descricao: "PVC",
         },
     ]);
-    await models.tipos_copia.bulkCreate([
+     models.tipos_copia.bulkCreate([
         {
             id_tipos_copia: 1,
             descricao: "P&B",
@@ -183,6 +183,63 @@ exports.Inserir = async () => {
             id_tipos_copia: 2,
             descricao: "Colorida",
         },
+    ]);
+    await models.servico.bulkCreate([
+        {
+            id_servico: 1,
+            descricao: "Preto&Branco - Tamanho A5",
+            quantidade: 15000,
+            valor_unitario: 0.06
+        },
+        {
+            id_servico: 2,
+            descricao: "Preto&Branco - Tamanho A4",
+            quantidade: 4000000,
+            valor_unitario: 0.024
+        },
+        {
+            id_servico: 3,
+            descricao: "Preto&Branco - Tamanho A3",
+            quantidade: 4000,
+            valor_unitario: 0.15
+        },
+        {
+            id_servico: 4,
+            descricao: "Colorida - Tamanho A4",
+            quantidade: 4000,
+            valor_unitario: 0.1
+        },
+        {
+            id_servico: 5,
+            descricao: "Preto&Branco - Red/Ampliada",
+            quantidade: 100,
+            valor_unitario: 0.3
+        },
+        {
+            id_servico: 6,
+            descricao: "Capa em papel 150g e 2 grampos laterais",
+            quantidade: 4000,
+            valor_unitario: 0.07
+        },
+        {
+            id_servico: 7,
+            descricao: "Capa em papel 150g e 2 grampos a cavalo",
+            quantidade: 1000,
+            valor_unitario: 0.05
+        },
+        {
+            id_servico: 8,
+            descricao: "Capa em papel 150g e espirais de plástico",
+            quantidade: 100,
+            valor_unitario: 0.5
+        },
+        {
+            id_servico: 9,
+            descricao: "Capa em PVC e espirais de plástico",
+            quantidade: 30000,
+            valor_unitario: 0.45
+        },
+       
     ]);
     console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
 }
