@@ -22,13 +22,13 @@ module.exports = function (app) {
 
 
   //PUT
-  //Rota para alterar um usuario da tabela usuario por ID
-  app.put('/usuario/:nif', [authJwt.validateToken], controller.alterarPorNif);
+  //Rota para alterar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
+  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.alterarPorNif);
 
   //Rota para atualizar a senha
   app.put("/changepassword", [authJwt.validateToken], controller.mudarSenha);
 
   //Delete
-  //Rota para deletar um usuario da tabela usuario por nif
-  app.delete('/usuario/:nif', [authJwt.validateToken], controller.excluirPorNif);
+  //Rota para deletar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
+  app.delete('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.excluirPorNif);
 };

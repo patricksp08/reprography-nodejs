@@ -43,6 +43,7 @@ checkDuplicateNifOrEmail = (req, res, next) => {
 //Verifica se o Cargo passado na hora do registro existe no back-end (existentes: User, Moderator, Admin)
 checkRolesExisted =  (req, res, next) => {
 
+  //Transformando int em array para comparar se existe o Role em Models/Index.js. => ROLES
   var { roles } = req.body;
   if(roles == 1) {
     roles = ["admin"]

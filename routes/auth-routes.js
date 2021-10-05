@@ -23,8 +23,8 @@ module.exports = function (app) {
   app.post(
     "/auth/signup", upload.single('imagem_cliente'),
     [
-      // authJwt.validateToken,
-      // authJwt.isAdmin,
+      authJwt.validateToken,
+      authJwt.isAdmin,
       verifySignUp.checkDuplicateNifOrEmail,
       verifySignUp.checkRolesExisted
     ],
