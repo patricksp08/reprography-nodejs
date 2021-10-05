@@ -81,7 +81,7 @@ exports.buscarPorIdDetalhe = async (req, res) => {
 //Adicionar pedido com detalhe solicitado por nif (usuario)
 exports.adicionar = async (req, res) => {
     //Input que será enviado para tabela Pedido
-    let { centro_custos, titulo_pedido, custo_total, modo_envio, avaliacao_pedido, curso, observacoes } = req.body;
+    let { centro_custos, titulo_pedido, modo_envio, avaliacao_pedido, curso, observacoes } = req.body;
 
     // Input que será enviado para tabela Det_Pedido
     let { num_copias, num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa } = req.body
@@ -89,11 +89,11 @@ exports.adicionar = async (req, res) => {
     var servicos = [];
     var sub_total_copias = 0;
 
-//  //TESTE
-//     if(tipos_capa && acabamento == 1 && 3) {
-//         sub_total_copias += 99999
-//         servicos.push(1)
-//     }
+    //  //TESTE
+    //     if(tipos_capa && acabamento == 1 && 3) {
+    //         sub_total_copias += 99999
+    //         servicos.push(1)
+    //     }
 
 
     //Lógica para sub_total - Switch  
@@ -102,6 +102,8 @@ exports.adicionar = async (req, res) => {
     // *** a serem comparados e seus casos abaixo:
 
     //Incremento de valores dependendo do serviços
+
+    // importante -> Pegar esses valores do banco, e colocar a verificação se o serviço é > 0 no switch
     switch (tipos_copia && tamanho_pagina) {
         case '1' && '3':
             sub_total_copias += 0.06
@@ -123,7 +125,12 @@ exports.adicionar = async (req, res) => {
             await servicos.push(4)
             break;
 
-        case '1' && '4' || '5':
+        case '1' && '4':
+            sub_total_copias += 0.3
+            await servicos.push(5)
+            break;
+
+        case '1' && '5':
             sub_total_copias += 0.3
             await servicos.push(5)
             break;
@@ -164,11 +171,11 @@ exports.adicionar = async (req, res) => {
 
     //Inserindo um pedido e seus detalhes:
 
-     await pedido.create({
+    await pedido.create({
         id_centro_custos: centro_custos,
         nif: req.user.nif,
         titulo_pedido: titulo_pedido,
-        custo_total: custo_total,
+        custo_total: [(num_copias * num_paginas) * sub_total_copias],
         id_modo_envio: modo_envio,
         id_avaliacao_pedido: avaliacao_pedido,
         id_curso: curso,
@@ -191,23 +198,28 @@ exports.adicionar = async (req, res) => {
             include: ['nif_usuario']
         }
     ).then(pedido => {
-        servico.decrement(['quantidade'], {where: {id_servico: {
-            [Op.or]: servicos
-        }}} )
+        servico.decrement({ quantidade: +(num_copias * num_paginas) }, {
+            where: {
+                id_servico: {
+                    [Op.or]: servicos
+                }
+            }
+        })
+
         servico.findAll({
             where: {
                 id_servico: {
                     [Op.or]: servicos
                 }
 
-            }   
+            }
         })
-        .then(servicos => {
-            pedido.setServicos(servicos)
-            // .then(roles => {
-            // res.status(200).send("User was registered successfully!");
-            // });
-        });
+            .then(servicos => {
+                pedido.setServicos(servicos)
+                // .then(roles => {
+                // res.status(200).send("User was registered successfully!");
+                // });
+            });
     })
     res.status(200).json({ message: "Pedido realizado com sucesso" });
 };
