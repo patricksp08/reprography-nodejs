@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     custo_total: {
-      type: DataTypes.DECIMAL(10,0),
+      type: DataTypes.DECIMAL(10,5),
       allowNull: true
     },
     id_modo_envio: {
