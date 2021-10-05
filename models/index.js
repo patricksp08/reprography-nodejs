@@ -4,11 +4,13 @@ const config = require("../config/config.json");
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
-  config.development.database, 
-  config.development.username, 
-  config.development.password, 
-  { host: config.development.host, 
-    dialect: config.development.dialect });
+  config.development.database,
+  config.development.username,
+  config.development.password,
+  {
+    host: config.development.host,
+    dialect: config.development.dialect
+  });
 
 const fs = require('fs');
 const path = require('path');
@@ -49,6 +51,6 @@ db.Sequelize = Sequelize;
 //   otherKey: "roleId"
 // });
 
-db.ROLES = ["user", "moderator", "admin"];
+db.ROLES = ["user", "moderator", "admin"]
 
 module.exports = db;

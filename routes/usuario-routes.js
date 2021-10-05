@@ -9,7 +9,7 @@ module.exports = function (app) {
     );
     next();
   });
-  
+
   //GET
   //Exibe todos os usuários da tabela usuario
   app.get("/usuarios", [authJwt.validateToken], controller.buscarTodos);
@@ -18,17 +18,17 @@ module.exports = function (app) {
   app.get("/usuario/:user", [authJwt.validateToken], controller.buscarPorNome);
 
   //Exibe o usuarío por nif na tabela usuario (exemplo: host:porta/33321)
-  app.get("/usuario/nif/:nif",[authJwt.validateToken], controller.buscarPorNif);
+  app.get("/usuario/nif/:nif", [authJwt.validateToken], controller.buscarPorNif);
 
 
   //PUT
-  //Rota para alterar um usuario da tabela usuario por ID
-  app.put('/usuario/:nif', [authJwt.validateToken], controller.alterarPorNif);
+  //Rota para alterar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
+  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.alterarPorNif);
 
   //Rota para atualizar a senha
   app.put("/changepassword", [authJwt.validateToken], controller.mudarSenha);
 
   //Delete
-  //Rota para deletar um usuario da tabela usuario por nif
-  app.delete('/usuario/:nif',[authJwt.validateToken], controller.excluirPorNif);
+  //Rota para deletar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
+  app.delete('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.excluirPorNif);
 };

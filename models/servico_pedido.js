@@ -1,27 +1,27 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user_roles', {
-    roleId: {
+  return sequelize.define('servico_pedido', {
+    pedidoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'tipo_usuario',
-        key: 'id'
+        model: 'pedido',
+        key: 'id_pedido'
       }
     },
-    userId: {
+    servicoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'usuario',
-        key: 'nif'
+        model: 'servico',
+        key: 'id_servico'
       }
     }
   }, {
     sequelize,
-    tableName: 'user_roles',
+    tableName: 'servico_pedido',
     timestamps: true,
     indexes: [
       {
@@ -29,24 +29,15 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "roleId" },
-          { name: "userId" },
+          { name: "pedidoId" },
+          { name: "servicoId" },
         ]
       },
       {
-        name: "user_roles_userId_roleId_unique",
-        unique: true,
+        name: "servicoId",
         using: "BTREE",
         fields: [
-          { name: "roleId" },
-          { name: "userId" },
-        ]
-      },
-      {
-        name: "userId",
-        using: "BTREE",
-        fields: [
-          { name: "userId" },
+          { name: "servicoId" },
         ]
       },
     ]

@@ -50,9 +50,9 @@ exports.buscarPorNome = async (req, res) => {
     // const query = `%${req.query.search}`;
     let usuarios = await usuario.findAll({
         where: {
-            nome:{
-                [Op.like] : `${user}%`
-            } 
+            nome: {
+                [Op.like]: `${user}%`
+            }
         },
         include: [
             'roles'
