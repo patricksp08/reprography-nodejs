@@ -169,7 +169,7 @@ exports.adicionar = async (req, res) => {
     }
 
 
-    //Inserindo um pedido e seus detalhes:
+    //Inserindo um pedido e seus detalhes/serviços:
 
     await pedido.create({
         id_centro_custos: centro_custos,
