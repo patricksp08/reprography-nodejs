@@ -43,9 +43,9 @@ require('./routes/resettoken-routes')(app)
 //Swagger Routes
 require('./routes/swagger')(app)
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force: true}).then(() => {
   app.listen(3002, async () => {
-    // await registros.Inserir();
+    await registros.Inserir();
     console.log("(||||||||| | | -------- Server running on port 3002 -------- | | |||||||||)");
   });
 });
