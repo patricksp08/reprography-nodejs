@@ -113,7 +113,7 @@ module.exports = {
         })
             .then(user => {
                 if (!user) {
-                    return res.json({ status: 'error', error: "E-mail não encontrado." })
+                    return res.json({ status: 'error', error: "E-mail ou Senha Invalidos!" })
                 };
                 console.log(user)
 
@@ -121,7 +121,7 @@ module.exports = {
                     if (!match) {
                         return res.json({
                             accessToken: null,
-                            error: "Senha Invalida!"
+                            error: "E-mail ou Senha Invalidos!"
                         });
                     };
 
