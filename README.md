@@ -22,15 +22,15 @@ Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 
 ### Usado durante o desevolvimento
 - Nodejs
-  * Express ^4.17.1
-  * Swagger-autogen ^2.11.2
-  * Nodemon ^2.0.13 - Para restartar o server sempre que houver uma alteração.
+  * Express 4.17.1
+  * Swagger-autogen 2.11.2
+  * Nodemon 2.0.13 - Para restartar o server sempre que houver uma alteração.
   * Passport - Para proteger rotas privadas. 
   * Jwt - Para proteger rotas privadas.
-  * Bcrypt ^5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
+  * Bcrypt 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
   * PostMan - Teste das funcionalidades da API criada.
 
-## Como iniciar a aplicação
+## Como iniciar a aplicação:
 
 #### Requerimentos
 
