@@ -54,7 +54,7 @@ npm run server
 Aguarde a execução e estará rodando na Url  `http://localhost:3000`
 <br>
 
-E assim você terá sua aplicaçãco CRUD rodando localmente.
+E assim você terá sua aplicaçãco rodando localmente.
 
 
 
