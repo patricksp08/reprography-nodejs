@@ -1,5 +1,5 @@
 //Arquivo de configuração
-const config = require("../config/auth.config");
+const config = require("../.config/auth.config");
 
 //Método que verifica o token enviado na requisição com o token e a palavra de segurança setada no back-end
 const { verify } = require("jsonwebtoken");
