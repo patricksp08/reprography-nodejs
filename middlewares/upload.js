@@ -1,5 +1,3 @@
-//Dar uma atenção espencial nessa parte, para conseguirmos realizar o upload de imagens.
-
 const multer = require('multer');
 
 //UPLOAD DE IMAGENS

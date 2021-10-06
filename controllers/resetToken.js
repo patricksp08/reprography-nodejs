@@ -4,8 +4,8 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 //Arquivos de config
-const mailer = require('../config/mailer.config');
-const auth = require("../config/auth.config.json");
+const mailer = require('../.config/mailer.config');
+const auth = require("../.config/auth.config.json");
 
 //Inicializando as models e as recebendo
 const {initModels} = require("../models/init-models")

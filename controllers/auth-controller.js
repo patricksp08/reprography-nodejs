@@ -1,6 +1,6 @@
 'use strict'
 //Arquivo de config
-const config = require("../config/auth.config.json");
+const config = require("../.config/auth.config.json");
 //Biblioteca do sequelize 
 const Sequelize = require("sequelize");
 //Operadores do sequelize
@@ -19,7 +19,7 @@ const { sign } = require("jsonwebtoken");
 module.exports = {
     //Registrar usuário
     signup: (req, res) => {
-        let { nif, senha, nome, telefone, depto, email, cfp, imagem, roles } = req.body;
+        let { nif, senha, nome, telefone, depto, email, cfp, imagem, admin } = req.body;
 
         //Imagem padrão caso não seja inserida nenhuma imagem.
         imagem = 'uploads/user-img/default/usuario.png';
@@ -35,11 +35,11 @@ module.exports = {
         //Regra de negócio para Controle de Usuário -> Se Input de Roles for 1 (usuário for ADM)
         //Ele faz a busca de admin na tabela roles, e registra o id de Admin no usuário a ser criado 
         //na tabela user_roles
-        if (roles == 1) {
-            roles = ["admin"]
+        if (admin == 1) {
+            admin = ["admin"]
         }
         else {
-            roles = ["user"]
+            admin = ["user"]
         }
 
         // if (tipo_usuario === "true") {
@@ -70,11 +70,11 @@ module.exports = {
                 imagem: imagem
             })
                 .then(user => {
-                    if (roles) {
+                    if (admin) {
                         tipo_usuario.findAll({
                             where: {
                                 descricao: {
-                                    [Op.or]: roles
+                                    [Op.or]: admin
                                 }
                             }
                         })
@@ -113,7 +113,7 @@ module.exports = {
         })
             .then(user => {
                 if (!user) {
-                    return res.json({ status: 'error', error: "E-mail ou Senha Invalidos!" })
+                    return res.json({ status: 'error', error: "E-mail ou Senha Inválidos!" })
                 };
                 console.log(user)
 
@@ -121,7 +121,7 @@ module.exports = {
                     if (!match) {
                         return res.json({
                             accessToken: null,
-                            error: "E-mail ou Senha Invalidos!"
+                            error: "E-mail ou Senha Inválidos!"
                         });
                     };
 
@@ -145,7 +145,7 @@ module.exports = {
                 });
             })
             .catch(err => {
-                res.status(500).json({ message: err.message });
+                res.status(500).json({ error: err.message });
             });
     },
 };

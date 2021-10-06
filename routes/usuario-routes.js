@@ -1,5 +1,6 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/usuario-controller");
+const upload = require("../middlewares/upload");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -11,24 +12,23 @@ module.exports = function (app) {
   });
 
   //GET
-  //Exibe todos os usuários da tabela usuario
-  app.get("/usuarios", [authJwt.validateToken], controller.buscarTodos);
 
-  //Exibe o usuarío por nome na tabela usuario (exemplo: host:porta/usuariox)
-  app.get("/usuario/:user", [authJwt.validateToken], controller.buscarPorNome);
+  //Exibe as informações basicas do usuário logado (autenticado pelo jwt)
+  app.get("/myUser", [authJwt.validateToken], controller.informacoesBasicas);
 
-  //Exibe o usuarío por nif na tabela usuario (exemplo: host:porta/33321)
-  app.get("/usuario/nif/:nif", [authJwt.validateToken], controller.buscarPorNif);
+
+  //Delete
+
+  //Deleta as informações do usuário logado (autenticado pelo jwt)
+  app.delete('/myUser', [authJwt.validateToken], controller.excluirPorNif);
 
 
   //PUT
-  //Rota para alterar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
-  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.alterarPorNif);
+
+  //Altera as informações do usuário logado (autenticado pelo jwt) => Faz upload e atualiza imagem do usuário
+  app.put('/myUser', upload.single('imagem'), [authJwt.validateToken], controller.alterarPorNif);
 
   //Rota para atualizar a senha
-  app.put("/changepassword", [authJwt.validateToken], controller.mudarSenha);
-
-  //Delete
-  //Rota para deletar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
-  app.delete('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.excluirPorNif);
+  app.put("/changePassword", [authJwt.validateToken], controller.mudarSenha);
+  
 };
