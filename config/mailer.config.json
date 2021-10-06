@@ -3,8 +3,8 @@
     "secureConnection": false,
     "service": "hotmail",
     "auth": {
-      "user": "grupo777.backend@outlook.com",
-      "pass": "Senai115senai115"
+      "user": "mario.padrao@senaisp.edu.br",
+      "pass": "Asuna123"
     },
     "tls": {
       "ciphers": "SSLv3"

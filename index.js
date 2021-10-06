@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const port = 3002;
 
 const cors = require("cors");
 
@@ -23,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./models");
 
 //Função para inserir os registros fixos de alguams tabelas (como tipo_usuario, tipo_copia, etc...)
-const registros = require("./helpers/inserirRegistros")
+// const registros = require("./helpers/inserirRegistros")
 
 //Gerar Json do Swagger com as rotas da aplicação
 // const { swaggerauto } = require("./helpers/swagger-autogen")
@@ -32,6 +33,8 @@ const registros = require("./helpers/inserirRegistros")
 
 //Usuario router
 require("./routes/usuario-routes")(app)
+//Gerente router
+require("./routes/gerente-routes")(app)
 //Pedido router
 require("./routes/pedido-routes")(app)
 //Deatlhes do Pedido router
@@ -44,8 +47,8 @@ require('./routes/resettoken-routes')(app)
 require('./routes/swagger')(app)
 
 db.sequelize.sync().then(() => {
-  app.listen(3002, async () => {
+  app.listen(port, () => {
     // await registros.Inserir();
-    console.log("(||||||||| | | -------- Server running on port 3002 -------- | | |||||||||)");
+    console.log(`(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`);
   });
 });

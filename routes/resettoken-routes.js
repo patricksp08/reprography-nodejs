@@ -24,5 +24,4 @@ module.exports = function (app) {
 
     //Criar senha nova para o usuário que resetou a senha pelo email
     app.post('/reset-password', controller.resetPassword)
-
 };

@@ -12,16 +12,9 @@ module.exports = function (app) {
     next();
   });
 
-  //GET
-  //Rota para verificar se o usuário está logado (validateToken do Middleware AuthMiddleware)
-  app.get("/auth", [authJwt.validateToken], (req, res) => {
-    res.json(req.user);
-  });
-
-
   //POST
   app.post(
-    "/auth/signup", upload.single('imagem_cliente'),
+    "/auth/signup", upload.single('imagem'),
     [
       authJwt.validateToken,
       authJwt.isAdmin,
