@@ -30,4 +30,5 @@ module.exports = function (app) {
 
   //Rota para atualizar a senha
   app.put("/changePassword", [authJwt.validateToken], controller.mudarSenha);
+  
 };

@@ -16,14 +16,13 @@ module.exports = {
                 include: ['det_pedidos', 'servicos']
             },
         );
-        console.log(pedidos)
         res.json(pedidos)
     },
 
     buscarPorNome: async (req, res) => {                                                                                                          
         const pedidoParam = req.params.pedido;
         // const query = `%${req.query.search}`;
-        let pedidos = await pedido.findAll({
+        const pedidos = await pedido.findAll({
             where: {
                 titulo_pedido: {
                     [Op.like]: `${pedidoParam}%`
@@ -33,7 +32,6 @@ module.exports = {
                 'det_pedidos'
             ]
         });
-        console.log(pedidos)
         res.json(pedidos)
     },
 
@@ -44,7 +42,6 @@ module.exports = {
                 'det_pedidos'
             ]
         });
-        console.log(pedidos)
         res.json(pedidos)
     },
 

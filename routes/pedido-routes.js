@@ -30,4 +30,5 @@ module.exports = function (app) {
 
   //Post
   app.post("/pedido", [authJwt.validateToken], controller.adicionar)
+  
 };

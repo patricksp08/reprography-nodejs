@@ -22,7 +22,7 @@ const doc = {
   definitions: {},          // by default: empty object
 };
 
-const outputFile = './config/swagger-output.json';
+const outputFile = './.config/swagger-output.json';
 const endpointsFiles = ['./routes/auth-routes.js', './routes/det_pedido-routes.js', './routes/pedido-routes.js', './routes/resettoken-routes.js', "./routes/usuario-routes.js"];
 
 /* NOTE: if you use the express Router, you must pass in the 

@@ -14,7 +14,6 @@ module.exports = {
                 'roles'
             ]
         })
-        console.log(usuarios)
         res.json(usuarios)
     },
 
@@ -32,7 +31,6 @@ module.exports = {
             ],
             attributes: { exclude: ["senha"] }
         })
-        console.log(usuarios)
         res.json(usuarios)
     },
 
@@ -45,7 +43,6 @@ module.exports = {
                 'roles'
             ],
         })
-        console.log(usuarios)
         res.json(usuarios)
     },
 
@@ -82,7 +79,6 @@ module.exports = {
                 nif: req.params.nif
             },
         });
-
         res.status(200).json({ message: `Sua conta foi excluida com sucesso!!` });
     }
 }

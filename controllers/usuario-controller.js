@@ -65,7 +65,7 @@ module.exports = {
                         { senha: hash },
                         { where: { nif: req.user.nif } }
                     );
-                    res.json("Sua senha foi atualizada com sucesso!!");
+                    res.json({ message: "Sua senha foi atualizada com sucesso!!"});
                 });
             });
         });
