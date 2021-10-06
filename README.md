@@ -16,5 +16,42 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 <img align="center"  height="50" width="60" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img> **MySQL - (https://www.mysql.com/downloads/)**
 
+#### Funcionalidades do Back-End
+O banco de dados MySQL foi hospedado no MariaDB.
+Rotas foram protegidas por meio de JWT em conjunto com Swagger.
+
+#### Usado durante o desevolvimento
+- Nodejs
+  * Express ^4.17.1
+  * Swagger-autogen ^2.11.2
+  * Nodemon ^2.0.13 - Para restartar o server sempre que houver uma alteração.
+  * Passport - Para proteger rotas privadas. 
+  * Jwt - Para proteger rotas privadas.
+  * Bcrypt ^5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
+  * PostMan - Teste das funcionalidades da API criada.
+
+## Como iniciar a aplicação
+
+#### Requerimentos
+
+- Node.js
+- NPM
+
+### Instalando os pacotes
+
+Execute o comando abaixo para instalar as dependências:
+``` bash
+npm install
+```
+
+### Iniciando o servidor
+
+Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
+``` bash
+npm run server
+```
+
+Aguarde a execução e estará rodando na Url  `http://localhost:3000`
+E assim você terá sua aplicaçãco CRUD rodando localmente.
 
 
