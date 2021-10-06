@@ -107,4 +107,4 @@ dist
 .vscode
 
 #Arquivos de config
-.json
+config/*
