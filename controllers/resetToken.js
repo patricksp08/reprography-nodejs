@@ -127,7 +127,7 @@ exports.forgotPasswordPost = async (req, res, next) => {
 
   //Menssagem enviada para o email
   const message = {
-    from: 'grupo777.backend@outlook.com',
+    from: mailer.hotmail.auth.user,
     to: mail,
     replyTo: process.env.REPLYTO_ADDRESS,
     subject: "Recuperação de Senha",

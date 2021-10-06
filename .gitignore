@@ -105,3 +105,6 @@ dist
 
 #Configurações de debug/desenvolv... do vscode
 .vscode
+
+#Arquivos de config
+config/
