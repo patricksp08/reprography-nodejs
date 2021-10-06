@@ -22,13 +22,17 @@ Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 
 ### Usado durante o desevolvimento
 - Nodejs
-  * Express 4.17.1
+  * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
   * Swagger-autogen 2.11.2
-  * Nodemon 2.0.13 - Para restartar o server sempre que houver uma alteração.
-  * Passport - Para proteger rotas privadas. 
+  * Nodemon 2.0.13 - Para restartar o server sempre que houver uma alteração. 
   * Jwt - Para proteger rotas privadas.
   * Bcrypt 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
+  * Cors 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
+  * Multer 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
+  * Body-Parser 1.19.0 - Analisa os dados codificados JSON, buffer, string e URL enviados usando a solicitação HTTP POST.
+  * MariaDB 2.5.4 - É o banco de dados que mós usamos. 
   * PostMan - Teste das funcionalidades da API criada.
+  * 
 
 ## Como iniciar a aplicação:
 
