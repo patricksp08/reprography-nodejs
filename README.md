@@ -16,11 +16,11 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 <img align="center"  height="50" width="60" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img> **MySQL - (https://www.mysql.com/downloads/)**
 
-#### Funcionalidades do Back-End
+### Funcionalidades do Back-End
 O banco de dados MySQL foi hospedado no MariaDB.
 Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 
-#### Usado durante o desevolvimento
+### Usado durante o desevolvimento
 - Nodejs
   * Express ^4.17.1
   * Swagger-autogen ^2.11.2
@@ -52,6 +52,9 @@ npm run server
 ```
 
 Aguarde a execução e estará rodando na Url  `http://localhost:3000`
+<br>
+
 E assim você terá sua aplicaçãco CRUD rodando localmente.
+
 
 
