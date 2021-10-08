@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./models");
 
 //Função para inserir os registros fixos de alguams tabelas (como tipo_usuario, tipo_copia, etc...)
-// const registros = require("./helpers/inserirRegistros")
+const registros = require("./helpers/inserirRegistros")
 
 //Gerar Json do Swagger com as rotas da aplicação
 // const { swaggerauto } = require("./helpers/swagger-autogen")
@@ -47,7 +47,7 @@ require('./routes/resettoken-routes')(app)
 require('./routes/swagger')(app)
 
 db.sequelize.sync().then(() => {
-  app.listen(port, () => {
+  app.listen(port, async () => {
     // await registros.Inserir();
     console.log(`(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`);
   });

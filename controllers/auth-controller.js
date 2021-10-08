@@ -29,7 +29,7 @@ module.exports = {
         // }
 
         if (req.file) {
-            imagem = req.file.path;
+            imagem = req.file.filename;
         }
 
         //Regra de negócio para Controle de Usuário -> Se Input de Roles for 1 (usuário for ADM)

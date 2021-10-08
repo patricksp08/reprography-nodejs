@@ -60,7 +60,7 @@ exports.Inserir = async () => {
             descricao: "Aperfeiç./Especializ. Profis. Presencial"
         }
     ]);
-    models.departamento.bulkCreate([
+    await models.departamento.bulkCreate([
         {
             id_depto: 1,
             descricao: "Aprendizagem Industrial Presencial",

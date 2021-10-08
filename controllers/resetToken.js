@@ -20,20 +20,8 @@ const nodemailer = require('nodemailer');
 //Usado para criar o token de reset aleatório
 const crypto = require('crypto');
 
-
-//Criando conexão SMTP
-var transport = nodemailer.createTransport({
-  secureConnection: mailer.hotmail.secureConnection,
-  service: mailer.hotmail.service,
-  auth: {
-    user: mailer.hotmail.auth.user,
-    pass: mailer.hotmail.auth.pass
-  },
-  tls: {
-    ciphers: mailer.hotmail.tls.ciphers
-  }
-});
-
+//Usado para enviar o email (serviço SMTP)
+var transport  = require("../helpers/mailer.js")
 
 // ROTAS GET
 

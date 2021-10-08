@@ -17,7 +17,7 @@ module.exports = function (app) {
     "/auth/signup", uploadImage.single('imagem'),
     [
       authJwt.validateToken,
-      authJwt.isAdmin,
+      // authJwt.isAdmin,
       verifySignUp.checkDuplicateNifOrEmail,
       verifySignUp.checkRolesExisted
     ],
