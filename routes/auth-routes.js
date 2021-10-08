@@ -1,7 +1,7 @@
 const { authJwt } = require("../middlewares");
 const { verifySignUp } = require("../middlewares/");
 const controller = require("../controllers/auth-controller");
-const upload = require("../middlewares/upload");
+const { uploadImage } = require("../middlewares/");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -14,7 +14,7 @@ module.exports = function (app) {
 
   //POST
   app.post(
-    "/auth/signup", upload.single('imagem'),
+    "/auth/signup", uploadImage.single('imagem'),
     [
       authJwt.validateToken,
       authJwt.isAdmin,
