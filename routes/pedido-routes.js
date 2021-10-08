@@ -9,24 +9,26 @@ module.exports = function (app) {
     );
     next();
   });
-  
+
   //Get
 
   //Buscar todos os pedidos
-  app.get("/pedidos", [authJwt.validateToken],controller.buscarTodos)
+  app.get("/pedidos", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos)
 
   //Buscar pedido por id do pedido
-  app.get("/pedido/:id", [authJwt.validateToken],controller.buscarPorIdPedido)
+  app.get("/pedido/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdPedido)
 
   //Buscar pedido por id da tabela det_pedido (foreignkey)
-  app.get("/pedido/detalheid/:id", [authJwt.validateToken],controller.buscarPorIdDetalhe)
+  app.get("/pedido/detalheid/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdDetalhe)
 
   //Buscar pedido por nif da tabela usuario (foreignKey)
-  app.get("/pedido/nif/:nif", [authJwt.validateToken], controller.buscarPorNif)
+  app.get("/pedido/nif/:nif", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif)
 
-    //Exibe o usuarío por nome na tabela usuario (exemplo: host:porta/usuariox)
-    app.get("/usuario/:pedido", [authJwt.validateToken], controller.buscarPorNome);
+  //Exibe o pedido pelo seu titlo
+  app.get("/pedido/titulo/:pedido", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
+
 
   //Post
   app.post("/pedido", [authJwt.validateToken], controller.adicionar)
+  
 };

@@ -107,4 +107,5 @@ dist
 .vscode
 
 #Arquivos de config
-config/
+.config
+.config/
