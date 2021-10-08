@@ -18,6 +18,10 @@ exports.Inserir = async () => {
     ]);
     models.avaliacao_pedido.bulkCreate([
         {
+            id_avaliacao_pedido: 0,
+            descricao: "Não Avaliado"
+        },
+        {
             id_avaliacao_pedido: 1,
             descricao: "Atendeu!"
         },

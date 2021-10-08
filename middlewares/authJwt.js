@@ -1,8 +1,11 @@
 //Arquivo de configuração
 const config = require("../.config/auth.config");
-
 //Método que verifica o token enviado na requisição com o token e a palavra de segurança setada no back-end
 const { verify } = require("jsonwebtoken");
+
+// Inicializando as models e as recebendo
+const { initModels } = require("../models/init-models");
+var { usuario } = initModels(sequelize);
 
 //Verifica se a requisição contém os valores setados no config.header e no config.secret
 const validateToken = (req, res, next) => {
@@ -23,10 +26,6 @@ const validateToken = (req, res, next) => {
 // Testando forma de autenticar o perfil do usuário (admin, user, moderator)
 // const db = require("../models");
 // const User = db.user;
-
-// Inicializando as models e as recebendo
-const { initModels } = require("../models/init-models")
-var { usuario } = initModels(sequelize)
 
 isAdmin = (req, res, next) => {
   usuario.findByPk(req.user.nif).then(user => {
