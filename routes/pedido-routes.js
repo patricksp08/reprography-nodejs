@@ -1,6 +1,7 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/pedido-controller");
 const { uploadFile } = require("../middlewares/");
+const { verifyService } = require("../middlewares/")
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -29,6 +30,6 @@ module.exports = function (app) {
   app.get("/pedido/titulo/:pedido", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
 
   //Post
-  app.post("/pedido", [authJwt.validateToken], uploadFile.single('file'), controller.adicionar)
+  app.post("/pedido", [authJwt.validateToken], uploadFile.single('file'), verifyService, controller.adicionar)
 
 };

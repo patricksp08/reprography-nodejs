@@ -109,3 +109,6 @@ dist
 #Arquivos de config
 .config
 .config/
+
+#Arquivos de Upload
+uploads/*

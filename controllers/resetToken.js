@@ -13,10 +13,6 @@ var { resettoken, usuario } = initModels(sequelize)
 
 //Uitlizado para criptografar as senhas no banco de dados
 const bcrypt = require("bcrypt")
-
-//Usado para enviar o email (serviço SMTP)
-const nodemailer = require('nodemailer');
-
 //Usado para criar o token de reset aleatório
 const crypto = require('crypto');
 

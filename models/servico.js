@@ -17,10 +17,6 @@ module.exports = function(sequelize, DataTypes) {
     valor_unitario: {
       type: DataTypes.STRING(45),
       allowNull: true
-    },
-    total: {
-      type: DataTypes.INTEGER,
-      allowNull: true
     }
   }, {
     sequelize,
