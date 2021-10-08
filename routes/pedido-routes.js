@@ -28,8 +28,7 @@ module.exports = function (app) {
   //Exibe o pedido pelo seu titlo
   app.get("/pedido/titulo/:pedido", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
 
-
   //Post
   app.post("/pedido", [authJwt.validateToken], uploadFile.single('file'), controller.adicionar)
-  
+
 };

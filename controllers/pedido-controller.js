@@ -1,10 +1,14 @@
 const Sequelize = require("sequelize")
 const Op = Sequelize.Op;
 
+
 //Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
 var { pedido, det_pedido, servico } = initModels(sequelize)
 
+//Usado para enviar o email (serviço SMTP)
+var transport = require("../helpers/mailer.js")
+const mailer = require('../.config/mailer.config');
 
 module.exports = {
     ////GET 
@@ -19,7 +23,7 @@ module.exports = {
         res.json(pedidos)
     },
 
-    buscarPorNome: async (req, res) => {                                                                                                          
+    buscarPorNome: async (req, res) => {
         const pedidoParam = req.params.pedido;
         // const query = `%${req.query.search}`;
         const pedidos = await pedido.findAll({
@@ -217,7 +221,46 @@ module.exports = {
                 // res.status(200).send("User was registered successfully!");
                 // });
             });
+            res.status(200).json({ message: "Pedido realizado com sucesso" });
         })
-        res.status(200).json({ message: "Pedido realizado com sucesso" });
+
+       const message = {
+            from: mailer.hotmail.auth.user,
+            to: 'oseias.jesus@senaisp.edu.br',
+            replyTo: process.env.REPLYTO_ADDRESS,
+            subject: `Solicitação de Reprografia`,
+            html: ` 
+    id_centro_custos: ${req.centro_custos},
+    nif: ${req.user.nif},
+    titulo_pedido: ${req.titulo_pedido},
+    custo_total: ${[(req.num_copias * req.num_paginas) * req.sub_total_copias]},
+    id_modo_envio: ${req.modo_envio},
+    id_avaliacao_pedido: ${req.avaliacao_pedido},
+    id_curso: ${req.curso},
+    observacoes: ${req.observacoes},
+    det_pedidos: {
+        num_copias: ${req.num_copias},
+        num_paginas: ${req.num_paginas},
+        id_tipos_copia: ${req.tipos_copia},
+        id_acabamento: ${req.acabamento},
+        id_tamanho: ${req.tamanho_pagina},
+        id_tipos_capa: ${req.tipos_capa},
+        sub_total_copias: ${req.sub_total_copias}
+    },
+    <style>
+        #span{
+            color: red;
+        }
+    </style>
+    `,
+            date: Date.now()
+        }
+
+        //Envia o email
+        transport.sendMail(message, function (err, info) {
+            if (err) { console.log(err) }
+            else { console.log(info); }
+        });
+
     }
 }
