@@ -28,7 +28,7 @@ module.exports = function (app) {
   //PUT
 
   //Altera as informações do usuário logado (autenticado pelo jwt) => Faz upload e atualiza imagem do usuário
-  app.put('/myUser', uploadImage.single('imagem'), [authJwt.validateToken], controller.alterarPorNif);
+  app.put('/myUser', uploadImage.single('imagem'), [authJwt.validateToken], controller.alterarUsuario);
 
   //Rota para atualizar a senha
   app.put("/changePassword", [authJwt.validateToken], controller.mudarSenha);
@@ -37,7 +37,7 @@ module.exports = function (app) {
   //Delete
 
   //Deleta as informações do usuário logado (autenticado pelo jwt)
-  app.delete('/myUser', [authJwt.validateToken], controller.excluirPorNif);
+  app.delete('/myUser', [authJwt.validateToken], controller.excluirUsuario);
 
 
   //Gerentes --- (ADMIN)

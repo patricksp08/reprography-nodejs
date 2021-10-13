@@ -79,10 +79,8 @@ module.exports = {
     },
 
     //Altera 
-    alterarPorNif: async (req, res) => {
+    alterarUsuario: async (req, res) => {
         let { nome, telefone, depto, email, cfp, imagem } = req.body;
-
-        imagem = 'uploads/user-img/default/usuario.png';
 
         if (req.file) {
             imagem = req.file.path;
@@ -99,7 +97,7 @@ module.exports = {
     },
 
     //Usuário pode excluir a própria conta (exclui pelo nif do usuário logado)
-    excluirPorNif: async (req, res) => {
+    excluirUsuario: async (req, res) => {
         await usuario.destroy({
             where: {
                 nif: req.user.nif,
@@ -239,8 +237,6 @@ module.exports = {
 
     alterarPorNif: async (req, res) => {
         let { nif, nome, senha, telefone, depto, email, cfp, admin, imagem } = req.body;
-
-        imagem = 'uploads/user-img/default/usuario.png';
 
         if (req.file) {
             imagem = req.file.path;
