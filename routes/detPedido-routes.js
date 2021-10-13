@@ -1,5 +1,5 @@
 const { validateToken } = require("../middlewares/authJwt");
-const controller = require("../controllers/det_pedido-controller");
+const controller = require("../controllers/detPedido-controller");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {

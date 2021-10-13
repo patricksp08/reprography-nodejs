@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 const { initModels } = require("../models/init-models");
 var { servico } = initModels(sequelize);
 
-verifyService = async (req, res, next) => {
+const verifyService = async (req, res, next) => {
     var servicos = [];
     var sub_total_copias = 0;
 

@@ -1,4 +1,4 @@
-const controller = require("../controllers/resetToken");
+const controller = require("../controllers/resetToken-controller");
 
 module.exports = function (app) {
     app.use(function (req, res, next) {
@@ -10,8 +10,8 @@ module.exports = function (app) {
     });
 
     //Get
-
-    app.get('/forgot-password', controller.forgotPasswordGet)
+    
+    // app.get('/forgot-password', controller.forgotPasswordGet)
 
     //reset password  -> Este código limpa todos os tokens expirados.
     app.get('/reset-password', controller.resetTokenExpired)

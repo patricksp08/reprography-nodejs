@@ -1,7 +1,7 @@
 const { authJwt } = require("../middlewares");
-const controller = require("../controllers/pedido-controller");
 const { uploadFile } = require("../middlewares/");
 const { verifyService } = require("../middlewares/")
+const controller = require("../controllers/pedido-controller");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -11,6 +11,27 @@ module.exports = function (app) {
     );
     next();
   });
+
+  //Usuário Comum
+
+  //Post
+  
+  //Insere um pedido, verificando se o usuário está logado e isnerindo um anexo.
+  app.post("/pedido", [authJwt.validateToken], uploadFile.single('file'), verifyService, controller.adicionar)
+
+
+  //Get
+
+  //Meus pedidos (pegar pedido pelo req.user.nif => nif do usuário logado, que será verificado
+  // pelo token jwt)
+
+
+  //PUT
+  
+  //(temos que criar rota para atualizar a avaliação)
+
+
+  //Gerentes --- (ADMIN)
 
   //Get
 
@@ -28,8 +49,5 @@ module.exports = function (app) {
 
   //Exibe o pedido pelo seu titlo
   app.get("/pedido/titulo/:pedido", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
-
-  //Post
-  app.post("/pedido", [authJwt.validateToken], uploadFile.single('file'), verifyService, controller.adicionar)
 
 };

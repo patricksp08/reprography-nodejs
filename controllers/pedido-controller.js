@@ -139,7 +139,7 @@ module.exports = {
 
         const message = {
             from: mailer.hotmail.auth.user,
-            to: 'mario-lucca@hotmail.com',
+            to: mailer.reproEmail,
             replyTo: process.env.REPLYTO_ADDRESS,
             subject: `Solicitação de Reprografia`,
             html: ` 

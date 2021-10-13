@@ -33,22 +33,19 @@ const registros = require("./helpers/inserirRegistros")
 
 //Usuario router
 require("./routes/usuario-routes")(app)
-//Gerente router
-require("./routes/gerente-routes")(app)
 //Pedido router
 require("./routes/pedido-routes")(app)
 //Deatlhes do Pedido router
-require("./routes/det_pedido-routes")(app)
-//Auth Router
-require('./routes/auth-routes')(app)
+require("./routes/detPedido-routes")(app)
 //ResetToken Router
-require('./routes/resettoken-routes')(app)
+require('./routes/resetToken-routes')(app)
 //Swagger Routes
 require('./routes/swagger')(app)
 
 db.sequelize.sync({force: true}).then(() => {
   app.listen(port, async () => {
-    await registros.Inserir();
+    await registros.InserirRegistros();
+    await registros.InserirUsuario();
     console.log(`(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`);
   });
 });

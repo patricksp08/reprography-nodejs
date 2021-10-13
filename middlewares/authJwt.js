@@ -9,11 +9,11 @@ var { usuario } = initModels(sequelize);
 
 //Verifica se a requisição contém os valores setados no config.header e no config.secret
 const validateToken = (req, res, next) => {
-  const accessToken = req.header(config.header);
+  const accessToken = req.header(config.jwt.header);
 
   if (!accessToken) return res.status(403).json({ error: "Você não está logado!" });
 
-  const validToken = verify(accessToken, config.secret);
+  const validToken = verify(accessToken, config.jwt.secret);
   req.user = validToken; //  ==>  //Aqui ele passa os dados do usuário, nif: ... , email: ... 
   //Importante para usarmospor exemplo quando alguém realizar um pedido, 
   //para sabermos quem foi que realizou aquele pedido.

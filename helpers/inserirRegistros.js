@@ -1,7 +1,16 @@
-const { initModels } = require("../models/init-models")
-var models = initModels(sequelize)
+const config = require("../.config/auth.config.json")
+//Biblioteca do sequelize 
+const Sequelize = require("sequelize");
+//Operadores do sequelize
+const Op = Sequelize.Op;
 
-exports.Inserir = async () => {
+const { initModels } = require("../models/init-models");
+const { sequelize } = require("../models");
+var models = initModels(sequelize);
+
+const bcrypt = require("bcrypt");
+
+exports.InserirRegistros = async () => {
     models.acabamento.bulkCreate([
         {
             id_acabamento: 1,
@@ -178,7 +187,7 @@ exports.Inserir = async () => {
             descricao: "PVC",
         },
     ]);
-     models.tipos_copia.bulkCreate([
+    models.tipos_copia.bulkCreate([
         {
             id_tipos_copia: 1,
             descricao: "P&B",
@@ -243,7 +252,35 @@ exports.Inserir = async () => {
             quantidade: 30000,
             valor_unitario: 0.45
         },
-       
+
     ]);
     console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
+}
+
+exports.InserirUsuario = async () => {
+    const hash = await bcrypt.hash(config.adminAccount.pass, config.jwt.saltRounds)
+    const user = await models.usuario.create({
+        nif: 0,
+        senha: hash,
+        nome: "ADMIN ACCOUNT",
+        email: config.adminAccount.email,
+        id_depto: 1,
+        cfp: 0,
+        imagem: "uploads/user-img/default/usuario.png"
+    })
+    if (user) {
+        const roles = await models.tipo_usuario.findAll({
+            where: {
+                descricao: {
+                    [Op.or]: ["admin"]
+                }
+            }
+        })
+        if (roles) { const setRoles = await user.setRoles(roles) 
+            if(setRoles){
+                console.log(`(||||||||| | | -------- Usuário ADMIN criado com sucesso! -------- | | |||||||||)`)
+            }
+        }
+
+    }
 }

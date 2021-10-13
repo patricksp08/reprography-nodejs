@@ -1,13 +1,14 @@
 const multer = require('multer');
+const DIR = 'uploads/anexos';
 
 //UPLOAD DE IMAGENS
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         //cb(null, './uploads/');
-        cb(null, 'uploads/anexos');
+        cb(null, DIR);
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + file.originalname);
+        cb(null, Date.now() + file.originalname.toLowerCase().split(' ').join("-"));
     }
 });
 
