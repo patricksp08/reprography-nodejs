@@ -15,14 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id_pedido'
       }
     },
-    num_copias: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    num_paginas: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
+
     id_tipos_copia: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -54,6 +47,18 @@ module.exports = function(sequelize, DataTypes) {
         model: 'tipos_capa',
         key: 'id_tipos_capa'
       }
+    },
+    observacoes: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    num_copias: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    num_paginas: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     sub_total_copias: {
       type: DataTypes.DECIMAL(10,5),

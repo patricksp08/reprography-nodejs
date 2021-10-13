@@ -11,6 +11,8 @@ var transport = require("../helpers/mailer.js")
 const mailer = require('../.config/mailer.config');
 
 module.exports = {
+
+
     ////GET 
 
     //Buscar todos os pedidos da tabela pedido
@@ -77,15 +79,32 @@ module.exports = {
         res.json(pedidos);
     },
 
+    //Usuário Comum 
+
+    //GET
+
+    //Todos os pedidos feito pelo usuário LOGADO!
+    meusPedidos: async (req, res) => {
+        const pedidos = await pedido.findAll({
+            where: {
+                nif: req.user.nif
+            },
+            include: [
+                'det_pedidos'
+            ]
+        });
+        res.json(pedidos);
+    },
+
     //POST
 
     //Adicionar pedido com detalhe solicitado por nif (usuario)
     adicionar: async (req, res) => {
         //Input que será enviado para tabela Pedido
-        let { centro_custos, titulo_pedido, modo_envio, curso, observacoes } = req.body;
+        let { centro_custos, titulo_pedido, modo_envio, curso } = req.body;
 
         // Input que será enviado para tabela Det_Pedido
-        let { num_copias, num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa } = req.body
+        let { num_copias, num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa, observacoes } = req.body
 
         //Inserindo um pedido e seus detalhes/serviços:
         await pedido.create({
@@ -96,7 +115,7 @@ module.exports = {
             id_modo_envio: modo_envio,
             id_avaliacao_pedido: 0,
             id_curso: curso,
-            observacoes: observacoes,
+            avaliacao_obs: "Ainda não avaliado",
             det_pedidos: {
                 // id_pedido: 1,
                 num_copias: num_copias,
@@ -105,6 +124,7 @@ module.exports = {
                 id_acabamento: acabamento,
                 id_tamanho: tamanho_pagina,
                 id_tipos_capa: tipos_capa,
+                observacoes: observacoes,
                 sub_total_copias: req.sub_total
             },
         },
@@ -172,6 +192,21 @@ module.exports = {
             if (err) { console.log(err) }
             else { console.log(info); }
         });
-        res.json({message: "Pedido realizado com sucesso!"})
+        res.json({ message: "Pedido realizado com sucesso!" })
+    },
+
+
+    //PUT
+
+    alterarAvaliacao: async (req, res) => {
+        var { id_avaliacao_pedido, avaliacao_obs } = req.body
+        
+        await pedido.update(
+            { id_avaliacao_pedido, avaliacao_obs },
+            {
+                where: { id_pedido: req.params.id },
+            }
+            )
+        res.status(200).json({ message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
     }
 }
