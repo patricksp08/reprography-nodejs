@@ -5,10 +5,10 @@ const Op = Sequelize.Op;
 
 //Arquivos de config
 const mailer = require('../.config/mailer.config');
-const auth = require("../.config/auth.config.json");
+const config = require("../.config/auth.config.json");
 
 //Inicializando as models e as recebendo
-const {initModels} = require("../models/init-models")
+const { initModels } = require("../models/init-models")
 var { resettoken, usuario } = initModels(sequelize)
 
 //Uitlizado para criptografar as senhas no banco de dados
@@ -17,14 +17,13 @@ const bcrypt = require("bcrypt")
 const crypto = require('crypto');
 
 //Usado para enviar o email (serviço SMTP)
-var transport  = require("../helpers/mailer.js")
+var transport = require("../helpers/mailer.js")
 
 // ROTAS GET
 
-exports.forgotPasswordGet = (req, res, next) => {
-  res.render('usuario/forgot-password', {});
-};
-
+// exports.forgotPasswordGet = (req, res, next) => {
+//   res.render('usuario/forgot-password', {});
+// };
 
 exports.resetTokenExpired = async (req, res, next) => {
   /**
@@ -115,21 +114,25 @@ exports.forgotPasswordPost = async (req, res, next) => {
     to: mail,
     replyTo: process.env.REPLYTO_ADDRESS,
     subject: "Recuperação de Senha",
-    html: `<h1>Recuperação de senha</h1>  <br>
+    html: `<div id="principalDiv">
+    <h1>Recuperação de senha</h1>
     <p>Para resetar sua senha, por favor clique no link abaixo:</p>
     <a href="http://localhost:3000/newPassword?token=${encodeURIComponent(token)}&email=${mail}">
     \n\nhttp://localhost:3000/newPassword?token=${encodeURIComponent(token)}&email=${mail}
     </a>
     <br>
     <p>Caso você não tenha realizado essa solicitação, por favor <span id="span">ignore</span> esse email!</p>
+    </div>
 
     <style>
         #span{
             color: red;
         }
+        #principalDiv{
+          width: 100%;
+        }
     </style>
-    `,
-    date: Date.now()
+    `
   };
 
   //Envia o email
@@ -148,10 +151,10 @@ exports.forgotPasswordPost = async (req, res, next) => {
 //
 exports.resetPassword = async (req, res, next) => {
 
-  const {email, token, senha, senha2} = req.body;
+  let { email, token, senha, senha2 } = req.body;
 
   //comparar senhas
-     if (senha !== senha2) {
+  if (senha !== senha2) {
     return res.json({ status: 'error', message: 'Senha não encontrada. Por favor, tente novamente.' });
   }
 
@@ -186,7 +189,7 @@ exports.resetPassword = async (req, res, next) => {
       }
     });
 
-  const newPassword = await bcrypt.hash(senha, auth.saltRounds);
+  const newPassword = await bcrypt.hash(senha, config.jwt.saltRounds);
 
   await usuario.update({
     senha: newPassword,

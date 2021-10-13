@@ -1,13 +1,15 @@
 const multer = require('multer');
+const DIR = 'uploads/user-img'
 
 //UPLOAD DE IMAGENS
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         //cb(null, './uploads/');
-        cb(null, 'uploads/user-img');
+        cb(null, DIR );
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + file.originalname);
+        const fileName =  Date.now() + file.originalname.toLowerCase().split(' ').join("-");
+        cb(null, fileName);
     }
 });
 
@@ -16,6 +18,7 @@ const fileFilter = (req, file, cb) => {
         cb(null, true);
     } else {
         cb(null, false);
+        return cb(new Error("Somente arquivos com formato .jpeg, .png, .jpg, ou .gif são aceitos!"));
     }
 }
 const uploadImage = multer({
