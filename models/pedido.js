@@ -7,14 +7,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    id_centro_custos: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'centro_custos',
-        key: 'id_centro_custos'
-      }
-    },
     nif: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -27,9 +19,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(50),
       allowNull: false
     },
-    custo_total: {
-      type: DataTypes.DECIMAL(10,5),
-      allowNull: true
+    id_centro_custos: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'centro_custos',
+        key: 'id_centro_custos'
+      }
     },
     id_modo_envio: {
       type: DataTypes.INTEGER,
@@ -37,6 +33,14 @@ module.exports = function(sequelize, DataTypes) {
       references: {
         model: 'modo_envio',
         key: 'id_modo_envio'
+      }
+    }, 
+    id_curso: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'curso',
+        key: 'id_curso'
       }
     },
     id_avaliacao_pedido: {
@@ -47,16 +51,12 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id_avaliacao_pedido'
       }
     },
-    id_curso: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'curso',
-        key: 'id_curso'
-      }
-    },
-    observacoes: {
+    avaliacao_obs: {
       type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    custo_total: {
+      type: DataTypes.DECIMAL(10,5),
       allowNull: true
     }
   }, {

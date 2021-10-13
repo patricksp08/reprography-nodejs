@@ -1,5 +1,6 @@
 //Biblioteca do sequelize 
 const Sequelize = require("sequelize");
+const { QueryTypes } = require('sequelize');
 //Operadores do sequelize
 const Op = Sequelize.Op;
 //Arquivo de config
@@ -98,6 +99,7 @@ module.exports = {
 
     //Usuário pode excluir a própria conta (exclui pelo nif do usuário logado)
     excluirUsuario: async (req, res) => {
+        await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
         await usuario.destroy({
             where: {
                 nif: req.user.nif,
@@ -261,6 +263,7 @@ module.exports = {
     },
 
     excluirPorNif: async (req, res) => {
+        await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
         await usuario.destroy({
             where: {
                 nif: req.params.nif

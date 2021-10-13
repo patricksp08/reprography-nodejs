@@ -24,11 +24,13 @@ module.exports = function (app) {
 
   //Meus pedidos (pegar pedido pelo req.user.nif => nif do usuário logado, que será verificado
   // pelo token jwt)
+  app.get("/myPedidos", [authJwt.validateToken], controller.meusPedidos)
 
 
   //PUT
   
-  //(temos que criar rota para atualizar a avaliação)
+  //rota para atualizar a avaliação
+  app.put("/avaliacao/:id", [authJwt.validateToken], controller.alterarAvaliacao)
 
 
   //Gerentes --- (ADMIN)
