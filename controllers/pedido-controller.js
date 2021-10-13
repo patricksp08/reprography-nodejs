@@ -88,7 +88,6 @@ module.exports = {
         let { num_copias, num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa } = req.body
 
         //Inserindo um pedido e seus detalhes/serviços:
-
         await pedido.create({
             id_centro_custos: centro_custos,
             nif: req.user.nif,
