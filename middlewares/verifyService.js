@@ -5,8 +5,8 @@ const { initModels } = require("../models/init-models");
 var { servico } = initModels(sequelize);
 
 const verifyService = async (req, res, next) => {
-    var servicos = [];
-    var sub_total_copias = 0;
+    req.servicos = [];
+    req.sub_total = 0;
 
     //Lógica para sub_total - Switch  
 
@@ -20,85 +20,54 @@ const verifyService = async (req, res, next) => {
 
     switch (tipos_copia && tamanho_pagina) {
         case '1' && '3':
-            sub_total_copias += 0.06
-            req.sub_total = sub_total_copias;
-            servicos.push(1)
-            req.servicos = servicos;
+            req.servicos.push(1)
             break;
 
         case '1' && '2':
-            sub_total_copias += 0.024
-            req.sub_total = sub_total_copias;
-            servicos.push(2)
-            req.servicos = servicos;
+            req.servicos.push(2)
             break;
 
         case '1' && '1':
-            sub_total_copias += 0.15
-            req.sub_total = sub_total_copias;
-            servicos.push(3)
-            req.servicos = servicos;
+            req.servicos.push(3)
             break;
 
         case '2' && '2':
-            sub_total_copias += 0.1;
-            req.sub_total = sub_total_copias;
-            servicos.push(4);
-            req.servicos = servicos;
+            req.servicos.push(4)
             break;
 
         case '1' && '4':
-            sub_total_copias += 0.3;
-            req.sub_total = sub_total_copias;
-            servicos.push(5);
-            req.servicos = servicos;
+            req.servicos.push(5)
             break;
 
 
         case '1' && '5':
-            sub_total_copias += 0.3;
-            req.sub_total = sub_total_copias;
-            servicos.push(5);
-            req.servicos = servicos;
+            req.servicos.push(5)
             break;
 
         default:
-            sub_total_copias = 0;
-            req.sub_total = sub_total_copias;
+            null
             break;
     };
 
     switch (tipos_capa && acabamento) {
         case '1' && '3':
-            sub_total_copias += 0.07;
-            req.sub_total = sub_total_copias;
-            servicos.push(6);
-            req.servicos = servicos;
+            req.servicos.push(6)
             break;
 
         case '1' && '2':
-            sub_total_copias += 0.05;
-            req.sub_total = sub_total_copias;
-            servicos.push(7);
-            req.servicos = servicos;
+            req.servicos.push(7)
             break;
 
         case '1' && '1':
-            sub_total_copias += 0.5;
-            req.sub_total = sub_total_copias;
-            servicos.push(8);
-            req.servicos = servicos;
+            req.servicos.push(8)
             break;
 
         case '2' && '2':
-            sub_total_copias += 0.45;
-            req.sub_total = sub_total_copias;
-            servicos.push(9);
+            req.servicos.push(9)
             break;
 
         default:
-            sub_total_copias = 0;
-            req.sub_total = sub_total_copias;
+            null
             break;
     }
 
@@ -107,14 +76,15 @@ const verifyService = async (req, res, next) => {
         {
             where: {
                 id_servico: {
-                    [Op.or]: servicos
+                    [Op.or]: req.servicos
                 }
             },
         }
     );
 
+
     for (let i = 0; i < serv.length; i++) {
-        console.log(serv[i].quantidade)
+        req.sub_total += parseFloat(serv[i].valor_unitario)
         if (serv[i].quantidade <= 0) {
             return res.json({ error: `O serviço ${serv[i].descricao} está esgotado!` })
         }
