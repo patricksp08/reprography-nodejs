@@ -3,7 +3,7 @@ const { sequelize } = require("../models");
 var models = initModels(sequelize);
 
 
-exports.verifyDesc = (req, res, next) => {
+exports.verifyDesc = (req, next) => {
     var { centro_custos, titulo_pedido, modo_envio, curso, observacoes, num_copias,
         num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa, mail } = req.body
 

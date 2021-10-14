@@ -8,7 +8,6 @@ exports.EnviaEmail = async (req) => {
         var { centro_custos, titulo_pedido, modo_envio, curso, observacoes, num_copias,
             num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa, mail } = req.body
             
-
         var nif = req.user.nif;
 
         var output = pedidoEmail(
