@@ -15,15 +15,15 @@ module.exports = function (app) {
     // app.get('/forgot-password', controller.forgotPasswordGet)
 
     //reset password  -> Este código limpa todos os tokens expirados.
-    app.get('/reset-password', controller.resetTokenExpired)
+    app.get('/resetarSenha', controller.resetTokenExpired)
 
 
     //Post
 
     //Enviar e-mail de recuperação e inserir email na tabela resetToken
-    app.post('/forgot-password', controller.forgotPasswordPost, mailer.EnviaEmail)
+    app.post('/esqueceuSenha', controller.forgotPasswordPost, mailer.EnviaEmail)
 
     //Criar senha nova para o usuário que resetou a senha pelo email
-    app.post('/reset-password', controller.resetPassword)
+    app.post('/resetarSenha', controller.resetPassword)
     
 };

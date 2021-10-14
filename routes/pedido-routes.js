@@ -26,7 +26,7 @@ module.exports = function (app) {
 
   //Meus pedidos (pegar pedido pelo req.user.nif => nif do usuário logado, que será verificado
   // pelo token jwt)
-  app.get("/myPedidos", [authJwt.validateToken], controller.meusPedidos)
+  app.get("/meusPedidos", [authJwt.validateToken], controller.meusPedidos)
 
 
   //PUT
