@@ -7,8 +7,7 @@ const { initModels } = require("../models/init-models");
 var { pedido, det_pedido, servico } = initModels(sequelize)
 
 //Usado para enviar o email (serviço SMTP)
-var transport = require("../helpers/mailer.js")
-const mailer = require('../.config/mailer.config');
+
 
 module.exports = {
 
@@ -99,7 +98,7 @@ module.exports = {
     //POST
 
     //Adicionar pedido com detalhe solicitado por nif (usuario)
-    adicionar: async (req, res) => {
+    adicionar: async (req, res, next) => {
         //Input que será enviado para tabela Pedido
         let { centro_custos, titulo_pedido, modo_envio, curso } = req.body;
 
@@ -155,44 +154,8 @@ module.exports = {
                 // });
             });
         })
-
-        const message = {
-            from: mailer.hotmail.auth.user,
-            to: mailer.reproEmail,
-            replyTo: process.env.REPLYTO_ADDRESS,
-            subject: `Solicitação de Reprografia`,
-            html: ` 
-            id_centro_custos: ${centro_custos},
-            nif: ${req.user.nif},
-            titulo_pedido: ${titulo_pedido},
-            custo_total: ${[(num_copias * num_paginas) * req.sub_total_copias]},
-            id_modo_envio: ${modo_envio},
-            id_curso: ${curso},
-            observacoes: ${observacoes},
-            det_pedidos: {
-            num_copias: ${num_copias},
-            num_paginas: ${num_paginas},
-            id_tipos_copia: ${tipos_copia},
-            id_acabamento: ${acabamento},
-            id_tamanho: ${tamanho_pagina},
-            id_tipos_capa: ${tipos_capa},
-            sub_total_copias: ${req.sub_total}
-            },
-            <style>
-                #span{
-                    color: red;
-                }
-            </style>
-            `,
-            date: Date.now()
-        }
-
-        //Envia o email
-        await transport.sendMail(message, function (err, info) {
-            if (err) { console.log(err) }
-            else { console.log(info); }
-        });
         res.json({ message: "Pedido realizado com sucesso!" })
+        next();
     },
 
 
@@ -200,13 +163,13 @@ module.exports = {
 
     alterarAvaliacao: async (req, res) => {
         var { id_avaliacao_pedido, avaliacao_obs } = req.body
-        
+
         await pedido.update(
             { id_avaliacao_pedido, avaliacao_obs },
             {
                 where: { id_pedido: req.params.id },
             }
-            )
+        )
         res.status(200).json({ message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
     }
 }

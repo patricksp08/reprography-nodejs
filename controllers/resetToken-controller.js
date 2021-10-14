@@ -16,9 +16,6 @@ const bcrypt = require("bcrypt")
 //Usado para criar o token de reset aleatório
 const crypto = require('crypto');
 
-//Usado para enviar o email (serviço SMTP)
-var transport = require("../helpers/mailer.js")
-
 // ROTAS GET
 
 // exports.forgotPasswordGet = (req, res, next) => {
@@ -94,7 +91,7 @@ exports.forgotPasswordPost = async (req, res, next) => {
     });
 
   //Cria um resete de token aleatório
-  var token = crypto.randomBytes(64).toString('base64');
+req.token = crypto.randomBytes(64).toString('base64');
 
   //token expira depois de uma hora
   var expireDate = new Date();
@@ -104,43 +101,26 @@ exports.forgotPasswordPost = async (req, res, next) => {
   await resettoken.create({
     email: mail,
     expiration: expireDate,
-    token: token,
+    token: req.token,
     used: 0
   });
 
-  //Menssagem enviada para o email
-  const message = {
-    from: mailer.hotmail.auth.user,
-    to: mail,
-    replyTo: process.env.REPLYTO_ADDRESS,
-    subject: "Recuperação de Senha",
-    html: `<div id="principalDiv">
-    <h1>Recuperação de senha</h1>
-    <p>Para resetar sua senha, por favor clique no link abaixo:</p>
-    <a href="http://localhost:3000/newPassword?token=${encodeURIComponent(token)}&email=${mail}">
-    \n\nhttp://localhost:3000/newPassword?token=${encodeURIComponent(token)}&email=${mail}
-    </a>
-    <br>
-    <p>Caso você não tenha realizado essa solicitação, por favor <span id="span">ignore</span> esse email!</p>
-    </div>
+  // //Menssagem enviada para o email
+  // const output = forgotPasswordEmail(token, mail)
+  // const message = {
+  //   from: mailer.hotmail.auth.user,
+  //   to: mail,
+  //   replyTo: process.env.REPLYTO_ADDRESS,
+  //   subject: "Recuperação de Senha",
+  //   html: output
+  // };
 
-    <style>
-        #span{
-            color: red;
-        }
-        #principalDiv{
-          width: 100%;
-        }
-    </style>
-    `
-  };
-
-  //Envia o email
-  transport.sendMail(message, function (err, info) {
-    if (err) { console.log(err) }
-    else { console.log(info); }
-  });
-
+  // //Envia o email
+  // transport.sendMail(message, function (err, info) {
+  //   if (err) { console.log(err) }
+  //   else { console.log(info); }
+  // });
+  next();
   return res.json({ status: 'ok' });
 };
 

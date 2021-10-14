@@ -1,7 +1,7 @@
 const multer = require('multer');
 const DIR = 'uploads/anexos';
 
-//UPLOAD DE IMAGENS
+//UPLOAD DE ARQUIVOS
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         //cb(null, './uploads/');
