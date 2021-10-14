@@ -2,6 +2,7 @@ const { authJwt } = require("../middlewares");
 const { uploadFile } = require("../middlewares/");
 const { verifyService } = require("../middlewares/")
 const controller = require("../controllers/pedido-controller");
+const mailer = require("../controllers/mailer-controller")
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -17,7 +18,7 @@ module.exports = function (app) {
   //Post
   
   //Insere um pedido, verificando se o usuário está logado e isnerindo um anexo.
-  app.post("/pedido", [authJwt.validateToken], uploadFile.single('file'), verifyService, controller.adicionar)
+  app.post("/pedido", [authJwt.validateToken], uploadFile.single('file'), verifyService, controller.adicionar, mailer.EnviaEmail)
 
 
   //Get

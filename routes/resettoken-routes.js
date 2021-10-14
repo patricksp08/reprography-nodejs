@@ -1,4 +1,5 @@
 const controller = require("../controllers/resetToken-controller");
+const mailer = require("../controllers/mailer-controller")
 
 module.exports = function (app) {
     app.use(function (req, res, next) {
@@ -20,7 +21,7 @@ module.exports = function (app) {
     //Post
 
     //Enviar e-mail de recuperação e inserir email na tabela resetToken
-    app.post('/forgot-password', controller.forgotPasswordPost)
+    app.post('/forgot-password', controller.forgotPasswordPost, mailer.EnviaEmail)
 
     //Criar senha nova para o usuário que resetou a senha pelo email
     app.post('/reset-password', controller.resetPassword)
