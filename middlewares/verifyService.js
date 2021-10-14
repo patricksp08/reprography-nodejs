@@ -81,6 +81,7 @@ const verifyService = async (req, res, next) => {
             },
         }
     );
+    {}
 
 
     for (let i = 0; i < serv.length; i++) {

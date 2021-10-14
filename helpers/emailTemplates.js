@@ -19,22 +19,22 @@ exports.forgotPasswordEmail = (token, mail) => `<div id="principalDiv">
 `
 
 exports.pedidoEmail =  (
-  nif, centro_custos, titulo_pedido, modo_envio, curso, observacoes, num_copias,
-  num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa
+ titulo_pedido, nif, centro_custos, curso, tipos_copia, tamanho_pagina, tipos_capa, acabamento,
+ num_paginas, num_copias, modo_envio, observacoes
 ) => 
 ` 
-<div> <h1>Reprografia solicitada pelo usuário com nif: <span>${nif}</span></h1>
+<div> <h1>Reprografia ${titulo_pedido} </h1>
+<h3>Solicitada pelo usuário com NIF: <span>${nif}</span></h3>
 <p>Centro de Custos: ${centro_custos}</p>
-<p>Título do Pedido: ${titulo_pedido}</p>
-<p>Modo de Envio: ${modo_envio}</p>
 <p>Curso: ${curso}</p>
-<p>Observações: ${observacoes}</p>
-<p>Número de Cópias: ${num_copias}</p>
-<p>Número de Páginas: ${num_paginas}</p>
 <p>Tipo de Cópia: ${tipos_copia}</p>
-<p>Acabamento: ${acabamento}</p>
 <p>Tamanho: ${tamanho_pagina}</p>
 <p>Tipos de capa: ${tipos_capa}</p>
+<p>Acabamento: ${acabamento}</p>
+<p>Número de Páginas: ${num_paginas}</p>
+<p>Número de Cópias: ${num_copias}</p>
+<p>Modo de Envio: ${modo_envio}</p>
+<p>Observações: ${observacoes}</p>
 </div>
 
 <style>

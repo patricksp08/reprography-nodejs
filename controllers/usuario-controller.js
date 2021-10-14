@@ -37,8 +37,6 @@ module.exports = {
                 if (!user) {
                     return res.json({ status: 'error', error: "E-mail ou Senha Inválidos!" })
                 };
-                console.log(user)
-
                 bcrypt.compare(senha, user.senha).then((match) => {
                     if (!match) {
                         return res.json({
