@@ -19,7 +19,7 @@ module.exports = function (app) {
   //Post
   
   //Insere um pedido, verificando se o usuário está logado e isnerindo um anexo.
-  app.post("/pedido", [authJwt.validateToken], uploadFile.single('file'), verifyService, controller.adicionar, verifyDesc ,mailer.EnviaEmail)
+  app.post("/pedido", [authJwt.validateToken], uploadFile.single('file'), verifyService, controller.adicionar, verifyDesc, mailer.EnviaEmail)
 
 
   //Get

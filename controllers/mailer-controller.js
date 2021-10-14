@@ -5,15 +5,13 @@ const { forgotPasswordEmail } = require("../helpers/emailTemplates")
 
 exports.EnviaEmail = async (req) => {
     if (!req.token) {
-        var { centro_custos, titulo_pedido, modo_envio, curso, observacoes, num_copias,
-            num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa, mail } = req.body
-            
-
+        var { titulo_pedido, observacoes, num_copias, num_paginas, mail } = req.body;
+        var { centro_custos, modo_envio, acabamento, tamanho_pagina, tipos_capa, curso, tipos_copia } = req;
         var nif = req.user.nif;
 
         var output = pedidoEmail(
-            nif, centro_custos, titulo_pedido, modo_envio, curso, observacoes, num_copias,
-            num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa
+            titulo_pedido, nif, centro_custos, curso, tipos_copia, tamanho_pagina, tipos_capa, 
+            acabamento, num_paginas, num_copias, modo_envio, observacoes
         )
 
         var message = {

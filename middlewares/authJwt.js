@@ -20,6 +20,9 @@ const validateToken = (req, res, next) => {
   if (validToken) {
     return next();
   }
+  // else{
+  //   return res.json({error: "Token Invalido!"})
+  // }
 };
 
 
