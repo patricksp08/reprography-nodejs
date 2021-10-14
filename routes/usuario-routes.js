@@ -1,5 +1,5 @@
 const { authJwt } = require("../middlewares");
-const { uploadImage } = require("../middlewares/");
+const { upload } = require("../middlewares/");
 const { verifySignUp } = require("../middlewares/");
 const controller = require("../controllers/usuario-controller");
 
@@ -28,7 +28,7 @@ module.exports = function (app) {
   //PUT
 
   //Altera as informações do usuário logado (autenticado pelo jwt) => Faz upload e atualiza imagem do usuário
-  app.put('/myUser', uploadImage.single('imagem'), [authJwt.validateToken], controller.alterarUsuario);
+  app.put('/myUser', upload.single('imagem'), [authJwt.validateToken], controller.alterarUsuario);
 
   //Rota para atualizar a senha
   app.put("/changePassword", [authJwt.validateToken], controller.mudarSenha);
@@ -46,7 +46,7 @@ module.exports = function (app) {
 
   //Registrando Usuário
   app.post(
-    "/auth/signup", uploadImage.single('imagem'),
+    "/auth/signup", upload.single('imagem'),
     [
       authJwt.validateToken,
       authJwt.isAdmin,
@@ -72,7 +72,7 @@ module.exports = function (app) {
   //PUT
 
   //Rota para alterar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
-  app.put('/user/:nif', [authJwt.validateToken, authJwt.isAdmin], uploadImage.single('imagem'), controller.alterarPorNif);
+  app.put('/user/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('imagem'), controller.alterarPorNif);
 
 
   //Delete

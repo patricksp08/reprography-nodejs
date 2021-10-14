@@ -16,7 +16,7 @@ const bcrypt = require("bcrypt");
 
 //Usado para enviar o token e informações do usuário pro front quando ele Logar
 const { sign } = require("jsonwebtoken");
-
+const { unlink } = require("fs")
 
 //Funções do usuário 
 module.exports = {
@@ -79,31 +79,39 @@ module.exports = {
 
     //Altera 
     alterarUsuario: async (req, res) => {
+        await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
+        const user = await usuario.findByPk(req.user.nif)
+
         let { nome, telefone, depto, email, cfp, imagem } = req.body;
 
         if (req.file) {
+            if(user.imagem !== config.adminAccount.defaultImage){
+            await unlink(user.imagem, (err) => {
+                if (err) throw err;
+                console.log(`successfully deleted ${user.imagem}`);
+            });
+        }
             imagem = req.file.path;
         }
-
-        await usuario.update(
-            { nome, telefone, depto, email, cfp, imagem },
-            {
-                where: { nif: req.user.nif },
-            }
-        );
-
+       
+        await user.update({ nome, telefone, depto, email, cfp, imagem });
+        
         res.status(200).json({ message: `Sua conta foi atualizada com sucesso!!` });
     },
 
     //Usuário pode excluir a própria conta (exclui pelo nif do usuário logado)
     excluirUsuario: async (req, res) => {
         await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
-        await usuario.destroy({
-            where: {
-                nif: req.user.nif,
-            },
-        });
+        const user = await usuario.findByPk(req.user.nif)
+        await user.destroy();
 
+        if(user.imagem !== config.adminAccount.defaultImage){
+            await unlink(user.imagem, (err) => {
+                if (err) throw err;
+                console.log(`successfully deleted ${user.imagem}`);
+            });
+        }
+        
         res.status(200).json({ message: `Sua conta foi excluida com sucesso!!` });
     },
 
@@ -132,15 +140,15 @@ module.exports = {
 
     //Gerentes --- (ADMIN)
 
-//Registrar usuário
+    //Registrar usuário
     adicionarUsuario: (req, res) => {
         let { nif, senha, nome, telefone, depto, email, cfp, imagem, admin } = req.body;
 
         //Imagem padrão caso não seja inserida nenhuma imagem.
-        imagem = 'uploads/user-img/default/usuario.png';
+        imagem = config.adminAccount.defaultImage;
 
         if (req.file) {
-            imagem = req.file.filename;
+            imagem = req.file.path;
         }
 
         //Regra de negócio para Controle de Usuário -> Se Input de Roles for 1 (usuário for ADM)
@@ -236,9 +244,19 @@ module.exports = {
     },
 
     alterarPorNif: async (req, res) => {
+
+        const user = await usuario.findByPk(req.params.nif)
+ 
         let { nif, nome, senha, telefone, depto, email, cfp, admin, imagem } = req.body;
 
         if (req.file) {
+            if(user.imagem !== config.adminAccount.defaultImage ){
+                await unlink(user.imagem, (err) => {
+                    if (err) throw err;
+                    console.log(`successfully deleted ${user.imagem}`);
+                });
+            }
+
             imagem = req.file.path;
         }
 
@@ -248,25 +266,27 @@ module.exports = {
         else {
             admin = ["user"]
         }
+
         bcrypt.hash(senha, 10, function (err, hash) {
             if (err) throw (err);
-            usuario.update(
-                { nif, nome, senha: hash, telefone, depto, email, cfp, roles: admin, imagem },
-                {
-                    where: { nif: req.params.nif },
-                }
-            )
-            res.status(200).json({ message: `Sua conta foi atualizada com sucesso!!` });
+            user.update({ nif, nome, senha: hash, telefone, depto, email, cfp, roles: admin, imagem })
+            res.status(200).json({ message: `Conta com NIF ${req.params.nif} atualizada com sucesso!!` });
         });
     },
 
     excluirPorNif: async (req, res) => {
         await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
-        await usuario.destroy({
-            where: {
-                nif: req.params.nif
-            },
-        });
-        res.status(200).json({ message: `Sua conta foi excluida com sucesso!!` });
+
+        const user = await usuario.findByPk(req.params.nif)
+        await user.destroy();
+
+        if(user.imagem !== config.adminAccount.defaultImage ){
+            await unlink(user.imagem, (err) => {
+                if (err) throw err;
+                console.log(`successfully deleted ${user.imagem}`);
+            });
+        }
+
+        res.status(200).json({ message: `Conta com NIF ${req.params.nif} excluida com sucesso!!` });
     }
 }

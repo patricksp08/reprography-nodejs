@@ -69,8 +69,7 @@ const verifyService = async (req, res, next) => {
         default:
             null
             break;
-    }
-
+    };
 
     const serv = await servico.findAll(
         {
@@ -81,8 +80,6 @@ const verifyService = async (req, res, next) => {
             },
         }
     );
-    {}
-
 
     for (let i = 0; i < serv.length; i++) {
         req.sub_total += parseFloat(serv[i].valor_unitario)

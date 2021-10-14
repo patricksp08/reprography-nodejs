@@ -2,19 +2,18 @@ const { initModels } = require("../models/init-models");
 const { sequelize } = require("../models");
 var models = initModels(sequelize);
 
-
-exports.verifyDesc = async (req, res, next) => {
+const verifyDesc = async (req, res, next) => {
     var { centro_custos, tipos_copia, tipos_capa, modo_envio, tamanho_pagina, acabamento, curso } = req.body
 
     if (centro_custos) {
-        let data  = await models.centro_custos.findAll({
+        let data = await models.centro_custos.findAll({
             where: { id_centro_custos: centro_custos }
         })
         req.centro_custos = data[0].descricao;
     }
 
     if (tipos_copia) {
-        let data= await models.tipos_copia.findAll({
+        let data = await models.tipos_copia.findAll({
             where: { id_tipos_copia: tipos_copia }
         })
         req.tipos_copia = data[0].descricao;
@@ -59,3 +58,5 @@ exports.verifyDesc = async (req, res, next) => {
     next()
     return;
 }
+
+module.exports = verifyDesc;

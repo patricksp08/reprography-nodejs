@@ -17,7 +17,7 @@ var _tipos_copia = require("./tipos_copia");
 var _user_roles = require("./user_roles");
 var _usuario = require("./usuario");
 
-const config = require("../.config/config.json");
+const config = require("../.config/db.config.json");
 const Sequelize = require("sequelize")
 sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, 
   { host: config.development.host, dialect: config.development.dialect });

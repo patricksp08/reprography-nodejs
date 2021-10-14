@@ -18,11 +18,11 @@ exports.forgotPasswordEmail = (token, mail) => `<div id="principalDiv">
 </style>
 `
 
-exports.pedidoEmail =  (
- titulo_pedido, nif, centro_custos, curso, tipos_copia, tamanho_pagina, tipos_capa, acabamento,
- num_paginas, num_copias, modo_envio, observacoes
-) => 
-` 
+exports.pedidoEmail = (
+    titulo_pedido, nif, centro_custos, curso, tipos_copia, tamanho_pagina, tipos_capa, acabamento,
+    num_paginas, num_copias, modo_envio, observacoes
+) =>
+    ` 
 <div> <h1>Reprografia ${titulo_pedido} </h1>
 <h3>Solicitada pelo usuário com NIF: <span>${nif}</span></h3>
 <p>Centro de Custos: ${centro_custos}</p>
