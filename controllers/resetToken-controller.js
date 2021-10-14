@@ -4,7 +4,6 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 //Arquivos de config
-const mailer = require('../.config/mailer.config');
 const config = require("../.config/auth.config.json");
 
 //Inicializando as models e as recebendo
@@ -104,22 +103,6 @@ req.token = crypto.randomBytes(64).toString('base64');
     token: req.token,
     used: 0
   });
-
-  // //Menssagem enviada para o email
-  // const output = forgotPasswordEmail(token, mail)
-  // const message = {
-  //   from: mailer.hotmail.auth.user,
-  //   to: mail,
-  //   replyTo: process.env.REPLYTO_ADDRESS,
-  //   subject: "Recuperação de Senha",
-  //   html: output
-  // };
-
-  // //Envia o email
-  // transport.sendMail(message, function (err, info) {
-  //   if (err) { console.log(err) }
-  //   else { console.log(info); }
-  // });
   next();
   return res.json({ status: 'ok' });
 };
@@ -160,7 +143,7 @@ exports.resetPassword = async (req, res, next) => {
     return res.json({ status: 'error', message: 'Token não encontrado. Por favor, faça o processo de resetar a senha novamente.' });
   }
 
-  var upd = await resettoken.update({
+  await resettoken.update({
     used: 1
   },
     {

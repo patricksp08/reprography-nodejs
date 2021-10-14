@@ -11,7 +11,6 @@ var { pedido, det_pedido, servico } = initModels(sequelize)
 
 module.exports = {
 
-
     ////GET 
 
     //Buscar todos os pedidos da tabela pedido

@@ -1,4 +1,4 @@
-const swaggerAutogen = require('swagger-autogen')(({ openapi: '3.0.0' }))
+const swaggerAutogen = require('swagger-autogen')()
 
 const doc = {
   info: {
@@ -22,12 +22,12 @@ const doc = {
   definitions: {},          // by default: empty object
 };
 
-const outputFile = './.config/swagger-output.json';
-const endpointsFiles = ['./routes/auth-routes.js', './routes/det_pedido-routes.js', './routes/pedido-routes.js', './routes/resettoken-routes.js', "./routes/usuario-routes.js"];
+const outputFile = './.config/swagger.config.json';
+const endpointsFiles = ['./routes/detPedido-routes.js', './routes/pedido-routes.js', './routes/resetToken-routes.js', "./routes/usuario-routes.js", "./routes/servico-routes.js"];
 
 /* NOTE: if you use the express Router, you must pass in the 
    'endpointsFiles' only the root file where the route starts,
    such as: index.js, app.js, routes.js, ... */
-const swaggerauto = swaggerAutogen(outputFile, endpointsFiles, doc);
+const generateFile = swaggerAutogen(outputFile, endpointsFiles, doc);
 
-module.exports = { swaggerauto: swaggerauto }
+module.exports = { generateFile: generateFile }

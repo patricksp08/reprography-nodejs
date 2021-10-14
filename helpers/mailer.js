@@ -1,5 +1,8 @@
 const nodemailer = require('nodemailer');
 const mailer = require('../.config/mailer.config');
+const { pedidoEmail } = require("../views/emailTemplates")
+const { forgotPasswordEmail } = require("../views/emailTemplates")
+const { unlink } = require("fs")
 
 //Criando conexão SMTP
 var mailConfig = {
@@ -16,4 +19,66 @@ var mailConfig = {
 
 var transport = nodemailer.createTransport(mailConfig)
 
-module.exports = transport
+exports.EnviaEmail = async (req) => {
+
+    if (!req.token) {
+
+        const { titulo_pedido, observacoes, num_copias, num_paginas } = req.body;
+        const { centro_custos, modo_envio, acabamento, tamanho_pagina, tipos_capa, curso, tipos_copia } = req;
+        const nif = req.user.nif;
+
+        //Parâmetros que serão passados para nossa view de e-mail
+        var output = pedidoEmail(titulo_pedido, nif, centro_custos, curso, tipos_copia,
+            tamanho_pagina, tipos_capa, acabamento, num_paginas, num_copias, modo_envio, observacoes)
+
+        var email = mailer.reproEmail;
+        var title = `Solicitação de Reprografia`;
+        var html = output;
+
+        if (req.file) {
+            attachments = [
+                {
+                    filename: req.file.filename,
+                    path: req.file.path
+                }
+            ]
+            //Exclui o Anexo que foi feito upload pelo multer para ser enviado pelo mailer 
+            //depois de 5seg
+            setTimeout(async () => {
+                await unlink(req.file.path, (err) => {
+                    if (err) throw err;
+                    console.log(`successfully deleted ${req.file.path}`);
+                });
+
+            }, 5000)
+        }
+        else { var attachments = null }
+    }
+
+    else {
+        const { mail } = req.body
+        const token = req.token
+        var output = forgotPasswordEmail(token, mail)
+
+        var email = mail;
+        var title = "Recuperação de Senha";
+        var html = output;
+        var attachments = null;
+    }
+
+    var message = {
+        from: mailer.hotmail.auth.user,
+        to: email,
+        replyTo: process.env.REPLYTO_ADDRESS,
+        subject: title,
+        html: html,
+        attachments: attachments,
+        date: Date.now()
+    }
+
+    //Envia o email
+    await transport.sendMail(message, function (err, info) {
+        if (err) { console.log(err) }
+        else { console.log(info); }
+    });
+}
