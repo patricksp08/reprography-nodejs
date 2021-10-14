@@ -17,27 +17,27 @@ module.exports = function (app) {
   //POST
 
   //Logando e recebendo token jwt
-  app.post("/auth/signin", controller.logar);
+  app.post("/logar", controller.logar);
 
   //GET
 
   //Exibe as informações basicas do usuário logado (autenticado pelo jwt)
-  app.get("/myUser", [authJwt.validateToken], controller.informacoesBasicas);
+  app.get("/meuUsuario", [authJwt.validateToken], controller.informacoesBasicas);
 
 
   //PUT
 
   //Altera as informações do usuário logado (autenticado pelo jwt) => Faz upload e atualiza imagem do usuário
-  app.put('/myUser', upload.single('imagem'), [authJwt.validateToken], controller.alterarUsuario);
+  app.put('/meuUsuario', upload.single('imagem'), [authJwt.validateToken], controller.alterarUsuario);
 
   //Rota para atualizar a senha
-  app.put("/changePassword", [authJwt.validateToken], controller.mudarSenha);
+  app.put("/mudarSenha", [authJwt.validateToken], controller.mudarSenha);
 
 
   //Delete
 
   //Deleta as informações do usuário logado (autenticado pelo jwt)
-  app.delete('/myUser', [authJwt.validateToken], controller.excluirUsuario);
+  app.delete('/meuUsuario', [authJwt.validateToken], controller.excluirUsuario);
 
 
   //Gerentes --- (ADMIN)
@@ -46,7 +46,7 @@ module.exports = function (app) {
 
   //Registrando Usuário
   app.post(
-    "/auth/signup", upload.single('imagem'),
+    "/registrar", upload.single('imagem'),
     [
       authJwt.validateToken,
       authJwt.isAdmin,
@@ -60,24 +60,24 @@ module.exports = function (app) {
   //GET
 
   //Exibe todos os usuários da tabela usuario
-  app.get("/users", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos);
+  app.get("/usuarios", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos);
 
   //Exibe o usuarío por nome na tabela usuario (exemplo: host:porta/usuariox)
-  app.get("/user/:user", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
+  app.get("/usuario/:user", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
 
   //Exibe o usuarío por nif na tabela usuario (exemplo: host:porta/33321)
-  app.get("/user/nif/:nif", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif);
+  app.get("/usuario/nif/:nif", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif);
 
 
   //PUT
 
   //Rota para alterar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
-  app.put('/user/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('imagem'), controller.alterarPorNif);
+  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('imagem'), controller.alterarPorNif);
 
 
   //Delete
 
   //Rota para deletar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
-  app.delete('/user/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.excluirPorNif);
+  app.delete('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.excluirPorNif);
 
 };
