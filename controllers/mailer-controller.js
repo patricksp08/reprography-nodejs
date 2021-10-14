@@ -3,19 +3,11 @@ const mailer = require('../.config/mailer.config');
 const { pedidoEmail } = require("../helpers/emailTemplates")
 const { forgotPasswordEmail } = require("../helpers/emailTemplates")
 
-const { initModels } = require("../models/init-models");
-const { sequelize } = require("../models");
-var models = initModels(sequelize);
-
 exports.EnviaEmail = async (req) => {
     if (!req.token) {
         var { centro_custos, titulo_pedido, modo_envio, curso, observacoes, num_copias,
             num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa, mail } = req.body
             
-            const c_c = await models.centro_custos.findAll({
-                where: {id_centro_custos: centro_custos}
-            })
-            centro_custos = c_c[0].descricao;
 
         var nif = req.user.nif;
 
