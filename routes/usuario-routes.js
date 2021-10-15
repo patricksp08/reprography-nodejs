@@ -58,7 +58,11 @@ module.exports = function (app) {
 
 
   //GET
-
+  
+  //
+  app.get("/auth", [authJwt.validateToken] = (req,res) => {
+      res.json(req.user)
+  })
   //Exibe todos os usuários da tabela usuario
   app.get("/usuarios", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos);
 
