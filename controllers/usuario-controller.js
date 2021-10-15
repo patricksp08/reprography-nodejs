@@ -31,7 +31,7 @@ module.exports = {
         usuario.findOne({
             where: {
                 email: email
-            },
+            }
         })
             .then(user => {
                 if (!user) {
@@ -45,15 +45,16 @@ module.exports = {
                         });
                     };
 
-                    var token = sign({ nif: user.nif, email: user.email, nome: user.nome }, config.jwt.secret, {
-                        expiresIn: 86400 // 24 hours
-                    });
-
                     var authorities = [];
                     user.getRoles().then(roles => {
                         for (let i = 0; i < roles.length; i++) {
                             authorities.push(roles[i].id + "_ROLE_" + roles[i].descricao.toUpperCase());
                         }
+
+                        var token = sign({ nif: user.nif, email: user.email, nome: user.nome, roles: authorities }, config.jwt.secret, {
+                            expiresIn: 86400 // 24 hours
+                        });
+
                         res.status(200).json({
                             nif: user.nif,
                             nome: user.nome,
