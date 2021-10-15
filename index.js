@@ -16,6 +16,9 @@ app.use(express.json());
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
+//Usando rota de Uploads para renderizar as imagens que estão em /uploads no diretório da API
+app.use('/uploads', express.static('uploads'));
+
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 

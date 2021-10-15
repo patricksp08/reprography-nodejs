@@ -51,7 +51,7 @@ module.exports = {
                             authorities.push(roles[i].id + "_ROLE_" + roles[i].descricao.toUpperCase());
                         }
 
-                        var token = sign({ nif: user.nif, email: user.email, nome: user.nome, roles: authorities }, config.jwt.secret, {
+                        var token = sign({ nif: user.nif, nome: user.nome, email: user.email, imagem: user.imagem, roles: authorities,  }, config.jwt.secret, {
                             expiresIn: 86400 // 24 hours
                         });
 
