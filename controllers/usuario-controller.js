@@ -59,6 +59,7 @@ module.exports = {
                             nif: user.nif,
                             nome: user.nome,
                             email: user.email,
+                            imagem: user.imagem,
                             roles: authorities,
                             accessToken: token
                         });

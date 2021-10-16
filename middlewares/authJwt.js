@@ -12,14 +12,21 @@ const validateToken = (req, res, next) => {
   const accessToken = req.header(config.jwt.header);
 
   if (!accessToken) return res.status(403).json({ error: "Você não está logado!" });
-
-  const validToken = verify(accessToken, config.jwt.secret);
-  req.user = validToken; //  ==>  //Aqui ele passa os dados do usuário, nif: ... , email: ... 
+  try {
+    const validToken = verify(accessToken, config.jwt.secret);
+    console.log(validToken)
+    req.user = validToken;
+    if (validToken) {
+      return next();
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({error})
+  }
+  //  ==>  //Aqui ele passa os dados do usuário, nif: ... , email: ... 
   //Importante para usarmospor exemplo quando alguém realizar um pedido, 
   //para sabermos quem foi que realizou aquele pedido.
-  if (validToken) {
-    return next();
-  }
+
   // else{
   //   return res.json({error: "Token Invalido!"})
   // }

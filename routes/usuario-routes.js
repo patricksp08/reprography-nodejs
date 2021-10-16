@@ -61,7 +61,7 @@ module.exports = function (app) {
 
   //Exibe informações do usuário logado
   app.get("/auth", [authJwt.validateToken], (req,res) => {
-      res.json(req.user)
+    res.json(req.user)
   });
 
   //Exibe todos os usuários da tabela usuario
