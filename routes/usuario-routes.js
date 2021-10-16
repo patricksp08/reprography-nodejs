@@ -60,7 +60,7 @@ module.exports = function (app) {
   //GET
 
   //Exibe informações do usuário logado
-  app.get("/auth", [authJwt.validateToken], (req,res, err) => {
+  app.get("/auth", [authJwt.validateToken], (req,res) => {
     res.json(req.user)
   });
 
