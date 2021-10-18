@@ -20,8 +20,7 @@ const validateToken = (req, res, next) => {
       return next();
     }
   } catch (error) {
-    console.log(error)
-    res.status(500).json({error: "Token JWT invalido!"})
+    res.status(500).json({error})
   }
   //  ==>  //Aqui ele passa os dados do usuário, nif: ... , email: ... 
   //Importante para usarmospor exemplo quando alguém realizar um pedido, 
