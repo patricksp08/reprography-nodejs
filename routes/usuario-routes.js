@@ -47,10 +47,13 @@ module.exports = function (app) {
   //Registrando Usuário
   app.post(
     "/registrar",
-    authJwt.validateToken,
+    [
+      authJwt.validateToken,
+      authJwt.isAdmin
+    ],
     upload.single('imagem'),
     [
-      authJwt.isAdmin,
+
       verifySignUp.checkDuplicateNifOrEmail,
       verifySignUp.checkRolesExisted
     ],
@@ -78,7 +81,7 @@ module.exports = function (app) {
   //PUT
 
   //Rota para alterar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
-  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('imagem'), controller.alterarPorNif);
+  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('imagem'),  controller.alterarPorNif);
 
 
   //Delete
