@@ -45,7 +45,7 @@ require('./routes/resetToken-routes')(app)
 //Swagger Routes
 require('./routes/swagger')(app)
 
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync().then(() => {
   app.listen(port, async () => {
     await inserirRegistros.InserirRegistros();
     await inserirRegistros.InserirUsuario();
