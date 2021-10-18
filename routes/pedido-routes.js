@@ -2,6 +2,7 @@ const { authJwt } = require("../middlewares");
 const { upload } = require("../middlewares/");
 const { verifyService } = require("../middlewares/")
 const { verifyDesc } = require("../middlewares/");
+const { verifyConstraints } = require("../middlewares/")
 const { mailer } = require("../helpers/");
 const controller = require("../controllers/pedido-controller");
 
@@ -40,7 +41,11 @@ module.exports = function (app) {
   //Get
 
   //Buscar todos os pedidos
+<<<<<<< HEAD
+  app.get("/pedidos", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos, verifyConstraints)
+=======
   app.get("/pedidos", [authJwt.validateToken, authJwt.isAdmin],controller.buscarTodos)
+>>>>>>> 3f8bba16a8cdf83ed68cba2673ccfe286883e7f8
 
   //Buscar pedido por id do pedido
   app.get("/pedido/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdPedido)
