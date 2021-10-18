@@ -28,7 +28,7 @@ module.exports = function (app) {
   //PUT
 
   //Altera as informações do usuário logado (autenticado pelo jwt) => Faz upload e atualiza imagem do usuário
-  app.put('/meuUsuario', upload.single('imagem'), [authJwt.validateToken], controller.alterarUsuario);
+  app.put('/meuUsuario', [authJwt.validateToken], upload.single('imagem'), controller.alterarUsuario);
 
   //Rota para atualizar a senha
   app.put("/mudarSenha", [authJwt.validateToken], controller.mudarSenha);
@@ -46,9 +46,10 @@ module.exports = function (app) {
 
   //Registrando Usuário
   app.post(
-    "/registrar", upload.single('imagem'),
+    "/registrar",
+    authJwt.validateToken,
+    upload.single('imagem'),
     [
-      authJwt.validateToken,
       authJwt.isAdmin,
       verifySignUp.checkDuplicateNifOrEmail,
       verifySignUp.checkRolesExisted
@@ -60,7 +61,7 @@ module.exports = function (app) {
   //GET
 
   //Exibe informações do usuário logado
-  app.get("/auth", [authJwt.validateToken], (req,res) => {
+  app.get("/auth", [authJwt.validateToken], (req, res) => {
     res.json(req.user)
   });
 
