@@ -1,15 +1,11 @@
 const authJwt = require("./authJwt");
 const verifySignUp = require("./verifySignUp");
 const upload = require("./upload");
-const verifyService = require("./verifyService")
-const verifyDesc = require("./verifyDesc")
-const verifyConstraints = require("./verifyConstraints")
+const service = require("./service")
 
 module.exports = {
   authJwt,
   verifySignUp,
   upload,
-  verifyService,
-  verifyDesc,
-  verifyConstraints
-};
+  service,
+ };

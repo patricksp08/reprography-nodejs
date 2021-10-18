@@ -28,7 +28,7 @@ exports.InserirRegistros = async () => {
     models.avaliacao_pedido.bulkCreate([
         {
             id_avaliacao_pedido: 0,
-            descricao: "Não Avaliado"
+            descricao: "Ainda não avaliado."
         },
         {
             id_avaliacao_pedido: 1,
