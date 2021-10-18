@@ -40,7 +40,7 @@ module.exports = function (app) {
   //Get
 
   //Buscar todos os pedidos
-  app.get("/pedidos", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos)
+  app.get("/pedidos", [authJwt.validateToken, authJwt.isAdmin],controller.buscarTodos)
 
   //Buscar pedido por id do pedido
   app.get("/pedido/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdPedido)
