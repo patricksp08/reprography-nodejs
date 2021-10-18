@@ -1,7 +1,5 @@
 const Sequelize = require("sequelize");
-const { RESERVED_FUNCTIONS } = require("swagger-autogen/src/statics");
 const Op = Sequelize.Op;
-
 
 //Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
