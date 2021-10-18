@@ -21,6 +21,11 @@ module.exports = {
             },
         );
         res.json(pedidos)
+        //pedido 1
+        // id_tipos_copia 3 => PRETO BRANCOP
+        // id_curso 1 => TEC,.,
+
+
     },
 
     buscarPorNome: async (req, res) => {
@@ -36,7 +41,7 @@ module.exports = {
                 'det_pedidos'
             ]
         });
-        res.json(pedidos)
+        pdsa    
     },
 
     //Buscar os pedidos por ID do pedido
