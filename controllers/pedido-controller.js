@@ -20,17 +20,8 @@ module.exports = {
                 include: ['det_pedidos', 'servicos']
             },
         );
-<<<<<<< HEAD
         req.pedidos = pedidos
         next();
-=======
-        res.json(pedidos)
-        //pedido 1
-        // id_tipos_copia 3 => PRETO BRANCOP
-        // id_curso 1 => TEC,.,
-
-
->>>>>>> 3f8bba16a8cdf83ed68cba2673ccfe286883e7f8
     },
 
     buscarPorNome: async (req, res) => {
