@@ -14,13 +14,14 @@ module.exports = {
     ////GET 
 
     //Buscar todos os pedidos da tabela pedido
-    buscarTodos: async (req, res) => {
+    buscarTodos: async (req, res, next) => {
         const pedidos = await pedido.findAll(
             {
                 include: ['det_pedidos', 'servicos']
             },
         );
-        res.json(pedidos)
+        req.pedidos = pedidos
+        next();
     },
 
     buscarPorNome: async (req, res) => {
