@@ -5,9 +5,6 @@ const Op = Sequelize.Op;
 const { initModels } = require("../models/init-models");
 var { pedido, det_pedido, servico } = initModels(sequelize)
 
-//Usado para enviar o email (serviço SMTP)
-
-
 module.exports = {
 
     ////GET 
@@ -27,17 +24,16 @@ module.exports = {
     },
 
     buscarPorNome: async (req, res, next) => {
-        const pedidoParam = req.params.pedido;
         // const query = `%${req.query.search}`;
         var pedidos = await pedido.findAll({
             where: {
                 titulo_pedido: {
-                    [Op.like]: `${pedidoParam}%`
+                    [Op.like]: `${req.params.pedido}%`
                 }
             },
             include: ['det_pedidos', 'servicos']
         });
-        if (pedidos.length < 1 ) {
+        if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
         req.pedidos = pedidos
@@ -46,10 +42,9 @@ module.exports = {
 
     //Buscar os pedidos por ID do pedido
     buscarPorIdPedido: async (req, res, next) => {
-        const { id } = req.params;
         var pedidos = await pedido.findAll({
             where: {
-               id_pedido: id
+                id_pedido: req.params.id
             },
             include: ['det_pedidos', 'servicos']
         });
@@ -62,10 +57,9 @@ module.exports = {
 
     //Todos os pedidos feito por tal pessoa (nif)
     buscarPorNif: async (req, res, next) => {
-        const { nif } = req.params;
         var pedidos = await pedido.findAll({
             where: {
-                nif: nif
+                nif: req.params.nif
             },
             include: ['det_pedidos', 'servicos']
         });
@@ -85,7 +79,7 @@ module.exports = {
                 where: {
                     id_det_pedido: req.params.id
                 },
-     
+
             },
             include: ['det_pedidos', 'servicos']
         });
@@ -185,13 +179,17 @@ module.exports = {
 
     alterarAvaliacao: async (req, res) => {
         var { id_avaliacao_pedido, avaliacao_obs } = req.body
+        var pedidos = await pedido.findByPk(req.params.id)
 
-        await pedido.update(
-            { id_avaliacao_pedido, avaliacao_obs },
-            {
-                where: { id_pedido: req.params.id },
-            }
-        )
-        res.status(200).json({ message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
+        if (pedidos == null) {
+            return res.json({ message: "Esse pedido não existe!" })
+        }
+        if (req.user.nif === pedidos.nif) {
+            await pedidos.update({ id_avaliacao_pedido, avaliacao_obs })
+            return res.status(200).json({ message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
+        }
+        else {
+            return res.json({ error: "Você só pode alterar a avaliação de um pedido feito pelo seu usuário" })
+        }
     }
 }

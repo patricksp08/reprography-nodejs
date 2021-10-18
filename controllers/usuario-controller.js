@@ -85,7 +85,7 @@ module.exports = {
         const user = await usuario.findByPk(req.user.nif)
 
         let { nome, telefone, depto, email, cfp, imagem } = req.body;
-
+        
         if (req.file) {
             if(user.imagem !== config.adminAccount.defaultImage){
             await unlink(user.imagem, (err) => {
