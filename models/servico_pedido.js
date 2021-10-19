@@ -34,6 +34,15 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
+        name: "servico_pedido_servicoId_pedidoId_unique",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "pedidoId" },
+          { name: "servicoId" },
+        ]
+      },
+      {
         name: "servicoId",
         using: "BTREE",
         fields: [

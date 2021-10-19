@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
         model: 'modo_envio',
         key: 'id_modo_envio'
       }
-    }, 
+    },
     id_curso: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -87,17 +87,17 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "id_avaliacao_pedido",
-        using: "BTREE",
-        fields: [
-          { name: "id_avaliacao_pedido" },
-        ]
-      },
-      {
         name: "id_curso",
         using: "BTREE",
         fields: [
           { name: "id_curso" },
+        ]
+      },
+      {
+        name: "id_avaliacao_pedido",
+        using: "BTREE",
+        fields: [
+          { name: "id_avaliacao_pedido" },
         ]
       },
       {
