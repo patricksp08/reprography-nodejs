@@ -9,9 +9,14 @@ const sequelize = new Sequelize(
   config.development.password,
   {
     host: config.development.host,
-    dialect: config.development.dialect
+    dialect: config.development.dialect,
+    dialectOptions: {
+      useUTC: config.development.dialectOptions.useUTC, //for reading from database
+      dateStrings: config.development.dialectOptions.dateStrings,
+      typeCast: config.development.dialectOptions.typeCast
+    },
+    timezone: config.development.timezone //for writing to database
   });
-
 const fs = require('fs');
 const path = require('path');
 const basename = path.basename(__filename);

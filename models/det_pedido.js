@@ -15,7 +15,6 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id_pedido'
       }
     },
-
     id_tipos_copia: {
       type: DataTypes.INTEGER,
       allowNull: false,

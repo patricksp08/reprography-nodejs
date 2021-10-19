@@ -60,14 +60,6 @@ module.exports = function(sequelize, DataTypes) {
           { name: "email" },
         ]
       },
-      // {
-      //   name: "unique_cfp",
-      //   unique: true,
-      //   using: "BTREE",
-      //   fields: [
-      //     { name: "cfp" },
-      //   ]
-      // },
       {
         name: "id_depto",
         using: "BTREE",

@@ -17,7 +17,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     expiration: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     },
     used: {
       type: DataTypes.INTEGER,

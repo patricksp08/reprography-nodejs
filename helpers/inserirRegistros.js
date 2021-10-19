@@ -281,7 +281,8 @@ exports.InserirUsuario = async () => {
                     }
                 }
             })
-            if (roles) { const setRoles = await user.setRoles(roles) 
+            if (roles) { 
+                const setRoles = await user.setRoles(roles) 
                 if(setRoles){
                     console.log(`(||||||||| | | -------- Usuário ADMIN criado com sucesso! -------- | | |||||||||)`)
                 }
