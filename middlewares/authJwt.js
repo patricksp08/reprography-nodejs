@@ -26,9 +26,6 @@ const validateToken = (req, res, next) => {
   //Importante para usarmospor exemplo quando alguém realizar um pedido, 
   //para sabermos quem foi que realizou aquele pedido.
 
-  // else{
-  //   return res.json({error: "Token Invalido!"})
-  // }
 };
 
 

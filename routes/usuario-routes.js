@@ -28,7 +28,7 @@ module.exports = function (app) {
   //PUT
 
   //Altera as informações do usuário logado (autenticado pelo jwt) => Faz upload e atualiza imagem do usuário
-  app.put('/meuUsuario', [authJwt.validateToken], upload.single('imagem'), controller.alterarUsuario);
+  app.put('/meuUsuario', [authJwt.validateToken], upload.single('image'), controller.alterarUsuario);
 
   //Rota para atualizar a senha
   app.put("/mudarSenha", [authJwt.validateToken], controller.mudarSenha);
@@ -51,7 +51,7 @@ module.exports = function (app) {
       authJwt.validateToken,
       authJwt.isAdmin
     ],
-    upload.single('imagem'),
+    upload.single('image'),
     [
 
       verifySignUp.checkDuplicateNifOrEmail,
@@ -81,7 +81,7 @@ module.exports = function (app) {
   //PUT
 
   //Rota para alterar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
-  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('imagem'),  controller.alterarPorNif);
+  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('image'),  controller.alterarPorNif);
 
 
   //Delete
