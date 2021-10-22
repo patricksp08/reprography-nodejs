@@ -24,48 +24,116 @@ module.exports = {
     //Usuários 
 
     //Logar
-    logar: (req, res) => {
+    // logar: (req, res) => {
 
-        const { email, senha } = req.body;
+    //     const { email, senha } = req.body;
 
-        usuario.findOne({
+    //     if (!email || !senha) {
+    //         return res.status(400).send(
+    //           'Requisição faltando campos de email ou senha!'
+    //         );
+    //       }
+
+    //     usuario.findOne({
+    //         where: {
+    //             email: email
+    //         }
+    //     })
+    //         .then(user => {
+    //             if (!user) {
+    //                 return res.json({ status: 'error', error: "E-mail ou Senha Inválidos!" })
+    //             };
+    //             bcrypt.compare(senha, user.senha).then((match) => {
+    //                 if (!match) {
+    //                     return res.json({
+    //                         accessToken: null,
+    //                         error: "E-mail ou Senha Inválidos!"
+    //                     });
+    //                 };
+
+    //                 var authorities = [];
+    //                 user.getRoles().then(roles => {
+    //                     for (let i = 0; i < roles.length; i++) {
+    //                         authorities.push(roles[i].id + "_ROLE_" + roles[i].descricao.toUpperCase());
+    //                     }
+
+    //                     var token = sign({ nif: user.nif, nome: user.nome, email: user.email, imagem: user.imagem, roles: authorities,  }, config.jwt.secret, {
+    //                         expiresIn: 86400 // 24 hours
+    //                     });
+
+    //                     res.status(200).json({
+    //                         nif: user.nif,
+    //                         nome: user.nome,
+    //                         email: user.email,
+    //                         imagem: user.imagem,
+    //                         roles: authorities,
+    //                         accessToken: token
+    //                     });
+    //                 });
+    //             });
+    //         })
+    //         .catch(err => {
+    //             res.status(500).json({ error: err.message });
+    //         });
+    // },
+
+
+    logar: async (req, res) => {
+
+        const { emailOrNif, senha } = req.body;
+
+        if (!emailOrNif || !senha) {
+            return res.status(400).send(
+                'Requisição faltando campos de email ou senha!'
+            );
+        }
+
+        var user = await usuario.findOne({
             where: {
-                email: email
+                email: emailOrNif
             }
         })
-            .then(user => {
-                if (!user) {
-                    return res.json({ status: 'error', error: "E-mail ou Senha Inválidos!" })
-                };
-                bcrypt.compare(senha, user.senha).then((match) => {
-                    if (!match) {
-                        return res.json({
-                            accessToken: null,
-                            error: "E-mail ou Senha Inválidos!"
-                        });
-                    };
-
-                    var authorities = [];
-                    user.getRoles().then(roles => {
-                        for (let i = 0; i < roles.length; i++) {
-                            authorities.push(roles[i].id + "_ROLE_" + roles[i].descricao.toUpperCase());
-                        }
-
-                        var token = sign({ nif: user.nif, nome: user.nome, email: user.email, imagem: user.imagem, roles: authorities,  }, config.jwt.secret, {
-                            expiresIn: 86400 // 24 hours
-                        });
-
-                        res.status(200).json({
-                            nif: user.nif,
-                            nome: user.nome,
-                            email: user.email,
-                            imagem: user.imagem,
-                            roles: authorities,
-                            accessToken: token
-                        });
-                    });
-                });
+        //Login com usuário ou NIF
+        if(user == null) {
+            user = await usuario.findOne({
+                where: {
+                    nif: emailOrNif
+                }
             })
+
+            if(!user) {
+                return res.json({ status: 'error', error: "E-mail ou Senha Inválidos!" })
+            }
+        }
+
+        bcrypt.compare(senha, user.senha).then((match) => {
+            if (!match) {
+                return res.json({
+                    accessToken: null,
+                    error: "E-mail ou Senha Inválidos!"
+                });
+            };
+
+            var authorities = [];
+            user.getRoles().then(roles => {
+                for (let i = 0; i < roles.length; i++) {
+                    authorities.push(roles[i].id + "_ROLE_" + roles[i].descricao.toUpperCase());
+                }
+
+                var token = sign({ nif: user.nif, nome: user.nome, email: user.email, imagem: user.imagem, roles: authorities, }, config.jwt.secret, {
+                    expiresIn: 86400 // 24 hours
+                });
+
+                res.status(200).json({
+                    nif: user.nif,
+                    nome: user.nome,
+                    email: user.email,
+                    imagem: user.imagem,
+                    roles: authorities,
+                    accessToken: token
+                });
+            });
+        })
             .catch(err => {
                 res.status(500).json({ error: err.message });
             });
@@ -85,19 +153,19 @@ module.exports = {
         const user = await usuario.findByPk(req.user.nif)
 
         let { nome, telefone, depto, email, cfp, imagem } = req.body;
-        
+
         if (req.file) {
-            if(user.imagem !== config.adminAccount.defaultImage){
-            await unlink(user.imagem, (err) => {
-                if (err) throw err;
-                console.log(`successfully deleted ${user.imagem}`);
-            });
-        }
+            if (user.imagem !== config.adminAccount.defaultImage) {
+                await unlink(user.imagem, (err) => {
+                    if (err) throw err;
+                    console.log(`successfully deleted ${user.imagem}`);
+                });
+            }
             imagem = req.file.path;
         }
-       
+
         await user.update({ nome, telefone, depto, email, cfp, imagem });
-        
+
         res.status(200).json({ message: `Sua conta foi atualizada com sucesso!!` });
     },
 
@@ -107,13 +175,13 @@ module.exports = {
         const user = await usuario.findByPk(req.user.nif)
         await user.destroy();
 
-        if(user.imagem !== config.adminAccount.defaultImage){
+        if (user.imagem !== config.adminAccount.defaultImage) {
             await unlink(user.imagem, (err) => {
                 if (err) throw err;
                 console.log(`successfully deleted ${user.imagem}`);
             });
         }
-        
+
         res.status(200).json({ message: `Sua conta foi excluida com sucesso!!` });
     },
 
@@ -248,11 +316,11 @@ module.exports = {
     alterarPorNif: async (req, res) => {
 
         const user = await usuario.findByPk(req.params.nif)
- 
+
         let { nif, nome, senha, telefone, depto, email, cfp, admin, imagem } = req.body;
 
         if (req.file) {
-            if(user.imagem !== config.adminAccount.defaultImage ){
+            if (user.imagem !== config.adminAccount.defaultImage) {
                 await unlink(user.imagem, (err) => {
                     if (err) throw err;
                     console.log(`successfully deleted ${user.imagem}`);
@@ -282,7 +350,7 @@ module.exports = {
         const user = await usuario.findByPk(req.params.nif)
         await user.destroy();
 
-        if(user.imagem !== config.adminAccount.defaultImage ){
+        if (user.imagem !== config.adminAccount.defaultImage) {
             await unlink(user.imagem, (err) => {
                 if (err) throw err;
                 console.log(`successfully deleted ${user.imagem}`);

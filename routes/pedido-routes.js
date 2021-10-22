@@ -1,7 +1,6 @@
 const { authJwt } = require("../middlewares");
 const { upload } = require("../middlewares/");
 const { service } = require("../middlewares/")
-const { verifyDesc } = require("../middlewares/");
 const serializer = require("../serializers/pedido-serializer")
 const { mailer } = require("../helpers/");
 const controller = require("../controllers/pedido-controller");
