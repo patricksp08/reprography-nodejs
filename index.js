@@ -22,7 +22,6 @@ app.use('/uploads', express.static('uploads'));
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 //Models
 const db = require("./models");
 
@@ -32,6 +31,7 @@ const { inserirRegistros } = require("./helpers/")
 //Gerar Json do Swagger com as rotas da aplicação
 const { swaggerAuto } = require("./helpers/")
 swaggerAuto.generateFile;
+
 // Routers
 
 //Usuario router
@@ -45,10 +45,53 @@ require('./routes/resetToken-routes')(app)
 //Swagger Routes
 require('./routes/swagger')(app)
 
-db.sequelize.sync({force: true}).then(() => {
+//Imports para as informações que vamos trazer no console (consumo de ram, uso de cpu...)
+const os = require('os');
+const utils = require('os-utils');
+const process = require("process");
+const diskspace = require('diskspace');
+
+//Sincronizando o sequelize com o banco de dados (utilizar o { force: true } somente em desenvolvimento,
+// para conseguir limpar o banco e testar com novos registros.)
+db.sequelize.sync().then(() => {
   app.listen(port, async () => {
     await inserirRegistros.InserirRegistros();
     await inserirRegistros.InserirUsuario();
-    console.log(`(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`);
-  });
+    await console.log(`\n(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`);
+
+    //Informações sobre a CPU, ARQUITETURA, TOTAL DE MEMÓRIA RAM DISPONÍVEL NO SISTEMA E SEU USO.
+    console.log("\nCPUS: ", os.cpus());
+    console.log("\nArquitetura do processador: " + process.arch)
+    console.log("Plataforma que a API está rodando: " + process.platform)
+    console.log("\nTotal de memória ram: " + os.totalmem());
+    console.log("Uso Atual de memória ram: " + Math.round((os.totalmem - os.freemem())))
+    console.log("Memória ram livre: " + Math.round(os.freemem()))
+
+    //Verificando disco (espaço total... livre e status)
+    diskspace.check('/', function (err, result) {
+      console.log("\nTamanho total do disco: " + result.total)
+      console.log("Espaço do disco utilizado: " + result.used)
+      console.log("Espaço livre do disco: " + result.free)
+      console.log("Status do disco: " + result.status + "\n")
+    });
+
+    //Verificando uso de CPU e uso de Memória
+    utils.cpuUsage(function (v) {
+      function timeout() {
+        setTimeout(() => {
+          while (0 === 0) {
+            console.log("\n--------------------------------------------")
+            console.log("\nInformações que serão atualizadas em 60 segundos:\n")
+            console.log('CPU Usage (%): ' + v);
+            console.log("Uso de memória ram: " + Math.round((os.totalmem - os.freemem())))
+            console.log("Memória Livre: " + os.freemem() + "\n")
+            console.log("--------------------------------------------")
+            break;
+          }
+          timeout();
+        }, 60000);
+      }
+      timeout();
+    });
+  })
 });

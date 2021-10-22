@@ -100,9 +100,7 @@ module.exports = {
             where: {
                 nif: req.user.nif
             },
-            include: [
-                'det_pedidos'
-            ]
+            include: ['det_pedidos', 'servicos']
         });
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
@@ -144,11 +142,11 @@ module.exports = {
             },
         },
             {
-                include: ['det_pedidos']
-            },
-            {
-                include: ['nif_usuario']
+                include: ['det_pedidos', 'nif_usuario']
             }
+            // {
+            //     include: ['nif_usuario']
+            // }
         ).then(pedido => {
             servico.decrement({ quantidade: +(num_copias * num_paginas) }, {
                 where: {
