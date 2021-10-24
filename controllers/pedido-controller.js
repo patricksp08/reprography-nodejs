@@ -178,8 +178,13 @@ module.exports = {
 
     alterarAvaliacao: async (req, res) => {
         var { id_avaliacao_pedido, avaliacao_obs } = req.body
+
+        if(!id_avaliacao_pedido) {
+            return res.json({error: "Informe se o pedido lhe atendeu ou não, por favor!"})
+        }
+
         var pedidos = await pedido.findByPk(req.params.id)
-        console.log(pedidos)
+
         if (pedidos == null) {
             return res.json({ message: "Esse pedido não existe!" })
         }
