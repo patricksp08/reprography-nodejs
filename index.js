@@ -61,33 +61,21 @@ db.sequelize.sync({ force: true }).then(() => {
     console.log("\nCPUS: ", os.cpus());
     console.log("\nArquitetura do processador: " + process.arch)
     console.log("Plataforma que a API está rodando: " + process.platform)
-<<<<<<< HEAD
-    console.log("\nTotal de memória ram: " + os.totalmem());
-    console.log("Uso Atual de memória ram: " + Math.round((os.totalmem - os.freemem())))
-    console.log("Memória ram livre: " + Math.round(os.freemem()))
-  
+    console.log("\nTotal de memória ram: " + os.totalmem() + " B");
+    console.log("Uso Atual de memória ram: " + Math.round((os.totalmem - os.freemem())) + " B")
+    console.log("Memória ram livre: " + Math.round(os.freemem())  + " B")
+    
     //Listando disco tanto do windows quanto do linux
     if(process.platform == "linux"){var disc = "/"}
     else{
       var disc = "C*"
     }
-    
-    //Verificando disco (espaço total... livre e status)
-    diskspace.check(disc, function (err, result) {
-      console.log("\nTamanho total do disco: " + result.total)
-      console.log("Espaço do disco utilizado: " + result.used)
-      console.log("Espaço livre do disco: " + result.free)
-=======
-    console.log("\nTotal de memória ram: " + os.totalmem() + " B");
-    console.log("Uso Atual de memória ram: " + Math.round((os.totalmem - os.freemem())) + " B")
-    console.log("Memória ram livre: " + Math.round(os.freemem())  + " B")
 
     //Verificando disco (espaço total... livre e status)
-    diskspace.check('/', function (err, result) {
+    diskspace.check(disc, function (err, result) {
       console.log("\nTamanho total do disco: " + result.total + " B")
       console.log("Espaço do disco utilizado: " + result.used + " B")
       console.log("Espaço livre do disco: " + result.free + " B")
->>>>>>> 7fb1e03341ed39061b2cb66bf6c579aee09ff4d7
       console.log("Status do disco: " + result.status + "\n")
     });
 
