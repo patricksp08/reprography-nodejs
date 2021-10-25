@@ -1,5 +1,5 @@
-const { validateToken } = require("../middlewares/authJwt");
-const controller = require("../controllers/detPedido-controller");
+const { authJwt } = require("../middlewares")
+const controller = require("../controllers/servico-controller");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -9,4 +9,9 @@ module.exports = function (app) {
     );
     next();
   });
+
+  app.get("/servicos", [authJwt.validateToken, authJwt.isAdmin], controller.servicosGet)
+  
+  app.put("/servicos/:id", [authJwt.validateToken, authJwt.isAdmin], controller.servicosPut)
+  
 };
