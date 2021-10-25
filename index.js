@@ -42,6 +42,8 @@ require("./routes/pedido-routes")(app)
 require("./routes/detPedido-routes")(app)
 //ResetToken Router
 require('./routes/resetToken-routes')(app)
+//Servico Router
+require('./routes/servico-routes')(app)
 //Swagger Routes
 require('./routes/swagger')(app)
 
@@ -53,7 +55,7 @@ const diskspace = require('diskspace');
 
 //Sincronizando o sequelize com o banco de dados (utilizar o { force: true } somente em desenvolvimento,
 // para conseguir limpar o banco e testar com novos registros.)
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   app.listen(port, async () => {
     await inserirRegistros.InserirRegistros();
     await inserirRegistros.InserirUsuario();
@@ -66,9 +68,15 @@ db.sequelize.sync().then(() => {
     console.log("\nTotal de memória ram: " + os.totalmem());
     console.log("Uso Atual de memória ram: " + Math.round((os.totalmem - os.freemem())))
     console.log("Memória ram livre: " + Math.round(os.freemem()))
-
+  
+    //Listando disco tanto do windows quanto do linux
+    if(process.platform == "linux"){var disc = "/"}
+    else{
+      var disc = "C*"
+    }
+    
     //Verificando disco (espaço total... livre e status)
-    diskspace.check('/', function (err, result) {
+    diskspace.check(disc, function (err, result) {
       console.log("\nTamanho total do disco: " + result.total)
       console.log("Espaço do disco utilizado: " + result.used)
       console.log("Espaço livre do disco: " + result.free)

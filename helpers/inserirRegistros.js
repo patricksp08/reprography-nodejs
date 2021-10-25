@@ -164,7 +164,7 @@ exports.InserirRegistros = async () => {
                 descricao: "Ampliada",
             },
         ]);
-        models.tipo_usuario.bulkCreate([
+        await models.tipo_usuario.bulkCreate([
             {
                 id: 1,
                 descricao: "user",

@@ -23,61 +23,6 @@ module.exports = {
 
     //Usuários 
 
-    //Logar
-    // logar: (req, res) => {
-
-    //     const { email, senha } = req.body;
-
-    //     if (!email || !senha) {
-    //         return res.status(400).send(
-    //           'Requisição faltando campos de email ou senha!'
-    //         );
-    //       }
-
-    //     usuario.findOne({
-    //         where: {
-    //             email: email
-    //         }
-    //     })
-    //         .then(user => {
-    //             if (!user) {
-    //                 return res.json({ status: 'error', error: "E-mail ou Senha Inválidos!" })
-    //             };
-    //             bcrypt.compare(senha, user.senha).then((match) => {
-    //                 if (!match) {
-    //                     return res.json({
-    //                         accessToken: null,
-    //                         error: "E-mail ou Senha Inválidos!"
-    //                     });
-    //                 };
-
-    //                 var authorities = [];
-    //                 user.getRoles().then(roles => {
-    //                     for (let i = 0; i < roles.length; i++) {
-    //                         authorities.push(roles[i].id + "_ROLE_" + roles[i].descricao.toUpperCase());
-    //                     }
-
-    //                     var token = sign({ nif: user.nif, nome: user.nome, email: user.email, imagem: user.imagem, roles: authorities,  }, config.jwt.secret, {
-    //                         expiresIn: 86400 // 24 hours
-    //                     });
-
-    //                     res.status(200).json({
-    //                         nif: user.nif,
-    //                         nome: user.nome,
-    //                         email: user.email,
-    //                         imagem: user.imagem,
-    //                         roles: authorities,
-    //                         accessToken: token
-    //                     });
-    //                 });
-    //             });
-    //         })
-    //         .catch(err => {
-    //             res.status(500).json({ error: err.message });
-    //         });
-    // },
-
-
     logar: async (req, res) => {
 
         const { emailOrNif, senha } = req.body;
