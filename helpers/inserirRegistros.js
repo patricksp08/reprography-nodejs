@@ -108,7 +108,7 @@ exports.InserirRegistros = async () => {
                 descricao: "Aperfeiç./Especializ. Profis. Presencial",
             },
         ]);
-    
+
         models.curso.bulkCreate([
             {
                 id_curso: 1,
@@ -131,7 +131,7 @@ exports.InserirRegistros = async () => {
                 id_depto: 4
             }
         ]);
-    
+
         models.modo_envio.bulkCreate([
             {
                 id_modo_envio: 1,
@@ -253,11 +253,11 @@ exports.InserirRegistros = async () => {
                 quantidade: 30000,
                 valor_unitario: 0.45
             },
-    
+
         ]);
         console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
     } catch (error) {
-        console.log({error: "Registros já foram inseridos"})
+        console.log({ error: "Registros já foram inseridos" })
     }
 }
 
@@ -281,14 +281,14 @@ exports.InserirUsuario = async () => {
                     }
                 }
             })
-            if (roles) { 
-                const setRoles = await user.setRoles(roles) 
-                if(setRoles){
+            if (roles) {
+                const setRoles = await user.setRoles(roles)
+                if (setRoles) {
                     console.log(`(||||||||| | | -------- Usuário ADMIN criado com sucesso! -------- | | |||||||||)`)
                 }
             }
         }
     } catch (error) {
-        console.log({error: `Usuário administrador com NIF 0 já adicionado! \n => Caso queira sincronizar o seu DB com a API, insira o {force: true} novamente dentro do ' sync() ' no diretório principal: (Index.js - linha 48.) \n Exemplo: db.sequelize.sync({force: true}).then(() => { ... \n ***OBS: Todos os registros das tabelas: [Pedido, Det_Pedido, Usuario] serão excluidos!***`})
+        console.log({ error: `Usuário administrador com NIF 0 já adicionado! \n => Caso queira sincronizar o seu DB com a API, insira o {force: true} novamente dentro do ' sync() ' no diretório principal: (Index.js - linha 48.) \n Exemplo: db.sequelize.sync({force: true}).then(() => { ... \n ***OBS: Todos os registros das tabelas: [Pedido, Det_Pedido, Usuario] serão excluidos!***` })
     }
 }

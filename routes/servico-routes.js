@@ -1,4 +1,4 @@
-const { authJwt } = require("../middlewares")
+const { authJwt } = require("../middlewares");
 const controller = require("../controllers/servico-controller");
 
 module.exports = function (app) {
@@ -10,8 +10,15 @@ module.exports = function (app) {
     next();
   });
 
-  app.get("/servicos", [authJwt.validateToken, authJwt.isAdmin], controller.servicosGet)
-  
-  app.put("/servicos/:id", [authJwt.validateToken, authJwt.isAdmin], controller.servicosPut)
-  
+  ////ADMIN 
+
+  //GET
+
+  //Exibindo serviços para o Administrador
+  app.get("/servicos", [authJwt.validateToken, authJwt.isAdmin], controller.servicosGet);
+
+  //PUT
+
+  //Alterando quantidade e valor unitário do serviço
+  app.put("/servicos/:id", [authJwt.validateToken, authJwt.isAdmin], controller.servicosPut);
 };

@@ -27,5 +27,4 @@ module.exports = {
             return res({ message: `Servico ${servicos.id_servico} atualizado com sucesso!` })
         }
     }
-
 }

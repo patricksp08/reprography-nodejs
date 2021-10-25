@@ -5,14 +5,14 @@ const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         //Se o arquivo for .jpeg/.png/.jpg/.gif ele envia o anexo para pasta /uploads/user-img
         if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/gif') {
-            cb(null, 'uploads/user-img')
+            cb(null, 'uploads/user-img');
         }
         //Se o arquivo for pdf/.xlsx /.docx ele envia o anexo para pasta /uploads/anexos
-        else if (file.mimetype === 'application/pdf' || file.mimetype ===  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-            cb(null, 'uploads/anexos')
+        else if (file.mimetype === 'application/pdf' || file.mimetype === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+            cb(null, 'uploads/anexos');
         }
         else {
-            console.log(file.mimetype)
+            console.log(file.mimetype);
             return cb(new Error("Mime type not supported!"));
         }
     },

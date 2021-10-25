@@ -1,8 +1,8 @@
 const db = require("../models");
+const sequelize = db.sequelize;
 const ROLES = db.ROLES;
 
 ////Inicializando as models e recebendo nas configurando
-const sequelize = db.sequelize
 const { initModels } = require("../models/init-models.js");
 var models = initModels(sequelize);
 usuario = models.usuario;
@@ -34,7 +34,6 @@ checkDuplicateNifOrEmail = (req, res, next) => {
         });
         return;
       }
-
       next();
     });
   });
@@ -62,7 +61,6 @@ checkRolesExisted = (req, res, next) => {
       }
     }
   }
-
   next();
 };
 

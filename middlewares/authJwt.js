@@ -14,13 +14,12 @@ const validateToken = (req, res, next) => {
   if (!accessToken) return res.status(403).json({ error: "Você não está logado!" });
   try {
     const validToken = verify(accessToken, config.jwt.secret);
-    console.log(validToken)
     req.user = validToken;
     if (validToken) {
       return next();
     }
   } catch (error) {
-    res.status(500).json({error})
+    res.status(500).json({ error })
   }
   //  ==>  //Aqui ele passa os dados do usuário, nif: ... , email: ... 
   //Importante para usarmospor exemplo quando alguém realizar um pedido, 
