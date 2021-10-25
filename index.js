@@ -28,10 +28,6 @@ const db = require("./models");
 //Função para inserir os registros fixos de alguams tabelas (como tipo_usuario, tipo_copia, etc...)
 const { inserirRegistros } = require("./helpers/")
 
-//Gerar Json do Swagger com as rotas da aplicação
-const { swaggerAuto } = require("./helpers/")
-swaggerAuto.generateFile;
-
 // Routers
 
 //Usuario router
@@ -65,6 +61,7 @@ db.sequelize.sync({ force: true }).then(() => {
     console.log("\nCPUS: ", os.cpus());
     console.log("\nArquitetura do processador: " + process.arch)
     console.log("Plataforma que a API está rodando: " + process.platform)
+<<<<<<< HEAD
     console.log("\nTotal de memória ram: " + os.totalmem());
     console.log("Uso Atual de memória ram: " + Math.round((os.totalmem - os.freemem())))
     console.log("Memória ram livre: " + Math.round(os.freemem()))
@@ -80,6 +77,17 @@ db.sequelize.sync({ force: true }).then(() => {
       console.log("\nTamanho total do disco: " + result.total)
       console.log("Espaço do disco utilizado: " + result.used)
       console.log("Espaço livre do disco: " + result.free)
+=======
+    console.log("\nTotal de memória ram: " + os.totalmem() + " B");
+    console.log("Uso Atual de memória ram: " + Math.round((os.totalmem - os.freemem())) + " B")
+    console.log("Memória ram livre: " + Math.round(os.freemem())  + " B")
+
+    //Verificando disco (espaço total... livre e status)
+    diskspace.check('/', function (err, result) {
+      console.log("\nTamanho total do disco: " + result.total + " B")
+      console.log("Espaço do disco utilizado: " + result.used + " B")
+      console.log("Espaço livre do disco: " + result.free + " B")
+>>>>>>> 7fb1e03341ed39061b2cb66bf6c579aee09ff4d7
       console.log("Status do disco: " + result.status + "\n")
     });
 
@@ -90,9 +98,9 @@ db.sequelize.sync({ force: true }).then(() => {
           while (0 === 0) {
             console.log("\n--------------------------------------------")
             console.log("\nInformações que serão atualizadas em 60 segundos:\n")
-            console.log('CPU Usage (%): ' + v);
-            console.log("Uso de memória ram: " + Math.round((os.totalmem - os.freemem())))
-            console.log("Memória Livre: " + os.freemem() + "\n")
+            console.log('CPU Usage (%): ' + v*100 + "%");
+            console.log("Uso de memória ram: " + Math.round((os.totalmem - os.freemem())) + " B")
+            console.log("Memória Livre: " + os.freemem() + " B \n")
             console.log("--------------------------------------------")
             break;
           }

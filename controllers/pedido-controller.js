@@ -96,6 +96,7 @@ module.exports = {
 
     //Todos os pedidos feito pelo usuário LOGADO!
     meusPedidos: async (req, res, next) => {
+        console.log(pedidos)
         var pedidos = await pedido.findAll({
             where: {
                 nif: req.user.nif
@@ -177,6 +178,11 @@ module.exports = {
 
     alterarAvaliacao: async (req, res) => {
         var { id_avaliacao_pedido, avaliacao_obs } = req.body
+
+        if(!id_avaliacao_pedido) {
+            return res.json({error: "Informe se o pedido lhe atendeu ou não, por favor!"})
+        }
+
         var pedidos = await pedido.findByPk(req.params.id)
 
         if (pedidos == null) {

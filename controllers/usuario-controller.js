@@ -97,7 +97,7 @@ module.exports = {
         await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
         const user = await usuario.findByPk(req.user.nif)
 
-        let { nome, telefone, depto, email, cfp, imagem } = req.body;
+        let { nome, telefone, email, imagem } = req.body;
 
         if (req.file) {
             if (user.imagem !== config.adminAccount.defaultImage) {
@@ -109,7 +109,7 @@ module.exports = {
             imagem = req.file.path;
         }
 
-        await user.update({ nome, telefone, depto, email, cfp, imagem });
+        await user.update({ nome, telefone, email, imagem });
 
         res.status(200).json({ message: `Sua conta foi atualizada com sucesso!!` });
     },

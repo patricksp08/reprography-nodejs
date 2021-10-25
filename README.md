@@ -54,7 +54,7 @@ Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
 npm run server
 ```
 
-Aguarde a execução e estará rodando na URL  `http://localhost:3000`
+Aguarde a execução e estará rodando na URL  `http://localhost:3002`
 <br>
 
 E assim você terá sua aplicaçãco rodando localmente.
