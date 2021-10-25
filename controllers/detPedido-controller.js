@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const { authJwt } = require("../middlewares");
+const { sequelize } = require("../models");
 
 //Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
@@ -29,8 +30,44 @@ module.exports = {
         // Verificando se o usuário que está querendo ver os detalhes do pedido de outro usuário é administrador
         else {
             req.pedidos = [pedidos]
-            authJwt.isAdmin(req,res,next);
+            authJwt.isAdmin(req, res, next);
         }
-    }
+    },
 
+
+    getSumCopias: async (req, res) => {
+        var { ano, mes } = req.params;
+
+        const startedDate = new Date(`${ano}-${mes}-01 00:00:00`);
+        const endDate = new Date(`${ano}-${mes}-31 23:59:59`);
+
+        total_copias = await det_pedido.sum('num_copias', {
+            where: {
+                createdAt: {
+                    [Op.between]: [startedDate, endDate]
+                }
+            },
+        })
+
+        num_paginas = await det_pedido.sum('num_paginas', {
+            where: {
+                createdAt: {
+                    [Op.between]: [startedDate, endDate]
+                }
+            },
+        })
+
+        folhas_impressas = (total_copias*num_paginas);
+
+        res.json({
+            "Mês": mes,
+            "Ano": ano,            
+            "Total de páginas": num_paginas,
+            "Total de cópias": total_copias,
+            "Total de folhas impressas (total de copias * num paginas)": folhas_impressas
+        })
+    }
 }
+
+//2021-10-25 09:46:20
+// Project.sum('age').then(sum => {
