@@ -51,7 +51,7 @@ npm install
 
 Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
 ``` bash
-npm run index
+npm run
 ```
 
 Aguarde a execução e estará rodando na URL  `http://localhost:3002`
