@@ -99,7 +99,6 @@ module.exports = {
 
     //Todos os pedidos feito pelo usuário LOGADO!
     meusPedidos: async (req, res, next) => {
-        console.log(pedidos)
         var pedidos = await pedido.findAll({
             where: {
                 nif: req.user.nif

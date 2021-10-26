@@ -43,19 +43,23 @@ checkDuplicateNifOrEmail = (req, res, next) => {
 checkRolesExisted = (req, res, next) => {
 
   //Transformando int em array para comparar se existe o Role em Models/Index.js. => ROLES
-  var { roles } = req.body;
-  if (roles == 1) {
-    roles = ["admin"]
+  var { admin } = req.body;
+
+  if (admin == 1) {
+    admin = ["admin"]
+  }
+  else if (admin == 2) {
+    admin = ["moderator"]
   }
   else {
-    roles = ["user"]
+    admin = ["user"]
   }
 
-  if (roles) {
-    for (let i = 0; i < roles.length; i++) {
-      if (!ROLES.includes(roles[i])) {
+  if (admin) {
+    for (let i = 0; i < admin.length; i++) {
+      if (!ROLES.includes(admin[i])) {
         res.status(400).send({
-          message: "Error! Role inexistente = " + roles[i]
+          message: "Error! Role inexistente = " + admin[i]
         });
         return
       }
