@@ -41,9 +41,8 @@ isAdmin = (req, res, next) => {
           return;
         }
       }
-
       res.status(403).json({
-        message: "Require Admin Role!"
+        message: "Você precisa ser Administrador para executar essa ação!"
       });
       return;
     });
@@ -59,9 +58,8 @@ isModerator = (req, res, next) => {
           return;
         }
       }
-
       res.status(403).json({
-        message: "Require Moderator Role!"
+        message: "Você precisa ser Moderador para executar essa ação!"
       });
     });
   });
@@ -75,15 +73,13 @@ isModeratorOrAdmin = (req, res, next) => {
           next();
           return;
         }
-
         if (roles[i].descricao === "admin") {
           next();
           return;
         }
       }
-
       res.status(403).json({
-        message: "Require Moderator or Admin Role!"
+        message: "Você precisa ser Administrador ou Moderador para executar essa ação!"
       });
     });
   });

@@ -85,17 +85,21 @@ module.exports = {
     },
 
     informacoesBasicas: async (req, res) => {
-        let usuarios = await usuario.findByPk(req.user.nif, {
-            attributes: { exclude: ["senha"] },
+        const user = await usuario.findByPk(req.user.nif, {
+            include: [
+                'roles'
+            ],
+            attributes: { exclude: ["senha"] }
         });
 
-        res.json(usuarios);
+        res.json(user);
     },
 
     //Altera 
     alterarUsuario: async (req, res) => {
         await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
-        const user = await usuario.findByPk(req.user.nif)
+        
+        var user = await usuario.findByPk(req.user.nif)
 
         let { nome, telefone, email, imagem } = req.body;
 
@@ -117,7 +121,9 @@ module.exports = {
     //Usuário pode excluir a própria conta (exclui pelo nif do usuário logado)
     excluirUsuario: async (req, res) => {
         await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
+        
         const user = await usuario.findByPk(req.user.nif)
+        
         await user.destroy();
 
         if (user.imagem !== config.adminAccount.defaultImage) {
@@ -171,6 +177,9 @@ module.exports = {
         //na tabela user_roles
         if (admin == 1) {
             admin = ["admin"]
+        }
+        else if (admin == 2) {
+            admin = ["moderator"]
         }
         else {
             admin = ["user"]
@@ -247,22 +256,46 @@ module.exports = {
     },
 
     buscarPorNif: async (req, res) => {
-        let usuarios = await usuario.findAll({
-            where: {
-                nif: req.params.nif
-            },
-            include: [
-                'roles'
-            ],
-        })
-        res.json(usuarios)
+        const user = await usuario.findByPk(req.params.nif)
+
+        if (user == null) {
+            return res.json({ message: "Não Há nenhum usuário com esse NIF" })
+        }
+
+        res.json(user)
     },
 
     alterarPorNif: async (req, res) => {
+        var user = await usuario.findByPk(req.params.nif)
 
-        const user = await usuario.findByPk(req.params.nif)
+        if (user == null) {
+            return res.json({ message: "Não Há nenhum usuário com esse NIF" })
+        }
 
         let { nif, nome, senha, telefone, depto, email, cfp, admin, imagem } = req.body;
+
+        if (admin) {
+
+            if (admin == 1) {
+                admin = ["admin"]
+            }
+            else if (admin == 2) {
+                admin = ["moderator"]
+            }
+            else {
+                admin = ["user"]
+            }
+
+            tipo_usuario.findAll({
+                where: {
+                    descricao: {
+                        [Op.or]: admin
+                    }
+                }
+            }).then(roles => {
+                user.updateRoles(roles)
+            })
+        }
 
         if (req.file) {
             if (user.imagem !== config.adminAccount.defaultImage) {
@@ -271,20 +304,13 @@ module.exports = {
                     console.log(`successfully deleted ${user.imagem}`);
                 });
             }
-
             imagem = req.file.path;
-        }
-
-        if (admin == 1) {
-            admin = ["admin"]
-        }
-        else {
-            admin = ["user"]
         }
 
         bcrypt.hash(senha, 10, function (err, hash) {
             if (err) throw (err);
-            user.update({ nif, nome, senha: hash, telefone, depto, email, cfp, roles: admin, imagem })
+            user.update({ nif, nome, senha: hash, telefone, depto, email, cfp, imagem })
+
             res.status(200).json({ message: `Conta com NIF ${req.params.nif} atualizada com sucesso!!` });
         });
     },
@@ -293,6 +319,11 @@ module.exports = {
         await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
 
         const user = await usuario.findByPk(req.params.nif)
+
+        if (user == null) {
+            return res.json({ message: "Não Há nenhum usuário com esse NIF" })
+        }
+
         await user.destroy();
 
         if (user.imagem !== config.adminAccount.defaultImage) {
