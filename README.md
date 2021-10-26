@@ -14,7 +14,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 <img align="center"  height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" style="max-width:100%;"></img> **<a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS</a>**
 
-<img align="center"  height="50" width="60" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img> **MySQL - (https://www.mysql.com/downloads/)**
+<img align="center"  height="50" width="60" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img> **<a href="https://www.mysql.com">:small_blue_diamond: MySQL</a>**
 
 ### 📃 Funcionalidades do Back-End
 O banco de dados MySQL foi hospedado no MariaDB.
