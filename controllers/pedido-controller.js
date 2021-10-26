@@ -7,7 +7,9 @@ var { pedido, det_pedido, servico } = initModels(sequelize)
 
 module.exports = {
 
-    ////GET 
+    ////ADMIN
+
+    //GET 
 
     //Buscar todos os pedidos da tabela pedido
     buscarTodos: async (req, res, next) => {
@@ -90,7 +92,8 @@ module.exports = {
         next();
     },
 
-    //Usuário Comum 
+
+    ////Usuário Comum 
 
     //GET
 
@@ -179,8 +182,8 @@ module.exports = {
     alterarAvaliacao: async (req, res) => {
         var { id_avaliacao_pedido, avaliacao_obs } = req.body
 
-        if(!id_avaliacao_pedido) {
-            return res.json({error: "Informe se o pedido lhe atendeu ou não, por favor!"})
+        if (!id_avaliacao_pedido) {
+            return res.json({ error: "Informe se o pedido lhe atendeu ou não, por favor!" })
         }
 
         var pedidos = await pedido.findByPk(req.params.id)

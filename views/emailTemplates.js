@@ -1,4 +1,5 @@
-exports.forgotPasswordEmail = (token, mail) => `<div id="principalDiv">
+exports.forgotPasswordEmail = (token, mail) =>
+    ` <div id="principalDiv">
 <h1>Recuperação de senha</h1>
 <p>Para resetar sua senha, por favor clique no link abaixo:</p>
 <a href="http://localhost:3000/newPassword?token=${encodeURIComponent(token)}&email=${mail}">
@@ -20,8 +21,7 @@ exports.forgotPasswordEmail = (token, mail) => `<div id="principalDiv">
 
 exports.pedidoEmail = (
     titulo_pedido, nif, centro_custos, curso, tipos_copia, tamanho_pagina, tipos_capa, acabamento,
-    num_paginas, num_copias, modo_envio, observacoes
-) =>
+    num_paginas, num_copias, modo_envio, observacoes) =>
     ` 
 <div> <h1>Reprografia ${titulo_pedido} </h1>
 <h3>Solicitada pelo usuário com NIF: <span>${nif}</span></h3>

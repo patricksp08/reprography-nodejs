@@ -12,7 +12,7 @@ module.exports = function (app) {
     next();
   });
 
-  //Usuário Comum 
+  ////USUARIO COMUM
 
   //POST
 
@@ -34,13 +34,13 @@ module.exports = function (app) {
   app.put("/mudarSenha", [authJwt.validateToken], controller.mudarSenha);
 
 
-  //Delete
+  //DELETE
 
   //Deleta as informações do usuário logado (autenticado pelo jwt)
   app.delete('/meuUsuario', [authJwt.validateToken], controller.excluirUsuario);
 
 
-  //Gerentes --- (ADMIN)
+  //ADMIN
 
   //POST
 
@@ -53,7 +53,6 @@ module.exports = function (app) {
     ],
     upload.single('image'),
     [
-
       verifySignUp.checkDuplicateNifOrEmail,
       verifySignUp.checkRolesExisted
     ],
@@ -65,7 +64,7 @@ module.exports = function (app) {
 
   //Exibe informações do usuário logado
   app.get("/auth", [authJwt.validateToken], (req, res) => {
-    res.json(req.user)
+    res.json(req.user);
   });
 
   //Exibe todos os usuários da tabela usuario
@@ -81,12 +80,11 @@ module.exports = function (app) {
   //PUT
 
   //Rota para alterar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
-  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('image'),  controller.alterarPorNif);
+  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('image'), controller.alterarPorNif);
 
 
-  //Delete
+  //DELETE
 
   //Rota para deletar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
   app.delete('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.excluirPorNif);
-
 };

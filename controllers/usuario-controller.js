@@ -39,14 +39,14 @@ module.exports = {
             }
         })
         //Login com usuário ou NIF
-        if(user == null) {
+        if (user == null) {
             user = await usuario.findOne({
                 where: {
                     nif: emailOrNif
                 }
             })
 
-            if(!user) {
+            if (!user) {
                 return res.json({ status: 'error', error: "E-mail ou Senha Inválidos!" })
             }
         }

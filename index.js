@@ -26,22 +26,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./models");
 
 //Função para inserir os registros fixos de alguams tabelas (como tipo_usuario, tipo_copia, etc...)
-const { inserirRegistros } = require("./helpers/")
+const { inserirRegistros } = require("./helpers/");
 
 // Routers
 
 //Usuario router
-require("./routes/usuario-routes")(app)
+require("./routes/usuario-routes")(app);
 //Pedido router
-require("./routes/pedido-routes")(app)
+require("./routes/pedido-routes")(app);
 //Deatlhes do Pedido router
-require("./routes/detPedido-routes")(app)
+require("./routes/detPedido-routes")(app);
 //ResetToken Router
-require('./routes/resetToken-routes')(app)
+require('./routes/resetToken-routes')(app);
 //Servico Router
-require('./routes/servico-routes')(app)
+require('./routes/servico-routes')(app);
 //Swagger Routes
-require('./routes/swagger')(app)
+require('./routes/swagger')(app);
 
 //Imports para as informações que vamos trazer no console (consumo de ram, uso de cpu...)
 const os = require('os');
@@ -59,24 +59,22 @@ db.sequelize.sync().then(() => {
 
     //Informações sobre a CPU, ARQUITETURA, TOTAL DE MEMÓRIA RAM DISPONÍVEL NO SISTEMA E SEU USO.
     console.log("\nCPUS: ", os.cpus());
-    console.log("\nArquitetura do processador: " + process.arch)
-    console.log("Plataforma que a API está rodando: " + process.platform)
+    console.log("\nArquitetura do processador: " + process.arch);
+    console.log("Plataforma que a API está rodando: " + process.platform);
     console.log("\nTotal de memória ram: " + os.totalmem() + " B");
-    console.log("Uso Atual de memória ram: " + Math.round((os.totalmem - os.freemem())) + " B")
-    console.log("Memória ram livre: " + Math.round(os.freemem())  + " B")
-    
+    console.log("Uso Atual de memória ram: " + Math.round((os.totalmem - os.freemem())) + " B");
+    console.log("Memória ram livre: " + Math.round(os.freemem()) + " B");
+
     //Listando disco tanto do windows quanto do linux
-    if(process.platform == "linux"){var disc = "/"}
-    else{
-      var disc = "C*"
-    }
+    if (process.platform == "linux") { var disc = "/" }
+    else { var disc = "C*" }
 
     //Verificando disco (espaço total... livre e status)
     diskspace.check(disc, function (err, result) {
-      console.log("\nTamanho total do disco: " + result.total + " B")
-      console.log("Espaço do disco utilizado: " + result.used + " B")
-      console.log("Espaço livre do disco: " + result.free + " B")
-      console.log("Status do disco: " + result.status + "\n")
+      console.log("\nTamanho total do disco: " + result.total + " B");
+      console.log("Espaço do disco utilizado: " + result.used + " B");
+      console.log("Espaço livre do disco: " + result.free + " B");
+      console.log("Status do disco: " + result.status + "\n");
     });
 
     //Verificando uso de CPU e uso de Memória
@@ -84,12 +82,12 @@ db.sequelize.sync().then(() => {
       function timeout() {
         setTimeout(() => {
           while (0 === 0) {
-            console.log("\n--------------------------------------------")
-            console.log("\nInformações que serão atualizadas em 60 segundos:\n")
-            console.log('CPU Usage (%): ' + v*100 + "%");
-            console.log("Uso de memória ram: " + Math.round((os.totalmem - os.freemem())) + " B")
-            console.log("Memória Livre: " + os.freemem() + " B \n")
-            console.log("--------------------------------------------")
+            console.log("\n--------------------------------------------");
+            console.log("\nInformações que serão atualizadas em 60 segundos:\n");
+            console.log('CPU Usage (%): ' + v * 100 + "%");
+            console.log("Uso de memória ram: " + Math.round((os.totalmem - os.freemem())) + " B");
+            console.log("Memória Livre: " + os.freemem() + " B \n");
+            console.log("--------------------------------------------");
             break;
           }
           timeout();
@@ -97,5 +95,5 @@ db.sequelize.sync().then(() => {
       }
       timeout();
     });
-  })
+  });
 });

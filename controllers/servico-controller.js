@@ -5,27 +5,22 @@ var { servico } = initModels(sequelize)
 module.exports = {
 
     servicosGet: async (req, res) => {
-        servicos = await servico.findAll()
-        console.log(servicos)
+        const servicos = await servico.findAll()
         res.json(servicos)
     },
 
     servicosPut: async (req, res) => {
-
-        var { quantidade, valor_unitario } = req.body;
         var { id } = req.params;
+        var { quantidade, valor_unitario } = req.body;
 
-        servicos = await servico.findAll({
-            where: { id_servico: id }
-        })
+        const servicos = await servico.findByPk(id)
 
-        if (servicos.lenght < 1) {
+        if (servicos === null) {
             return res.json({ message: "Não há nenhum serviço" })
         }
         else {
-            servicos.update({ quantidade, valor_unitario })
-            return res({ message: `Servico ${servicos.id_servico} atualizado com sucesso!` })
+            await servicos.update({ quantidade, valor_unitario })
+            return res.json({ message: `Servico ${servicos.id_servico} atualizado com sucesso!` })
         }
     }
-
 }
