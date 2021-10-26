@@ -19,7 +19,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 <img align="center"  height="50" width="60" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img> 
          **<a href="https://www.mysql.com">:small_blue_diamond: MySQL</a>**
 
-<img align="center"  height="20" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img> 
+<img align="center"  height="30" width="20" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img> 
          **<a href="https://swagger.io">:small_blue_diamond: Swagger</a>**
 
 ### 📃 Funcionalidades do Back-End
