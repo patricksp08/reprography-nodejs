@@ -12,14 +12,6 @@ module.exports = function (app) {
 
     ////USUARIO COMUM
 
-    //GET
-
-    // app.get('/forgot-password', controller.forgotPasswordGet)
-
-    //reset password  -> Este código limpa todos os tokens expirados.
-    app.get('/resetarSenha', controller.resetTokenExpired);
-
-
     //Post
 
     //Enviar e-mail de recuperação e inserir email na tabela resetToken

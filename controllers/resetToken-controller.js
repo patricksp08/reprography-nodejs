@@ -15,50 +15,8 @@ const bcrypt = require("bcrypt")
 //Usado para criar o token de reset aleatório
 const crypto = require('crypto');
 
-// ROTAS GET
-
-// exports.forgotPasswordGet = (req, res, next) => {
-//   res.render('usuario/forgot-password', {});
-// };
 
 module.exports = {
-
-  resetTokenExpired: async (req, res, next) => {
-    /**
-     * Este código limpa todos os tokens expirados. 
-     * Vocêdeve mover isso para um cronjob, se você tem um
-     * grande site. Nós apenas incluímos isso aqui como um
-     demonstração.
-     **/
-    await resettoken.destroy({
-      where: {
-        expiration: { [Op.lt]: Sequelize.fn('CURDATE') },
-      }
-    });
-
-    //Encontrando o token
-    var record = await resettoken.findOne({
-      where: {
-        email: req.query.email,
-        expiration: { [Op.gt]: Sequelize.fn('CURDATE') },
-        token: req.query.token,
-        used: 0
-      }
-    });
-
-    if (record == null) {
-      return res.render('usuario/reset-password', {
-        message: 'Token expirado. Por favor, tente resetar sua senha novamente.',
-        showForm: false
-      });
-    }
-
-    res.render('usuario/reset-password', {
-      showForm: true,
-      record: record
-    });
-  },
-
 
   // ROTAS POST
 
@@ -113,7 +71,6 @@ module.exports = {
 
   //RESET PASSWORD 
 
-  //
   resetPassword: async (req, res, next) => {
 
     let { email, token, senha, senha2 } = req.body;
