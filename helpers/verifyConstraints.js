@@ -2,8 +2,8 @@ const { initModels } = require("../models/init-models");
 const { sequelize } = require("../models");
 var models = initModels(sequelize);
 
-const verifyConstraints = async (req, centro_custos, curso, modo_envio, avaliacao,
-    tamanho_pagina, tipos_copia, tipos_capa, acabamento) => {
+const verifyConstraints = async ({ req, centro_custos, curso, modo_envio, avaliacao,
+    tamanho_pagina, tipos_copia, tipos_capa, acabamento }) => {
 
     if (centro_custos) {
         var data = await models.centro_custos.findAll({

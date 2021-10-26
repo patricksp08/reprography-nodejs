@@ -40,6 +40,8 @@ require("./routes/detPedido-routes")(app);
 require('./routes/resetToken-routes')(app);
 //Servico Router
 require('./routes/servico-routes')(app);
+//Estatisticas Router
+require('./routes/estatisticas-routes')(app);
 //Swagger Routes
 require('./routes/swagger')(app);
 

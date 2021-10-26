@@ -98,7 +98,7 @@ module.exports = {
     //Altera 
     alterarUsuario: async (req, res) => {
         await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
-        
+
         var user = await usuario.findByPk(req.user.nif)
 
         let { nome, telefone, email, imagem } = req.body;
@@ -121,9 +121,9 @@ module.exports = {
     //Usuário pode excluir a própria conta (exclui pelo nif do usuário logado)
     excluirUsuario: async (req, res) => {
         await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
-        
+
         const user = await usuario.findByPk(req.user.nif)
-        
+
         await user.destroy();
 
         if (user.imagem !== config.adminAccount.defaultImage) {
