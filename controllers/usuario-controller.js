@@ -172,6 +172,9 @@ module.exports = {
         if (admin == 1) {
             admin = ["admin"]
         }
+        else if (admin == 2) {
+            admin = ["moderator"]
+        }
         else {
             admin = ["user"]
         }
@@ -262,7 +265,34 @@ module.exports = {
 
         const user = await usuario.findByPk(req.params.nif)
 
+        if(user == null){
+            return res.json({message: "Não Há nenhum usuário com esse NIF"})
+        }
+
         let { nif, nome, senha, telefone, depto, email, cfp, admin, imagem } = req.body;
+
+        if (admin) {
+
+            if (admin == 1) {
+                admin = ["admin"]
+            }
+            else if (admin == 2) {
+                admin = ["moderator"]
+            }
+            else {
+                admin = ["user"]
+            }
+
+                tipo_usuario.findAll({
+                    where: {
+                        descricao: {
+                            [Op.or]: admin
+                        }
+                    }
+                }).then(roles => {
+                    user.updateRoles(roles)
+                })
+        }
 
         if (req.file) {
             if (user.imagem !== config.adminAccount.defaultImage) {
@@ -271,20 +301,13 @@ module.exports = {
                     console.log(`successfully deleted ${user.imagem}`);
                 });
             }
-
             imagem = req.file.path;
-        }
-
-        if (admin == 1) {
-            admin = ["admin"]
-        }
-        else {
-            admin = ["user"]
         }
 
         bcrypt.hash(senha, 10, function (err, hash) {
             if (err) throw (err);
-            user.update({ nif, nome, senha: hash, telefone, depto, email, cfp, roles: admin, imagem })
+            user.update({ nif, nome, senha: hash, telefone, depto, email, cfp, imagem })
+
             res.status(200).json({ message: `Conta com NIF ${req.params.nif} atualizada com sucesso!!` });
         });
     },
@@ -293,6 +316,11 @@ module.exports = {
         await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
 
         const user = await usuario.findByPk(req.params.nif)
+
+        if(user == null){
+            return res.json({message: "Não Há nenhum usuário com esse NIF"})
+        }
+
         await user.destroy();
 
         if (user.imagem !== config.adminAccount.defaultImage) {
