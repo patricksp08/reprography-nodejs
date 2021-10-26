@@ -10,7 +10,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ## 📌 Recursos usados neste projeto:
 
-<img align="center"  height="20" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> **Visual Studio Code -  (https://code.visualstudio.com/Download)**
+<img align="center"  height="20" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code</a>**
 
 <img align="center"  height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" style="max-width:100%;"></img> **<a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS</a>**
 
