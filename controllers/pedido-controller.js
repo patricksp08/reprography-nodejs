@@ -147,9 +147,6 @@ module.exports = {
             {
                 include: ['det_pedidos', 'nif_usuario']
             }
-            // {
-            //     include: ['nif_usuario']
-            // }
         ).then(pedido => {
             servico.decrement({ quantidade: +(num_copias * num_paginas) }, {
                 where: {

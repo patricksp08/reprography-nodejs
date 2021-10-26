@@ -9,7 +9,7 @@ const verifyService = async (req, res, next) => {
     req.sub_total = 0;
 
     //Lógica para sub_total - Switch  
-    var { tipos_copia, tamanho_pagina, tipos_capa, acabamento } = req.body;
+    var { tipos_copia, tamanho_pagina, tipos_capa, acabamento, num_paginas, num_copias } = req.body;
 
     //Correlacionando a tabela de Serviços com as tabelas tipos_copia e tamanho_pagina
     switch (tipos_copia && tamanho_pagina) {
@@ -78,6 +78,8 @@ const verifyService = async (req, res, next) => {
         }
     );
 
+    var folhasImpressas = num_paginas * num_copias
+
     //Percorrendo os dois serviços passados, para podermos utilizar as quantidades separadamente
     // e somar o total com os dois valores unitários
     for (let i = 0; i < serv.length; i++) {
@@ -87,6 +89,9 @@ const verifyService = async (req, res, next) => {
         //É preciso de dois serviços para realizar um pedido, não estando nenhum dos dois esgotados.
         if (serv[i].quantidade <= 0) {
             return res.json({ error: `O serviço ${serv[i].descricao} está esgotado!` });
+        }
+        if (serv[i].quantidade < folhasImpressas) {
+            return res.json({ error: `O serviço ${serv[i].descricao} não contém quantidade o suficiente para essa solicitação!` })
         }
     }
     next();
