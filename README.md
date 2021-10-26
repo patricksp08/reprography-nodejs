@@ -36,8 +36,13 @@ Rotas foram protegidas por meio de JWT em conjunto com Swagger.
   * Cors 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
   * Multer 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
   * Body-Parser 1.19.0 - Analisa os dados codificados JSON, buffer, string e URL enviados usando a solicitação HTTP POST.
-  * MariaDB 2.5.4 - É o banco de dados que mós usamos. 
-  * PostMan - Teste das funcionalidades da API criada. 
+  * MariaDB 2.5.4 - É o banco de dados que nos usamos. 
+  * PostMan - Teste das funcionalidades da API criada.
+
+#### Database Service
+
+<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>
+ 
 
 ## Como iniciar a aplicação:
 
