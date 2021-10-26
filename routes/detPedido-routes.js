@@ -28,4 +28,8 @@ module.exports = function (app) {
 
   //Estatísticas dos ultimos quatro meses.
   app.get("/estatisticas/quatroMeses", [authJwt.validateToken, authJwt.isAdmin], controller.estatisticasQuatroMeses);
+
+  app.get("/centro_custos/mensal/:ano/:mes", [authJwt.validateToken, authJwt.isAdmin], controller.estatisticasCentroCustosMensal);
+  
+  app.get("/cursos/mensal/:ano/:mes", [authJwt.validateToken, authJwt.isAdmin], controller. estatisticasCursoMensal);
 };
