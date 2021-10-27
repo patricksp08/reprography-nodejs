@@ -48,8 +48,8 @@ Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 
 #### Requerimentos
 
-- Node.js
-- NPM
+- Node.js (v14.18.1)
+- NPM (6.14.15)
 
 ### Instalando os pacotes
 
@@ -70,5 +70,4 @@ Aguarde a execução e estará rodando na URL  `http://localhost:3002`
 
 E assim você terá sua aplicaçãco rodando localmente.
 
-
-
+Documentação da API (Swagger) rodando em: `http://localhost:3002/v2/docs/`
