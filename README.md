@@ -70,4 +70,4 @@ Aguarde a execução e estará rodando na URL  `http://localhost:3002`
 
 E assim você terá sua aplicaçãco rodando localmente.
 
-Documentação da API rodando em: `http://localhost:3002/v2/docs/`
+Documentação da API (Swagger) rodando em: `http://localhost:3002/v2/docs/`
