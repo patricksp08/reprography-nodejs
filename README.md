@@ -43,7 +43,7 @@ Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 <a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>
  
 
-## Como iniciar a aplicação:
+## :arrow_forward: Como iniciar a aplicação:
 
 #### Requerimentos
 
