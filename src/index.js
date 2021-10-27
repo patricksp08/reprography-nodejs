@@ -43,7 +43,7 @@ require('./routes/servico-routes')(app);
 //Estatisticas Router
 require('./routes/estatisticas-routes')(app);
 //Swagger Routes
-require('./routes/swagger')(app);
+require('./routes/swagger-routes')(app);
 
 //Imports para as informações que vamos trazer no console (consumo de ram, uso de cpu...)
 const os = require('os');
