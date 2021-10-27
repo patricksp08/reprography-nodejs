@@ -1,0 +1,906 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "repro",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3002",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/registrar": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Inserir usuário",
+        "operationId": "Inserirusuário",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsIm5vbWUiOiJBRE1JTiBBQ0NPVU5UIiwiZW1haWwiOiJhZG1pbkBzZW5haXNwLmVkdS5iciIsImltYWdlbSI6InVwbG9hZHMvdXNlci1pbWcvZGVmYXVsdC91c3VhcmlvLnBuZyIsInJvbGVzIjpbIjNfUk9MRV9BRE1JTiJdLCJpYXQiOjE2MzQ3MzI4MDMsImV4cCI6MTYzNDgxOTIwM30.mfw5tqflnz2PQOKS4frbXyXJ8_jwj349OmUIKKIdJcE"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "nif",
+                  "senha",
+                  "nome",
+                  "telefone",
+                  "depto",
+                  "email",
+                  "cfp",
+                  "admin",
+                  "image"
+                ],
+                "type": "object",
+                "properties": {
+                  "nif": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 8
+                  },
+                  "senha": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 123
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "Lucca"
+                  },
+                  "telefone": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 11950743313
+                  },
+                  "depto": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "mario-lucca@hotmail.com"
+                  },
+                  "cfp": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1234
+                  },
+                  "admin": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "image": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/logar": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Logar",
+        "operationId": "Logar",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "emailOrNif",
+                  "senha"
+                ],
+                "type": "object",
+                "properties": {
+                  "emailOrNif": {
+                    "type": "string",
+                    "example": "admin@senaisp.edu.br"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "example": "admin"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/esqueceuSenha": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Esqueci a senha",
+        "operationId": "Esqueciasenha",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "mail"
+                ],
+                "type": "object",
+                "properties": {
+                  "mail": {
+                    "type": "string",
+                    "example": "mario-lucca@hotmail.com"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/pedido": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Inserindo um pedido",
+        "operationId": "Inserindoumpedido",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjUsImVtYWlsIjoibWFyaW8tbHVjY2FAaG90bWFpbC5jb20iLCJub21lIjoiTHVjY2EiLCJpYXQiOjE2MzQyNDM0OTcsImV4cCI6MTYzNDMyOTg5N30.hETWiYs39q3c7bx3u6vH5rMVn9RYn7gJg9DaX3y9h1A"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "centro_custos",
+                  "titulo_pedido",
+                  "modo_envio",
+                  "curso",
+                  "observacoes",
+                  "num_copias",
+                  "num_paginas",
+                  "acabamento",
+                  "tamanho_pagina",
+                  "tipos_capa",
+                  "tipos_copia",
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "centro_custos": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 3
+                  },
+                  "titulo_pedido": {
+                    "type": "string",
+                    "example": "Livro XYZ"
+                  },
+                  "modo_envio": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                  },
+                  "curso": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 2
+                  },
+                  "observacoes": {
+                    "type": "string",
+                    "example": "Nenhuma"
+                  },
+                  "num_copias": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 50
+                  },
+                  "num_paginas": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 5
+                  },
+                  "acabamento": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 2
+                  },
+                  "tamanho_pagina": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 2
+                  },
+                  "tipos_capa": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 2
+                  },
+                  "tipos_copia": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                  },
+                  "file": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/pedidos": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "todos os pedidos",
+        "operationId": "todosospedidos",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsImVtYWlsIjoiYWRtaW5Ac2VuYWlzcC5lZHUuYnIiLCJub21lIjoiQURNSU4gQUNDT1VOVCIsImlhdCI6MTYzNDEzNjk2MCwiZXhwIjoxNjM0MjIzMzYwfQ.G2Exv3_ryTcu6htDutqFZ59zkMz4Tm2XkDwxQqQPOY0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/pedido/1": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "pedidos por id do pedido",
+        "operationId": "pedidosporiddopedido",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsIm5vbWUiOiJBRE1JTiBBQ0NPVU5UIiwiZW1haWwiOiJhZG1pbkBzZW5haXNwLmVkdS5iciIsImltYWdlbSI6InVwbG9hZHMvdXNlci1pbWcvZGVmYXVsdC91c3VhcmlvLnBuZyIsInJvbGVzIjpbIjNfUk9MRV9BRE1JTiJdLCJpYXQiOjE2MzQ1OTU5MzksImV4cCI6MTYzNDY4MjMzOX0.e_LUT5QPi1I6wxY-isqU4c9_EacZVFwP5VbzXq6C3ik"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/pedido/titulo/pedido": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "pedidos por titulo_pedido",
+        "operationId": "pedidosportitulo_pedido",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsImVtYWlsIjoiYWRtaW5Ac2VuYWlzcC5lZHUuYnIiLCJub21lIjoiQURNSU4gQUNDT1VOVCIsImlhdCI6MTYzNDA4ODM0MiwiZXhwIjoxNjM0MTc0NzQyfQ.ETh6zlxSNdMfXKBrFP0BjcxDSZXAQX_-w49RSxPLUqU"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/pedido/detalheid/1": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "pedidos por id do det_pedido",
+        "operationId": "pedidosporiddodet_pedido",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsImVtYWlsIjoiYWRtaW5Ac2VuYWlzcC5lZHUuYnIiLCJub21lIjoiQURNSU4gQUNDT1VOVCIsImlhdCI6MTYzNDA4ODM0MiwiZXhwIjoxNjM0MTc0NzQyfQ.ETh6zlxSNdMfXKBrFP0BjcxDSZXAQX_-w49RSxPLUqU"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/pedido/nif/1": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "pedidos por nif",
+        "operationId": "pedidospornif",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsImVtYWlsIjoiYWRtaW5Ac2VuYWlzcC5lZHUuYnIiLCJub21lIjoiQURNSU4gQUNDT1VOVCIsImlhdCI6MTYzNDA4NDY3MCwiZXhwIjoxNjM0MTcxMDcwfQ.WjS8ClPySsVuBivSmFvr17JQzTDsfW0l49-Mp7UHr48"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/meuUsuario": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Solicitando Infos (usuario logado)",
+        "operationId": "SolicitandoInfos(usuariologado)",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsImVtYWlsIjoiYWRtaW5Ac2VuYWlzcC5lZHUuYnIiLCJub21lIjoiQURNSU4gQUNDT1VOVCIsImlhdCI6MTYzNDEzNDgyMywiZXhwIjoxNjM0MjIxMjIzfQ.aR4dZCScT5vifDwL6C86bSox_QbUTsM9ftkk9ONCncc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Atualizar Usuário (usuario logado)",
+        "operationId": "AtualizarUsuário(usuariologado)",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjUsImVtYWlsIjoibWFyaW8tbHVjY2FAaG90bWFpbC5jb20iLCJub21lIjoiTHVjY2EiLCJpYXQiOjE2MzQyMjg0MzEsImV4cCI6MTYzNDMxNDgzMX0.2Vg9lCSYiXMHhLHPKQ8atMwM2OtMvJWNb88L3KcPD-A"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "imagem",
+                  "nome"
+                ],
+                "type": "object",
+                "properties": {
+                  "imagem": {
+                    "type": "string"
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "Admin"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Deletando Usuario (usuario logado)",
+        "operationId": "DeletandoUsuario(usuariologado)",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsImVtYWlsIjoiYWRtaW5Ac2VuYWlzcC5lZHUuYnIiLCJub21lIjoiQWRtaW4iLCJpYXQiOjE2MzQxMzQ5MzksImV4cCI6MTYzNDIyMTMzOX0.Cj0Avf576-eLMUorhXin1wlFGGoGltnJDU2NNANfcHU"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/mudarSenha": {
+      "put": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Mudando senha (usuario logado)",
+        "operationId": "Mudandosenha(usuariologado)",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsImVtYWlsIjoiYWRtaW5Ac2VuYWlzcC5lZHUuYnIiLCJub21lIjoiQURNSU4gQUNDT1VOVCIsImlhdCI6MTYzNDA4NDQ1MywiZXhwIjoxNjM0MTcwODUzfQ.Eeyvg6ydC-mkez22-W4GoUbu5_Flrx8KFl2gfD_-vp8"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "senhaAntiga",
+                  "senhaNova"
+                ],
+                "type": "object",
+                "properties": {
+                  "senhaAntiga": {
+                    "type": "string",
+                    "example": "admin"
+                  },
+                  "senhaNova": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 123
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Solicitando todos os usuários",
+        "operationId": "Solicitandotodososusuários",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjUsImVtYWlsIjoibWFyaW8tbHVjY2FAb3RtYWlsLmNvbSIsIm5vbWUiOiJMdWNjYSIsImlhdCI6MTYzNDEzNTk3NiwiZXhwIjoxNjM0MjIyMzc2fQ.bz3OEDxLYzMCbn7XroDkvhgVqkptr0IxO63zmIEbsoo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuario/nif/0": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Solicitando usuario por nif",
+        "operationId": "Solicitandousuariopornif",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjEsImVtYWlsIjoibWFyaW8tbHVjY2FAaG90bWFpbC5jb20iLCJub21lIjoiTHVjY2EiLCJpYXQiOjE2MzM1NTQzNzQsImV4cCI6MTYzMzY0MDc3NH0.DPWlXFFy32Ue32k95ufYvqE2-WXWm5D4RIZq3jHImRs"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuario/Lucca": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Solicitando usuario por nome",
+        "operationId": "Solicitandousuariopornome",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjEyNTM0LCJlbWFpbCI6InBhdHJpY2thYm9yZ2VzQGdtYWlsLmNvbSIsIm5vbWUiOiJQYXRyaWNrIiwiaWF0IjoxNjMyODczNzgyLCJleHAiOjE2MzI5NjAxODJ9.wQtjHEt825J3wbIAtjEF_dIue7ehul5Y5qJCz0YpTfw"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuario/5": {
+      "put": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Atualizar Usuário por nif (gerente)",
+        "operationId": "AtualizarUsuáriopornif(gerente)",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsImVtYWlsIjoiYWRtaW5Ac2VuYWlzcC5lZHUuYnIiLCJub21lIjoiQURNSU4gQUNDT1VOVCIsImlhdCI6MTYzNDIyNjg4MywiZXhwIjoxNjM0MzEzMjgzfQ.DHodNqhzP8E9Vv9Z1q3cYOFGHSXbSjDuoHI4zIFh7JA"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "imagem",
+                  "nif",
+                  "senha",
+                  "nome",
+                  "telefone",
+                  "depto",
+                  "cfp",
+                  "roles",
+                  "email"
+                ],
+                "type": "object",
+                "properties": {
+                  "imagem": {
+                    "type": "string"
+                  },
+                  "nif": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                  },
+                  "senha": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 123
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "Lucca"
+                  },
+                  "telefone": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 11950743313
+                  },
+                  "depto": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 2
+                  },
+                  "cfp": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 657
+                  },
+                  "roles": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "mario-lucca@hotmail.com"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Deletando Usuario por nif",
+        "operationId": "DeletandoUsuariopornif",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsImVtYWlsIjoiYWRtaW5Ac2VuYWlzcC5lZHUuYnIiLCJub21lIjoiQURNSU4gQUNDT1VOVCIsImlhdCI6MTYzNDIyNjg4MywiZXhwIjoxNjM0MzEzMjgzfQ.DHodNqhzP8E9Vv9Z1q3cYOFGHSXbSjDuoHI4zIFh7JA"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/avaliacao/3": {
+      "put": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Atualizar avaliação",
+        "operationId": "Atualizaravaliação",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjUsImVtYWlsIjoibWFyaW8tbHVjY2FAb3RtYWlsLmNvbSIsIm5vbWUiOiJMdWNjYSIsImlhdCI6MTYzNDEzNTk3NiwiZXhwIjoxNjM0MjIyMzc2fQ.bz3OEDxLYzMCbn7XroDkvhgVqkptr0IxO63zmIEbsoo"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "id_avaliacao_pedido",
+                  "avaliacao_obs"
+                ],
+                "type": "object",
+                "properties": {
+                  "id_avaliacao_pedido": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 2
+                  },
+                  "avaliacao_obs": {
+                    "type": "string",
+                    "example": "Reclamaçao y"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/auth": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Auth",
+        "operationId": "Auth",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWYiOjAsIm5vbWUiOiJBRE1JTiBBQ0NPVU5UIiwiZW1haWwiOiJhZG1pbkBzZW5haXNwLmVkdS5iciIsImltYWdlbSI6InVwbG9hZHMvdXNlci1pbWcvZGVmYXVsdC91c3VhcmlvLnBuZyIsInJvbGVzIjpbIjNfUk9MRV9BRE1JTiJdLCJpYXQiOjE2MzQzMDE0MTEsImV4cCI6MTYzNDM4NzgxMX0.KPGNR7kTlzhWbiZhyZS9A_YI8xyGQhYogCGbWWXRRdA"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}

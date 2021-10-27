@@ -10,6 +10,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ## 📌 Recursos usados neste projeto:
 
+
  **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
 
 
@@ -47,8 +48,8 @@ Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 
 #### Requerimentos
 
-- Node.js
-- NPM
+- Node.js (v14.18.1)
+- NPM (6.14.15)
 
 ### Instalando os pacotes
 
@@ -69,5 +70,4 @@ Aguarde a execução e estará rodando na URL  `http://localhost:3002`
 
 E assim você terá sua aplicaçãco rodando localmente.
 
-
-
+Documentação da API (Swagger) rodando em: `http://localhost:3002/v2/docs/`
