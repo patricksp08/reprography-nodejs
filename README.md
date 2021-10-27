@@ -10,17 +10,17 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ## 📌 Recursos usados neste projeto:
 
-<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
-          **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code</a>**
 
-<img align="center"  height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" style="max-width:100%;"></img> 
-         **<a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS</a>**
+ **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
 
-<img align="center"  height="50" width="60" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img> 
-         **<a href="https://www.mysql.com">:small_blue_diamond: MySQL</a>**
 
-<img align="center"  height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img> 
-         **<a href="https://swagger.io">:small_blue_diamond: Swagger</a>**
+**<a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS </a>**<img align="center"  height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" style="max-width:100%;"></img> 
+
+
+**<a href="https://www.mysql.com">:small_blue_diamond: MySQL </a>**<img align="center"  height="50" width="60" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img> 
+
+
+**<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center"  height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img> 
 
 ### 📃 Funcionalidades do Back-End
 O banco de dados MySQL foi hospedado no MariaDB.
@@ -41,15 +41,21 @@ Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 
 #### Database Service
 
-<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>
+**<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
  
 
-## Como iniciar a aplicação:
+## :arrow_forward: Como iniciar a aplicação:
+
+ * Primeiro baixe a pasta de Config zipada, em info_api/  <br>
+ * Extraia ela no diretório da API (/src)
+ * Altere as informações referente a conexão do banco de dados (db.config.json )<br>
+ * Crie o database que inseriu nesse arquivo (exemplo: bdrepro)<br>
+ * Altere as informações referentes ao envio de e-mail (mailer.config.json)
 
 #### Requerimentos
 
-- Node.js
-- NPM
+- Node.js (v14.18.1)
+- NPM (6.14.15)
 
 ### Instalando os pacotes
 
@@ -72,3 +78,10 @@ E assim você terá sua aplicaçãco rodando localmente.
 
 
 
+## :triangular_flag_on_post: Endpoints
+
+Com nossa docmentação feita com o Swagger, conseguimos simplificar o desenvolvimento da noss API, através do conjunto e ferramentas que o próprio Swagger nos disponibiliza, ajudando a projetar e documentrar APIs em escala.
+
+Documentação da API (Swagger) rodando em: `http://localhost:3002/v2/docs/`
+
+![image](https://user-images.githubusercontent.com/71889159/139081009-8728042d-ac41-44a6-8fbf-f367099d3051.png)
