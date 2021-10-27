@@ -46,6 +46,12 @@ Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 
 ## :arrow_forward: Como iniciar a aplicação:
 
+ * Primeiro baixe a pasta de Config zipada, em info_api/  <br>
+ * Extraia ela no diretório da API (/src)
+ * Altere as informações referente a conexão do banco de dados (db.config.json )<br>
+ * Crie o database que inseriu nesse arquivo (exemplo: bdrepro)<br>
+ * Altere as informações referentes ao envio de e-mail (mailer.config.json)
+
 #### Requerimentos
 
 - Node.js (v14.18.1)
@@ -70,4 +76,12 @@ Aguarde a execução e estará rodando na URL  `http://localhost:3002`
 
 E assim você terá sua aplicaçãco rodando localmente.
 
+
+
+## :triangular_flag_on_post: Endpoints
+
+Com nossa docmentação feita com o Swagger, conseguimos simplificar o desenvolvimento da noss API, através do conjunto e ferramentas que o próprio Swagger nos disponibiliza, ajudando a projetar e documentrar APIs em escala.
+
 Documentação da API (Swagger) rodando em: `http://localhost:3002/v2/docs/`
+
+![image](https://user-images.githubusercontent.com/71889159/139081009-8728042d-ac41-44a6-8fbf-f367099d3051.png)

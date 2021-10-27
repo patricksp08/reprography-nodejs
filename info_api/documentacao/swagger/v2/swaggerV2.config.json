@@ -37,7 +37,7 @@
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Obtenha o token de acesso na requisição de Login"
           },
           {
             "name": "nif",
@@ -45,7 +45,7 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Exemplo: 123"
           },
           {
             "name": "senha",
@@ -91,7 +91,7 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Exemplo: 123"
           },
           {
             "name": "admin",
@@ -265,26 +265,26 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Obtenha um nif existente"
           },
           {
             "name": "accessToken",
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Obtenha o token de acesso na requisição de Login"
           },
           {
             "name": "imagem",
             "in": "formData",
-            "required": true,
-            "type": "string",
+            "required": false,
+            "type": "file",
             "description": ""
           },
           {
             "name": "senha",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32",
             "description": ""
@@ -292,14 +292,14 @@
           {
             "name": "nome",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": ""
           },
           {
             "name": "telefone",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int64",
             "description": ""
@@ -307,7 +307,7 @@
           {
             "name": "depto",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32",
             "description": ""
@@ -315,7 +315,7 @@
           {
             "name": "cfp",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32",
             "description": ""
@@ -323,7 +323,7 @@
           {
             "name": "admin",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32",
             "description": ""
@@ -331,7 +331,7 @@
           {
             "name": "email",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": ""
           }
@@ -360,14 +360,14 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Adicione o nif que será delatado"
           },
           {
             "name": "accessToken",
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Obtenha o token de acesso na requisição de Login"
           }
         ],
         "responses": {
@@ -598,21 +598,28 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Adicione um id de um Serviço exitente "
           },
           {
             "name": "accessToken",
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Obtenha o token de acesso na requisição de Login"
           },
           {
             "name": "quantidade",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "valor_unitario",
+            "in": "formData",
+            "required": false,
+            "type": "number",
             "description": ""
           }
         ],
@@ -780,26 +787,26 @@
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Obtenha o token de acesso na requisição de Login"
           },
           {
             "name": "imagem",
             "in": "formData",
-            "required": true,
-            "type": "string",
+            "required": false,
+            "type": "file",
             "description": ""
           },
           {
             "name": "nome",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": ""
           },
           {
             "name": "telefone",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int64",
             "description": ""
@@ -807,7 +814,7 @@
           {
             "name": "email",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": ""
           }
@@ -835,7 +842,7 @@
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Deletando a própria"
           }
         ],
         "responses": {
@@ -866,7 +873,7 @@
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Obtenha o token de acesso na requisição de Login"
           },
           {
             "name": "senhaAntiga",
@@ -912,7 +919,7 @@
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Obtenha o token de acesso na requisição de Login"
           },
           {
             "name": "centro_custos",
@@ -920,14 +927,18 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Constraint que vai do 1 ao 8 ",
+            "example": 3,
+            "value": 3
           },
           {
             "name": "titulo_pedido",
             "in": "formData",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Titulo que a reprografia irá receber (será o titulo do e-mail)",
+            "example": "Livro XYZ",
+            "value": "Livro XYZ"
           },
           {
             "name": "modo_envio",
@@ -935,7 +946,9 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Constraint que vai do 1 ao 2",
+            "example": "1",
+            "value": 1
           },
           {
             "name": "curso",
@@ -943,14 +956,18 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Constraint que vai do 1 ao 4",
+            "example": "2",
+            "value": 2
           },
           {
             "name": "observacoes",
             "in": "formData",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "",
+            "example": "Nenhuma",
+            "value": "Nenhuma"
           },
           {
             "name": "num_copias",
@@ -958,7 +975,9 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "",
+            "example": "2",
+            "value": 2
           },
           {
             "name": "num_paginas",
@@ -966,7 +985,9 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "",
+            "example": "20",
+            "value": 20
           },
           {
             "name": "acabamento",
@@ -974,7 +995,9 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Constraint que vai do 1 ao 3",
+            "example": "2",
+            "value": 2
           },
           {
             "name": "tamanho_pagina",
@@ -982,7 +1005,9 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Constraint que vai do 1 ao 5",
+            "example": "2",
+            "value": 2
           },
           {
             "name": "tipos_capa",
@@ -990,7 +1015,9 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Constraint que vai do 1 ao 2",
+            "example": "2",
+            "value": 2
           },
           {
             "name": "tipos_copia",
@@ -998,14 +1025,16 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Constraint que vai do 1 ao 2",
+            "example": "1",
+            "value": 1
           },
           {
             "name": "file",
             "in": "formData",
-            "required": true,
-            "type": "string",
-            "description": ""
+            "required": false,
+            "type": "file",
+            "description": "Arquivo a ser anexado. Pode ser um PDF, DOCX ou XLSX"
           }
         ],
         "responses": {
@@ -1037,14 +1066,14 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Insira um id de um Pedido existente"
           },
           {
             "name": "accessToken",
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Obtenha o token de acesso na requisição de Login"
           },
           {
             "name": "id_avaliacao_pedido",
@@ -1052,12 +1081,13 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "exemple":0,
+            "description": "0 = não avaliado, 1 = Atendeu, 2 = Não atendeu"
           },
           {
             "name": "avaliacao_obs",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": ""
           }
@@ -1151,6 +1181,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
+        "description": "Insira as informações enviadas no seu email",
         "parameters": [
           {
             "name": "email",
