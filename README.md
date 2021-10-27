@@ -81,3 +81,5 @@ Documentação da API (Swagger) rodando em: `http://localhost:3002/v2/docs/`
 ## :triangular_flag_on_post: Endpoints
 
 Com nossa docmentação feita com o Swagger, conseguimos simplificar o desenvolvimento da noss API, através do conjunto e ferramentas que o próprio Swagger nos disponibiliza, ajudando a projetar e documentrar APIs em escala.
+
+![image](https://user-images.githubusercontent.com/71889159/139081009-8728042d-ac41-44a6-8fbf-f367099d3051.png)
