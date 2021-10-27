@@ -48,8 +48,8 @@ Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 
 #### Requerimentos
 
-- Node.js
-- NPM
+- Node.js (v14.18.1)
+- NPM (6.14.15)
 
 ### Instalando os pacotes
 
