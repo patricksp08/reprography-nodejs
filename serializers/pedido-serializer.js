@@ -6,7 +6,15 @@ const serializer = async (req, res, next) => {
     if (req.body.centro_custos) {
         var { centro_custos, tipos_copia, tipos_capa, modo_envio, tamanho_pagina, acabamento, curso } = req.body
 
-        await verifyConstraints({req, centro_custos, curso, modo_envio, avaliacao_pedido: 0, tamanho_pagina, tipos_copia, tipos_capa, acabamento});
+        await verifyConstraints({req, centro_custos, curso, modo_envio, avaliacao: null, tamanho_pagina, tipos_copia, tipos_capa, acabamento});
+        next();
+        return;
+    }
+
+    if(req.avaliacao_obs) {
+        var { id_avaliacao_pedido } = req.body
+
+        await verifyConstraints({req, avaliacao: id_avaliacao_pedido})
         next();
         return;
     }
@@ -67,7 +75,7 @@ const serializer = async (req, res, next) => {
             var acabamento = pedidos[i].detalhes_pedido[0].acabamento;
 
             //Passando valores por parâmetro
-            await verifyConstraints({req, centro_custos, curso, modo_envio, avaliacao_pedido, tamanho_pagina, tipos_copia, tipos_capa, acabamento});
+            await verifyConstraints({req, centro_custos, curso, modo_envio, avaliacao: avaliacao_pedido, tamanho_pagina, tipos_copia, tipos_capa, acabamento});
 
             //PEDIDO
             pedidos[i].centro_custos = req.centro_custos;

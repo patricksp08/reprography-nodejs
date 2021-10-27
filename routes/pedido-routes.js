@@ -32,7 +32,7 @@ module.exports = function (app) {
   //PUT
 
   //rota para atualizar a avaliação
-  app.put("/avaliacao/:id", [authJwt.validateToken], controller.alterarAvaliacao);
+  app.put("/avaliacao/:id", [authJwt.validateToken], controller.alterarAvaliacao, serializer, mailer.EnviaEmail);
 
 
   ////ADMIN

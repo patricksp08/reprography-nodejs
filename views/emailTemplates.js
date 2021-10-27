@@ -19,12 +19,12 @@ exports.forgotPasswordEmail = (token, mail) =>
 </style>
 `
 
-exports.pedidoEmail = (
-    titulo_pedido, nif, centro_custos, curso, tipos_copia, tamanho_pagina, tipos_capa, acabamento,
-    num_paginas, num_copias, modo_envio, observacoes) =>
+exports.pedidoEmail = ({ id, titulo_pedido, nif, centro_custos, curso, tipos_copia, tamanho_pagina, tipos_capa, acabamento,
+    num_paginas, num_copias, modo_envio, observacoes
+}) =>
     ` 
-<div> <h1>Reprografia ${titulo_pedido} </h1>
-<h3>Solicitada pelo usuário com NIF: <span>${nif}</span></h3>
+<div> <h1>Pedido nº${id}: ${titulo_pedido} </h1>
+<h3>Solicitado pelo usuário com NIF: <span>${nif}</span></h3>
 <p>Centro de Custos: ${centro_custos}</p>
 <p>Curso: ${curso}</p>
 <p>Tipo de Cópia: ${tipos_copia}</p>
@@ -42,4 +42,11 @@ exports.pedidoEmail = (
         color: red;
     }
 </style>
+`
+
+exports.avaliacaoEmail = ({id, titulo_pedido, nif, avaliacao_obs, avaliacao_pedido}) => `
+<div> <h1>Avaliação do pedido nº${id}: ${titulo_pedido} </h1>
+<h3>Realizada pelo usuário com NIF: <span>${nif}</span></h3>
+<h3>Status: ${avaliacao_pedido}</h3>
+<p>Feedback: ${avaliacao_obs}</p>
 `
