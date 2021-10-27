@@ -5,7 +5,6 @@ const swaggerDocsV2 = require("../../info_api/documentacao/swagger/v2/swaggerV2.
 module.exports = function (app) {
   //Swagger Routes
 
-<<<<<<< HEAD
   // //Versão 1
   app.use('/v1/docs', swaggerUi.serve, (...args) => swaggerUi.setup(swaggerDocsV1)(...args));
  
