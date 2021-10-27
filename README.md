@@ -46,11 +46,12 @@ Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 
 ## :arrow_forward: Como iniciar a aplicação:
 
- -> Primeiro baixe a pasta de Config, em info_api/  <br>
- -> Extraia ela no diretório da API (/src)
- -> Altere as informações referente a conexão do banco de dados (db.config.json )<br>
- -> Crie o database que inseriu nesse arquivo (exemplo: bdrepro)<br>
- -> Altere as informações referentes ao envio de e-mail (mailer.config.json) => {<br>
+ * Primeiro baixe a pasta de Config, em info_api/  <br>
+ * Extraia ela no diretório da API (/src)
+ * Altere as informações referente a conexão do banco de dados (db.config.json )<br>
+ * Crie o database que inseriu nesse arquivo (exemplo: bdrepro)<br>
+ <br>
+ * Altere as informações referentes ao envio de e-mail (mailer.config.json) => {<br>
   auth.user = Usuário do servico (hotmail)
   auth.pass = Senha do serviço (hotmail)
   reproEmail = Email que será enviado todas as requisições, avaliações e solicitações de reset de senha.
