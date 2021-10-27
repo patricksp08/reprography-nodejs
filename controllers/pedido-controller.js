@@ -148,6 +148,7 @@ module.exports = {
                 include: ['det_pedidos', 'nif_usuario']
             }
         ).then(pedido => {
+            req.id = pedido.id_pedido
             servico.decrement({ quantidade: +(num_copias * num_paginas) }, {
                 where: {
                     id_servico: {
@@ -170,12 +171,13 @@ module.exports = {
         })
         res.json({ message: "Pedido realizado com sucesso!" })
         next();
+        return;
     },
 
 
     //PUT
 
-    alterarAvaliacao: async (req, res) => {
+    alterarAvaliacao: async (req, res, next) => {
         var { id_avaliacao_pedido, avaliacao_obs } = req.body
 
         if (!id_avaliacao_pedido) {
@@ -187,9 +189,21 @@ module.exports = {
         if (pedidos == null) {
             return res.json({ message: "Esse pedido não existe!" })
         }
+
+        if(pedidos.id_avaliacao_pedido !== 0){
+            return res.json({ message: "Esse pedido já foi avaliado!"})
+        }
+
         if (req.user.nif === pedidos.nif) {
             await pedidos.update({ id_avaliacao_pedido, avaliacao_obs })
-            return res.status(200).json({ message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
+            res.status(200).json({ message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
+            
+            req.avaliacao_obs = avaliacao_obs; //Passando mensagem para requisição, para podermos usar em outras etapas da requisição (mailer.EnviaEmail)
+            req.titulo_pedido = pedidos.titulo_pedido; //Titulo do pedido que foi atualizado
+            req.id = pedidos.id_pedido; //ID do pedido que foi atualizado
+            req.nif = pedidos.nif; // NIF do usuário que atualizou o pedido
+            next();
+            return;
         }
         else {
             return res.json({ error: "Você só pode alterar a avaliação de um pedido feito pelo seu usuário" })

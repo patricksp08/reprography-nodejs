@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 const mailer = require('../.config/mailer.config');
 const { pedidoEmail } = require("../views/emailTemplates")
 const { forgotPasswordEmail } = require("../views/emailTemplates")
+const { avaliacaoEmail } = require("../views/emailTemplates")
 const { unlink } = require("fs")
 
 //Criando conexão SMTP
@@ -21,19 +22,35 @@ var transport = nodemailer.createTransport(mailConfig)
 
 exports.EnviaEmail = async (req) => {
 
-    if (!req.token) {
+    if (req.avaliacao_obs) {
+        const { id, titulo_pedido, nif, avaliacao_pedido, avaliacao_obs } = req;
 
+        var output = avaliacaoEmail({id, titulo_pedido, nif, avaliacao_obs, avaliacao_pedido})
+        var email = mailer.reproEmail;
+        var title = `Avaliação da Reprografia Nº${id}`;
+        var attachments = null;
+    }
+
+    if (req.token) {
+        const { mail } = req.body
+        const token = req.token
+        var output = forgotPasswordEmail(token, mail)
+        var email = mail;
+        var title = "Recuperação de Senha";
+        var attachments = null;
+    }
+
+    if(req.body.num_copias) {
         const { titulo_pedido, observacoes, num_copias, num_paginas } = req.body;
-        const { centro_custos, modo_envio, acabamento, tamanho_pagina, tipos_capa, curso, tipos_copia } = req;
+        const { id, centro_custos, modo_envio, acabamento, tamanho_pagina, tipos_capa, curso, tipos_copia } = req;
         const nif = req.user.nif;
 
         //Parâmetros que serão passados para nossa view de e-mail
-        var output = pedidoEmail(titulo_pedido, nif, centro_custos, curso, tipos_copia,
-            tamanho_pagina, tipos_capa, acabamento, num_paginas, num_copias, modo_envio, observacoes)
+        var output = pedidoEmail({id, titulo_pedido, nif, centro_custos, curso, tipos_copia,
+            tamanho_pagina, tipos_capa, acabamento, num_paginas, num_copias, modo_envio, observacoes})
 
         var email = mailer.reproEmail;
-        var title = `Solicitação de Reprografia`;
-        var html = output;
+        var title = `Solicitação de Reprografia Nº${id}`;
 
         if (req.file) {
             attachments = [
@@ -55,23 +72,12 @@ exports.EnviaEmail = async (req) => {
         else { var attachments = null }
     }
 
-    else {
-        const { mail } = req.body
-        const token = req.token
-        var output = forgotPasswordEmail(token, mail)
-
-        var email = mail;
-        var title = "Recuperação de Senha";
-        var html = output;
-        var attachments = null;
-    }
-
     var message = {
         from: mailer.hotmail.auth.user,
         to: email,
         replyTo: process.env.REPLYTO_ADDRESS,
         subject: title,
-        html: html,
+        html: output,
         attachments: attachments,
         date: Date.now()
     }
@@ -81,4 +87,5 @@ exports.EnviaEmail = async (req) => {
         if (err) { console.log(err) }
         else { console.log(info); }
     });
-}
+
+};
