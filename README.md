@@ -1,4 +1,4 @@
-# Back-End do Projeto de Reprografia
+# Projeto de Reprografia || Back-end
 
 ## Apresentação
 Bem vindo(a), este projeto é o Trabalho de Conclusão de Curso (TCC) dos desenvolvedores **Daniel Santos Lopes Silva, João Otavio Ferraz Silva, Mario Lucca de Oliveira Padrão, Mauricio Alves Moreira, Oséias Farias de Jesus, Patrick de Almeida Borges e Tiago Soares Caetano**, alunos da **Escola SENAI Suiço-Brasileira Paulo Ernesto Tolle**.
@@ -17,7 +17,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 **<a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS </a>**<img align="center"  height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" style="max-width:100%;"></img> 
 
 
-**<a href="https://www.mysql.com">:small_blue_diamond: MySQL </a>**<img align="center"  height="50" width="60" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img> 
+<!-- **<a href="https://www.mysql.com">:small_blue_diamond: MySQL </a>**<img align="center"  height="50" width="60" src="https://pngimg.com/uploads/mysql/mysql_PNG29.png" style="max-width:100%;"></img>  -->
 
 
 **<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center"  height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img> 
@@ -75,7 +75,51 @@ Aguarde a execução e estará rodando na URL  `http://localhost:3002`
 <br>
 
 E assim você terá sua aplicaçãco rodando localmente.
+<br>
 
+# Regras de negócio e classes: 
+### USUARIO pode:
+
+- Logar;
+- Requisitar uma nova senha caso tenha esquecido (será enviado por e-mail);
+- Vizualizar suas informações (Perfil de usuário);
+- Atualizar suas informações (somente nome, email, telefone e sua imagem de perfil);
+- Atualizar sua senha (inserindo sua senha antiga e a nova);
+- Solicitar uma reprografia (será enviado para empresa responsável a solicitação com todas as escolhas desse usuário);
+- Vizualizar todos os seus pedidos/solicitações de reprografia
+- Enviar um FeedBack sobre a reprografia que solicitou (colocará se Atendeu ou Não Atendeu e suas observações);
+- Deletar sua conta.
+
+---------------------------------------------
+
+### Gerente/ADMIN pode:
+
+Todas as permissões de usuário 
++
+- Registrar Usuários;
+- Vizualizar todos os usuários;
+- Vizualizar qualquer outro usuário por Nome, NIF...;
+- Atualizar qualquer outro usuário por NIF
+- Deletar qualquer outro usuário por NIF;
+- Vizualizar todos os Pedidos;
+- Vizualizar todos os pedidos por id do pedido, titulo do pedido, pelo nif do usuário que solicitou o pedido...
+
+---------------------------------------------
+
+### Regras de Negócio: 
+
+- Um usuário só poderá solicitar uma reprografia se estiver autenticado (logado);
+- Somente um usuário identificado como ADMIN poderá registrar usuários;
+- Usuário que não são ADMIN só podem vizualizar as reprografias feitas pela sua própria conta;
+- Todos os usuários (sendo ADMIN ou usuário Normal) só podem avaliar os pedidos feitos pela sua própria conta;
+- Todos os serviços tem quantidades pré-estabelecidas e quando chegarem a 0, não será possível solicitar a reprografia que contém aquele serviço (exemplo: A3 & Preto e Branco);
+- Só serão registrados usuários com NIFS e E-mails diferentes.
+- Só poderá ser feito upload de arquivos cuja extensão seja de imagem (.jpeg, .jpg, .png...) para a imagem de perfil de usuário. E para o anexo só serão aceitos arquivos como:  .PDF, .DOCX e .XLSX.
+- É preciso de dois Serviços da tabela "servicos" para realizar um pedido. E também é necessário que nenhum desses dois serviços estejam com a sua quantidade esgotada ( <= 0)
+- Só poderá ser feito um pedido se a multiplicação do número de copias com o número de páginas inseridos pelo usuário for menor (<) que a quantidade dos dois serviços.
+- Um pedido só poderá ser avaliado se ele existir e não tiver sido avaliado ainda.
+
+---------------------------------------------
 
 
 ## :triangular_flag_on_post: Endpoints
