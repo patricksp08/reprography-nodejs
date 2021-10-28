@@ -51,8 +51,7 @@
             "name": "senha",
             "in": "formData",
             "required": true,
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": ""
           },
           {
@@ -119,7 +118,7 @@
     },
     "/auth": {
       "get": {
-        "summary": "Auth",
+        "summary": "Retorna as informações do usuário autenticado (login)",
         "tags": [
           "ADMIN"
         ],
@@ -139,7 +138,11 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Dados solicitados com sucesso!",
+            "headers": {}
+          },
+          "500": {
+            "description": "JWT invalido",
             "headers": {}
           }
         }
@@ -285,8 +288,7 @@
             "name": "senha",
             "in": "formData",
             "required": false,
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": ""
           },
           {
@@ -886,8 +888,7 @@
             "name": "senhaNova",
             "in": "formData",
             "required": true,
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": ""
           }
         ],

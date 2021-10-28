@@ -275,10 +275,13 @@ module.exports = {
                 },
             });
 
-
+            //Cursos - CT-DS, CT-MP, CST-MP e Pós-Graduação
             const num_curso = 4;
+
+            //Objeto que será preenchido com descricao e quantidade
             var cursoObj = {};
 
+            //Percorrendo os quatro tipos de curso e trazendo os valores quando id_curso = 1, 2, 3 e 4
             for (let i = 1; i <= num_curso; i++) {
 
                 const cursoDesc = await curso.findOne({ where: { id_curso: i } }, { attributes: ["descricao"] });
@@ -321,8 +324,9 @@ module.exports = {
                 }
             }
 
-
+            //Lenght de avaliações... vai do 0 ao 2... 0 = não avaliado, 1 = atendeu, 2 = não atendeu!
             const num_avaliacao_pedido = 2;
+            //Objeto 
             var avaliacao_pedidoObj = {};
 
             for (let i = 0; i <= num_avaliacao_pedido; i++) {
@@ -373,7 +377,7 @@ module.exports = {
             //Objeto que será preenchido com descricao e quantidade
             var objColor = {};
 
-            //Percorrendo os dois tipos de capa e trazendo os valores quando id_tipos_copia = 1 e depois quando id_tipos_copia = 2
+            //Percorrendo os dois tipos de copia e trazendo os valores quando id_tipos_copia = 1 e 2
             for (let i = 1; i <= num_tipos_copia; i++) {
 
                 const tipos_copiaDesc = await tipos_copia.findOne({ where: { id_tipos_copia: i } }, { attributes: ["descricao"] });
@@ -399,7 +403,7 @@ module.exports = {
             //Objeto que será preenchido com descricao e quantidade
             var objCapa = {};
 
-            //Percorrendo os dois tipos de capa e trazendo os valores quando id_tipos_capa = 1 e depois quando id_tipos_capa = 2
+            //Percorrendo os dois tipos de capa e trazendo os valores quando id_tipos_capa = 1 e 2
             for (let i = 1; i <= num_tipos_capa; i++) {
 
                 const tipos_capaDesc = await tipos_capa.findOne({ where: { id_tipos_capa: i } }, { attributes: ["descricao"] });
