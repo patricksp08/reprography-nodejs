@@ -62,7 +62,7 @@ Run the command below to install the dependencies:
 npm install
 ```
 
-###Starting the server
+### Starting the server
 
 Run the command below to start Nodejs and connect to the database:
 ``` bash
