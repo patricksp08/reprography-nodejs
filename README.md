@@ -1,14 +1,13 @@
-# Projeto de Reprografia || Back-end
+# Reprography Project || Backend
 
-## Apresentação
-Bem vindo(a), este projeto é o Trabalho de Conclusão de Curso (TCC) dos desenvolvedores **Daniel Santos Lopes Silva, João Otavio Ferraz Silva, Mario Lucca de Oliveira Padrão, Mauricio Alves Moreira, Oséias Farias de Jesus, Patrick de Almeida Borges e Tiago Soares Caetano**, alunos da **Escola SENAI Suiço-Brasileira Paulo Ernesto Tolle**.
+## Apresentation
+Welcome, this project is the Course Conclusion Work (TCC) of the developers **Daniel Santos Lopes Silva, João Otavio Ferraz Silva, Mario Lucca de Oliveira Padrão, Mauricio Alves Moreira, Oséias Farias de Jesus, Patrick de Almeida Borges and Tiago Soares Caetano**, students from the **SENAI Suiço-Brasileira Escola Paulo Ernesto Tolle**.
 
-## Status do Projeto: ⚠️ Em Desenvolvimento ⚠️
+## Project Status: ⚠️ Under development ⚠️
 
-# Sobre o Projeto
-Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasileira, com o intuito de fazer o controle das impressões realizadas pelos diversos setores da escola (professores, funcionários, etc), podendo assim, administrar melhor gastos e desperdícios.
-
-## 📌 Recursos usados neste projeto:
+# About the project
+This application was requested by the coordinator of the Senai Suiço-Brasileira school, in order to control the prints made by the different sectors of the school (teachers, employees, etc.), thus being able to better manage expenses and waste.
+## 📌 Resources used in this project:
 
 
  **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
@@ -22,110 +21,108 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 **<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center"  height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img> 
 
-### 📃 Funcionalidades do Back-End
-O banco de dados MySQL foi hospedado no MariaDB.
-Rotas foram protegidas por meio de JWT em conjunto com Swagger.
+### 📃Back-End Features
+The MySQL database was hosted on MariaDB.
+Routes were secured through JWT in conjunction with Swagger.
 
-### Usado durante o desevolvimento
+### Used during development
 - Nodejs
-  * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
+  * Express 4.17.1 - It is a framework for Node.js that provides minimal resources for building web servers.
   * Swagger-autogen 2.11.2
-  * Nodemon 2.0.13 - Para restartar o server sempre que houver uma alteração. 
-  * Jwt - Para proteger rotas privadas.
-  * Bcrypt 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
-  * Cors 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
-  * Multer 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
-  * Body-Parser 1.19.0 - Analisa os dados codificados JSON, buffer, string e URL enviados usando a solicitação HTTP POST.
-  * MariaDB 2.5.4 - É o banco de dados que nos usamos. 
-  * PostMan - Teste das funcionalidades da API criada.
+  * Nodemon 2.0.13 - To restart the server whenever there is a change.
+  * Jwt - To protect private routes.
+  * Bcrypt 5.0.1 - To Encrypt user passwords before saving to bank.
+  * Cors 2.8.5 - It is a mechanism used by browsers to share resources between different sources
+  * Multer 1.4.2 - It is a node.js middleware to handle multipart, which is mainly used to upload files.
+  * Body-Parser 1.19.0 - Parses the JSON encoded data, buffer, string and URL sent using the HTTP POST request.
+  * MariaDB 2.5.4 - It's the database we use.
+  * PostMan - Testing the functionality of the created API.
 
 #### Database Service
 
 **<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
  
 
-## :arrow_forward: Como iniciar a aplicação:
+## :arrow_forward: How to start the application:
 
- * Primeiro baixe a pasta de Config zipada, em info_api/  <br>
- * Extraia ela no diretório da API (/src)
- * Altere as informações referente a conexão do banco de dados (db.config.json )<br>
- * Crie o database que inseriu nesse arquivo (exemplo: bdrepro)<br>
- * Altere as informações referentes ao envio de e-mail (mailer.config.json)
-
-#### Requerimentos
+ * First download the zipped Config folder from info_api/ <br>
+ * Extract it into the API directory (/src)
+ * Change the information regarding the database connection (db.config.json )<br>
+ * Create the database you inserted in this file (example: bdrepro)<br>
+ * Change the information regarding sending email (mailer.config.json)
+#### requirements
 
 - Node.js (v14.18.1)
 - NPM (6.14.15)
 
-### Instalando os pacotes
+### Installing the packages
 
-Execute o comando abaixo para instalar as dependências:
+Run the command below to install the dependencies:
 ``` bash
 npm install
 ```
 
-### Iniciando o servidor
+### Starting the server
 
-Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
+Run the command below to start Nodejs and connect to the database:
 ``` bash
 npm run
 ```
 
-Aguarde a execução e estará rodando na URL  `http://localhost:3002`
+Wait for execution and it will be running on URL  `http://localhost:3002`
 <br>
 
-E assim você terá sua aplicaçãco rodando localmente.
+And so you will have your application running locally.
 <br>
 
-# Regras de negócio e classes: 
-### USUARIO pode:
+# Business rules and classes:
+### USER can:
 
-- Logar;
-- Requisitar uma nova senha caso tenha esquecido (será enviado por e-mail);
-- Vizualizar suas informações (Perfil de usuário);
-- Atualizar suas informações (somente nome, email, telefone e sua imagem de perfil);
-- Atualizar sua senha (inserindo sua senha antiga e a nova);
-- Solicitar uma reprografia (será enviado para empresa responsável a solicitação com todas as escolhas desse usuário);
-- Vizualizar todos os seus pedidos/solicitações de reprografia
-- Enviar um FeedBack sobre a reprografia que solicitou (colocará se Atendeu ou Não Atendeu e suas observações);
-- Deletar sua conta.
+- Log into;
+- Request a new password if you have forgotten it (it will be sent by email);
+- View your information (User profile);
+- Update your information (only name, email, phone and your profile picture);
+- Update your password (entering your old and new passwords);
+- Request a reprography (the request will be sent to the responsible company with all the choices made by this user);
+- View all your reprographic requests/requests
+- Send a FeedBack about the reprography that you requested (it will include whether Answered or Not Answered and your observations);
+- Delete your account.
 
 ---------------------------------------------
 
-### Gerente/ADMIN pode:
+### Manager/ADMIN can:
 
-Todas as permissões de usuário 
+All user permissions
 +
-- Registrar Usuários;
-- Vizualizar todos os usuários;
-- Vizualizar qualquer outro usuário por Nome, NIF...;
-- Atualizar qualquer outro usuário por NIF
-- Deletar qualquer outro usuário por NIF;
-- Vizualizar todos os Pedidos;
-- Vizualizar todos os pedidos por id do pedido, titulo do pedido, pelo nif do usuário que solicitou o pedido...
+- Register Users;
+- View all users;
+- View any other user by Name, NIF...;
+- Update any other user by NIF
+- Delete any other user by NIF;
+- View all Orders;
+- View all orders by order id, order title, by the nif of the user who requested the order...
 
 ---------------------------------------------
 
-### Regras de Negócio: 
+### Business rules:
 
-- Um usuário só poderá solicitar uma reprografia se estiver autenticado (logado);
-- Somente um usuário identificado como ADMIN poderá registrar usuários;
-- Usuário que não são ADMIN só podem vizualizar as reprografias feitas pela sua própria conta;
-- Todos os usuários (sendo ADMIN ou usuário Normal) só podem avaliar os pedidos feitos pela sua própria conta;
-- Todos os serviços tem quantidades pré-estabelecidas e quando chegarem a 0, não será possível solicitar a reprografia que contém aquele serviço (exemplo: A3 & Preto e Branco);
-- Só serão registrados usuários com NIFS e E-mails diferentes.
-- Só poderá ser feito upload de arquivos cuja extensão seja de imagem (.jpeg, .jpg, .png...) para a imagem de perfil de usuário. E para o anexo só serão aceitos arquivos como:  .PDF, .DOCX e .XLSX.
-- É preciso de dois Serviços da tabela "servicos" para realizar um pedido. E também é necessário que nenhum desses dois serviços estejam com a sua quantidade esgotada ( <= 0)
-- Só poderá ser feito um pedido se a multiplicação do número de copias com o número de páginas inseridos pelo usuário for menor (<) que a quantidade dos dois serviços.
-- Um pedido só poderá ser avaliado se ele existir e não tiver sido avaliado ainda.
-
+- A user can only request a copy if he is authenticated (logged in);
+- Only a user identified as ADMIN can register users;
+- Users who are not ADMIN can only view the reproductions made by their own account;
+- All users (either ADMIN or Normal user) can only evaluate orders placed by their own account;
+- All services have pre-established quantities and when they reach 0, it will not be possible to request the reprography that contains that service (example: A3 & Black and White);
+- Only users with different NIFS and E-mails will be registered.
+- Only files whose extension is an image (.jpeg, .jpg, .png...) can be uploaded to the user profile image. And for the attachment, only files like: .PDF, .DOCX and .XLSX will be accepted.
+- You need two Services from the "services" table to place an order. And it is also necessary that neither of these two services have their quantity exhausted ( <= 0)
+- An order can only be placed if the multiplication of the number of copies with the number of pages entered by the user is smaller (<) than the quantity of the two services.
+- An order can only be evaluated if it exists and has not yet been evaluated.
 ---------------------------------------------
 
 
 ## :triangular_flag_on_post: Endpoints
 
-Com nossa docmentação feita com o Swagger, conseguimos simplificar o desenvolvimento da noss API, através do conjunto e ferramentas que o próprio Swagger nos disponibiliza, ajudando a projetar e documentrar APIs em escala.
+With our documentation made with Swagger, we were able to simplify the development of our API, through the set and tools that Swagger itself makes available to us, helping to design and document APIs at scale.
 
-Documentação da API (Swagger) rodando em: `http://localhost:3002/v2/docs/`
+API documentation (Swagger) running on: `http://localhost:3002/v2/docs/`
 
 ![image](https://user-images.githubusercontent.com/71889159/139081009-8728042d-ac41-44a6-8fbf-f367099d3051.png)
