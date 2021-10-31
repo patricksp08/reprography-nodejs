@@ -1,11 +1,15 @@
 const Sequelize = require('sequelize');
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('pedido', {
     id_pedido: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
+    },
+    titulo_pedido: {
+      type: DataTypes.STRING(50),
+      allowNull: false
     },
     nif: {
       type: DataTypes.INTEGER,
@@ -15,32 +19,12 @@ module.exports = function (sequelize, DataTypes) {
         key: 'nif'
       }
     },
-    titulo_pedido: {
-      type: DataTypes.STRING(50),
-      allowNull: false
-    },
-    id_centro_custos: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'centro_custos',
-        key: 'id_centro_custos'
-      }
-    },
     id_modo_envio: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'modo_envio',
         key: 'id_modo_envio'
-      }
-    },
-    id_curso: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'curso',
-        key: 'id_curso'
       }
     },
     id_avaliacao_pedido: {
@@ -56,7 +40,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true
     },
     custo_total: {
-      type: DataTypes.DECIMAL(10, 5),
+      type: DataTypes.DECIMAL(10,5),
       allowNull: true
     }
   }, {
@@ -87,24 +71,10 @@ module.exports = function (sequelize, DataTypes) {
         ]
       },
       {
-        name: "id_curso",
-        using: "BTREE",
-        fields: [
-          { name: "id_curso" },
-        ]
-      },
-      {
         name: "id_avaliacao_pedido",
         using: "BTREE",
         fields: [
           { name: "id_avaliacao_pedido" },
-        ]
-      },
-      {
-        name: "pedido_ibfk_3",
-        using: "BTREE",
-        fields: [
-          { name: "id_centro_custos" },
         ]
       },
     ]
