@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('usuario', {
     nif: {
       type: DataTypes.INTEGER,
@@ -38,6 +38,14 @@ module.exports = function (sequelize, DataTypes) {
     imagem: {
       type: DataTypes.STRING(255),
       allowNull: false
+    },
+    ativado: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    primeiro_acesso: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     }
   }, {
     sequelize,

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('servico', {
-    id_servico: {
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('servicoCopiaTamanho', {
+    id_servicoCT: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -17,10 +17,14 @@ module.exports = function (sequelize, DataTypes) {
     valor_unitario: {
       type: DataTypes.STRING(45),
       allowNull: true
+    },
+    ativado: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     }
   }, {
     sequelize,
-    tableName: 'servico',
+    tableName: 'servicoCopiaTamanho',
     timestamps: false,
     indexes: [
       {
@@ -28,7 +32,7 @@ module.exports = function (sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_servico" },
+          { name: "id_servicoCT" },
         ]
       },
     ]

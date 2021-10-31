@@ -17,27 +17,28 @@ module.exports = function (app) {
   //POST
 
   //Logando e recebendo token jwt
-  app.post("/logar", controller.logar);
+  app.post("/login", controller.logar);
+
 
   //GET
 
   //Exibe as informações basicas do usuário logado (autenticado pelo jwt)
-  app.get("/meuUsuario", [authJwt.validateToken], controller.informacoesBasicas);
+  app.get("/myUser", [authJwt.validateToken], controller.informacoesBasicas);
 
 
   //PUT
 
+  //Alterando a senha do usuário no primeiro acesso.
+  app.put("/myUser/firstAcess", [authJwt.validateToken], controller.primeiroAcesso);
+
   //Altera as informações do usuário logado (autenticado pelo jwt) => Faz upload e atualiza imagem do usuário
-  app.put('/meuUsuario', [authJwt.validateToken], upload.single('image'), controller.alterarUsuario);
+  app.put('/myUser', [authJwt.validateToken], upload.single('image'), controller.alterarMeuUsuario);
 
-  //Rota para atualizar a senha
-  app.put("/mudarSenha", [authJwt.validateToken], controller.mudarSenha);
+  //Rota para atualizar a própria senha
+  app.put("/myUser/changePassword", [authJwt.validateToken], controller.alterarSenha);
 
-
-  //DELETE
-
-  //Deleta as informações do usuário logado (autenticado pelo jwt)
-  app.delete('/meuUsuario', [authJwt.validateToken], controller.excluirUsuario);
+  //Rota para desativar o próprio usuário
+  app.put('/myUser/disable', [authJwt.validateToken], controller.desativarMeuUsuario);
 
 
   //ADMIN
@@ -46,7 +47,7 @@ module.exports = function (app) {
 
   //Registrando Usuário
   app.post(
-    "/registrar",
+    "/newUser",
     [
       authJwt.validateToken,
       authJwt.isAdmin
@@ -63,31 +64,32 @@ module.exports = function (app) {
   //GET
 
   //Exibe informações do usuário logado
-  app.get("/auth", [authJwt.validateToken], (req, res) => {
-    res.json(req.user);
-  });
+  app.get("/auth", [authJwt.validateToken], (req, res) => { res.json(req.user); });
 
-  //Exibe todos os usuários da tabela usuario
-  app.get("/usuarios", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos);
+  //Exibe todos os usuários da tabela usuário
+  app.get("/users", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos);
 
-  //Exibe o usuarío por nome na tabela usuario (exemplo: host:porta/usuariox)
-  app.get("/usuario/:user", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
+  //Exibe o usuárío por nome na tabela usuário (exemplo: host:porta/usuariox)
+  app.get("/user/name/:user", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
 
-  //Exibe o usuarío por nif na tabela usuario (exemplo: host:porta/33321)
-  app.get("/usuario/nif/:nif", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif);
+  //Exibe o usuárío por nif na tabela usuário (exemplo: host:porta/33321)
+  app.get("/user/:nif", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif);
 
 
   //PUT
-  
-  //Rota para resetar senha do usuário para senai115
-  app.put("/resetarSenha/:nif", controller.resetarSenha)
 
-  //Rota para alterar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
-  app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('image'), controller.alterarPorNif);
+  //Rota para alterar um usuário da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
+  app.put('/user/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('image'), controller.alterarPorNif);
+
+  //Rota para desabilitar o usuário, passando nif como parâmetro
+  app.put("/user/:nif/disable", [authJwt.validateToken, authJwt.isAdmin], controller.desativarContaPorNif)
+
+  //Rota para habilitar o usuário, passando nif como parâmetro
+  app.put("/user/:nif/enable", [authJwt.validateToken, authJwt.isAdmin], controller.ativarContaPorNif)
 
 
   //DELETE
 
   //Rota para deletar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
-  app.delete('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.excluirPorNif);
+  app.delete('/user/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.excluirPorNif);
 };
