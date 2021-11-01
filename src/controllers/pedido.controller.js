@@ -21,8 +21,7 @@ module.exports = {
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
-        req.pedidos = pedidos
-        next();
+        return res.json(pedidos);
     },
 
     buscarPorNome: async (req, res, next) => {
@@ -38,8 +37,7 @@ module.exports = {
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
-        req.pedidos = pedidos
-        next();
+        return res.json(pedidos);
     },
 
     //Buscar os pedidos por ID do pedido
@@ -53,8 +51,7 @@ module.exports = {
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
-        req.pedidos = pedidos
-        next();
+        return res.json(pedidos);
     },
 
     //Todos os pedidos feito por tal pessoa (nif)
@@ -68,8 +65,7 @@ module.exports = {
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
-        req.pedidos = pedidos
-        next();
+        return res.json(pedidos);
     },
 
     //Buscar por detalhe do ID
@@ -88,8 +84,7 @@ module.exports = {
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
-        req.pedidos = pedidos
-        next();
+        return res.json(pedidos);
     },
 
 
@@ -108,7 +103,7 @@ module.exports = {
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
-        res.json(pedidos)
+        return res.json(pedidos)
     },
 
     //POST
@@ -120,9 +115,9 @@ module.exports = {
         const { centro_custos, titulo_pedido, modo_envio, curso } = req.body;
 
         // Input que será enviado para tabela Det_Pedido
-        const { num_copias, num_paginas, servicoCT, servicoCA, observacoes } = req.body
+        const { num_copias, num_paginas, servicoCT, servicoCA, observacoes } = req.body;
 
-        var custo_total = [(num_copias * num_paginas) * req.sub_total]
+        var custo_total = [(num_copias * num_paginas) * req.sub_total];
 
         //Inserindo um pedido e seus detalhes/serviços:
         await pedido.create({
@@ -163,7 +158,7 @@ module.exports = {
                     }
                 });
             })
-             res.json({ message: "Pedido realizado com sucesso!" })
+             res.json({ message: "Pedido realizado com sucesso!" });
         })
         next();
         return;
@@ -173,24 +168,24 @@ module.exports = {
     //PUT
 
     alterarAvaliacao: async (req, res, next) => {
-        var { id_avaliacao_pedido, avaliacao_obs } = req.body
+        var { id_avaliacao_pedido, avaliacao_obs } = req.body;
 
         if (!id_avaliacao_pedido) {
             return res.json({ error: "Informe se o pedido lhe atendeu ou não, por favor!" })
         }
 
-        var pedidos = await pedido.findByPk(req.params.id)
+        var pedidos = await pedido.findByPk(req.params.id);
 
         if (pedidos == null) {
-            return res.json({ message: "Esse pedido não existe!" })
+            return res.json({ message: "Esse pedido não existe!" });
         }
 
         if(pedidos.id_avaliacao_pedido !== 0){
-            return res.json({ message: "Esse pedido já foi avaliado!"})
+            return res.json({ message: "Esse pedido já foi avaliado!"});
         }
 
         if (req.user.nif === pedidos.nif) {
-            await pedidos.update({ id_avaliacao_pedido, avaliacao_obs })
+            await pedidos.update({ id_avaliacao_pedido, avaliacao_obs });
             res.status(200).json({ message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
             
             req.avaliacao_obs = avaliacao_obs; //Passando mensagem para requisição, para podermos usar em outras etapas da requisição (mailer.EnviaEmail)
@@ -201,7 +196,7 @@ module.exports = {
             return;
         }
         else {
-            return res.json({ error: "Você só pode alterar a avaliação de um pedido feito pelo seu usuário" })
+            return res.json({ error: "Você só pode alterar a avaliação de um pedido feito pelo seu usuário" });
         }
     }
 }

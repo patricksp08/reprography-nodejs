@@ -12,15 +12,17 @@ var { usuario, tipo_usuario } = initModels(sequelize)
 module.exports = {
 
     //Registrar usuário
-    addUser: (nif, nome, telefone, depto, email, cfp, hash) => {
-        usuario.create({
-            nif: nif, senha: hash, nome: nome, telefone: telefone,
-            id_depto: depto, email: email, cfp: cfp, imagem: image,
-        })
+    addUser: async ({ nif, hash, nome, telefone, depto, email, cfp, image }) => {
+        const user = await usuario.create({
+            nif, senha: hash, nome, telefone,
+            id_depto: depto, email, cfp, imagem: image,
+        });
+
+        return user;
     },
 
     findAllUsers: async (param) => {
-        var usuarios = await usuario.findAll({
+        const usuarios = await usuario.findAll({
             where: {
                 ativado: param
             },
@@ -29,29 +31,32 @@ module.exports = {
             ],
         });
 
-        return usuarios
+        return usuarios;
     },
 
-    findUserbyPk: async (nif, {attributes}) => {
+    findUserbyPk: async (nif, { attributes }) => {
         const user = await usuario.findByPk(nif, {
             include: [
                 'roles'
             ],
             attributes: attributes
         });
+
         return user;
     },
 
     findOneByEmail: async (param) => {
-        usuario.findOne({
+        const user = await usuario.findOne({
             where: {
                 email: param
             }
-        })
+        });
+
+        return user;
     },
 
     findAllByName: async (user) => {
-        let usuarios = await usuario.findAll({
+        const usuarios = await usuario.findAll({
             where: {
                 nome: {
                     [Op.like]: `${user}%`
@@ -61,24 +66,26 @@ module.exports = {
                 'roles'
             ],
             attributes: { exclude: ["senha"] },
-        })
+        });
 
         return usuarios;
     },
 
-    updateUser: ({ user, param }) => { user.update(param) },
+    updateUser: async ({ user, param }) => {
+        const updated = await user.update(param);
+        return updated;
+    },
 
-    destroyUser: (user) => {
-        usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;")
-        user.destroy();
+    destroyUser: async (user) => {
+        await usuario.sequelize.query("SET FOREIGN_KEY_CHECKS=0;");
+        const deleted = await user.destroy();
+
+        return deleted;
     },
 
     getRoles: async (user, admin) => {
-        const roles = await user.getRoles({
-            where: {
-                descricao: admin
-            }
-        })
+        const roles = await user.getRoles();
+
         return roles;
     },
 
@@ -89,13 +96,15 @@ module.exports = {
                     [Op.or]: admin
                 }
             }
-        })
+        });
 
         return roles;
     },
 
 
     setRoles: async (user, roles) => {
-        await user.setRoles(roles);
+        var userRoles = await user.setRoles(roles);
+
+        return userRoles;
     },
 }

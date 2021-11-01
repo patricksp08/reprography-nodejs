@@ -41,8 +41,7 @@ exports.EnviaEmail = async (req) => {
     }
 
     if(req.body.num_copias) {
-        const { titulo_pedido, observacoes, num_copias, num_paginas } = req.body;
-        const { id, centro_custos, modo_envio, acabamento, tamanho_pagina, tipos_capa, curso, tipos_copia } = req;
+        const { titulo_pedido, observacoes, num_copias, num_paginas, centro_custos, modo_envio, curso, servicoCA, servicoCT } = req.body;
         const nif = req.user.nif;
 
         //Parâmetros que serão passados para nossa view de e-mail

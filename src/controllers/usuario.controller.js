@@ -229,32 +229,15 @@ module.exports = {
 
         bcrypt.hash(senha, config.jwt.saltRounds, function (err, hash) {
             if (err) throw (err);
-            usuario.create({
-                nif: nif,
-                senha: hash,
-                nome: nome,
-                telefone: telefone,
-                id_depto: depto,
-                email: email,
-                cfp: cfp,
-                imagem: image,
-                // ativado: 1, defaultValue já definido
-                // primeiro_acesso: 1 defaultValue já definido
-            }).then(user => {
+            service.addUser({ nif, hash, nome, telefone, depto, email, cfp, image }).then(user => {
                 if (admin) {
-                    tipo_usuario.findAll({
-                        where: {
-                            descricao: {
-                                [Op.or]: admin
-                            }
-                        }
-                    })
+                    service.getDescRoles(admin)
                         .then(roles => {
-                            user.setRoles(roles)
+                            service.setRoles(user, roles)
                         });
                 }
                 else {
-                    user.setRoles([1])
+                    service.setRoles([1])
                 }
                 return res.status(200).json({ status: "ok", message: `Usuário com nif ${user.nif} criado com sucesso!` });
             })
@@ -288,7 +271,7 @@ module.exports = {
     },
 
     alterarPorNif: async (req, res) => {
-        const user = await service.findUserbyPk(req.params.nif)
+        const user = await service.findUserbyPk(req.params.nif, {attributes: null})
 
         if (user == null) {
             return res.status(404).json({ status: 'error', message: "Não Há nenhum usuário com esse NIF" })

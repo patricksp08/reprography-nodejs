@@ -28,6 +28,9 @@ module.exports = function (app) {
 
   //Exibe as informações basicas do usuário logado (autenticado pelo jwt)
   app.get("/myUser", [authJwt.validateToken], controller.informacoesBasicas);
+  
+  //Exibe o usuárío por nif na tabela usuário (exemplo: host:porta/33321)
+  app.get("/user/:nif", [authJwt.validateToken], controller.buscarPorNif);
 
 
   //PUT
@@ -73,9 +76,6 @@ module.exports = function (app) {
   //Exibe o usuárío por nome na tabela usuário (exemplo: host:porta/usuariox)
   app.get("/user/name/:user", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
 
-  //Exibe o usuárío por nif na tabela usuário (exemplo: host:porta/33321)
-  app.get("/user/:nif", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif);
-
 
   //PUT
 
@@ -90,3 +90,4 @@ module.exports = function (app) {
   //Rota para deletar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
   app.delete('/user/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.excluirPorNif);
 };
+
