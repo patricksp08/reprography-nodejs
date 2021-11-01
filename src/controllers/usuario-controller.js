@@ -306,13 +306,25 @@ module.exports = {
             }
             imagem = req.file.path;
         }
-
-        bcrypt.hash(senha, 10, function (err, hash) {
-            if (err) throw (err);
-            user.update({ nif, nome, senha: hash, telefone, depto, email, cfp, imagem })
-
+            await user.update({ nif, nome, telefone, depto, email, cfp, imagem })
             res.status(200).json({ message: `Conta com NIF ${req.params.nif} atualizada com sucesso!!` });
-        });
+        ;
+    },
+    
+        resetarSenha: async (req, res) => {
+        const senha = "senai115"
+
+        var user = await usuario.findByPk(req.params.nif)
+
+        if (user == null) {
+            return res.json({ message: "Não Há nenhum usuário com esse NIF" })
+        }
+        else{
+            const hash = await bcrypt.hash(senha, config.jwt.saltRounds);
+            await user.update({senha: hash});
+    
+            res.json({message: "Senha resetada com sucesso!!"})
+        }
     },
 
     excluirPorNif: async (req, res) => {

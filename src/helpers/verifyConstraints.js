@@ -27,7 +27,7 @@ const verifyConstraints = async ({ req, centro_custos, curso, modo_envio, avalia
         req.modo_envio = data[0].descricao;
     }
 
-    if (avaliacao) {
+    if (avaliacao !== null) {
         let data = await models.avaliacao_pedido.findAll({
             where: { id_avaliacao_pedido: avaliacao }
         })

@@ -78,6 +78,9 @@ module.exports = function (app) {
 
 
   //PUT
+  
+  //Rota para resetar senha do usuário para senai115
+  app.put("/resetarSenha/:nif", controller.resetarSenha)
 
   //Rota para alterar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
   app.put('/usuario/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('image'), controller.alterarPorNif);

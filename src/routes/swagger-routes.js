@@ -1,11 +1,10 @@
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocsV1 = require("../../info_api/documentacao/swagger/v1/swaggerV1.config.json");
-const swaggerDocsV2 = require("../../info_api/documentacao/swagger/v2/swaggerV2.config.json");
+const swaggerDocsV1 = require("../../info_api/docs/swagger/v1/swaggerV1.config.json");
+const swaggerDocsV2 = require("../../info_api/docs/swagger/v2/swaggerV2.config.json");
 
 module.exports = function (app) {
   //Swagger Routes
 
-<<<<<<< HEAD
   // //Versão 1
   app.use('/v1/docs', swaggerUi.serve, (...args) => swaggerUi.setup(swaggerDocsV1)(...args));
  
