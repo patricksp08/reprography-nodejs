@@ -2,69 +2,57 @@ const { initModels } = require("../models/init-models");
 const { sequelize } = require("../models");
 var models = initModels(sequelize);
 
-const verifyConstraints = async ({ req, centro_custos, curso, modo_envio, avaliacao,
-    tamanho_pagina, tipos_copia, tipos_capa, acabamento }) => {
+const verifyConstraints = async ({ centro_custos, curso, modo_envio, avaliacao,
+    tamanho_pagina, tipos_copia, tipos_capa, acabamento, servicoCA, servicoCT }) => {
+
+    var { descCentroCustos, descCurso, descModoEnvio, descAvaliacaoPedido } = null
 
     if (centro_custos) {
-        var data = await models.centro_custos.findAll({
+        var dataCentroCustos = await models.centro_custos.findOne({
             where: { id_centro_custos: centro_custos }
-        })
-        req.centro_custos = data[0].descricao
+        });
+
+        descCentroCustos = dataCentroCustos.descricao
     }
 
     if (curso) {
-        let data = await models.curso.findAll({
+        var dataCurso = await models.curso.findOne({
             where: { id_curso: curso }
-        })
-        req.curso = data[0].descricao;
+        });
+
+        descCurso = dataCurso.descricao
     }
 
 
     if (modo_envio) {
-        let data = await models.modo_envio.findAll({
+        var dataModoEnvio = await models.modo_envio.findAll({
             where: { id_modo_envio: modo_envio }
-        })
-        req.modo_envio = data[0].descricao;
+        });
+
+        descModoEnvio = dataModoEnvio.descricao
     }
 
     if (avaliacao !== null) {
-        let data = await models.avaliacao_pedido.findAll({
+        var dataAvaliacaoPedido = await models.avaliacao_pedido.findOne({
             where: { id_avaliacao_pedido: avaliacao }
-        })
-        req.avaliacao_pedido = data[0].descricao;
+        });
+
+        descAvaliacaoPedido = dataAvaliacaoPedido.descricao
     }
 
-    //DETALHES DO PEDIDO
-
-    if (tamanho_pagina) {
-        let data = await models.tamanho_pagina.findAll({
-            where: { id_tamanho: tamanho_pagina }
+    if(servicoCT) {
+        var dataServicoCT = await models.servicoCopiaTamanho.findOne({
+            where:{
+                id_servicoCT: servicoCT
+            }
         })
-        req.tamanho_pagina = data[0].descricao;
     }
 
-    if (tipos_copia) {
-        let data = await models.tipos_copia.findAll({
-            where: { id_tipos_copia: tipos_copia }
-        })
-        req.tipos_copia = data[0].descricao;
-    }
-
-    if (tipos_capa) {
-        let data = await models.tipos_capa.findAll({
-            where: { id_tipos_capa: tipos_capa }
-        })
-        //tc = [{id_tipos_capa: 2..., descricao: PVC...}]
-        req.tipos_capa = data[0].descricao;
-        //tipos capa = PVC
-    }
-
-    if (acabamento) {
-        let data = await models.acabamento.findAll({
-            where: { id_acabamento: acabamento }
-        })
-        req.acabamento = data[0].descricao;
+    return data = {
+        descCentroCustos,
+        descCurso,
+        descModoEnvio,
+        descAvaliacaoPedido
     }
 }
-
 module.exports = verifyConstraints;

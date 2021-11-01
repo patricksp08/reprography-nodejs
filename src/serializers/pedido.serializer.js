@@ -51,18 +51,18 @@ const serializer = async (req, res, next) => {
                     atualizado: req.pedidos[i].det_pedidos[0].updatedAt
                 }
                 ],
-                servico_1: [{
-                    id_servico: req.pedidos[i].servicos[0].id_servico,
-                    descricao: req.pedidos[i].servicos[0].descricao,
-                    quantidade: req.pedidos[i].servicos[0].quantidade,
-                    valor_unitario: req.pedidos[i].servicos[0].valor_unitario,
-                }],
-                servico_2: [{
-                    id_servico: req.pedidos[i].servicos[1].id_servico,
-                    descricao: req.pedidos[i].servicos[1].descricao,
-                    quantidade: req.pedidos[i].servicos[1].quantidade,
-                    valor_unitario: req.pedidos[i].servicos[1].valor_unitario,
-                }]
+                // servico_1: [{
+                //     id_servico: req.pedidos[i].servicos[0].id_servico,
+                //     descricao: req.pedidos[i].servicos[0].descricao,
+                //     quantidade: req.pedidos[i].servicos[0].quantidade,
+                //     valor_unitario: req.pedidos[i].servicos[0].valor_unitario,
+                // }],
+                // servico_2: [{
+                //     id_servico: req.pedidos[i].servicos[1].id_servico,
+                //     descricao: req.pedidos[i].servicos[1].descricao,
+                //     quantidade: req.pedidos[i].servicos[1].quantidade,
+                //     valor_unitario: req.pedidos[i].servicos[1].valor_unitario,
+                // }]
             }
             
             var centro_custos = pedidos[i].centro_custos;
