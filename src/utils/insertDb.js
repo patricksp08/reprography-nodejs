@@ -12,20 +12,6 @@ const bcrypt = require("bcrypt");
 
 exports.InserirRegistros = async () => {
     try {
-        models.acabamento.bulkCreate([
-            {
-                id_acabamento: 1,
-                descricao: "Papel 2 grampos laterais"
-            },
-            {
-                id_acabamento: 2,
-                descricao: "Papel 2 grampos a cavalo"
-            },
-            {
-                id_acabamento: 3,
-                descricao: "Espiral de plástico"
-            }
-        ]);
         models.avaliacao_pedido.bulkCreate([
             {
                 id_avaliacao_pedido: 0,
@@ -142,29 +128,7 @@ exports.InserirRegistros = async () => {
                 descricao: "Físico",
             },
         ]);
-        models.tamanho_pagina.bulkCreate([
-            {
-                id_tamanho: 1,
-                descricao: "A3",
-            },
-            {
-                id_tamanho: 2,
-                descricao: "A4",
-            },
-            {
-                id_tamanho: 3,
-                descricao: "A5",
-            },
-            {
-                id_tamanho: 4,
-                descricao: "Reduzida",
-            },
-            {
-                id_tamanho: 5,
-                descricao: "Ampliada",
-            },
-        ]);
-        await models.tipo_usuario.bulkCreate([
+         models.tipo_usuario.bulkCreate([
             {
                 id: 1,
                 descricao: "user",
@@ -174,27 +138,7 @@ exports.InserirRegistros = async () => {
                 descricao: "admin",
             },
         ]);
-        models.tipos_capa.bulkCreate([
-            {
-                id_tipos_capa: 1,
-                descricao: "Papel",
-            },
-            {
-                id_tipos_capa: 2,
-                descricao: "PVC",
-            },
-        ]);
-        models.tipos_copia.bulkCreate([
-            {
-                id_tipos_copia: 1,
-                descricao: "P&B",
-            },
-            {
-                id_tipos_copia: 2,
-                descricao: "Colorida",
-            },
-        ]);
-        await models.servicoCapaAcabamento.bulkCreate([
+         models.servicoCapaAcabamento.bulkCreate([
             {
                 id_servicoCA: 1,
                 descricao: "Preto&Branco - Tamanho A5",
@@ -252,14 +196,9 @@ exports.InserirRegistros = async () => {
                 valor_unitario: 0.45
             },
         ]);
-
-
-
-        
-
         console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
-    } catch (error) {
-        console.log({ error: "Registros já foram inseridos" })
+    } catch {
+        console.log({error: "Registros já inseridos! (Validation error)"})
     }
 }
 
@@ -267,15 +206,15 @@ exports.InserirUsuario = async () => {
     try {
         const hash = await bcrypt.hash(config.adminAccount.pass, config.jwt.saltRounds)
         const user = await models.usuario.create({
-            nif: 0,
+            nif: 123,
             senha: hash,
             nome: "ADMIN ACCOUNT",
             email: config.adminAccount.email,
             id_depto: 1,
             cfp: 0,
             imagem: "uploads/user-img/default/usuario.png",
-            ativado: 1,
-            primeiro_acesso: 1
+            // ativado: 0,
+            // primeiro_acesso: 1
         })
         if (user) {
             const roles = await models.tipo_usuario.findAll({
@@ -292,7 +231,7 @@ exports.InserirUsuario = async () => {
                 }
             }
         }
-    } catch (error) {
-        console.log({ error: `Usuário administrador com NIF 0 já adicionado! \n => Caso queira sincronizar o seu DB com a API, insira o {force: true} novamente dentro do ' sync() ' no diretório principal: (Index.js - linha 48.) \n Exemplo: db.sequelize.sync({force: true}).then(() => { ... \n ***OBS: Todos os registros das tabelas: [Pedido, Det_Pedido, Usuario] serão excluidos!***` })
+    } catch {
+        console.log({error: "Usuário ADMIN já inserido! (Validation error)"})
     }
 }

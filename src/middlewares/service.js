@@ -19,7 +19,6 @@ const verificaQtdade = (req, res, prop) => {
     }
 }
 
-
 const verifyService = async (req, res, next) => {
 
     const { servicoCA, servicoCT } = req.body

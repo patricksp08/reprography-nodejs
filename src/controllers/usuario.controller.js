@@ -16,7 +16,9 @@ const bcrypt = require("bcrypt");
 
 //Usado para enviar o token e informações do usuário pro front quando ele Logar
 const { sign } = require("jsonwebtoken");
-const { unlink } = require("fs")
+const { unlink } = require("fs");
+
+const service = require("../services/usuario.service")
 
 //Funções do usuário 
 module.exports = {
@@ -38,6 +40,7 @@ module.exports = {
                 email: emailOrNif
             }
         })
+
         //Login com usuário ou NIF
         if (user == null) {
             user = await usuario.findOne({
@@ -49,6 +52,21 @@ module.exports = {
             if (!user) {
                 return res.json({ status: 'error', message: "E-mail ou Senha Inválidos!" })
             }
+            else if (user.ativado === 0 && user.primeiro_acesso === 0) {
+                return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" })
+            }
+
+
+        }
+        else {
+
+            if (user.ativado === 0 && user.primeiro_acesso === 1) {
+                return res.json({ status: 'error', message: "Primeiro acesso requer NIF ao invés do e-mail." })
+            }
+
+            if (user.ativado === 0) {
+                return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" })
+            }
         }
 
         await bcrypt.compare(senha, user.senha).then((match) => {
@@ -59,10 +77,6 @@ module.exports = {
                     message: "E-mail ou Senha Inválidos!"
                 });
             };
-
-            if (user.ativado === 0) {
-                return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" })
-            }
 
             var authorities = [];
             user.getRoles().then(roles => {
@@ -102,7 +116,11 @@ module.exports = {
     },
 
     primeiroAcesso: async (req, res) => {
-        const { senha } = req.body;
+        const { senha, confirmSenha } = req.body;
+
+        if (senha !== confirmSenha) {
+            return res.json({ status: "error", message: "Os campos Nova senha e Confirmar senha não coincidem." })
+        }
 
         const user = await usuario.findByPk(req.user.nif);
 
@@ -110,10 +128,10 @@ module.exports = {
             return res.json({ status: "error", message: "Esse não é seu primeiro acesso!" });
         }
 
-        await bcrypt.hash(senha, config.jwt.saltRounds, async function (err, hash) {
+        await bcrypt.hash(confirmSenha, config.jwt.saltRounds, async function (err, hash) {
             if (err) throw (err);
 
-            await user.update({ senha: hash, primeiro_acesso: 0 });
+            await user.update({ senha: hash, primeiro_acesso: 0, ativado: 1 });
 
             return res.json({ status: "ok", message: "Senha atualizada com sucesso!" })
 
@@ -145,7 +163,7 @@ module.exports = {
         const { senhaAntiga, senhaNova, confirmSenhaNova } = req.body;
 
         if (senhaNova !== confirmSenhaNova) {
-            return res.status(400).json({ status: "error", message: "Os campos Nova senha e Confirmar senha não coincidem." })
+            return res.json({ status: "error", message: "Os campos Nova senha e Confirmar senha não coincidem." })
         }
 
         await usuario.findOne({
@@ -154,7 +172,7 @@ module.exports = {
             },
         }).then(user => {
             bcrypt.compare(senhaAntiga, user.senha).then((match) => {
-                if (!match) return res.status(400).json({ status: "error", message: "A senha inserida no campo Senha antiga está incorreta." });
+                if (!match) return res.json({ status: "error", message: "A senha inserida no campo Senha antiga está incorreta." });
 
                 bcrypt.hash(senhaNova, config.jwt.saltRounds, function (err, hash) {
                     if (err) throw (err);
@@ -220,8 +238,8 @@ module.exports = {
                 email: email,
                 cfp: cfp,
                 imagem: image,
-                ativado: 1,
-                primeiro_acesso: 1
+                // ativado: 1, defaultValue já definido
+                // primeiro_acesso: 1 defaultValue já definido
             }).then(user => {
                 if (admin) {
                     tipo_usuario.findAll({
@@ -246,41 +264,21 @@ module.exports = {
         })
     },
 
-    buscarTodos: async (req, res) => {
-        let usuarios = await usuario.findAll({
-            where: {
-                ativado: 1
-            },
-            include: [
-                'roles'
-            ],
-        });
-        return res.json(usuarios)
+    buscarTodos: async (req,res) => {
+        const { enabled } = req.params;
+
+        let usuarios = await service.findAllUsers(enabled);
+        return res.json(usuarios);
     },
 
     buscarPorNome: async (req, res) => {
-        const { user } = req.params;
         // const query = `%${req.query.search}`;
-        let usuarios = await usuario.findAll({
-            where: {
-                nome: {
-                    [Op.like]: `${user}%`
-                },
-            },
-            include: [
-                'roles'
-            ],
-            attributes: { exclude: ["senha"] },
-        })
-        return res.json(usuarios)
+        let users = await service.findAllByName(req.params.user);
+        return res.json(users)
     },
 
     buscarPorNif: async (req, res) => {
-        const user = await usuario.findByPk(req.params.nif, {
-            where: {
-                ativado: 1
-            }
-        });
+        const user = await service.findUserbyPk(req.params.nif, {attributes: null})
 
         if (user == null) {
             return res.status(404).json({ status: 'error', message: "Não Há nenhum usuário ativado com esse NIF" })
@@ -290,7 +288,7 @@ module.exports = {
     },
 
     alterarPorNif: async (req, res) => {
-        var user = await usuario.findByPk(req.params.nif);
+        const user = await service.findUserbyPk(req.params.nif)
 
         if (user == null) {
             return res.status(404).json({ status: 'error', message: "Não Há nenhum usuário com esse NIF" })
@@ -299,26 +297,17 @@ module.exports = {
         let { nif, nome, senha, telefone, depto, email, cfp, admin } = req.body;
 
         if (admin) {
+
             if (admin == 1) {
                 admin = ["admin"]
-            }
-            else if (admin == 2) {
-                admin = ["moderator"]
             }
             else {
                 admin = ["user"]
             }
 
-            await tipo_usuario.findAll({
-                where: {
-                    descricao: {
-                        [Op.or]: admin
-                    }
-                }
-            }).then(roles => {
-                user.setRoles(roles)
-            })
-        }
+            const roles = await service.getDescRoles(admin)
+            await service.setRoles(user, roles);
+        }   
 
         if (req.file) {
             if (user.imagem !== config.adminAccount.defaultImage) {
@@ -332,43 +321,24 @@ module.exports = {
 
         bcrypt.hash(senha, config.jwt.saltRounds, async function (err, hash) {
             if (err) throw (err);
-            await user.update({ nif, nome, senha: hash, telefone, depto, email, cfp, imagem: image })
+            await service.updateUser({user: user, param: { nif, nome, senha: hash, telefone, id_depto: depto, email, cfp, imagem: image }});
 
             return res.status(200).json({ status: 'ok', message: `Conta com NIF ${req.params.nif} atualizada com sucesso!!` });
         });
-    },
+    },  
 
-    desativarContaPorNif: async (req, res) => {
-        const user = await usuario.findByPk(req.params.nif, {
-            where: {
-                ativado: 1
-            }
-        })
+    enableOrDisableAccount: async (req, res) => {
+        const { nif, enable } = req.params
+
+        const user = await service.findUserbyPk(nif, {attributes: null})
 
         if (user == null) {
-            return res.status(404).json({ status: 'error', message: "Não há nenhum usuário (ativado) com esse NIF" })
+            return res.status(404).json({ status: 'error', message: "Usuário não encontrado!" })
         }
 
-        await user.update({ ativado: 0 })
+        await service.updateUser({user: user, param: { ativado: enable }})
 
-        return res.json({ status: 'ok', message: `Usuário ${user.nif} desativado com sucesso!` })
-    },
-
-    ativarContaPorNif: async (req, res) => {
-        const user = await usuario.findByPk(req.params.nif, {
-            where: {
-                ativado: 0
-            }
-        });
-
-        if (user == null) {
-            return res.status(404).json({ status: 'error', message: "Não há nenhum usuário (desativado) com esse NIF" })
-        };
-
-        await user.update({ ativado: 1 })
-
-        return res.json({ status: 'ok', message: `Usuário ${user.nif} ativado com sucesso!` })
-
+        return res.json({ status: 'ok', message: `Status do Usuário ${user.nif} atualizado com sucesso!` })
     },
 
     excluirPorNif: async (req, res) => {

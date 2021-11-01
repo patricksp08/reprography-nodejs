@@ -1,8 +1,8 @@
 const nodemailer = require('nodemailer');
 const mailer = require('../.config/mailer.config');
-const { pedidoEmail } = require("../views/emailTemplates")
-const { forgotPasswordEmail } = require("../views/emailTemplates")
-const { avaliacaoEmail } = require("../views/emailTemplates")
+const { pedidoEmail } = require("../templates/emails");
+const { forgotPasswordEmail } = require("../templates/emails");
+const { avaliacaoEmail } = require("../templates/emails");
 const { unlink } = require("fs")
 
 //Criando conexão SMTP

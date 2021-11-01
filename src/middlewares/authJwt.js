@@ -13,7 +13,6 @@ const validateToken = (req, res, next) => {
 
   if (!accessToken) {
     res.status(403).json({ error: "Você não está logado!" });
-    res.redirect("/");
     return;
   }
   try {
@@ -23,7 +22,7 @@ const validateToken = (req, res, next) => {
       return next();
     }
   } catch (error) {
-    res.status(500).json({ error })
+    res.json({ error })
   }
   //  ==>  //Aqui ele passa os dados do usuário, nif: ... , email: ... 
   //Importante para usarmospor exemplo quando alguém realizar um pedido, 
