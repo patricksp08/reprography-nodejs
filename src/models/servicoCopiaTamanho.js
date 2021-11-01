@@ -21,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
     ativado: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 1
     }
   }, {
     sequelize,

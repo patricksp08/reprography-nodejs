@@ -1,7 +1,7 @@
 const { authJwt } = require("../middlewares");
 const { upload } = require("../middlewares/");
 const { verifySignUp } = require("../middlewares/");
-const controller = require("../controllers/usuario-controller");
+const controller = require("../controllers/usuario.controller");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -11,6 +11,10 @@ module.exports = function (app) {
     );
     next();
   });
+
+  //Exibe informações do usuário logado
+  app.get("/auth", [authJwt.validateToken], (req, res) => { res.json(req.user); });
+
 
   ////USUARIO COMUM
 
@@ -29,7 +33,7 @@ module.exports = function (app) {
   //PUT
 
   //Alterando a senha do usuário no primeiro acesso.
-  app.put("/myUser/firstAcess", [authJwt.validateToken], controller.primeiroAcesso);
+  app.put("/myUser/firstAccess", [authJwt.validateToken], controller.primeiroAcesso);
 
   //Altera as informações do usuário logado (autenticado pelo jwt) => Faz upload e atualiza imagem do usuário
   app.put('/myUser', [authJwt.validateToken], upload.single('image'), controller.alterarMeuUsuario);
@@ -63,11 +67,8 @@ module.exports = function (app) {
 
   //GET
 
-  //Exibe informações do usuário logado
-  app.get("/auth", [authJwt.validateToken], (req, res) => { res.json(req.user); });
-
-  //Exibe todos os usuários da tabela usuário
-  app.get("/users", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos);
+  //Exibe todos os usuários ativos da tabela usuário
+  app.get("/users/enabled=:enabled", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos);
 
   //Exibe o usuárío por nome na tabela usuário (exemplo: host:porta/usuariox)
   app.get("/user/name/:user", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
@@ -81,12 +82,8 @@ module.exports = function (app) {
   //Rota para alterar um usuário da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
   app.put('/user/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('image'), controller.alterarPorNif);
 
-  //Rota para desabilitar o usuário, passando nif como parâmetro
-  app.put("/user/:nif/disable", [authJwt.validateToken, authJwt.isAdmin], controller.desativarContaPorNif)
-
-  //Rota para habilitar o usuário, passando nif como parâmetro
-  app.put("/user/:nif/enable", [authJwt.validateToken, authJwt.isAdmin], controller.ativarContaPorNif)
-
+  //Rota para habilitar/desabilitar o usuário, passando nif como parâmetro
+  app.put("/user/:nif/enable=:enable", [authJwt.validateToken, authJwt.isAdmin], controller.enableOrDisableAccount)
 
   //DELETE
 

@@ -1,5 +1,4 @@
 var DataTypes = require("sequelize").DataTypes;
-var _acabamento = require("./acabamento");
 var _avaliacao_pedido = require("./avaliacao_pedido");
 var _centro_custos = require("./centro_custos");
 var _curso = require("./curso");
@@ -11,15 +10,13 @@ var _resettoken = require("./resettoken");
 var _servicoCapaAcabamento = require("./servicoCapaAcabamento");
 var _servicoCopiaTamanho = require("./servicoCopiaTamanho");
 var _servico_pedido = require("./servico_pedido");
-var _tamanho_pagina = require("./tamanho_pagina");
 var _tipo_usuario = require("./tipo_usuario");
-var _tipos_capa = require("./tipos_capa");
-var _tipos_copia = require("./tipos_copia");
 var _user_roles = require("./user_roles");
 var _usuario = require("./usuario");
 
 const config = require("../.config/db.config.json");
 const Sequelize = require("sequelize")
+
 sequelize = new Sequelize(config.development.database, config.development.username, config.development.password,
   {
     host: config.development.host,
@@ -33,7 +30,6 @@ sequelize = new Sequelize(config.development.database, config.development.userna
   });
 
 function initModels(sequelize) {
-  var acabamento = _acabamento(sequelize, DataTypes);
   var avaliacao_pedido = _avaliacao_pedido(sequelize, DataTypes);
   var centro_custos = _centro_custos(sequelize, DataTypes);
   var curso = _curso(sequelize, DataTypes);
@@ -45,10 +41,7 @@ function initModels(sequelize) {
   var servicoCapaAcabamento = _servicoCapaAcabamento(sequelize, DataTypes);
   var servicoCopiaTamanho = _servicoCopiaTamanho(sequelize, DataTypes);
   var servico_pedido = _servico_pedido(sequelize, DataTypes);
-  var tamanho_pagina = _tamanho_pagina(sequelize, DataTypes);
   var tipo_usuario = _tipo_usuario(sequelize, DataTypes);
-  var tipos_capa = _tipos_capa(sequelize, DataTypes);
-  var tipos_copia = _tipos_copia(sequelize, DataTypes);
   var user_roles = _user_roles(sequelize, DataTypes);
   var usuario = _usuario(sequelize, DataTypes);
 
@@ -82,7 +75,6 @@ function initModels(sequelize) {
   usuario.hasMany(user_roles, { as: "user_roles", foreignKey: "userId"});
 
   return {
-    acabamento,
     avaliacao_pedido,
     centro_custos,
     curso,
@@ -94,10 +86,7 @@ function initModels(sequelize) {
     servicoCapaAcabamento,
     servicoCopiaTamanho,
     servico_pedido,
-    tamanho_pagina,
     tipo_usuario,
-    tipos_capa,
-    tipos_copia,
     user_roles,
     usuario,
   };
