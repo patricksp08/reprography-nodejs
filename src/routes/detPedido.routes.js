@@ -1,6 +1,6 @@
 const { authJwt } = require("../middlewares");
-const controller = require("../controllers/detPedido-controller");
-const serializer = require("../serializers/detPedido-serializer");
+const controller = require("../controllers/detPedido.controller");
+const serializer = require("../serializers/detPedido.serializer");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {

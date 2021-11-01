@@ -26,24 +26,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./models");
 
 //Função para inserir os registros fixos de alguams tabelas (como tipo_usuario, tipo_copia, etc...)
-const { inserirRegistros } = require("./helpers/");
+const { inserirRegistros } = require("./utils/");
 
 // Routers
 
 //Usuario router
-require("./routes/usuario-routes")(app);
+require("./routes/usuario.routes")(app);
 //Pedido router
-require("./routes/pedido-routes")(app);
+require("./routes/pedido.routes")(app);
 //Deatlhes do Pedido router
-require("./routes/detPedido-routes")(app);
+require("./routes/detPedido.routes")(app);
 //ResetToken Router
-require('./routes/resetToken-routes')(app);
+require('./routes/resetToken.routes')(app);
 //Servico Router
-require('./routes/servico-routes')(app);
+require('./routes/servico.routes')(app);
 //Estatisticas Router
-require('./routes/estatisticas-routes')(app);
+require('./routes/estatisticas.routes')(app);
 //Swagger Routes
-require('./routes/swagger-routes')(app);
+require('./routes/swagger.routes')(app);
 
 //Imports para as informações que vamos trazer no console (consumo de ram, uso de cpu...)
 const os = require('os');
@@ -53,7 +53,7 @@ const diskspace = require('diskspace');
 
 //Sincronizando o sequelize com o banco de dados (utilizar o { force: true } somente em desenvolvimento,
 // para conseguir limpar o banco e testar com novos registros.)
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force: true}).then(() => {
   app.listen(port, async () => {
     await inserirRegistros.InserirRegistros();
     await inserirRegistros.InserirUsuario();

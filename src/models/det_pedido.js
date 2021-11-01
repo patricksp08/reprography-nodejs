@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('det_pedido', {
     id_det_pedido: {
       autoIncrement: true,
@@ -15,36 +15,20 @@ module.exports = function (sequelize, DataTypes) {
         key: 'id_pedido'
       }
     },
-    id_tipos_copia: {
+    id_centro_custos: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'tipos_copia',
-        key: 'id_tipos_copia'
+        model: 'centro_custos',
+        key: 'id_centro_custos'
       }
     },
-    id_acabamento: {
+    id_curso: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'acabamento',
-        key: 'id_acabamento'
-      }
-    },
-    id_tamanho: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'tamanho_pagina',
-        key: 'id_tamanho'
-      }
-    },
-    id_tipos_capa: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'tipos_capa',
-        key: 'id_tipos_capa'
+        model: 'curso',
+        key: 'id_curso'
       }
     },
     observacoes: {
@@ -60,7 +44,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
     sub_total_copias: {
-      type: DataTypes.DECIMAL(10, 5),
+      type: DataTypes.DECIMAL(10,5),
       allowNull: true
     }
   }, {
@@ -84,31 +68,17 @@ module.exports = function (sequelize, DataTypes) {
         ]
       },
       {
-        name: "id_tipos_copia",
+        name: "id_centro_custos",
         using: "BTREE",
         fields: [
-          { name: "id_tipos_copia" },
+          { name: "id_centro_custos" },
         ]
       },
       {
-        name: "id_acabamento",
+        name: "id_curso",
         using: "BTREE",
         fields: [
-          { name: "id_acabamento" },
-        ]
-      },
-      {
-        name: "id_tamanho",
-        using: "BTREE",
-        fields: [
-          { name: "id_tamanho" },
-        ]
-      },
-      {
-        name: "id_tipos_capa",
-        using: "BTREE",
-        fields: [
-          { name: "id_tipos_capa" },
+          { name: "id_curso" },
         ]
       },
     ]

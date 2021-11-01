@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('servico_pedido', {
     pedidoId: {
       type: DataTypes.INTEGER,
@@ -10,13 +10,22 @@ module.exports = function (sequelize, DataTypes) {
         key: 'id_pedido'
       }
     },
-    servicoId: {
+    servicoCT: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'servico',
-        key: 'id_servico'
+        model: 'servicoCopiaTamanho',
+        key: 'id_servicoCT'
+      }
+    },
+    servicoCA: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      references: {
+        model: 'servicoCapaAcabamento',
+        key: 'id_servicoCA'
       }
     }
   }, {
@@ -30,23 +39,32 @@ module.exports = function (sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "pedidoId" },
-          { name: "servicoId" },
+          { name: "servicoCT" },
+          { name: "servicoCA" },
         ]
       },
       {
-        name: "servico_pedido_servicoId_pedidoId_unique",
+        name: "servico_pedido_servicoCT_servicoCA_pedidoId_unique",
         unique: true,
         using: "BTREE",
         fields: [
           { name: "pedidoId" },
-          { name: "servicoId" },
+          { name: "servicoCT" },
+          { name: "servicoCA" },
         ]
       },
       {
-        name: "servicoId",
+        name: "servicoCT",
         using: "BTREE",
         fields: [
-          { name: "servicoId" },
+          { name: "servicoCT" },
+        ]
+      },
+      {
+        name: "servicoCA",
+        using: "BTREE",
+        fields: [
+          { name: "servicoCA" },
         ]
       },
     ]

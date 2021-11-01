@@ -3,8 +3,8 @@ const Op = Sequelize.Op;
 
 //Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
-var { pedido, det_pedido, servico } = initModels(sequelize)
-
+var { pedido, det_pedido, servico_pedido, servicoCapaAcabamento, servicoCopiaTamanho } = initModels(sequelize)
+const verifyService  = require("../middlewares/service")
 module.exports = {
 
     ////ADMIN
@@ -15,7 +15,7 @@ module.exports = {
     buscarTodos: async (req, res, next) => {
         var pedidos = await pedido.findAll(
             {
-                include: ['det_pedidos', 'servicos']
+                include: ['det_pedidos', 'servico_pedidos']
             },
         );
         if (pedidos.length < 1) {
@@ -33,7 +33,7 @@ module.exports = {
                     [Op.like]: `${req.params.pedido}%`
                 }
             },
-            include: ['det_pedidos', 'servicos']
+            include: ['det_pedidos', 'servico_pedidos']
         });
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
@@ -48,7 +48,7 @@ module.exports = {
             where: {
                 id_pedido: req.params.id
             },
-            include: ['det_pedidos', 'servicos']
+            include: ['det_pedidos', 'servico_pedidos']
         });
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
@@ -63,7 +63,7 @@ module.exports = {
             where: {
                 nif: req.params.nif
             },
-            include: ['det_pedidos', 'servicos']
+            include: ['det_pedidos', 'servico_pedidos']
         });
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
@@ -83,7 +83,7 @@ module.exports = {
                 },
 
             },
-            include: ['det_pedidos', 'servicos']
+            include: ['det_pedidos', 'servico_pedidos']
         });
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
@@ -103,43 +103,41 @@ module.exports = {
             where: {
                 nif: req.user.nif
             },
-            include: ['det_pedidos', 'servicos']
+            include: ['det_pedidos', 'servico_pedidos']
         });
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
-        req.pedidos = pedidos
-        next();
+        res.json(pedidos)
     },
 
     //POST
 
+
     //Adicionar pedido com detalhe solicitado por nif (usuario)
     adicionar: async (req, res, next) => {
         //Input que será enviado para tabela Pedido
-        let { centro_custos, titulo_pedido, modo_envio, curso } = req.body;
+        const { centro_custos, titulo_pedido, modo_envio, curso } = req.body;
 
         // Input que será enviado para tabela Det_Pedido
-        let { num_copias, num_paginas, tipos_copia, acabamento, tamanho_pagina, tipos_capa, observacoes } = req.body
+        const { num_copias, num_paginas, servicoCT, servicoCA, observacoes } = req.body
+
+        var custo_total = [(num_copias * num_paginas) * req.sub_total]
 
         //Inserindo um pedido e seus detalhes/serviços:
         await pedido.create({
-            id_centro_custos: centro_custos,
-            nif: req.user.nif,
             titulo_pedido: titulo_pedido,
-            custo_total: [(num_copias * num_paginas) * req.sub_total],
+            nif: req.user.nif,
             id_modo_envio: modo_envio,
             id_avaliacao_pedido: 0,
-            id_curso: curso,
             avaliacao_obs: null,
+            custo_total: custo_total,
             det_pedidos: {
-                // id_pedido: 1,
+                // id_pedido: ++,
+                id_centro_custos: centro_custos,
+                id_curso: curso,
                 num_copias: num_copias,
                 num_paginas: num_paginas,
-                id_tipos_copia: tipos_copia,
-                id_acabamento: acabamento,
-                id_tamanho: tamanho_pagina,
-                id_tipos_capa: tipos_capa,
                 observacoes: observacoes,
                 sub_total_copias: req.sub_total
             },
@@ -149,27 +147,24 @@ module.exports = {
             }
         ).then(pedido => {
             req.id = pedido.id_pedido
-            servico.decrement({ quantidade: +(num_copias * num_paginas) }, {
-                where: {
-                    id_servico: {
-                        [Op.or]: req.servicos
+            servico_pedido.create({
+                pedidoId: pedido.id_pedido,
+                servicoCT: servicoCT,
+                servicoCA: servicoCA
+            }).then(servico => {
+                servicoCopiaTamanho.decrement({ quantidade: +(num_copias * num_paginas) }, {
+                    where: {
+                        id_servicoCT: servico.servicoCT
                     }
-                }
-            });
-            servico.findAll({
-                where: {
-                    id_servico: {
-                        [Op.or]: req.servicos
+                });
+                servicoCapaAcabamento.decrement({ quantidade: +(num_copias * num_paginas) }, {
+                    where: {
+                        id_servicoCA: servico.servicoCA
                     }
-                }
-            }).then(servicos => {
-                pedido.setServicos(servicos)
-                // .then(roles => {
-                // res.status(200).send("User was registered successfully!");
-                // });
-            });
+                });
+            })
+             res.json({ message: "Pedido realizado com sucesso!" })
         })
-        res.json({ message: "Pedido realizado com sucesso!" })
         next();
         return;
     },

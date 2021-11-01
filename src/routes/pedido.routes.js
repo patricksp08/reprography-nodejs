@@ -1,9 +1,9 @@
 const { authJwt } = require("../middlewares");
 const { upload } = require("../middlewares/");
 const { service } = require("../middlewares/");
-const { mailer } = require("../helpers/");
-const controller = require("../controllers/pedido-controller");
-const serializer = require("../serializers/pedido-serializer");
+const { mailer } = require("../utils/");
+const controller = require("../controllers/pedido.controller");
+const serializer = require("../serializers/pedido.serializer");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -19,7 +19,7 @@ module.exports = function (app) {
   //POST
 
   //Insere um pedido, verificando se o usuário está logado e isnerindo um anexo.
-  app.post("/pedido", [authJwt.validateToken], upload.single('file'), service, controller.adicionar, serializer, mailer.EnviaEmail);
+  app.post("/pedido", [authJwt.validateToken], upload.single('file'), service,controller.adicionar, serializer, mailer.EnviaEmail);
 
 
   //GET

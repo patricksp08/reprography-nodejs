@@ -1,6 +1,6 @@
 const mailer = require("./mailer");
-const inserirRegistros = require("./inserirRegistros")
-const verifyConstraints = require("./verifyConstraints")
+const inserirRegistros = require("./insertDb")
+const verifyConstraints = require("../services/verifyConstraints")
 
 module.exports = {
     mailer,
