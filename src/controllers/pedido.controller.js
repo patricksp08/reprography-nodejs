@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 //Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
 var { pedido, det_pedido, servico_pedido, servicoCapaAcabamento, servicoCopiaTamanho } = initModels(sequelize)
-const verifyService  = require("../middlewares/service")
+
 module.exports = {
 
     ////ADMIN
@@ -110,7 +110,7 @@ module.exports = {
 
 
     //Adicionar pedido com detalhe solicitado por nif (usuario)
-    adicionar: async (req, res, next) => {
+    adicionar: async (req, res) => {
         //Input que será enviado para tabela Pedido
         const { centro_custos, titulo_pedido, modo_envio, curso } = req.body;
 
@@ -147,21 +147,30 @@ module.exports = {
                 servicoCT: servicoCT,
                 servicoCA: servicoCA
             }).then(servico => {
-                servicoCopiaTamanho.decrement({ quantidade: +(num_copias * num_paginas) }, {
-                    where: {
-                        id_servicoCT: servico.servicoCT
-                    }
-                });
-                servicoCapaAcabamento.decrement({ quantidade: +(num_copias * num_paginas) }, {
-                    where: {
-                        id_servicoCA: servico.servicoCA
-                    }
-                });
+                if(servico.servicoCT == 5 || servico.servicoCT == 6){
+                    servicoCopiaTamanho.decrement({ quantidade: +(num_copias * num_paginas) }, {
+                        where: {
+                            id_servicoCT: {
+                              [Op.or]: [5,6]
+                            }
+                        }
+                    });
+                }
+                else{
+                    servicoCopiaTamanho.decrement({ quantidade: +(num_copias * num_paginas) }, {
+                        where: {
+                            id_servicoCT: servico.servicoCT
+                        }
+                    });
+                    servicoCapaAcabamento.decrement({ quantidade: +(num_copias * num_paginas) }, {
+                        where: {
+                            id_servicoCA: servico.servicoCA
+                        }
+                    });
+                }
             })
-             res.json({ message: "Pedido realizado com sucesso!" });
-        })
-        next();
-        return;
+            return res.json({ message: "Pedido realizado com sucesso!" });
+        });
     },
 
 
