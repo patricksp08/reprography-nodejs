@@ -15,7 +15,7 @@ module.exports = function (app) {
   //GET
 
   //Exibindo serviços para o Administrador
-  app.get("/services", [authJwt.validateToken, authJwt.isAdmin], controller.servicosGet);
+  app.get("/services/enabled=:enabled", [authJwt.validateToken, authJwt.isAdmin], controller.servicosGet);
 
   //Exibindo serviços para o Administrador
   app.get("/service/:id/type=:type", [authJwt.validateToken, authJwt.isAdmin], controller.servicosGetByPk);
@@ -28,4 +28,12 @@ module.exports = function (app) {
 
   //Alterando quantidade e valor unitário do serviço
   app.put("/service/:id/type=:type", [authJwt.validateToken, authJwt.isAdmin], controller.servicosPut);
+
+  //Rota para ativar/desativar o serviço
+  //app.put(service/enable=:enable)
+
+  //DELETE
+
+  //Rota para deletar o serviço
+  //app.delete(service/:id/type=:type)
 };

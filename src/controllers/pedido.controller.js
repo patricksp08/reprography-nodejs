@@ -77,7 +77,6 @@ module.exports = {
                 where: {
                     id_det_pedido: req.params.id
                 },
-
             },
             include: ['det_pedidos', 'servico_pedidos']
         });
