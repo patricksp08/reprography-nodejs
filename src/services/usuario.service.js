@@ -1,6 +1,5 @@
 //Biblioteca do sequelize 
 const Sequelize = require("sequelize");
-const { QueryTypes } = require('sequelize');
 //Operadores do sequelize
 const Op = Sequelize.Op;
 
@@ -83,7 +82,7 @@ module.exports = {
         return deleted;
     },
 
-    getRoles: async (user, admin) => {
+    getRoles: async (user) => {
         const roles = await user.getRoles();
 
         return roles;

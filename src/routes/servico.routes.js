@@ -15,10 +15,17 @@ module.exports = function (app) {
   //GET
 
   //Exibindo serviços para o Administrador
-  app.get("/servicos", [authJwt.validateToken, authJwt.isAdmin], controller.servicosGet);
+  app.get("/services", [authJwt.validateToken, authJwt.isAdmin], controller.servicosGet);
+
+  //Exibindo serviços para o Administrador
+  app.get("/service/:id/type=:type", [authJwt.validateToken, authJwt.isAdmin], controller.servicosGetByPk);
+
+  //POST
+
+  app.post("/service/type=:type", [authJwt.validateToken, authJwt.isAdmin], controller.servicosPost);
 
   //PUT
 
   //Alterando quantidade e valor unitário do serviço
-  app.put("/servicos/:id", [authJwt.validateToken, authJwt.isAdmin], controller.servicosPut);
+  app.put("/service/:id/type=:type", [authJwt.validateToken, authJwt.isAdmin], controller.servicosPut);
 };

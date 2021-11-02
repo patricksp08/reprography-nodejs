@@ -53,7 +53,7 @@ const diskspace = require('diskspace');
 
 //Sincronizando o sequelize com o banco de dados (utilizar o { force: true } somente em desenvolvimento,
 // para conseguir limpar o banco e testar com novos registros.)
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync({force: false}).then(() => {
   app.listen(port, async () => {
     await inserirRegistros.InserirRegistros();
     await inserirRegistros.InserirUsuario();

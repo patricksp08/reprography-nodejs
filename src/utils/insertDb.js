@@ -138,7 +138,7 @@ exports.InserirRegistros = async () => {
                 descricao: "admin",
             },
         ]);
-         models.servicoCapaAcabamento.bulkCreate([
+         models.servicoCopiaTamanho.bulkCreate([
             {
                 id_servicoCA: 1,
                 descricao: "Preto&Branco - Tamanho A5",
@@ -163,34 +163,41 @@ exports.InserirRegistros = async () => {
                 quantidade: 4000,
                 valor_unitario: 0.1
             },
-        ]);
-        await models.servicoCopiaTamanho.bulkCreate([
             {
-                id_servicoCT: 1,
-                descricao: "Preto&Branco - Red/Ampliada",
+                id_servicoCA: 5,
+                descricao: "Preto&Branco - Reduzida",
                 quantidade: 100,
                 valor_unitario: 0.3
             },
             {
-                id_servicoCT: 2,
+                id_servicoCA: 6,
+                descricao: "Preto&Branco - Ampliada",
+                quantidade: 100,
+                valor_unitario: 0.3
+            },
+        ]);
+        await models.servicoCapaAcabamento.bulkCreate([
+            
+            {
+                id_servicoCT: 1,
                 descricao: "Capa em papel 150g e 2 grampos laterais",
                 quantidade: 4000,
                 valor_unitario: 0.07
             },
             {
-                id_servicoCT: 3,
+                id_servicoCT: 2,
                 descricao: "Capa em papel 150g e 2 grampos a cavalo",
                 quantidade: 1000,
                 valor_unitario: 0.05
             },
             {
-                id_servicoCT: 4,
+                id_servicoCT: 3,
                 descricao: "Capa em papel 150g e espirais de plástico",
                 quantidade: 100,
                 valor_unitario: 0.5
             },
             {
-                id_servicoCT: 5,
+                id_servicoCT: 4,
                 descricao: "Capa em PVC e espirais de plástico",
                 quantidade: 30000,
                 valor_unitario: 0.45

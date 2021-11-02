@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('servicoCopiaTamanho', {
     id_servicoCT: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -11,11 +12,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     quantidade: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.INTEGER,
       allowNull: true
     },
     valor_unitario: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.DECIMAL(10, 5),
       allowNull: true
     },
     ativado: {
