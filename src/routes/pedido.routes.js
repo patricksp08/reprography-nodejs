@@ -26,7 +26,7 @@ module.exports = function (app) {
 
   //Meus pedidos (pegar pedido pelo req.user.nif => nif do usuário logado, que será verificado
   // pelo token jwt)
-  app.get("/myRequests", [authJwt.validateToken], controller.meusPedidos, serializer);
+  app.get("/myRequests/rated=:rated", [authJwt.validateToken], controller.meusPedidos);
 
 
   //PUT
@@ -40,17 +40,14 @@ module.exports = function (app) {
   //GET
 
   //Buscar todos os pedidos
-  app.get("/requests/rated=rated", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos, serializer);
+  app.get("/requests/rated=:rated", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos);
 
   //Buscar pedido por id do pedido
-  app.get("/request/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdPedido, serializer);
-
-  //Buscar pedido por id da tabela det_pedido (foreignkey)
-  app.get("/request/DetailId/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdDetalhe, serializer);
+  app.get("/request/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdPedido);
 
   //Buscar pedido por nif da tabela usuario (foreignKey)
-  app.get("/request/nif/:nif", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif, serializer);
+  app.get("/request/nif/:nif/rated=:rated", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif);
 
   //Exibe o pedido pelo seu titlo
-  app.get("/request/title/:pedido", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome, serializer);
+  app.get("/request/title/:pedido", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
 };

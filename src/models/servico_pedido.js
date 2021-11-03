@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       references: {
         model: 'servicoCopiaTamanho',
-        key: 'id_servicoCT'
+        key: 'id_servico'
       }
     },
     servicoCA: {
@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       references: {
         model: 'servicoCapaAcabamento',
-        key: 'id_servicoCA'
+        key: 'id_servico'
       }
     }
   }, {

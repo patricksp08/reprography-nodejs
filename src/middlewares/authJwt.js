@@ -34,8 +34,16 @@ isAdmin = (req, res, next) => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].descricao === "admin") {
-          next();
-          return;
+          if(next){
+            next();
+            return;
+          }
+          else{
+            req.status = 200;
+            return;
+          }
+
+
         }
       }
       // res.redirect("/teste");

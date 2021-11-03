@@ -241,7 +241,7 @@ module.exports = {
     },
 
     buscarPorNif: async (req, res) => {
-        const user = await service.findUserbyPk(req.params.nif, {attributes: null})
+        const user = await service.findUserbyPk(req.params.nif, {attributes: { exclude: ["senha"] }})
 
         if (user == null) {
             return res.status(404).json({ status: 'error', message: "Usuário não encontrado!" });
@@ -319,6 +319,8 @@ module.exports = {
     //         });
     //     }
 
+
     //     return res.status(200).json({ status: 'ok', message: `Conta com NIF ${user.nif} excluida com sucesso!!` });
     // }
+
 }

@@ -1,5 +1,7 @@
 //Biblioteca do sequelize 
 const Sequelize = require("sequelize");
+const { ROLES } = require("../models");
+
 //Operadores do sequelize
 const Op = Sequelize.Op;
 
@@ -28,6 +30,7 @@ module.exports = {
             include: [
                 'roles'
             ],
+               
         });
 
         return usuarios;
@@ -38,7 +41,7 @@ module.exports = {
             include: [
                 'roles'
             ],
-            attributes: attributes
+            attributes: attributes,
         });
 
         return user;
@@ -72,6 +75,7 @@ module.exports = {
 
     updateUser: async ({ user, param }) => {
         const updated = await user.update(param);
+
         return updated;
     },
 

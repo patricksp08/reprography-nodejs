@@ -16,5 +16,5 @@ module.exports = function (app) {
   //GET
 
   //Buscar pedido por id do pedido
-  app.get("/detPedido/:id", [authJwt.validateToken], controller.buscarPorIdPedido, serializer);
+  app.get("/requestDetails/:id", [authJwt.validateToken], controller.buscarPorIdPedido);
 };
