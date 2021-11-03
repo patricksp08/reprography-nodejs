@@ -49,7 +49,19 @@ module.exports = {
 
     //Todos os pedidos feito por tal pessoa (nif)
     buscarPorNif: async (req, res, next) => {
-        const pedidos = await pedidoService.findAllRatedbyNif(req.params.nif, [0, 1, 2]);
+        var { rated } = req.params;
+
+        if (rated == 1) {
+            rated = [1, 2]
+        }
+        else if (rated == 0) {
+            rated = [0, 0]
+        }
+        else {
+            return res.json({ message: "Insira um parâmetro válido!" })
+        }
+
+        const pedidos = await pedidoService.findAllRatedbyNif(req.params.nif, rated);
 
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })

@@ -5,14 +5,14 @@ const { sequelize } = require("../models");
 
 //Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
-var { pedido, det_pedido } = initModels(sequelize)
+var { pedido } = initModels(sequelize);
 
 module.exports = {
 
     ////GET 
 
     //Buscar os pedidos por ID do pedido
-    buscarPorIdPedido: async (req, res, next) => {
+    buscarPorIdPedido: async (req, res) => {
         var pedidos = await pedido.findByPk(req.params.id, {
             include: ['det_pedidos', 'servico_pedidos']
         });
@@ -24,15 +24,13 @@ module.exports = {
 
         //Só passa para o serializer se o nif fornecido no login for o mesmo ao nif cadastrado no pedido.
         else if (req.user.nif === pedidos.nif) {
-            req.pedidos = [pedidos]
-            next();
-            return;
+            return res.json(pedidos);
         }
 
         // Verificando se o usuário que está querendo ver os detalhes do pedido de outro usuário é administrador
         else {
-            req.pedidos = [pedidos]
-            authJwt.isAdmin(req, res, next);
+            req.array = [pedidos]
+            await authJwt.isAdmin(req, res);
         }
     }
 }

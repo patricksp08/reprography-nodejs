@@ -304,7 +304,6 @@ module.exports = {
         return res.json({ status: 'ok', message: `Status do Usuário ${user.nif} atualizado com sucesso!` });
     },
 
-
     // excluirPorNif: async (req, res) => {
     //     const user = await service.findUserbyPk(req.params.nif, { attributes: null });    
 
@@ -312,7 +311,6 @@ module.exports = {
     //         return res.status(404).json({ status: 'error', message: "Usuário não encontrado!" });
     //     }
     //     await service.destroyUser(user);
-
 
     //     if (user.imagem !== config.adminAccount.defaultImage) {
     //         await unlink(user.imagem, (err) => {

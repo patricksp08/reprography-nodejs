@@ -86,7 +86,6 @@ module.exports = {
     //     return res.json({ status: 'ok', message: `Status do Usuário ${user.nif} atualizado com sucesso!` });
     // },
 
-
     enableOrDisableServico: async (req, res) => {
         
     }

@@ -22,7 +22,6 @@ module.exports = function (app) {
   app.post("/request", [authJwt.validateToken], upload.single('file'), verifyService, controller.adicionar);
 
 
-
   //GET
 
   //Meus pedidos (pegar pedido pelo req.user.nif => nif do usuário logado, que será verificado
@@ -47,7 +46,7 @@ module.exports = function (app) {
   app.get("/request/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdPedido);
 
   //Buscar pedido por nif da tabela usuario (foreignKey)
-  app.get("/request/nif/:nif", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif);
+  app.get("/request/nif/:nif/rated=:rated", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif);
 
   //Exibe o pedido pelo seu titlo
   app.get("/request/title/:pedido", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
