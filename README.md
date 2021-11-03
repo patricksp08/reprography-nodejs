@@ -1,4 +1,4 @@
-# Reprography Project || Backend
+# Reprography Project || Back-end
 
 ## Apresentation
 Welcome, this project is the Course Conclusion Work (TCC) of the developers **Daniel Santos Lopes Silva, João Otavio Ferraz Silva, Mario Lucca de Oliveira Padrão, Mauricio Alves Moreira, Oséias Farias de Jesus, Patrick de Almeida Borges and Tiago Soares Caetano**, students from the **SENAI Suiço-Brasileira Escola Paulo Ernesto Tolle**.

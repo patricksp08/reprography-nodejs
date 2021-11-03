@@ -74,6 +74,7 @@ module.exports = {
 
     updateUser: async ({ user, param }) => {
         const updated = await user.update(param);
+
         return updated;
     },
 
