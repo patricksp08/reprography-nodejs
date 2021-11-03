@@ -1,9 +1,5 @@
-const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
-
-//Inicializando as models e as recebendo
-const { initModels } = require("../models/init-models");
-var { pedido, det_pedido, servico_pedido, servicoCapaAcabamento, servicoCopiaTamanho } = initModels(sequelize)
+const pedidoService = require("../services/pedido.service");
+const servicoService = require("../services/servico.service")
 
 module.exports = {
 
@@ -13,11 +9,20 @@ module.exports = {
 
     //Buscar todos os pedidos da tabela pedido
     buscarTodos: async (req, res, next) => {
-        var pedidos = await pedido.findAll(
-            {
-                include: ['det_pedidos', 'servico_pedidos']
-            },
-        );
+        var { rated } = req.params;
+
+        if (rated == 1) {
+            rated = [1, 2]
+        }
+        else if (rated == 0) {
+            rated = [0, 0]
+        }
+        else {
+            return res.json({ message: "Insira um parâmetro válido!" })
+        }
+
+        var pedidos = await pedidoService.findAllRated(rated);
+
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
@@ -26,14 +31,7 @@ module.exports = {
 
     buscarPorNome: async (req, res, next) => {
         // const query = `%${req.query.search}`;
-        var pedidos = await pedido.findAll({
-            where: {
-                titulo_pedido: {
-                    [Op.like]: `${req.params.pedido}%`
-                }
-            },
-            include: ['det_pedidos', 'servico_pedidos']
-        });
+        var pedidos = await pedidoService.findByName(req.params.pedido);
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
@@ -42,44 +40,29 @@ module.exports = {
 
     //Buscar os pedidos por ID do pedido
     buscarPorIdPedido: async (req, res, next) => {
-        var pedidos = await pedido.findAll({
-            where: {
-                id_pedido: req.params.id
-            },
-            include: ['det_pedidos', 'servico_pedidos']
-        });
-        if (pedidos.length < 1) {
-            return res.json({ message: "Nenhum pedido encontrado!" })
+        var pedidos = await pedidoService.findByPk(req.params.id);
+        if (pedidos == null) {
+            return res.json({ message: "Pedido não encontrado!" })
         }
         return res.json(pedidos);
     },
 
     //Todos os pedidos feito por tal pessoa (nif)
     buscarPorNif: async (req, res, next) => {
-        var pedidos = await pedido.findAll({
-            where: {
-                nif: req.params.nif
-            },
-            include: ['det_pedidos', 'servico_pedidos']
-        });
-        if (pedidos.length < 1) {
-            return res.json({ message: "Nenhum pedido encontrado!" })
-        }
-        return res.json(pedidos);
-    },
+        var { rated } = req.params;
 
-    //Buscar por detalhe do ID
-    buscarPorIdDetalhe: async (req, res, next) => {
-        var pedidos = await pedido.findAll({
-            include: {
-                model: det_pedido,
-                as: "det_pedidos",
-                where: {
-                    id_det_pedido: req.params.id
-                },
-            },
-            include: ['det_pedidos', 'servico_pedidos']
-        });
+        if (rated == 1) {
+            rated = [1, 2]
+        }
+        else if (rated == 0) {
+            rated = [0, 0]
+        }
+        else {
+            return res.json({ message: "Insira um parâmetro válido!" })
+        }
+
+        const pedidos = await pedidoService.findAllRatedbyNif(req.params.nif, rated);
+
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
@@ -93,12 +76,20 @@ module.exports = {
 
     //Todos os pedidos feito pelo usuário LOGADO!
     meusPedidos: async (req, res, next) => {
-        var pedidos = await pedido.findAll({
-            where: {
-                nif: req.user.nif
-            },
-            include: ['det_pedidos', 'servico_pedidos']
-        });
+        var { rated } = req.params;
+
+        if (rated == 1) {
+            rated = [1, 2]
+        }
+        else if (rated == 0) {
+            rated = [0, 0]
+        }
+        else {
+            return res.json({ message: "Insira um parâmetro válido!" })
+        }
+
+        var pedidos = await pedidoService.findAllRatedbyNif(req.user.nif, rated);
+
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" })
         }
@@ -119,56 +110,34 @@ module.exports = {
         var custo_total = [(num_copias * num_paginas) * req.sub_total];
 
         //Inserindo um pedido e seus detalhes/serviços:
-        await pedido.create({
-            titulo_pedido: titulo_pedido,
-            nif: req.user.nif,
-            id_modo_envio: modo_envio,
-            id_avaliacao_pedido: 0,
-            avaliacao_obs: null,
-            custo_total: custo_total,
-            det_pedidos: {
-                // id_pedido: ++,
-                id_centro_custos: centro_custos,
-                id_curso: curso,
-                num_copias: num_copias,
-                num_paginas: num_paginas,
-                observacoes: observacoes,
-                sub_total_copias: req.sub_total
-            },
-        },
-            {
-                include: ['det_pedidos', 'nif_usuario']
+        await pedidoService.pedidoCreate({
+            param: {
+                titulo_pedido: titulo_pedido, nif: req.user.nif, id_modo_envio: modo_envio,
+                id_avaliacao_pedido: 0, avaliacao_obs: null, custo_total: custo_total,
+                det_pedidos: {
+                    id_centro_custos: centro_custos, id_curso: curso, num_copias: num_copias,
+                    num_paginas: num_paginas, observacoes: observacoes, sub_total_copias: req.sub_total
+                },
             }
-        ).then(pedido => {
-            req.id = pedido.id_pedido
-            servico_pedido.create({
-                pedidoId: pedido.id_pedido,
-                servicoCT: servicoCT,
-                servicoCA: servicoCA
-            }).then(servico => {
-                if(servico.servicoCT == 5 || servico.servicoCT == 6){
-                    servicoCopiaTamanho.decrement({ quantidade: +(num_copias * num_paginas) }, {
-                        where: {
-                            id_servicoCT: {
-                              [Op.or]: [5,6]
-                            }
-                        }
-                    });
+
+        }).then(pedido => {
+            req.id = pedido.id_pedido; //Será passado para identificar o ID do pedido no e-mail... 
+            pedidoService.tableMidCreate({
+                param: {
+                    pedidoId: pedido.id_pedido,
+                    servicoCT: servicoCT,
+                    servicoCA: servicoCA
                 }
-                else{
-                    servicoCopiaTamanho.decrement({ quantidade: +(num_copias * num_paginas) }, {
-                        where: {
-                            id_servicoCT: servico.servicoCT
-                        }
-                    });
-                    servicoCapaAcabamento.decrement({ quantidade: +(num_copias * num_paginas) }, {
-                        where: {
-                            id_servicoCA: servico.servicoCA
-                        }
-                    });
+            }).then(async servico => {
+                if (servico.servicoCT == 5 || servico.servicoCT == 6) {
+                    await servicoService.serviceDecrement({ type: "ct", number: [5, 6], param: (num_copias * num_paginas) });
                 }
+                else {
+                    await servicoService.serviceDecrement({ type: "ct", number: [servicoCT, servicoCT], param: (num_copias * num_paginas) });
+                }
+                await servicoService.serviceDecrement({ type: "ca", number: [servicoCA, servicoCA], param: (num_copias * num_paginas) });
+                return res.json({ message: "Pedido realizado com sucesso!" });
             })
-            return res.json({ message: "Pedido realizado com sucesso!" });
         });
     },
 
@@ -182,25 +151,25 @@ module.exports = {
             return res.json({ error: "Informe se o pedido lhe atendeu ou não, por favor!" })
         }
 
-        var pedidos = await pedido.findByPk(req.params.id);
+        var pedidos = await pedidoService.findByPk(req.params.id);
 
         if (pedidos == null) {
             return res.json({ message: "Esse pedido não existe!" });
         }
 
-        if(pedidos.id_avaliacao_pedido !== 0){
-            return res.json({ message: "Esse pedido já foi avaliado!"});
+        if (pedidos.id_avaliacao_pedido !== 0) {
+            return res.json({ message: "Esse pedido já foi avaliado!" });
         }
 
         if (req.user.nif === pedidos.nif) {
-            await pedidos.update({ id_avaliacao_pedido, avaliacao_obs });
+            await pedidoService.updateRequest({ request: pedidos, param: { id_avaliacao_pedido, avaliacao_obs } });
             res.status(200).json({ message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
-            
-            req.avaliacao_obs = avaliacao_obs; //Passando mensagem para requisição, para podermos usar em outras etapas da requisição (mailer.EnviaEmail)
-            req.titulo_pedido = pedidos.titulo_pedido; //Titulo do pedido que foi atualizado
-            req.id = pedidos.id_pedido; //ID do pedido que foi atualizado
-            req.nif = pedidos.nif; // NIF do usuário que atualizou o pedido
-            next();
+
+            // req.avaliacao_obs = avaliacao_obs; //Passando mensagem para requisição, para podermos usar em outras etapas da requisição (mailer.EnviaEmail)
+            // req.titulo_pedido = pedidos.titulo_pedido; //Titulo do pedido que foi atualizado
+            // req.id = pedidos.id_pedido; //ID do pedido que foi atualizado
+            // req.nif = pedidos.nif; // NIF do usuário que atualizou o pedido
+            // next();
             return;
         }
         else {
