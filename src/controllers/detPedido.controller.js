@@ -14,7 +14,7 @@ module.exports = {
     //Buscar os pedidos por ID do pedido
     buscarPorIdPedido: async (req, res, next) => {
         var pedidos = await pedido.findByPk(req.params.id, {
-            include: ['det_pedidos', 'servicos']
+            include: ['det_pedidos', 'servico_pedidos']
         });
 
         //Retorna mensagem se encontrar um pedido nulo.

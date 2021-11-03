@@ -19,20 +19,21 @@ module.exports = function (app) {
   //POST
 
   //Insere um pedido, verificando se o usuário está logado e isnerindo um anexo.
-  app.post("/pedido", [authJwt.validateToken], upload.single('file'), verifyService, controller.adicionar);
+  app.post("/request", [authJwt.validateToken], upload.single('file'), verifyService, controller.adicionar);
+
 
 
   //GET
 
   //Meus pedidos (pegar pedido pelo req.user.nif => nif do usuário logado, que será verificado
   // pelo token jwt)
-  app.get("/meusPedidos", [authJwt.validateToken], controller.meusPedidos, serializer);
+  app.get("/myRequests/rated=:rated", [authJwt.validateToken], controller.meusPedidos);
 
 
   //PUT
 
   //rota para atualizar a avaliação
-  app.put("/avaliacao/:id", [authJwt.validateToken], controller.alterarAvaliacao, serializer, mailer.EnviaEmail);
+  app.put("/rating/:id", [authJwt.validateToken], controller.alterarAvaliacao, serializer, mailer.EnviaEmail);
 
 
   ////ADMIN
@@ -40,17 +41,14 @@ module.exports = function (app) {
   //GET
 
   //Buscar todos os pedidos
-  app.get("/pedidos", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos, serializer);
+  app.get("/requests/rated=:rated", [authJwt.validateToken, authJwt.isAdmin], controller.buscarTodos);
 
   //Buscar pedido por id do pedido
-  app.get("/pedido/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdPedido, serializer);
-
-  //Buscar pedido por id da tabela det_pedido (foreignkey)
-  app.get("/pedido/detalheid/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdDetalhe, serializer);
+  app.get("/request/:id", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorIdPedido);
 
   //Buscar pedido por nif da tabela usuario (foreignKey)
-  app.get("/pedido/nif/:nif", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif, serializer);
+  app.get("/request/nif/:nif", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNif);
 
   //Exibe o pedido pelo seu titlo
-  app.get("/pedido/titulo/:pedido", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome, serializer);
+  app.get("/request/title/:pedido", [authJwt.validateToken, authJwt.isAdmin], controller.buscarPorNome);
 };

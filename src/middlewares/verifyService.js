@@ -7,15 +7,13 @@ const verificaQtdade = (req, res, prop) => {
 
     const folhasImpressas = num_paginas * num_copias;
 
-    if (prop.quantidade < folhasImpressas) {
-        req.err = true
-        return res.json({ message: `Serviço ${prop.descricao} não contém quantidade suficiente para essa solicitação` })
-
-    }
     if (prop.quantidade <= 0) {
         req.err = true
-        return res.json({ message: `Serviço ${prop.descricao} está esgotado!` })
-
+        return res.json({ message: `Serviço ${prop.descricao} está esgotado!` });
+    }
+    else if (prop.quantidade < folhasImpressas) {
+        req.err = true
+        return res.json({ message: `Serviço ${prop.descricao} não contém quantidade suficiente para essa solicitação` });
     }
 }
 
@@ -33,6 +31,11 @@ const verifyService = async (req, res, next) => {
     }
 
     await verificaQtdade(req, res, CA);
+
+    if(req.err === true) {
+        return;
+    }
+
     await verificaQtdade(req, res, CT);
 
     req.sub_total = parseFloat(CA.valor_unitario + CT.valor_unitario);
