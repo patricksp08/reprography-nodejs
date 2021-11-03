@@ -304,21 +304,21 @@ module.exports = {
         return res.json({ status: 'ok', message: `Status do Usuário ${user.nif} atualizado com sucesso!` });
     },
 
-    excluirPorNif: async (req, res) => {
-        const user = await service.findUserbyPk(req.params.nif, { attributes: null });    
+    // excluirPorNif: async (req, res) => {
+    //     const user = await service.findUserbyPk(req.params.nif, { attributes: null });    
 
-        if (user == null) {
-            return res.status(404).json({ status: 'error', message: "Usuário não encontrado!" });
-        }
-        await service.destroyUser(user);
+    //     if (user == null) {
+    //         return res.status(404).json({ status: 'error', message: "Usuário não encontrado!" });
+    //     }
+    //     await service.destroyUser(user);
 
-        if (user.imagem !== config.adminAccount.defaultImage) {
-            await unlink(user.imagem, (err) => {
-                if (err) throw err;
-                console.log(`successfully deleted ${user.imagem}`);
-            });
-        }
+    //     if (user.imagem !== config.adminAccount.defaultImage) {
+    //         await unlink(user.imagem, (err) => {
+    //             if (err) throw err;
+    //             console.log(`successfully deleted ${user.imagem}`);
+    //         });
+    //     }
 
-        return res.status(200).json({ status: 'ok', message: `Conta com NIF ${user.nif} excluida com sucesso!!` });
-    }
+    //     return res.status(200).json({ status: 'ok', message: `Conta com NIF ${user.nif} excluida com sucesso!!` });
+    // }
 }
