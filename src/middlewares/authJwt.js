@@ -39,11 +39,8 @@ isAdmin = (req, res, next) => {
             return;
           }
           else{
-            req.status = 200;
-            return;
+            return res.json(req.array)
           }
-
-
         }
       }
       // res.redirect("/teste");

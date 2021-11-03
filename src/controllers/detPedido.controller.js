@@ -29,10 +29,8 @@ module.exports = {
 
         // Verificando se o usuário que está querendo ver os detalhes do pedido de outro usuário é administrador
         else {
-            await authJwt.isAdmin(req, res);   
-            if(req.status === 200){
-                return res.json(pedidos);
-            }         
+            req.array = [pedidos]
+            await authJwt.isAdmin(req, res);
         }
     }
 }
