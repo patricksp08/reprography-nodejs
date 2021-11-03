@@ -22,6 +22,7 @@ module.exports = function (app) {
   app.post("/request", [authJwt.validateToken], upload.single('file'), verifyService, controller.adicionar);
 
 
+
   //GET
 
   //Meus pedidos (pegar pedido pelo req.user.nif => nif do usuário logado, que será verificado

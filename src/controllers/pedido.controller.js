@@ -107,6 +107,7 @@ module.exports = {
                     num_paginas: num_paginas, observacoes: observacoes, sub_total_copias: req.sub_total
                 },
             }
+
         }).then(pedido => {
             req.id = pedido.id_pedido; //Será passado para identificar o ID do pedido no e-mail... 
             pedidoService.tableMidCreate({

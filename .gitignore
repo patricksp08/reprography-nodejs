@@ -112,3 +112,6 @@ dist
 
 #Arquivos de Upload
 /src/uploads/*
+
+#Arquivo de configuração do nodemon
+nodemon.json

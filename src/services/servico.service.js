@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 const { initModels } = require("../models/init-models");
+
 var { servicoCapaAcabamento, servicoCopiaTamanho } = initModels(sequelize)
 
 module.exports = {
@@ -71,7 +72,6 @@ module.exports = {
 
         return serv;
     },
-
 
     updateServico: async ({ servico, param }) => {
         const updated = await servico.update(param);

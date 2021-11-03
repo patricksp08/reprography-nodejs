@@ -304,6 +304,7 @@ module.exports = {
         return res.json({ status: 'ok', message: `Status do Usuário ${user.nif} atualizado com sucesso!` });
     },
 
+
     // excluirPorNif: async (req, res) => {
     //     const user = await service.findUserbyPk(req.params.nif, { attributes: null });    
 
@@ -312,6 +313,7 @@ module.exports = {
     //     }
     //     await service.destroyUser(user);
 
+
     //     if (user.imagem !== config.adminAccount.defaultImage) {
     //         await unlink(user.imagem, (err) => {
     //             if (err) throw err;
@@ -319,6 +321,8 @@ module.exports = {
     //         });
     //     }
 
+
     //     return res.status(200).json({ status: 'ok', message: `Conta com NIF ${user.nif} excluida com sucesso!!` });
     // }
+
 }
