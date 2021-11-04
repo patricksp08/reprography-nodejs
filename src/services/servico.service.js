@@ -7,11 +7,19 @@ var { servicoCapaAcabamento, servicoCopiaTamanho } = initModels(sequelize)
 
 module.exports = {
 
-    findAllServicos: async () => {
-        const servicoCA = await servicoCapaAcabamento.findAll();
-        const servicoCT = await servicoCopiaTamanho.findAll();
+    findAllServicos: async (enabled) => {
+        const servicoCA = await servicoCapaAcabamento.findAll({
+            where:{
+                ativado: enabled
+            }
+        });
+        const servicoCT = await servicoCopiaTamanho.findAll({
+            where:{
+                ativado: enabled
+            }
+        });
         
-        const servicos = [servicoCA, servicoCT];
+        const servicos = {"servicosCA": servicoCA, "servicosCT": servicoCT}
         
         return servicos;
     },

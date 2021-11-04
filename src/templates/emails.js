@@ -19,22 +19,32 @@ exports.forgotPasswordEmail = (token, mail) =>
 </style>
 `
 
-exports.pedidoEmail = ({ id, titulo_pedido, nif, centro_custos, curso, tipos_copia, tamanho_pagina, tipos_capa, acabamento,
+exports.pedidoEmail = ({ id, titulo_pedido, nif, centro_custos, curso, servicoCA, servicoCT,
     num_paginas, num_copias, modo_envio, observacoes
 }) =>
     ` 
-<div> <h1>Pedido nº${id}: ${titulo_pedido} </h1>
-<h3>Solicitado pelo usuário com NIF: <span>${nif}</span></h3>
-<p>Centro de Custos: ${centro_custos}</p>
-<p>Curso: ${curso}</p>
-<p>Tipo de Cópia: ${tipos_copia}</p>
-<p>Tamanho: ${tamanho_pagina}</p>
-<p>Tipos de capa: ${tipos_capa}</p>
-<p>Acabamento: ${acabamento}</p>
+<div> 
+<div>
+<h1>Pedido nº${id}: ${titulo_pedido} </h1>
+<h4>Modo de Envio: ${modo_envio}</h4>
+<h4>NIF do solicitante: <span>${nif}</span></h4>
+</div>
+
+<div>
+<h3>Servicos Solicitados:</h3>
+<h4>Tipo da cópia e Tamanho: </h4><p>${servicoCT}</p>
+<h4>Capa e acabamento: </h4><p>${servicoCA}</p>
+</div>
+
+<div>
+<h3>Outros:</h3>
 <p>Número de Páginas: ${num_paginas}</p>
 <p>Número de Cópias: ${num_copias}</p>
-<p>Modo de Envio: ${modo_envio}</p>
+
+<p>Centro de Custos: ${centro_custos}</p>
+<p>Curso: ${curso}</p>
 <p>Observações: ${observacoes}</p>
+</div>
 </div>
 
 <style>
@@ -44,9 +54,10 @@ exports.pedidoEmail = ({ id, titulo_pedido, nif, centro_custos, curso, tipos_cop
 </style>
 `
 
-exports.avaliacaoEmail = ({id, titulo_pedido, nif, avaliacao_obs, avaliacao_pedido}) => `
+exports.avaliacaoEmail = ({ id, titulo_pedido, nif, avaliacao_obs, avaliacao_pedido }) => `
 <div> <h1>Avaliação do pedido nº${id}: ${titulo_pedido} </h1>
-<h3>Realizada pelo usuário com NIF: <span>${nif}</span></h3>
+<h4>NIF do solicitante: <span>${nif}</span></h4>
 <h3>Status: ${avaliacao_pedido}</h3>
-<p>Feedback: ${avaliacao_obs}</p>
+<h4>Feedback:</h4>
+<p>${avaliacao_obs}</p>
 `

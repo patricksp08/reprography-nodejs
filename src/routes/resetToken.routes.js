@@ -15,7 +15,7 @@ module.exports = function (app) {
     //Post
 
     //Enviar e-mail de recuperação e inserir email na tabela resetToken
-    app.post('/forgotPassword', controller.forgotPasswordPost, mailer.EnviaEmail);
+    app.post('/forgotPassword', controller.forgotPasswordPost);
 
     //Criar senha nova para o usuário que resetou a senha pelo email
     app.post('/resetPassword', controller.resetPassword);

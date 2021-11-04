@@ -29,8 +29,8 @@ module.exports = function (app) {
   //Alterando quantidade e valor unitário do serviço
   app.put("/service/:id/type=:type", [authJwt.validateToken, authJwt.isAdmin], controller.servicosPut);
 
-  //Rota para ativar/desativar o serviço
-  //app.put(service/enable=:enable)
+  // Rota para ativar/desativar o serviço
+  app.put("/service/:id/type=:type/enable=:enable", [authJwt.validateToken, authJwt.isAdmin], controller.enableOrDisableServico)
 
   //DELETE
 
