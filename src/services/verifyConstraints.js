@@ -2,57 +2,68 @@ const { initModels } = require("../models/init-models");
 const { sequelize } = require("../models");
 var models = initModels(sequelize);
 
-const verifyConstraints = async ({ centro_custos, curso, modo_envio, avaliacao,
-    tamanho_pagina, tipos_copia, tipos_capa, acabamento, servicoCA, servicoCT }) => {
+const verifyConstraints = async ({ centro_custos, curso, modo_envio, avaliacao, servicoCA, servicoCT, departamento }) => {
 
-    var { descCentroCustos, descCurso, descModoEnvio, descAvaliacaoPedido } = null
+    //Usuário
+
+    if(departamento){
+        var dataDepartamento = await models.departamento.findOne({
+            where: { id_depto: departamento }
+        });
+    }
+
+    //Pedido&Det_Pedido
 
     if (centro_custos) {
         var dataCentroCustos = await models.centro_custos.findOne({
             where: { id_centro_custos: centro_custos }
         });
-
-        descCentroCustos = dataCentroCustos.descricao
     }
 
     if (curso) {
         var dataCurso = await models.curso.findOne({
             where: { id_curso: curso }
         });
-
-        descCurso = dataCurso.descricao
     }
 
-
     if (modo_envio) {
-        var dataModoEnvio = await models.modo_envio.findAll({
+        var dataModoEnvio = await models.modo_envio.findOne({
             where: { id_modo_envio: modo_envio }
         });
-
-        descModoEnvio = dataModoEnvio.descricao
     }
 
     if (avaliacao !== null) {
         var dataAvaliacaoPedido = await models.avaliacao_pedido.findOne({
             where: { id_avaliacao_pedido: avaliacao }
         });
+    }
 
-        descAvaliacaoPedido = dataAvaliacaoPedido.descricao
+    if(servicoCA) {
+        var dataServicoCA = await models.servicoCapaAcabamento.findOne({
+            where:{
+                id_servico: servicoCA
+            },
+            attributes: ["id_servico", "descricao"]
+        });
     }
 
     if(servicoCT) {
         var dataServicoCT = await models.servicoCopiaTamanho.findOne({
             where:{
-                id_servicoCT: servicoCT
-            }
-        })
+                id_servico: servicoCT
+            },
+            attributes: ["id_servico", "descricao"]
+        });
     }
 
-    return data = {
-        descCentroCustos,
-        descCurso,
-        descModoEnvio,
-        descAvaliacaoPedido
-    }
+    return data = [
+        dataDepartamento !== undefined ? dataDepartamento.dataValues : null,
+        dataAvaliacaoPedido !== undefined ? dataAvaliacaoPedido.dataValues : null,
+        dataCentroCustos !== undefined ? dataCentroCustos.dataValues : null,
+        dataCurso !== undefined ? dataCurso.dataValues : null,
+        dataModoEnvio !== undefined ? dataModoEnvio.dataValues : null,
+        dataServicoCA !== undefined ? dataServicoCA.dataValues : null,
+        dataServicoCT !== undefined ? dataServicoCT.dataValues : null,
+    ]
 }
 module.exports = verifyConstraints;

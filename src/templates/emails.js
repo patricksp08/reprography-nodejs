@@ -19,22 +19,25 @@ exports.forgotPasswordEmail = (token, mail) =>
 </style>
 `
 
-exports.pedidoEmail = ({ id, titulo_pedido, nif, centro_custos, curso, tipos_copia, tamanho_pagina, tipos_capa, acabamento,
+exports.pedidoEmail = ({ id, titulo_pedido, nif, centro_custos, curso, servicoCA, servicoCT,
     num_paginas, num_copias, modo_envio, observacoes
 }) =>
     ` 
 <div> <h1>Pedido nº${id}: ${titulo_pedido} </h1>
 <h3>Solicitado pelo usuário com NIF: <span>${nif}</span></h3>
-<p>Centro de Custos: ${centro_custos}</p>
-<p>Curso: ${curso}</p>
-<p>Tipo de Cópia: ${tipos_copia}</p>
-<p>Tamanho: ${tamanho_pagina}</p>
-<p>Tipos de capa: ${tipos_capa}</p>
-<p>Acabamento: ${acabamento}</p>
+<p>Modo de Envio: ${modo_envio}</p>
+
+<h4>Servicos:<h4>
+<p>${servicoCT}</p>
+<p>${servicoCA}</p>
+
 <p>Número de Páginas: ${num_paginas}</p>
 <p>Número de Cópias: ${num_copias}</p>
-<p>Modo de Envio: ${modo_envio}</p>
+
+<p>Centro de Custos: ${centro_custos}</p>
+<p>Curso: ${curso}</p>
 <p>Observações: ${observacoes}</p>
+
 </div>
 
 <style>
