@@ -2,9 +2,10 @@ const pedidoService = require("../services/pedido.service");
 const servicoService = require("../services/servico.service");
 const verifyConstraints = require("../services/verifyConstraints");
 
+//Envio de e-mail
 const { mailer } = require("../utils/");
 const mailerConfig = require('../.config/mailer.config');
-const { pedidoEmail } = require("../templates/emails");
+const template = require("../templates/emails");
 const { unlink } = require("fs");
 
 module.exports = {
@@ -146,12 +147,12 @@ module.exports = {
                 var constraints = await verifyConstraints({centro_custos: centro_custos, curso: curso, modo_envio: modo_envio, avaliacao: 0, servicoCA: servicoCA, servicoCT: servicoCT});
                 console.log(constraints);
 
-                var output = pedidoEmail({id: pedido.id_pedido, titulo_pedido: titulo_pedido, nif: req.user.nif, centro_custos: constraints[2].descricao, curso: constraints[3].descricao, servicoCA: constraints[5].descricao, servicoCT: constraints[6].descricao, modo_envio: constraints[4].descricao, num_paginas: num_paginas, num_copias: num_copias,observacoes: observacoes });
+                var output = template.pedidoEmail({id: pedido.id_pedido, titulo_pedido: titulo_pedido, nif: req.user.nif, centro_custos: constraints[2].descricao, curso: constraints[3].descricao, servicoCA: constraints[5].descricao, servicoCT: constraints[6].descricao, modo_envio: constraints[4].descricao, num_paginas: num_paginas, num_copias: num_copias,observacoes: observacoes });
                 var email = mailerConfig.reproEmail;
                 var title = `Solicitação de Reprografia Nº${pedido.id_pedido}`;
         
                 if (req.file) {
-                    attachments = [
+                    var attachments = [
                         {
                             filename: req.file.filename,
                             path: req.file.path
@@ -167,9 +168,9 @@ module.exports = {
         
                     }, 5000)
                 }
-                else { var attachments = null }
+                else { attachments = null }
                 console.log(output);
-                await mailer.sendEmails(email, title, output, attachments);
+                await mailer.sendEmails(email, title, output, {attachments: attachments});
             });
         });
     },
@@ -203,6 +204,13 @@ module.exports = {
             // req.id = pedidos.id_pedido; //ID do pedido que foi atualizado
             // req.nif = pedidos.nif; // NIF do usuário que atualizou o pedido
             // next();
+            var constraints = await verifyConstraints({avaliacao: id_avaliacao_pedido});
+            console.log(constraints);
+            var output = template.avaliacaoEmail({id: pedidos.id_pedido, titulo_pedido: pedidos.titulo_pedido, nif: pedidos.nif, avaliacao_obs: avaliacao_obs, avaliacao_pedido: constraints[1].descricao});
+            var email = mailerConfig.reproEmail;
+            var title = `Avaliação da Reprografia Nº${pedidos.id_pedido}`;
+            console.log(output);
+            await mailer.sendEmails(email, title, output, {attachments: null});
             return;
         }
         else {

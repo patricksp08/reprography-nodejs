@@ -21,7 +21,8 @@ var mailConfig = {
 
 var transport = nodemailer.createTransport(mailConfig);
 
-exports.sendEmails = async ({ email, title, output, attachments }) => {
+exports.sendEmails = async ( email, title, output, {attachments}) => {
+
     var message = {
         from: mailer.hotmail.auth.user,
         to: email,
