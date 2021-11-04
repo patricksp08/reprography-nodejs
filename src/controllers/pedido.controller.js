@@ -1,5 +1,12 @@
 const pedidoService = require("../services/pedido.service");
-const servicoService = require("../services/servico.service")
+const servicoService = require("../services/servico.service");
+const verifyConstraints = require("../services/verifyConstraints");
+
+//Envio de e-mail
+const { mailer } = require("../utils/");
+const mailerConfig = require('../.config/mailer.config');
+const template = require("../templates/emails");
+const { unlink } = require("fs");
 
 module.exports = {
 
@@ -12,19 +19,19 @@ module.exports = {
         var { rated } = req.params;
 
         if (rated == 1) {
-            rated = [1, 2]
+            rated = [1, 2];
         }
         else if (rated == 0) {
-            rated = [0, 0]
+            rated = [0, 0];
         }
         else {
-            return res.json({ message: "Insira um parâmetro válido!" })
+            return res.json({ message: "Insira um parâmetro válido!" });
         }
 
         var pedidos = await pedidoService.findAllRated(rated);
 
         if (pedidos.length < 1) {
-            return res.json({ message: "Nenhum pedido encontrado!" })
+            return res.json({ message: "Nenhum pedido encontrado!" });
         }
         return res.json(pedidos);
     },
@@ -33,7 +40,7 @@ module.exports = {
         // const query = `%${req.query.search}`;
         var pedidos = await pedidoService.findByName(req.params.pedido);
         if (pedidos.length < 1) {
-            return res.json({ message: "Nenhum pedido encontrado!" })
+            return res.json({ message: "Nenhum pedido encontrado!" });
         }
         return res.json(pedidos);
     },
@@ -42,7 +49,7 @@ module.exports = {
     buscarPorIdPedido: async (req, res, next) => {
         var pedidos = await pedidoService.findByPk(req.params.id);
         if (pedidos == null) {
-            return res.json({ message: "Pedido não encontrado!" })
+            return res.json({ message: "Pedido não encontrado!" });
         }
         return res.json(pedidos);
     },
@@ -52,19 +59,19 @@ module.exports = {
         var { rated } = req.params;
 
         if (rated == 1) {
-            rated = [1, 2]
+            rated = [1, 2];
         }
         else if (rated == 0) {
-            rated = [0, 0]
+            rated = [0, 0];
         }
         else {
-            return res.json({ message: "Insira um parâmetro válido!" })
+            return res.json({ message: "Insira um parâmetro válido!" });
         }
 
         const pedidos = await pedidoService.findAllRatedbyNif(req.params.nif, rated);
 
         if (pedidos.length < 1) {
-            return res.json({ message: "Nenhum pedido encontrado!" })
+            return res.json({ message: "Nenhum pedido encontrado!" });
         }
         return res.json(pedidos);
     },
@@ -79,21 +86,21 @@ module.exports = {
         var { rated } = req.params;
 
         if (rated == 1) {
-            rated = [1, 2]
+            rated = [1, 2];
         }
         else if (rated == 0) {
-            rated = [0, 0]
+            rated = [0, 0];
         }
         else {
-            return res.json({ message: "Insira um parâmetro válido!" })
+            return res.json({ message: "Insira um parâmetro válido!" });
         }
 
         var pedidos = await pedidoService.findAllRatedbyNif(req.user.nif, rated);
 
         if (pedidos.length < 1) {
-            return res.json({ message: "Nenhum pedido encontrado!" })
+            return res.json({ message: "Nenhum pedido encontrado!" });
         }
-        return res.json(pedidos)
+        return res.json(pedidos);
     },
 
     //POST
@@ -121,7 +128,6 @@ module.exports = {
             }
 
         }).then(pedido => {
-            req.id = pedido.id_pedido; //Será passado para identificar o ID do pedido no e-mail... 
             pedidoService.tableMidCreate({
                 param: {
                     pedidoId: pedido.id_pedido,
@@ -137,7 +143,35 @@ module.exports = {
                 }
                 await servicoService.serviceDecrement({ type: "ca", number: [servicoCA, servicoCA], param: (num_copias * num_paginas) });
                 return res.json({ message: "Pedido realizado com sucesso!" });
-            })
+            }).then(async send =>{
+                var constraints = await verifyConstraints({centro_custos: centro_custos, curso: curso, modo_envio: modo_envio, avaliacao: 0, servicoCA: servicoCA, servicoCT: servicoCT});
+                console.log(constraints);
+
+                var output = template.pedidoEmail({id: pedido.id_pedido, titulo_pedido: titulo_pedido, nif: req.user.nif, centro_custos: constraints[2].descricao, curso: constraints[3].descricao, servicoCA: constraints[5].descricao, servicoCT: constraints[6].descricao, modo_envio: constraints[4].descricao, num_paginas: num_paginas, num_copias: num_copias,observacoes: observacoes });
+                var email = mailerConfig.reproEmail;
+                var title = `Solicitação de Reprografia Nº${pedido.id_pedido}`;
+        
+                if (req.file) {
+                    var attachments = [
+                        {
+                            filename: req.file.filename,
+                            path: req.file.path
+                        }
+                    ]
+                    //Exclui o Anexo que foi feito upload pelo multer para ser enviado pelo mailer 
+                    //depois de 5seg
+                    setTimeout(async () => {
+                        await unlink(req.file.path, (err) => {
+                            if (err) throw err;
+                            console.log(`successfully deleted ${req.file.path}`);
+                        });
+        
+                    }, 5000)
+                }
+                else { attachments = null }
+                console.log(output);
+                await mailer.sendEmails(email, title, output, {attachments: attachments});
+            });
         });
     },
 
@@ -170,6 +204,13 @@ module.exports = {
             // req.id = pedidos.id_pedido; //ID do pedido que foi atualizado
             // req.nif = pedidos.nif; // NIF do usuário que atualizou o pedido
             // next();
+            var constraints = await verifyConstraints({avaliacao: id_avaliacao_pedido});
+            console.log(constraints);
+            var output = template.avaliacaoEmail({id: pedidos.id_pedido, titulo_pedido: pedidos.titulo_pedido, nif: pedidos.nif, avaliacao_obs: avaliacao_obs, avaliacao_pedido: constraints[1].descricao});
+            var email = mailerConfig.reproEmail;
+            var title = `Avaliação da Reprografia Nº${pedidos.id_pedido}`;
+            console.log(output);
+            await mailer.sendEmails(email, title, output, {attachments: null});
             return;
         }
         else {

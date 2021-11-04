@@ -15,6 +15,9 @@ const bcrypt = require("bcrypt")
 //Usado para criar o token de reset aleatório
 const crypto = require('crypto');
 
+//Envio de e-mail
+const template = require("../templates/emails");
+const { mailer } = require("../utils/");
 
 module.exports = {
 
@@ -50,7 +53,7 @@ module.exports = {
       });
 
     //Cria um resete de token aleatório
-    req.token = crypto.randomBytes(64).toString('base64');
+    var token = crypto.randomBytes(64).toString('base64');
 
     //token expira depois de uma hora
     var expireDate = new Date();
@@ -60,11 +63,16 @@ module.exports = {
     await resettoken.create({
       email: mail,
       expiration: expireDate,
-      token: req.token,
+      token: token,
       used: 0
     });
-    next();
-    return res.json({ status: 'ok' });
+    res.json({ status: 'ok' });
+
+    var output = template.forgotPasswordEmail(token, mail)
+    var email = mail;
+    var title = "Recuperação de Senha";
+    await mailer.sendEmails(email, title, output, { attachments: null });
+    return;
   },
 
 
