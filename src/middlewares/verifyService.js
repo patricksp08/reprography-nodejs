@@ -1,5 +1,4 @@
-const { initModels } = require("../models/init-models");
-var { servicoCapaAcabamento, servicoCopiaTamanho } = initModels(sequelize)
+const service = require("../services/servico.service");
 
 const verificaQtdade = (req, res, prop) => {
 
@@ -23,8 +22,8 @@ const verifyService = async (req, res, next) => {
     req.err = false;
 
     //Regra de Negócio
-    const CA = await servicoCapaAcabamento.findByPk(servicoCA);
-    const CT = await servicoCopiaTamanho.findByPk(servicoCT);
+    const CA = await service.findServicoByPk({type: "ca", id: servicoCA});
+    const CT = await service.findServicoByPk({type: "ct", id: servicoCT});
 
     if(CA === null || CT === null) {
         return res.json({ error: "Insira um serviço valido!" })

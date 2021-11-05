@@ -33,7 +33,16 @@ module.exports = {
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" });
         }
-        return res.json(pedidos);
+        //Verificando Constraints
+        for (let i = 0; i < pedidos.length; i++) {
+            var constraints = await verifyConstraints({ modo_envio: pedidos[i].dataValues.id_modo_envio, avaliacao: pedidos[i].dataValues.id_avaliacao_pedido });
+
+            pedidos[i].dataValues.id_avaliacao_pedido = constraints[1].descricao;
+            pedidos[i].dataValues.id_modo_envio = constraints[4].descricao;
+
+        }
+        res.json(pedidos);
+        return;
     },
 
     buscarPorNome: async (req, res, next) => {
@@ -42,7 +51,17 @@ module.exports = {
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" });
         }
-        return res.json(pedidos);
+
+        //Verificando Constraints
+        for (let i = 0; i < pedidos.length; i++) {
+            var constraints = await verifyConstraints({ modo_envio: pedidos[i].dataValues.id_modo_envio, avaliacao: pedidos[i].dataValues.id_avaliacao_pedido });
+
+            pedidos[i].dataValues.id_avaliacao_pedido = constraints[1].descricao;
+            pedidos[i].dataValues.id_modo_envio = constraints[4].descricao;
+
+        }
+        res.json(pedidos);
+        return;
     },
 
     //Buscar os pedidos por ID do pedido
@@ -51,7 +70,15 @@ module.exports = {
         if (pedidos == null) {
             return res.json({ message: "Pedido não encontrado!" });
         }
-        return res.json(pedidos);
+
+        var constraints = await verifyConstraints({ modo_envio: pedidos.dataValues.id_modo_envio, avaliacao: pedidos.dataValues.id_avaliacao_pedido });
+
+        pedidos.dataValues.id_avaliacao_pedido = constraints[1].descricao;
+        pedidos.dataValues.id_modo_envio = constraints[4].descricao;
+
+
+        res.json(pedidos);
+        return;
     },
 
     //Todos os pedidos feito por tal pessoa (nif)
@@ -73,7 +100,16 @@ module.exports = {
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" });
         }
-        return res.json(pedidos);
+
+        for (let i = 0; i < pedidos.length; i++) {
+            var constraints = await verifyConstraints({ modo_envio: pedidos[i].dataValues.id_modo_envio, avaliacao: pedidos[i].dataValues.id_avaliacao_pedido });
+
+            pedidos[i].dataValues.id_avaliacao_pedido = constraints[1].descricao;
+            pedidos[i].dataValues.id_modo_envio = constraints[4].descricao;
+
+        }
+        res.json(pedidos);
+        return;
     },
 
 
@@ -100,7 +136,17 @@ module.exports = {
         if (pedidos.length < 1) {
             return res.json({ message: "Nenhum pedido encontrado!" });
         }
-        return res.json(pedidos);
+
+        //Verificando Constraints 
+        for (let i = 0; i < pedidos.length; i++) {
+            var constraints = await verifyConstraints({ modo_envio: pedidos[i].dataValues.id_modo_envio, avaliacao: pedidos[i].dataValues.id_avaliacao_pedido });
+
+            pedidos[i].dataValues.id_avaliacao_pedido = constraints[1].descricao;
+            pedidos[i].dataValues.id_modo_envio = constraints[4].descricao;
+
+        }
+        res.json(pedidos);
+        return;
     },
 
     //POST
@@ -143,14 +189,14 @@ module.exports = {
                 }
                 await servicoService.serviceDecrement({ type: "ca", number: [servicoCA, servicoCA], param: (num_copias * num_paginas) });
                 return res.json({ message: "Pedido realizado com sucesso!" });
-            }).then(async send =>{
-                var constraints = await verifyConstraints({centro_custos: centro_custos, curso: curso, modo_envio: modo_envio, avaliacao: 0, servicoCA: servicoCA, servicoCT: servicoCT});
-                console.log(constraints);
+            }).then(async send => {
+                var constraints = await verifyConstraints({ centro_custos: centro_custos, curso: curso, modo_envio: modo_envio, avaliacao: 0, servicoCA: servicoCA, servicoCT: servicoCT });
+                // console.log(constraints);
 
-                var output = template.pedidoEmail({id: pedido.id_pedido, titulo_pedido: titulo_pedido, nif: req.user.nif, centro_custos: constraints[2].descricao, curso: constraints[3].descricao, servicoCA: constraints[5].descricao, servicoCT: constraints[6].descricao, modo_envio: constraints[4].descricao, num_paginas: num_paginas, num_copias: num_copias,observacoes: observacoes });
+                var output = template.pedidoEmail({ id: pedido.id_pedido, titulo_pedido: titulo_pedido, nif: req.user.nif, centro_custos: constraints[2].descricao, curso: constraints[3].descricao, servicoCA: constraints[5].descricao, servicoCT: constraints[6].descricao, modo_envio: constraints[4].descricao, num_paginas: num_paginas, num_copias: num_copias, observacoes: observacoes });
                 var email = mailerConfig.reproEmail;
                 var title = `Solicitação de Reprografia Nº${pedido.id_pedido}`;
-        
+
                 if (req.file) {
                     var attachments = [
                         {
@@ -165,12 +211,12 @@ module.exports = {
                             if (err) throw err;
                             console.log(`successfully deleted ${req.file.path}`);
                         });
-        
+
                     }, 5000)
                 }
                 else { attachments = null }
-                console.log(output);
-                await mailer.sendEmails(email, title, output, {attachments: attachments});
+                // console.log(output);
+                await mailer.sendEmails(email, title, output, { attachments: attachments });
             });
         });
     },
@@ -198,19 +244,13 @@ module.exports = {
         if (req.user.nif === pedidos.nif) {
             await pedidoService.updateRequest({ request: pedidos, param: { id_avaliacao_pedido, avaliacao_obs } });
             res.status(200).json({ message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
-
-            // req.avaliacao_obs = avaliacao_obs; //Passando mensagem para requisição, para podermos usar em outras etapas da requisição (mailer.EnviaEmail)
-            // req.titulo_pedido = pedidos.titulo_pedido; //Titulo do pedido que foi atualizado
-            // req.id = pedidos.id_pedido; //ID do pedido que foi atualizado
-            // req.nif = pedidos.nif; // NIF do usuário que atualizou o pedido
-            // next();
-            var constraints = await verifyConstraints({avaliacao: id_avaliacao_pedido});
-            console.log(constraints);
-            var output = template.avaliacaoEmail({id: pedidos.id_pedido, titulo_pedido: pedidos.titulo_pedido, nif: pedidos.nif, avaliacao_obs: avaliacao_obs, avaliacao_pedido: constraints[1].descricao});
+            var constraints = await verifyConstraints({ avaliacao: id_avaliacao_pedido });
+            // console.log(constraints);
+            var output = template.avaliacaoEmail({ id: pedidos.id_pedido, titulo_pedido: pedidos.titulo_pedido, nif: pedidos.nif, avaliacao_obs: avaliacao_obs, avaliacao_pedido: constraints[1].descricao });
             var email = mailerConfig.reproEmail;
             var title = `Avaliação da Reprografia Nº${pedidos.id_pedido}`;
-            console.log(output);
-            await mailer.sendEmails(email, title, output, {attachments: null});
+            // console.log(output);
+            await mailer.sendEmails(email, title, output, { attachments: null });
             return;
         }
         else {
