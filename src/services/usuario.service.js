@@ -1,6 +1,5 @@
 //Biblioteca do sequelize 
 const Sequelize = require("sequelize");
-const { ROLES } = require("../models");
 
 //Operadores do sequelize
 const Op = Sequelize.Op;
