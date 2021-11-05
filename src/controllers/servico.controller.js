@@ -41,7 +41,7 @@ module.exports = {
             }
             else{
                 status = "error";
-                message = `${typeError} Serviço ${servico.id_servico} ${errorMessage}`;
+                message = `${typeError} Serviço ${errorMessage}`;
             }
             return res.json({ status: status, message: message})
         })
@@ -74,7 +74,7 @@ module.exports = {
                 }
                 else{
                     status = "error";
-                    message = `${typeError} Serviço ${servico.id_servico} ${errorMessage}`;
+                    message = `${typeError} Serviço ${errorMessage}`;
                 }
                 return res.json({ status: status, message: message})
             })
@@ -105,7 +105,7 @@ module.exports = {
                 }
                 else{
                     status = "error";
-                    message = `${typeError} Serviço ${servico.id_servico} ${errorMessage}`;
+                    message = `${typeError} Serviço ${errorMessage}`;
                 }
                 return res.json({ status: status, message: message})
     }

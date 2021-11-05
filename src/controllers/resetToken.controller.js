@@ -67,7 +67,6 @@ module.exports = {
       used: 0
     });
     res.json({ status: 'ok' });
-
     var output = template.forgotPasswordEmail(token, mail)
     var email = mail;
     var title = "Recuperação de Senha";

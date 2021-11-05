@@ -48,7 +48,7 @@ module.exports = {
 
             const cursoDesc = await curso.findOne({ where: { id_curso: i } }, { attributes: ["descricao"] });
 
-            let cursoCount = await pedido.count({
+            let cursoCount = await det_pedido.count({
                 where: {
                     createdAt: {
                         [Op.between]: [startedDate, endDate]
@@ -71,7 +71,7 @@ module.exports = {
 
             const centro_custosDesc = await centro_custos.findOne({ where: { id_centro_custos: i } }, { attributes: ["descricao"] });
 
-            const centro_custosCount = await pedido.count({
+            const centro_custosCount = await det_pedido.count({
                 where: {
                     createdAt: {
                         [Op.between]: [startedDate, endDate]
@@ -133,81 +133,6 @@ module.exports = {
 
         var folhas_impressas = (total_copias * num_paginas);
 
-        //Copias Preto e Branco e Coloridas
-        const num_tipos_copia = 2;
-
-        //Objeto que será preenchido com descricao e quantidade
-        var objColor = {};
-
-        //Percorrendo os dois tipos de copia e trazendo os valores quando id_tipos_copia = 1 e 2
-        for (let i = 1; i <= num_tipos_copia; i++) {
-
-            const tipos_copiaDesc = await tipos_copia.findOne({ where: { id_tipos_copia: i } }, { attributes: ["descricao"] });
-
-            var tipos_copiaCount = await det_pedido.count({
-                where: {
-                    createdAt: {
-                        [Op.between]: [startedDate, endDate]
-                    },
-                    id_tipos_copia: i
-                }
-            })
-
-            objColor[i] = {
-                descricao: tipos_copiaDesc.descricao,
-                qtdade_solicitada: tipos_copiaCount
-            }
-        }
-
-        //Tipos de capa: 1 = (PAPEL) ; 2 = (PVC)
-        const num_tipos_capa = 2;
-
-        //Objeto que será preenchido com descricao e quantidade
-        var objCapa = {};
-
-        //Percorrendo os dois tipos de capa e trazendo os valores quando id_tipos_capa = 1 e 2
-        for (let i = 1; i <= num_tipos_capa; i++) {
-
-            const tipos_capaDesc = await tipos_capa.findOne({ where: { id_tipos_capa: i } }, { attributes: ["descricao"] });
-
-            var tipos_capaCount = await det_pedido.count({
-                where: {
-                    createdAt: {
-                        [Op.between]: [startedDate, endDate]
-                    },
-                    id_tipos_capa: i
-                },
-            });
-
-            objCapa[i] = {
-                descricao: tipos_capaDesc.descricao,
-                qtdade_solicitada: tipos_capaCount
-            }
-        }
-
-
-        const num_tamanho_pagina = 5;
-        var tamanho_paginaObj = {};
-
-        for (let i = 1; i <= num_tamanho_pagina; i++) {
-
-            const tamanho_paginaDesc = await tamanho_pagina.findOne({ where: { id_tamanho: i } }, { attributes: ["descricao"] });
-
-            const tamanho_paginaCount = await det_pedido.count({
-                where: {
-                    createdAt: {
-                        [Op.between]: [startedDate, endDate]
-                    },
-                    id_tamanho: i
-                }
-            })
-
-            tamanho_paginaObj[i] = {
-                descricao: tamanho_paginaDesc.descricao,
-                qtdade_solicitada: tamanho_paginaCount,
-            }
-        }
-
 
         return res.json({
             mes: meses[mes - 1],
@@ -217,9 +142,6 @@ module.exports = {
             num_paginas: num_paginas,
             num_copias: total_copias,
             folhas_impressas: folhas_impressas,
-            tipos_copia: objColor,
-            tipos_capa: objCapa,
-            tamanho_pagina: tamanho_paginaObj,
             centro_custos: centro_custosObj,
             curso: cursoObj,
             custo_total: custo_total
@@ -286,7 +208,7 @@ module.exports = {
 
                 const cursoDesc = await curso.findOne({ where: { id_curso: i } }, { attributes: ["descricao"] });
 
-                let cursoCount = await pedido.count({
+                let cursoCount = await det_pedido.count({
                     where: {
                         createdAt: {
                             [Op.between]: [startedDate, endDate]
@@ -309,7 +231,7 @@ module.exports = {
 
                 const centro_custosDesc = await centro_custos.findOne({ where: { id_centro_custos: i } }, { attributes: ["descricao"] });
 
-                const centro_custosCount = await pedido.count({
+                const centro_custosCount = await det_pedido.count({
                     where: {
                         createdAt: {
                             [Op.between]: [startedDate, endDate]
@@ -371,80 +293,6 @@ module.exports = {
 
             var folhas_impressas = (total_copias * num_paginas);
 
-            //Copias Preto e Branco e Coloridas
-            const num_tipos_copia = 2;
-
-            //Objeto que será preenchido com descricao e quantidade
-            var objColor = {};
-
-            //Percorrendo os dois tipos de copia e trazendo os valores quando id_tipos_copia = 1 e 2
-            for (let i = 1; i <= num_tipos_copia; i++) {
-
-                const tipos_copiaDesc = await tipos_copia.findOne({ where: { id_tipos_copia: i } }, { attributes: ["descricao"] });
-
-                var tipos_copiaCount = await det_pedido.count({
-                    where: {
-                        createdAt: {
-                            [Op.between]: [startedDate, endDate]
-                        },
-                        id_tipos_copia: i
-                    }
-                })
-
-                objColor[i] = {
-                    descricao: tipos_copiaDesc.descricao,
-                    qtdade_solicitada: tipos_copiaCount
-                }
-            }
-
-            //Tipos de capa: 1 = (PAPEL) ; 2 = (PVC)
-            const num_tipos_capa = 2;
-
-            //Objeto que será preenchido com descricao e quantidade
-            var objCapa = {};
-
-            //Percorrendo os dois tipos de capa e trazendo os valores quando id_tipos_capa = 1 e 2
-            for (let i = 1; i <= num_tipos_capa; i++) {
-
-                const tipos_capaDesc = await tipos_capa.findOne({ where: { id_tipos_capa: i } }, { attributes: ["descricao"] });
-
-                var tipos_capaCount = await det_pedido.count({
-                    where: {
-                        createdAt: {
-                            [Op.between]: [startedDate, endDate]
-                        },
-                        id_tipos_capa: i
-                    },
-                });
-
-                objCapa[i] = {
-                    descricao: tipos_capaDesc.descricao,
-                    qtdade_solicitada: tipos_capaCount
-                }
-            }
-
-
-            const num_tamanho_pagina = 5;
-            var tamanho_paginaObj = {};
-
-            for (let i = 1; i <= num_tamanho_pagina; i++) {
-
-                const tamanho_paginaDesc = await tamanho_pagina.findOne({ where: { id_tamanho: i } }, { attributes: ["descricao"] });
-
-                const tamanho_paginaCount = await det_pedido.count({
-                    where: {
-                        createdAt: {
-                            [Op.between]: [startedDate, endDate]
-                        },
-                        id_tamanho: i
-                    }
-                })
-
-                tamanho_paginaObj[i] = {
-                    descricao: tamanho_paginaDesc.descricao,
-                    qtdade_solicitada: tamanho_paginaCount,
-                }
-            }
 
             //Continuando o Looping para trazer os meses antes de janeiro (1) -> dezembro (12)...
             if (i === 10 && mes < 4) {
@@ -464,9 +312,6 @@ module.exports = {
                 num_paginas: num_paginas,
                 num_copias: total_copias,
                 folhas_impressas: folhas_impressas,
-                tipos_copia: objColor,
-                tipos_capa: objCapa,
-                tamanho_pagina: tamanho_paginaObj,
                 centro_custos: centro_custosObj,
                 curso: cursoObj,
                 custo_total: custo_total
