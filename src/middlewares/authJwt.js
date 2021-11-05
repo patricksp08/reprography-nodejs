@@ -3,9 +3,7 @@ const config = require("../.config/auth.config");
 //Método que verifica o token enviado na requisição com o token e a palavra de segurança setada no back-end
 const { verify } = require("jsonwebtoken");
 
-// Inicializando as models e as recebendo
-const { initModels } = require("../models/init-models");
-var { usuario } = initModels(sequelize);
+const service = require("../services/usuario.service");
 
 //Verifica se a requisição contém os valores setados no config.header e no config.secret
 const validateToken = (req, res, next) => {
@@ -30,8 +28,8 @@ const validateToken = (req, res, next) => {
 };
 
 isAdmin = (req, res, next) => {
-  usuario.findByPk(req.user.nif).then(user => {
-    user.getRoles().then(roles => {
+  service.findUserbyPk(req.user.nif, {attributes: null}).then(user => {
+    service.getRoles(user).then(roles => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].descricao === "admin") {
           if(next){
