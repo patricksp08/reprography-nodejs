@@ -123,6 +123,6 @@ All user permissions
 
 With our documentation made with Swagger, we were able to simplify the development of our API, through the set and tools that Swagger itself makes available to us, helping to design and document APIs at scale.
 
-API documentation (Swagger) running on: `http://localhost:3002/v2/docs/`
+API documentation (Swagger) running on: `http://localhost:3002/docs`
 
 ![image](https://user-images.githubusercontent.com/71889159/139081009-8728042d-ac41-44a6-8fbf-f367099d3051.png)
