@@ -366,6 +366,14 @@ const pedidoEmail = ({ id, titulo_pedido, nif, centro_custos, curso, servicoCA, 
         span {
           color: red;
         }
+        .flex{
+          display: flex;
+          justify-content: center;
+        }
+
+        #nif{
+          margin-left: 20px;
+        }
       </style>
     
     </head>
@@ -390,16 +398,19 @@ const pedidoEmail = ({ id, titulo_pedido, nif, centro_custos, curso, servicoCA, 
                       <tr>
                         <td>
                           <h1>Pedido nº${id}: ${titulo_pedido} </h1>
-                          <h4>Modo de Envio: ${modo_envio}</h4>
-                          <h4>NIF do solicitante: <span>${nif}</span></h4>
+                          <div class="flex">                          
+                            <h4>Modo de Envio: ${modo_envio}</h4>
+                            <h4 id="nif">NIF do solicitante: <span>${nif}</span></h4>
+                          </div>
+
             </div>
     
             <div>
               <h3>Servicos Solicitados:</h3>
-              <h4>Tipo da cópia e Tamanho: </h4>
-              <p>${servicoCT}</p>
-              <h4>Capa e acabamento: </h4>
-              <p>${servicoCA}</p>
+              <h4>Tipo da cópia e Tamanho:<p>${servicoCT}</p> </h4>
+              
+              <h4>Capa e acabamento: <p>${servicoCA}</p> </h4>
+              
             </div>
     
             <div>
