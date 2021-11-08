@@ -17,7 +17,6 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 
  **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
-	@@ -22,110 +21,108 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 **<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center"  height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img> 
 
@@ -47,7 +46,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
  * Crie o database que inseriu nesse arquivo (exemplo: bdrepro)<br>
  * Altere as informações referentes ao envio de e-mail (mailer.config.json)
 
-#### Requerimentos
+#### Requisitos
 
 - Node.js (v14.18.1)
 - NPM (6.14.15)
