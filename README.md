@@ -28,7 +28,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 ## 📌 Recursos utilizados neste projeto:
 
 <table>
- <th><h3>Runtime environment</h3><th>
+ <th><h3>Runtime environment</h3></th>
  <th><h3>Linguagem</h3></th>
  <th><h3>Banco de dados</h3></th>
  <th><h3>Framework</h3></th>
