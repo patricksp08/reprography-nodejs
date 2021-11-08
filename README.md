@@ -1,11 +1,13 @@
-# Reprography Project || Back-end
+# Reprography System || Back-end
 
 ## Apresentation
-Welcome, this project is the Course Conclusion Work (TCC) of the developers **Daniel Santos Lopes Silva, João Otavio Ferraz Silva, Mario Lucca de Oliveira Padrão, Mauricio Alves Moreira, Oséias Farias de Jesus, Patrick de Almeida Borges and Tiago Soares Caetano**, students from the **SENAI Suiço-Brasileira Escola Paulo Ernesto Tolle**.
+Welcome, this project is our the Course Conclusion Work <a href="https://pt.wikipedia.org/wiki/Trabalho_de_conclus%C3%A3o_de_curso"> (TCC) </a> of the technical course in Development of systems of the School SENAI Swiss-Brazilian Paulo Ernesto Tolle.
 
-## Project Status: ⚠️ Under development ⚠️
+[Front-end Github](https://github.com/ViictorSR388/reprografia_front-end)
 
-# About the project
+#### Project Status: ⚠️ Under development ⚠️
+
+## About the project
 This application was requested by the coordinator of the Senai Suiço-Brasileira school, in order to control the prints made by the different sectors of the school (teachers, employees, etc.), thus being able to better manage expenses and waste.
 ## 📌 Resources used in this project:
 
@@ -50,7 +52,8 @@ Routes were secured through JWT in conjunction with Swagger.
  * Change the information regarding the database connection (db.config.json )<br>
  * Create the database you inserted in this file (example: bdrepro)<br>
  * Change the information regarding sending email (mailer.config.json)
-#### requirements
+ 
+#### Requirements
 
 - Node.js (v14.18.1)
 - NPM (6.14.15)
