@@ -85,11 +85,13 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 Além disto é bom ter um editor para trabalhar com o código como: [VSCode](https://code.visualstudio.com).
 
 
+
 ### Configurando
 
 1. Clone ou baixe esse repositório na sua máquina.
 2. Extraia o arquivo [".config.zip"](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/.config.zip) localizado em ["./info_api/"](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/info_api) para a pasta ["./src"](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/src).
 3. Depois, dentro da pasta .config, há três arquivos para configurarmos: auth.config.json, db.config.json e mailer.config.json.
+
 
 #### auth.config.json
 
@@ -114,6 +116,7 @@ Aqui ficam as configurações de JWT e da primeira conta da aplicação.
   }
 }
 ```
+
 
 #### db.config.json
 
@@ -141,7 +144,8 @@ Aqui ficam as configurações de conexão com o banco de dados.
                                  ...
 ```    
 
-##### mailer.config.json
+
+#### mailer.config.json
 
 Aqui ficam as configurações de envio de e-mail. 
 
