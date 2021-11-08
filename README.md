@@ -3,7 +3,7 @@
 <h2 align="center">Sistema Reprográfico - Back-end</h2>
 
 [English Version](https://github.com/Luccazx12/reprography-nodejs/blob/master/README-en.md) 
-<div align="center"><img src"https://img.shields.io/github/license/luccazx12/reprography-nodejs"><img></div>
+<div align="center">https://img.shields.io/github/license/luccazx12/reprography-nodejs</div>
 
 
 ## Apresentação
