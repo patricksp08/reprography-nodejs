@@ -124,6 +124,18 @@ Documentação da API (Swagger) rodando em: `http://localhost:3002/docs/`
 > Caso tenha alguma dúvida confira este [guia de como contribuir no GitHub](https://github.com/firstcontributions/first-contributions)
 
 
+## :rocket: Desenvolvedores :octocat:
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Luccazx12">
+    <img src="https://avatars.githubusercontent.com/u/71888383?v=4" width="100px" alt="Imagem do perfil de Lucca"/>
+    <br />
+    <sub><b>Lucca</b></sub><br />:snowflake::snowman::snowflake:</td>
+
+
+</table>
+
 ## 📝 Licença
 
 Este projeto esta sobe a licença MIT.
