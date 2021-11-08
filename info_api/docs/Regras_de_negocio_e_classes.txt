@@ -12,7 +12,7 @@ Pode:
 - Solicitar uma reprografia (será enviado para empresa responsável a solicitação com todas as escolhas desse usuário);
 - Vizualizar todos os seus pedidos/solicitações de reprografia
 - Enviar um FeedBack sobre a reprografia que solicitou (colocará se Atendeu ou Não Atendeu e suas observações);
-- Deletar sua conta.
+- Desativar sua conta.
 
 ---------------------------------------------
 
@@ -30,10 +30,14 @@ Pode:
 - Registrar Usuários;
 - Vizualizar todos os usuários;
 - Vizualizar qualquer outro usuário por Nome, NIF...;
-- Atualizar qualquer outro usuário por NIF
-- Deletar qualquer outro usuário por NIF;
+- Atualizar qualquer outro usuário por NIF;
+- Ativar ou desativar um usuário;
 - Vizualizar todos os Pedidos;
-- Vizualizar todos os pedidos por id do pedido, titulo do pedido, pelo nif do usuário que solicitou o pedido...
+- Vizualizar todos os pedidos por id do pedido, titulo do pedido, pelo nif do usuário que solicitou o pedido...;
+- Criar um Serviço;
+- Vizualizar todos os serviços;
+- Atualizar um serviço
+- Ativar um desativar um Serviço;
 
 ---------------------------------------------
 
@@ -52,7 +56,7 @@ Regras de Negócio:
 - É preciso de dois Serviços da tabela "servicos" para realizar um pedido. E também é necessário que nenhum desses dois serviços estejam com a sua quantidade esgotada ( <= 0)
 - Só poderá ser feito um pedido se a multiplicação do número de copias com o número de páginas inseridos pelo usuário for menor (<) que a quantidade dos dois serviços.
 - Um pedido só poderá ser avaliado se ele existir e não tiver sido avaliado ainda.
+- Um usuário só pode logar se estiver com a sua conta ativada
+- Todo usuário no seu primeiro acesso precisa inserir uma nova senha para a sua conta, atualizando a senha padrão do sistema para usuários criados pela gerência (senai115)
 
 ---------------------------------------------
-
-https://github.com/alexa2me/express-cookenu-API
