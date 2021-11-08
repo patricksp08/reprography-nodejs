@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0",
+    "version": "3.0",
     "title": "Reprography System",
     "description": "PT: Sistema para solicitação e controle de reprografias. \n EN: System for requesting and controlling reprographs.",
     "contact": {}
@@ -39,7 +39,7 @@
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Obtenha o token de acesso na requisição de Login"
           },
           {
             "name": "nif",
@@ -47,6 +47,13 @@
             "required": true,
             "type": "integer",
             "format": "int32",
+            "description": "Exemplo: 123"
+          },
+          {
+            "name": "senha",
+            "in": "formData",
+            "required": true,
+            "type": "string",
             "description": ""
           },
           {
@@ -70,7 +77,7 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Exemplo: 1 = Aprendizagem Industrial Presencial; 2 = Técnico de Nível Médio Presencial; ...8"
           },
           {
             "name": "email",
@@ -85,7 +92,7 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Exemplo: 123"
           },
           {
             "name": "admin",
@@ -93,13 +100,13 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": "1 = admin, any other value = user"
+            "description": "0 = não admin; 1 = admin"
           },
           {
             "name": "image",
             "in": "formData",
             "required": true,
-            "type": "file",
+            "type": "string",
             "description": ""
           }
         ],
@@ -777,6 +784,14 @@
             "in": "header",
             "required": true,
             "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nif",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
             "description": ""
           },
           {
@@ -1749,7 +1764,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Exemplo: Apostila X"
           },
           {
             "name": "accessToken",
@@ -2145,8 +2160,8 @@
             "name": "valor_unitario",
             "in": "formData",
             "required": true,
-            "type": "float",
-            "description": ""
+            "type": "number",
+            "description": "Exemplo: 10"
           }
         ],
         "responses": {
@@ -2458,7 +2473,7 @@
             "in": "formData",
             "required": false,
             "type": "float",
-            "description": ""
+            "description": "Exemplo: 10"
           }
         ],
         "responses": {
@@ -3244,7 +3259,7 @@
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Insira seu Token"
           },
           {
             "name": "nome",
@@ -3394,7 +3409,7 @@
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Obtenha o token de acesso na requisição de Login"
           },
           {
             "name": "senha",
@@ -3691,7 +3706,7 @@
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Insira seu Token"
           },
           {
             "name": "senhaAntiga",
@@ -3839,7 +3854,7 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Exemplo: 1 = Aprendizagem Industrial Presencial; 2 = Técnico de Nível Média Presencial; ...8"
           },
           {
             "name": "titulo_pedido",
@@ -3862,7 +3877,7 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Exemplo: 1 = CT-DS; 2 = CT-MP; ..."
           },
           {
             "name": "observacoes",
@@ -3901,14 +3916,14 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
+            "description": "Exemplo: 1 = Capa em papel 150g e 2 grampos laterais; 2 = Capa em papel 150g e 2 grampos a cavalo; ..."
           },
           {
             "name": "file",
             "in": "formData",
             "required": true,
             "type": "file",
-            "description": ""
+            "description": "Exemplo: 1 = Preto&Branco - Tamanho A5; 2 = Preto&Branco - Tamanho A4; ..."
           }
         ],
         "responses": {
@@ -4509,7 +4524,7 @@
             "in": "formData",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Insira um email de usuário válido"
           }
         ],
         "responses": {
@@ -4581,7 +4596,7 @@
             "in": "formData",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "Insira um email de usuário válido"
           },
           {
             "name": "token",
