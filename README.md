@@ -180,7 +180,7 @@ $ npm install
 
 ### Iniciando o servidor
 
-**Importante:** Antes de iniciar a aplicação, primeiro crie o banco de dados que você inseriu no arquivo de conexão "db.config.json".
+**Importante:** Antes de iniciar a aplicação, primeiro crie o **banco de dados** que você inseriu no arquivo de conexão **"db.config.json".**
 
 Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
 ``` bash
@@ -188,7 +188,7 @@ Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
 $ npm run dev
 
 # Para iniciar normalmente
-$ npm run
+$ npm run start
 ```
 
 ⚡ Aguarde a execução e a API estará rodando na URL:  `http://localhost:3002`
@@ -262,12 +262,7 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
     <br />
     <sub><b>Tiago Soares</b></sub><br />:snowflake::snowman::snowflake:
      </td>
-      
-     
-     
-  
  </tr>
-    
 </table>
 
 ## 📝 Licença
