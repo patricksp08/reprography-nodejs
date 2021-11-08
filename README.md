@@ -72,13 +72,13 @@ npm run
 Aguarde a execução e estará rodando na URL  `http://localhost:3002`
 <br>
 
-E assim você terá sua aplicaçãco rodando localmente.
+E assim você terá sua aplicação rodando localmente.
 <br>
 
 
 ## :triangular_flag_on_post: Endpoints
 
-Com nossa docmentação feita com o Swagger, conseguimos simplificar o desenvolvimento da noss API, através do conjunto e ferramentas que o próprio Swagger nos disponibiliza, ajudando a projetar e documentrar APIs em escala.
+Criando a documentação com o Swagger, conseguimos simplificar não só o desenvolvimento da nossa API e da squad como um todo, mas também o relacionamento com as outras partes do projeto (squad front-end, infra...). Por isso tentamos ao máximo deixa-lá autoexplicativa e completa. 
 
 Documentação da API (Swagger) rodando em: `http://localhost:3002/docs/`
 
