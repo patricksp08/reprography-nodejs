@@ -1,6 +1,6 @@
 <h3 align="center">🚧 ⚠️ Em Desenvolvimento... ⚠️ 🚧</h3>
 
-# Sistema Reprográfico - Back-end
+<h2 align="center">Sistema Reprográfico - Back-end</h2>
 
 [English Version](https://github.com/Luccazx12/reprography-nodejs/blob/master/README-en.md)
 
