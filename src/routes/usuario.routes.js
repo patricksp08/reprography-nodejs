@@ -83,11 +83,10 @@ module.exports = function (app) {
   app.put('/user/:nif', [authJwt.validateToken, authJwt.isAdmin], upload.single('image'), controller.alterarPorNif);
 
   //Rota para habilitar/desabilitar o usuário, passando nif como parâmetro
-  app.put("/user/:nif/enable=:enable", [authJwt.validateToken, authJwt.isAdmin], controller.enableOrDisableAccount)
+  app.put("/user/:nif/enable=:enable", [authJwt.validateToken, authJwt.isAdmin], controller.enableOrDisableAccount);
 
   //DELETE
 
   //Rota para deletar um usuario da tabela usuario por NIF //Rota para administrador (pode colocar o nif que quiser)
   // app.delete('/user/:nif', [authJwt.validateToken, authJwt.isAdmin], controller.excluirPorNif);
 };
-

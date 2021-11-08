@@ -217,7 +217,7 @@ module.exports = {
                             console.log(`successfully deleted ${req.file.path}`);
                         });
 
-                    }, 5000)
+                    }, 5000);
                 }
                 else { attachments = null }
                 // console.log(output);
@@ -262,4 +262,4 @@ module.exports = {
             return res.json({ error: "Você só pode alterar a avaliação de um pedido feito pelo seu usuário" });
         }
     }
-}
+};

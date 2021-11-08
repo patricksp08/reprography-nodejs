@@ -15,7 +15,7 @@ var _user_roles = require("./user_roles");
 var _usuario = require("./usuario");
 
 const config = require("../.config/db.config.json");
-const Sequelize = require("sequelize")
+const Sequelize = require("sequelize");
 
 sequelize = new Sequelize(config.development.database, config.development.username, config.development.password,
   {
@@ -90,7 +90,8 @@ function initModels(sequelize) {
     user_roles,
     usuario,
   };
-}
+};
+
 module.exports = initModels;
 module.exports.initModels = initModels;
 module.exports.default = initModels;

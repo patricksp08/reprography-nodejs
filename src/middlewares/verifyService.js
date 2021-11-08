@@ -27,14 +27,14 @@ const verifyService = async (req, res, next) => {
     const CT = await service.findServicoByPk({ type: "ct", id: servicoCT });
 
     if (CA === null || CT === null) {
-        return res.json({ error: "Insira um serviço valido!" })
-    }
+        return res.json({ error: "Insira um serviço valido!" });
+    };
 
     await verificaQtdade(req, res, CA);
 
     if (req.err === true) {
         return;
-    }
+    };
 
     await verificaQtdade(req, res, CT);
 
@@ -43,7 +43,7 @@ const verifyService = async (req, res, next) => {
     if (req.err === false) {
         next();
         return;
-    }
+    };
 }
 
 module.exports = verifyService;

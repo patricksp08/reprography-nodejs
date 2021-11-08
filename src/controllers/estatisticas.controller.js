@@ -61,13 +61,13 @@ module.exports = {
                         [Op.between]: [startedDate, endDate]
                     },
                     id_curso: i
-                }
+                },
             });
 
             cursoObj[i] = {
                 descricao: cursoDesc.descricao,
                 qtdade_solicitada: cursoCount,
-            }
+            };
         };
 
 
@@ -84,13 +84,13 @@ module.exports = {
                         [Op.between]: [startedDate, endDate]
                     },
                     id_centro_custos: i
-                }
+                },
             });
 
             centro_custosObj[i] = {
                 descricao: centro_custosDesc.descricao,
                 qtdade_solicitada: centro_custosCount,
-            }
+            };
         };
 
         //Lenght de avaliações... vai do 0 ao 2... 0 = não avaliado, 1 = atendeu, 2 = não atendeu!
@@ -109,13 +109,13 @@ module.exports = {
                         [Op.between]: [startedDate, endDate]
                     },
                     id_avaliacao_pedido: i
-                }
+                },
             });
 
             avaliacao_pedidoObj[i] = {
                 status: avaliacao_pedidoDesc.descricao,
                 qtdade_solicitada: avaliacao_pedidoCount,
-            }
+            };
         };
 
 
@@ -158,13 +158,13 @@ module.exports = {
                         [Op.between]: [startedDate, endDate]
                     },
                     servicoCT: i
-                }
+                },
             });
 
             servicoCTObj[i] = {
                 status: servicoCTDesc.descricao,
                 qtdade_solicitada: servicoCTCount,
-            }
+            };
         };
 
         //Lenght Servico CT
@@ -182,13 +182,13 @@ module.exports = {
                         [Op.between]: [startedDate, endDate]
                     },
                     servicoCA: i
-                }
+                },
             });
 
             servicoCAObj[i] = {
                 status: servicoCADesc.descricao,
                 qtdade_solicitada: servicoCACount,
-            }
+            };
         };
 
         return res.json({
@@ -224,13 +224,13 @@ module.exports = {
             //Passando valores dos meses para variável i caso o mês seja janeiro e 
             //queiramos retornar os valores dos meses 12, 11 e 10
             if (i === -2) {
-                i = 10
+                i = 10;
             };
             if (i === -1) {
-                i = 11
+                i = 11;
             };
             if (i === 0) {
-                i = 12
+                i = 12;
             };
 
             let endDate = new Date(`${ano}-${i}-31 23:59:59`);
@@ -273,13 +273,13 @@ module.exports = {
                             [Op.between]: [startedDate, endDate]
                         },
                         id_curso: i
-                    }
+                    },
                 });
 
                 cursoObj[i] = {
                     descricao: cursoDesc.descricao,
                     qtdade_solicitada: cursoCount,
-                }
+                };
             };
 
 
@@ -296,13 +296,13 @@ module.exports = {
                             [Op.between]: [startedDate, endDate]
                         },
                         id_centro_custos: i
-                    }
+                    },
                 });
 
                 centro_custosObj[i] = {
                     descricao: centro_custosDesc.descricao,
                     qtdade_solicitada: centro_custosCount,
-                }
+                };
             };
 
             //Lenght de avaliações... vai do 0 ao 2... 0 = não avaliado, 1 = atendeu, 2 = não atendeu!
@@ -321,13 +321,13 @@ module.exports = {
                             [Op.between]: [startedDate, endDate]
                         },
                         id_avaliacao_pedido: i
-                    }
+                    },
                 });
 
                 avaliacao_pedidoObj[i] = {
                     status: avaliacao_pedidoDesc.descricao,
                     qtdade_solicitada: avaliacao_pedidoCount,
-                }
+                };
             };
 
 
@@ -370,7 +370,7 @@ module.exports = {
                             [Op.between]: [startedDate, endDate]
                         },
                         servicoCT: i
-                    }
+                    },
                 });
 
                 servicoCTObj[i] = {
@@ -394,13 +394,13 @@ module.exports = {
                             [Op.between]: [startedDate, endDate]
                         },
                         servicoCA: i
-                    }
+                    },
                 });
 
                 servicoCAObj[i] = {
                     status: servicoCADesc.descricao,
                     qtdade_solicitada: servicoCACount,
-                }
+                };
             };
 
             //Continuando o Looping para trazer os meses antes de janeiro (1) -> dezembro (12)...
@@ -427,7 +427,7 @@ module.exports = {
                 centro_custos: centro_custosObj,
                 curso: cursoObj,
                 custo_total: custo_total
-            }
+            };
         };
         return res.json(mesObj);
     },

@@ -80,5 +80,5 @@ module.exports = {
         var pedidoUpdated = await request.update(param);
 
         return pedidoUpdated;
-    }
-}
+    },
+};
