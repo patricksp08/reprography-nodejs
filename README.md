@@ -28,30 +28,35 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 ## 📌 Recursos utilizados neste projeto:
 
 <table>
- <th>Teste<th>
+ <th><h3>Runtime environment</h3><th>
+ <th><h3>Linguagem</h3></th>
+ <th><h3>Banco de dados</h3></th>
+ <th><h3>Framework</h3></th>
+ <th><h3>Editor de texto</h3></th>
+ <th><h3>Documentação</h3></th>
   <tr>
-    <td valign="top" align="center"><h3>Runtime environment:</h3>
+    <td valign="top" align="center">
       <img height="100" width="100" href="https://nodejs.org/en/" src="https://lh3.googleusercontent.com/proxy/xhjXBUKHEip2W11W7zD8xGbVSjEHvKBX6lofS07KB3LTls-D400I0sTdEAwPj7GerKIZko1lGCWee-njMLGz0Yr9ITMu9zeJkJR_zdKGSpeqLBtg67f6Md0yHLQrsCmlF4_A_Y3VukP9bV9gAmByGUT0rVrNLkCpEvg" style="max-width:100%;"></img>
     </td>
 
-   <td valign="top" align="center"><h3>Linguagem:</h3>
+   <td valign="top" align="center">
       <img height="110" width="110" href="https://www.javascript.com" src="https://lh3.googleusercontent.com/proxy/WJkD7LaygVUq0RJLsKv-uDZqwjuIROISkU4SLwTfHlOeZMgxglJmEQoUEpomsFVZ7OxJ2QMrG6VAH4A_yVzjxlvcbC0YZjkhaYHOeBV3C_e3jxzEtkF4tlqQFazqkTbrr7_XiS2F6axbYUU83xo" style="max-width:100%;"></img>
       </td>
     
 
-   <td valign="top" align="center"><h3>Banco de dados:</h3>
+   <td valign="top" align="center">
       <img height="80" width="90" href="https://mariadb.org" src="https://e3z7c6v7.rocketcdn.me/blog/wp-content/uploads/2018/03/mariadb.png" style="max-width:100%;"></img>
     </td>
 
-   <td valign="top" align="center"><h3>Framework:</h3>
+   <td valign="top" align="center">
       <img height="100" width="100" href="https://expressjs.com" src="https://hackr.io/tutorials/learn-express-js/logo/logo-express-js?ver=1557508379" style="max-width:100%;"></img>
     </td>
 
-   <td valign="top" align="center"><h3>Editor de texto:</h3>
+   <td valign="top" align="center">
       <img height="60" width="60" href="https://code.visualstudio.com/Download" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img>
     </td>
 
-   <td valign="top" align="center"><h3>Documentação:</h3>
+   <td valign="top" align="center">
       <img height="80" width="80" href="https://swagger.io" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>
     </td>
   </tr>
