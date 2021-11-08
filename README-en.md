@@ -194,7 +194,7 @@ And so you will have your application running locally.
 
 ## 📄 Documentation:
 
-  * [Business rules](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/Regras_de_negocio_e_classes.txt)
+  * [Business rules](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/business_rules_and_classes.txt)
 
 #### Diagrams: 
 
