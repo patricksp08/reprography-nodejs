@@ -27,27 +27,38 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ## 📌 Recursos utilizados neste projeto:
 
- **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
+#### Runtime environment
+<a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS</a>
 
+
+#### Linguagem
+ **<a href="https://www.javascript.com">:small_blue_diamond: Javascript </a>**<img align="center"  height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png" style="max-width:100%;"></img> 
+ 
+#### Framework
+ **<a href="https://expressjs.com">:small_blue_diamond: Express </a>**<img align="center"  height="30" width="30" src="https://d2m06gn7cjwia2.cloudfront.net/express.png" style="max-width:100%;"></img> 
+ 
+#### Editor de texto:
+ **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
+ 
+#### Documentação:
 **<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center" height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>
 
+#### Banco de dados
 
-### Dependências do projeto
+**<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
+
+## Dependências do projeto
 
 - Nodejs
   * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
   * Swagger-autogen 2.11.2
   * Nodemon 2.0.13 - Para restartar o server sempre que houver uma alteração. 
-  * Jwt - Para verificação de token / Proteção de rotas.
+  * Jwt - Para verificação de token.
   * Bcrypt 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
   * Cors 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
   * Multer 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
   * Body-Parser 1.19.0 - Analisa os dados codificados JSON, buffer, string e URL enviados usando a solicitação HTTP POST.
   * MariaDB 2.5.4 - É o banco de dados que nos usamos. 
-
-#### Banco de dados
-
-**<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
 
 
 ## :arrow_forward: Como iniciar a aplicação:
