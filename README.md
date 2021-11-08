@@ -14,7 +14,7 @@
  <img src="https://img.shields.io/github/last-commit/luccazx12/reprography-nodejs">
  </div>
 
-<p align="center"><a href="https://github.com/Luccazx12/reprography-nodejs/blob/master/README-en.md">English Version</a></p>
+<a href="https://github.com/Luccazx12/reprography-nodejs/blob/master/README-en.md">English Version</a>
 
 
 ## Apresentação
