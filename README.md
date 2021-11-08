@@ -98,7 +98,7 @@ Além disto é bom ter um editor para trabalhar com o código como: [VSCode](htt
 
 Aqui ficam as configurações de JWT e da primeira conta da aplicação.
 
- - Altere os campos com os valores como "changeThis".
+ - Altere os campos com os valores como **"changeThis"**.
  - Em jwt.secret será a palavra secreta a ser verificada dentro do token, que podemos verificar se está presente no header da requisição, por exemplo.
  - Em Header será o nome da key a ser armazenada no header.
  - Já em AdminAccount, temos alguns campos para mudar que dizem respeito a primeira conta da API, que é administrador e usaremos para criar os outros usuários.
@@ -123,7 +123,7 @@ Aqui ficam as configurações de JWT e da primeira conta da aplicação.
 
 Aqui ficam as configurações de conexão com o banco de dados. 
 
-- Altere os campos que contém o valor "changeThis".
+- Altere os campos que contém o valor **"changeThis"**.
 - Lembrando que só deixamos o começo do arquivo como exemplo. Mude o resto (conexões de test, produção...) a seu gosto e uso.
 
 ```bash
@@ -150,7 +150,7 @@ Aqui ficam as configurações de conexão com o banco de dados.
 
 Aqui ficam as configurações de envio de e-mail. 
 
-- Altere os campos que contém o valor "changeThis".
+- Altere os campos que contém o valor **"changeThis"**.
 - Em "auth" temos as informações do e-mail que será utilizado para a aplicação. Com ele, será enviado e-mails de recuperação de senha para usuários cadastrados, caso solicitem, e e-mails de pedido e avaliação para o e-mail listado como "reproEmail" (empresa responsável pelas reprografias) quando solicitados.
 
 ```bash
