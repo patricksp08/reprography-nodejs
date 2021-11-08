@@ -154,24 +154,29 @@ Documentação da API (Swagger) rodando em: `http://localhost:3002/docs/`
      <sub><b>Lucca</b></sub><br />:snowflake:TechLead:snowflake:
      </td>
     <td align="center"><a href="https://github.com/patricksp08">
-    <img src="https://avatars.githubusercontent.com/u/71887999?v=4" width="100px" alt="Imagem do perfil de Lucca"/>
+    <img src="https://avatars.githubusercontent.com/u/71887999?v=4" width="100px" alt="Imagem do perfil de Ṕatrick"/>
     <br />
     <sub><b>Patrick</b></sub><br />:snowflake::snowman::snowflake:
      </td>
     <td align="center"><a href="https://github.com/MrCyberpunKx">
-    <img src="https://avatars.githubusercontent.com/u/71890228?v=4" width="100px" alt="Imagem do perfil de Lucca"/>
+    <img src="https://avatars.githubusercontent.com/u/71890228?v=4" width="100px" alt="Imagem do perfil de Daniel"/>
     <br />
     <sub><b>Daniel Santos</b></sub><br />:snowflake::snowman::snowflake:
      </td>
      <td align="center"><a href="https://github.com/Oseias-maker">
-    <img src="https://avatars.githubusercontent.com/u/71889159?v=4" width="100px" alt="Imagem do perfil de Lucca"/>
+    <img src="https://avatars.githubusercontent.com/u/71889159?v=4" width="100px" alt="Imagem do perfil de Oséias"/>
     <br />
     <sub><b>Oseias Farias Jesus</b></sub><br />:snowflake::snowman::snowflake:
      </td>
     <td align="center"><a href="https://github.com/JoaoOFS">
-    <img src="https://avatars.githubusercontent.com/u/71888050?v=4" width="100px" alt="Imagem do perfil de Lucca"/>
+    <img src="https://avatars.githubusercontent.com/u/71888050?v=4" width="100px" alt="Imagem do perfil de João"/>
     <br />
     <sub><b>João Otávio</b></sub><br />:snowflake::snowman::snowflake:
+     </td>
+         <td align="center"><a href="https://github.com/Tiagogtr">
+    <img src="https://avatars.githubusercontent.com/u/71888086?v=4" width="100px" alt="Imagem do perfil de Tiago"/>
+    <br />
+    <sub><b>Tiago Soares</b></sub><br />:snowflake::snowman::snowflake:
      </td>
       
      
