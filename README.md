@@ -1,3 +1,5 @@
+<h3 align="center">🚧 ⚠️ Em Desenvolvimento... ⚠️ 🚧</h3>
+
 # Sistema Reprográfico - Back-end
 
 [English Version](https://github.com/Luccazx12/reprography-nodejs/blob/master/README-en.md)
@@ -7,8 +9,7 @@
 Bem-vindo, este projeto é o nosso Trabalho de Conclusão de Curso <a href="https://pt.wikipedia.org/wiki/Trabalho_de_conclus%C3%A3o_de_curso"> (TCC) </a> do curso técnico de Desenvolvimento de sistemas da a Escola SENAI Suíço-Brasileira Paulo Ernesto Tolle.
 
 #### [Github do Front-end do projeto](https://github.com/ViictorSR388/reprografia_front-end)
-
-#### Status do Projeto: ⚠️ Em Desenvolvimento ⚠️
+ 
 
 ## Sobre o Projeto
 Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasileira, com o intuito de fazer o controle das impressões realizadas pelos diversos setores da escola (professores, funcionários, etc), podendo assim, administrar melhor gastos e desperdícios.
