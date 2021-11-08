@@ -145,8 +145,6 @@ Documentação da API (Swagger) rodando em: `http://localhost:3002/docs/`
     <br />
     <sub><b>Lucca</b></sub><br />:snowflake::snowman::snowflake:
      </td>
- </tr>
-   <tr>
     <td align="center"><a href="https://github.com/patricksp08">
     <img src="https://avatars.githubusercontent.com/u/71887999?v=4" width="100px" alt="Imagem do perfil de Lucca"/>
     <br />
