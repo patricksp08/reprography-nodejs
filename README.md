@@ -36,7 +36,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
  <th><h3>Documentação</h3></th>
   <tr>
     <td valign="top" align="center">
-      <img height="80" width="80" href="https://nodejs.org/en/" src="https://lh3.googleusercontent.com/proxy/xhjXBUKHEip2W11W7zD8xGbVSjEHvKBX6lofS07KB3LTls-D400I0sTdEAwPj7GerKIZko1lGCWee-njMLGz0Yr9ITMu9zeJkJR_zdKGSpeqLBtg67f6Md0yHLQrsCmlF4_A_Y3VukP9bV9gAmByGUT0rVrNLkCpEvg" style="max-width:100%;"></img>
+      <img height="80" width="80" href="https://nodejs.org/en/" src="https://cdn-icons-png.flaticon.com/512/919/919825.png" style="max-width:100%;"></img>
     </td>
 
    <td valign="top" align="center">
