@@ -45,7 +45,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
       <img height="100" width="100" href="https://expressjs.com" src="https://fd-development.com/images/expressjs.png" style="max-width:100%;"></img>
     </td>
 
-   <td valign="top" align="center" width="250"><h3>Editor de texto:</h3>
+   <td valign="top" align="center" width="950"><h3>Editor de texto:</h3>
       <img height="80" width="80" href="https://code.visualstudio.com/Download" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img>
     </td>
 
