@@ -88,22 +88,28 @@ And so you will have your application running locally.
 - Update your password (entering your old and new passwords);
 - Request a reprography (the request will be sent to the responsible company with all the choices made by this user);
 - View all your reprographic requests/requests
-- Send a FeedBack about the reprography that you requested (it will include whether Answered or Not Answered and your observations);
-- Delete your account.
+- Send a FeedBack about the reprography you requested (it will include whether Answered or Not Answered and your observations);
+- Disable your account.
 
 ---------------------------------------------
 
 ### Manager/ADMIN can:
 
-All user permissions
+... All user permissions
+
 +
+
 - Register Users;
 - View all users;
 - View any other user by Name, NIF...;
-- Update any other user by NIF
-- Delete any other user by NIF;
+- Update any other user by NIF;
+- Activate or deactivate a user;
 - View all Orders;
-- View all orders by order id, order title, by the nif of the user who requested the order...
+- View all orders by order id, order title, by the nif of the user who requested the order...;
+- Create a Service;
+- View all services;
+- Update a service
+- Activate or deactivate a Service;
 
 ---------------------------------------------
 
@@ -119,6 +125,9 @@ All user permissions
 - You need two Services from the "services" table to place an order. And it is also necessary that neither of these two services have their quantity exhausted ( <= 0)
 - An order can only be placed if the multiplication of the number of copies with the number of pages entered by the user is smaller (<) than the quantity of the two services.
 - An order can only be evaluated if it exists and has not yet been evaluated.
+- A user can only login if they have their account activated
+- Every user on their first access needs to enter a new password for their account, updating the system default password for users created by management (senai115)
+
 ---------------------------------------------
 
 
@@ -128,4 +137,4 @@ With our documentation made with Swagger, we were able to simplify the developme
 
 API documentation (Swagger) running on: `http://localhost:3002/docs`
 
-![image](https://user-images.githubusercontent.com/71889159/139081009-8728042d-ac41-44a6-8fbf-f367099d3051.png)
+![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/info_api/screenshots/swagger/swagger.jpg)
