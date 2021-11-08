@@ -1,3 +1,4 @@
+//Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
 const { sequelize } = require("../models");
 var models = initModels(sequelize);
@@ -6,7 +7,7 @@ const verifyConstraints = async ({ centro_custos, curso, modo_envio, avaliacao, 
 
     //Usuário
 
-    if(departamento){
+    if (departamento) {
         var dataDepartamento = await models.departamento.findOne({
             where: { id_depto: departamento }
         });
@@ -32,24 +33,24 @@ const verifyConstraints = async ({ centro_custos, curso, modo_envio, avaliacao, 
         });
     }
 
-    if (avaliacao !== null) {
+    if (avaliacao || avaliacao === 0) {
         var dataAvaliacaoPedido = await models.avaliacao_pedido.findOne({
             where: { id_avaliacao_pedido: avaliacao }
         });
     }
 
-    if(servicoCA) {
+    if (servicoCA) {
         var dataServicoCA = await models.servicoCapaAcabamento.findOne({
-            where:{
+            where: {
                 id_servico: servicoCA
             },
             attributes: ["id_servico", "descricao"]
         });
     }
 
-    if(servicoCT) {
+    if (servicoCT) {
         var dataServicoCT = await models.servicoCopiaTamanho.findOne({
-            where:{
+            where: {
                 id_servico: servicoCT
             },
             attributes: ["id_servico", "descricao"]

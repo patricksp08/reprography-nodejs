@@ -1,26 +1,28 @@
+//Biblioteca do sequelize 
 const Sequelize = require("sequelize");
+//Operadores do sequelize
 const Op = Sequelize.Op;
 
+//Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
-
 var { servicoCapaAcabamento, servicoCopiaTamanho } = initModels(sequelize)
 
 module.exports = {
 
     findAllServicos: async (enabled) => {
         const servicoCA = await servicoCapaAcabamento.findAll({
-            where:{
+            where: {
                 ativado: enabled
             }
         });
         const servicoCT = await servicoCopiaTamanho.findAll({
-            where:{
+            where: {
                 ativado: enabled
             }
         });
-        
-        const servicos = {"servicosCA": servicoCA, "servicosCT": servicoCT}
-        
+
+        const servicos = { "servicosCA": servicoCA, "servicosCT": servicoCT }
+
         return servicos;
     },
 

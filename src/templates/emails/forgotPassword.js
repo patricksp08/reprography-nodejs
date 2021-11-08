@@ -1,6 +1,7 @@
 const { host } = require("../../.config/mailer.config.json");
 
-const forgotPasswordEmail = (token, mail) =>  `
+const forgotPasswordEmail = (token, mail) => `
+
 <!doctype html>
     <html>
       <head>

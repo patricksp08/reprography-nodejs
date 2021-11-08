@@ -6,6 +6,6 @@ const verifyService = require("./verifyService");
 module.exports = {
   upload,
   authJwt,
-  verifySignUp, 
+  verifySignUp,
   verifyService,
 };

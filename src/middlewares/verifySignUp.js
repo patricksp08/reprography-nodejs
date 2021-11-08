@@ -1,6 +1,8 @@
+//Roles definidas em models/index.js (["user", "admin"])
 const db = require("../models");
 const ROLES = db.ROLES;
 
+//Service do Usuário
 const service = require("../services/usuario.service");
 
 //Verifica se já existe um usuário com NIF e/ou email passados pelo input 
@@ -35,13 +37,10 @@ checkRolesExisted = (req, res, next) => {
   var { admin } = req.body;
 
   if (admin == 1) {
-    admin = ["admin"]
-  }
-  else if (admin == 2) {
-    admin = ["moderator"]
+    admin = ["admin"];
   }
   else {
-    admin = ["user"]
+    admin = ["user"];
   }
 
   if (admin) {
@@ -50,7 +49,7 @@ checkRolesExisted = (req, res, next) => {
         res.status(400).send({
           message: "Error! Role inexistente = " + admin[i]
         });
-        return
+        return;
       }
     }
   }

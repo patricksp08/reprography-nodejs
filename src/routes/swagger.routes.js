@@ -8,7 +8,7 @@ module.exports = function (app) {
 
   // //Versão 1
   app.use('/v1/docs', swaggerUi.serve, (...args) => swaggerUi.setup(swaggerDocsV1)(...args));
- 
+
   // //Versão 2
   app.use('/v2/docs', swaggerUi.serve, (...args) => swaggerUi.setup(swaggerDocsV2)(...args));
 

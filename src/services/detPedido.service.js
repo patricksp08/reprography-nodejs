@@ -1,3 +1,4 @@
+//Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
 var { pedido } = initModels(sequelize)
 

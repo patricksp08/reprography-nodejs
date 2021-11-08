@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('usuario', {
     nif: {
       type: DataTypes.INTEGER,
@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(11),
       allowNull: true
     },
-    id_depto: {
+    depto: {
       type: DataTypes.CHAR(36),
       allowNull: false,
       references: {
@@ -71,10 +71,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "id_depto",
+        name: "depto",
         using: "BTREE",
         fields: [
-          { name: "id_depto" },
+          { name: "depto" },
         ]
       },
     ]

@@ -1,11 +1,16 @@
+//Services
 const pedidoService = require("../services/pedido.service");
 const servicoService = require("../services/servico.service");
+
+//Enviando descrição de constraints para o front-end/email
 const verifyConstraints = require("../services/verifyConstraints");
 
 //Envio de e-mail
 const { mailer } = require("../utils/");
 const mailerConfig = require('../.config/mailer.config');
 const template = require("../templates/emails");
+
+//Utilizado para excluir imagens
 const { unlink } = require("fs");
 
 module.exports = {
