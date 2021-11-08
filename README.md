@@ -5,9 +5,9 @@ Welcome, this project is our the Course Conclusion Work <a href="https://pt.wiki
 
 [Front-end Github](https://github.com/ViictorSR388/reprografia_front-end)
 
-### Project Status: ⚠️ Under development ⚠️
+#### Project Status: ⚠️ Under development ⚠️
 
-# About the project
+## About the project
 This application was requested by the coordinator of the Senai Suiço-Brasileira school, in order to control the prints made by the different sectors of the school (teachers, employees, etc.), thus being able to better manage expenses and waste.
 ## 📌 Resources used in this project:
 
