@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0",
     "title": "Reprography System",
-    "description": "Sistema para solicitação e controle de reprografias",
+    "description": "PT: Sistema para solicitação e controle de reprografias. \n EN: System for requesting and controlling reprographs.",
     "contact": {}
   },
   "host": "localhost:3002",
