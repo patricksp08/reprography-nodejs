@@ -214,7 +214,7 @@ E assim você terá sua aplicação rodando localmente.
 
 Criando a documentação com o Swagger, conseguimos simplificar não só o desenvolvimento da nossa API e da squad como um todo, mas também o relacionamento com as outras partes do projeto (squad front-end, infra...). Por isso tentamos ao máximo deixa-lá autoexplicativa e completa. 
 
-⚡ Documentação da API (Swagger) rodando em: `http://localhost:3002/docs/`
+⚡ Documentação da API rodando em: `http://localhost:3002/docs/`
 
 ![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/info_api/screenshots/swagger/swagger.png)
 
