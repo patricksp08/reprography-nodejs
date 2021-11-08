@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.0",
-    "title": "Reprography Project || Back-end",
-    "description": "EN: System for requesting and controlling reprographs. \nWith our documentation made with Swagger, we were able to simplify our API development, through the set and tools that Swagger itself makes available to us, helping to design and document APIs at scale. Check out all the features of requests, which are functional in our project: \n\nPT: Sistema para solicitação e controle de reprografias. \nCom nossa documentação feita com Swagger, fomos capazes de simplificar o desenvolvimento de nossa API, através do conjunto e ferramentas que o próprio Swagger disponibiliza para nós, ajudando a projetar e documentar APIs em escala. Confira todas funcionalidades de requições, que são funcionais no nosso projeto:",
+    "version": "1.0",
+    "title": "Reprography System",
+    "description": "Sistema para solicitação e controle de reprografias",
     "contact": {}
   },
   "host": "localhost:3002",
@@ -39,7 +39,7 @@
             "in": "header",
             "required": true,
             "type": "string",
-            "description": "Obtenha o token de acesso na requisição de Login"
+            "description": ""
           },
           {
             "name": "nif",
@@ -47,13 +47,6 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": "Exemplo: 123"
-          },
-          {
-            "name": "senha",
-            "in": "formData",
-            "required": true,
-            "type": "string",
             "description": ""
           },
           {
@@ -92,7 +85,7 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": "Exemplo: 123"
+            "description": ""
           },
           {
             "name": "admin",
@@ -100,13 +93,13 @@
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": "0 = não admin; 1 = admin"
+            "description": "1 = admin, any other value = user"
           },
           {
             "name": "image",
             "in": "formData",
             "required": true,
-            "type": "string",
+            "type": "file",
             "description": ""
           }
         ],
@@ -250,7 +243,7 @@
         }
       }
     },
-    "/users/enabled=0": {
+    "/users/enabled={enabled}": {
       "get": {
         "description": "PT: Solicitando todos os usuários registrados.\n\nEN: Requesting all registered users.",
         "summary": "Todos os Usuários",
@@ -263,6 +256,13 @@
           "application/json; charset=utf-8"
         ],
         "parameters": [
+          {
+            "name": "enabled",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "0 = usuários desabilitados, 1 = usuários habilitados"
+          },
           {
             "name": "accessToken",
             "in": "header",
@@ -483,7 +483,7 @@
                 "default": "timeout=5"
               }
             }
-          }
+          } 
         }
       }
     },
@@ -773,14 +773,6 @@
         ],
         "parameters": [
           {
-            "name": "nif",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "description": ""
-          },
-          {
             "name": "accessToken",
             "in": "header",
             "required": true,
@@ -790,22 +782,21 @@
           {
             "name": "nome",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": ""
           },
           {
             "name": "senha",
             "in": "formData",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
+            "required": false,
+            "type": "string",
             "description": ""
           },
           {
             "name": "telefone",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32",
             "description": ""
@@ -813,7 +804,7 @@
           {
             "name": "depto",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32",
             "description": ""
@@ -821,14 +812,14 @@
           {
             "name": "email",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": ""
           },
           {
             "name": "cfp",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32",
             "description": ""
@@ -836,7 +827,7 @@
           {
             "name": "admin",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32",
             "description": "1 = admin, any other value = user"
@@ -844,8 +835,8 @@
           {
             "name": "image",
             "in": "formData",
-            "required": true,
-            "type": "string",
+            "required": false,
+            "type": "file",
             "description": ""
           }
         ],
@@ -1170,7 +1161,7 @@
         }
       }
     },
-    "/user/{nif}/enable=1": {
+    "/user/{nif}/enable={enable}": {
       "put": {
         "summary": "Ativar/Desativar Usuário",
         "tags": [
@@ -1183,18 +1174,25 @@
         ],
         "parameters": [
           {
+            "name": "accessToken",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "enable",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "1 = habilitar, 0 = desabilitar"
+          },
+          {
             "name": "nif",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
-          },
-          {
-            "name": "accessToken",
-            "in": "header",
-            "required": true,
-            "type": "string",
             "description": ""
           }
         ],
@@ -1339,7 +1337,7 @@
         }
       }
     },
-    "/requests/rated=0": {
+    "/requests/rated={rated}": {
       "get": {
         "summary": "Pedidos (solicitando todos os pedidos - gerente)",
         "tags": [
@@ -1351,6 +1349,13 @@
           "application/json; charset=utf-8"
         ],
         "parameters": [
+          {
+            "name": "rated",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "0 = ainda não avaliados, 1 = avaliados"
+          },
           {
             "name": "accessToken",
             "in": "header",
@@ -1919,7 +1924,7 @@
         }
       }
     },
-    "/request/nif/{nif}/rated=0": {
+    "/request/nif/{nif}/rated={rated}": {
       "get": {
         "summary": "Pedidos por nif e avaliado ou não",
         "tags": [
@@ -1931,6 +1936,13 @@
           "application/json; charset=utf-8"
         ],
         "parameters": [
+          {
+            "name": "rated",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "0 = ainda não avaliados, 1 = avaliados"
+          },
           {
             "name": "nif",
             "in": "path",
@@ -2085,7 +2097,7 @@
         }
       }
     },
-    "/service/type=ct": {
+    "/service/type={type}": {
       "post": {
         "summary": "Criando um serviço",
         "tags": [
@@ -2108,6 +2120,13 @@
             "description": ""
           },
           {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ca = Serviços de Capa e Acabamento, ct = Serviços de Copia e Tamanho"
+          },
+          {
             "name": "descricao",
             "in": "formData",
             "required": true,
@@ -2126,8 +2145,7 @@
             "name": "valor_unitario",
             "in": "formData",
             "required": true,
-            "type": "integer",
-            "format": "int32",
+            "type": "float",
             "description": ""
           }
         ],
@@ -2227,7 +2245,7 @@
         }
       }
     },
-    "/services/enabled=1": {
+    "/services/enabled={enabled}": {
       "get": {
         "summary": "Servicos (solicitando todos os serviços - gerente)",
         "tags": [
@@ -2239,6 +2257,13 @@
           "application/json; charset=utf-8"
         ],
         "parameters": [
+          {
+            "name": "enabled",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "0 = serviços desabilitados, 1 = serviços habilitados"
+          },
           {
             "name": "accessToken",
             "in": "header",
@@ -2297,7 +2322,7 @@
         }
       }
     },
-    "/service/{id}/type=ca": {
+    "/service/{id}/type={type}": {
       "get": {
         "summary": "Serviço por id e tipo",
         "tags": [
@@ -2310,6 +2335,13 @@
         ],
         "parameters": [
           {
+            "name": "accessToken",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -2318,11 +2350,11 @@
             "description": ""
           },
           {
-            "name": "accessToken",
-            "in": "header",
+            "name": "type",
+            "in": "path",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "ca = Serviços de Capa e Acabamento, ct = Serviços de Copia e Tamanho"
           }
         ],
         "responses": {
@@ -2392,6 +2424,13 @@
         ],
         "parameters": [
           {
+            "name": "accessToken",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -2400,18 +2439,25 @@
             "description": ""
           },
           {
-            "name": "accessToken",
-            "in": "header",
+            "name": "type",
+            "in": "path",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "ca = Serviços de Capa e Acabamento, ct = Serviços de Copia e Tamanho"
           },
           {
             "name": "quantidade",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "valor_unitario",
+            "in": "formData",
+            "required": false,
+            "type": "float",
             "description": ""
           }
         ],
@@ -2465,7 +2511,7 @@
         }
       }
     },
-    "/service/{id}/type=ca/enable=0": {
+    "/service/{id}/type={type}/enable={enable}": {
       "put": {
         "summary": "Habilitando/Desabilitando serviço",
         "tags": [
@@ -2478,6 +2524,13 @@
         ],
         "parameters": [
           {
+            "name": "accessToken",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -2486,11 +2539,18 @@
             "description": ""
           },
           {
-            "name": "accessToken",
-            "in": "header",
+            "name": "type",
+            "in": "path",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "ca = Serviços de Capa e Acabamento, ct = Serviços de Copia e Tamanho"
+          },
+          {
+            "name": "enable",
+            "in": "path",
+            "required": true,
+            "type": "int32",
+            "description": "1 = habilitar, 0 = desabilitar"
           }
         ],
         "responses": {
@@ -2583,42 +2643,78 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Estat%C3%ADsticasdom%C3%AAsdenovembrodoanode2021"
+              "$ref": "#/definitions/EstatisticasMensais~1%3Aano~1%3Ames%28solicitandoestatisticasmensaispassandoanoem%C3%AAscomopar%C3%A2metro%29"
             },
             "examples": {
               "application/json; charset=utf-8": {
                 "mes": "Novembro",
                 "ano": "2021",
-                "pedidos": 65,
+                "pedidos": 29,
                 "avaliacao_pedido": {
                   "0": {
                     "status": "Ainda não avaliado.",
-                    "qtdade_solicitada": 61
+                    "qtdade_solicitada": 8
                   },
                   "1": {
                     "status": "Atendeu!",
-                    "qtdade_solicitada": 2
+                    "qtdade_solicitada": 4
                   },
                   "2": {
                     "status": "Não atendeu!",
+                    "qtdade_solicitada": 17
+                  }
+                },
+                "servico_copiaTamanho": {
+                  "1": {
+                    "status": "Preto&Branco - Tamanho A5",
+                    "qtdade_solicitada": 23
+                  },
+                  "2": {
+                    "status": "Preto&Branco - Tamanho A4",
+                    "qtdade_solicitada": 2
+                  },
+                  "3": {
+                    "status": "Preto&Branco - Tamanho A3",
+                    "qtdade_solicitada": 2
+                  },
+                  "4": {
+                    "status": "Colorida - Tamanho A4",
+                    "qtdade_solicitada": 0
+                  },
+                  "5": {
+                    "status": "Preto&Branco - Reduzida",
                     "qtdade_solicitada": 2
                   }
                 },
-                "num_paginas": 605,
-                "num_copias": 315,
-                "folhas_impressas": 190575,
+                "servico_capaAcabamento": {
+                  "1": {
+                    "status": "Capa em papel 150g e 2 grampos laterais",
+                    "qtdade_solicitada": 23
+                  },
+                  "2": {
+                    "status": "Capa em papel 150g e 2 grampos a cavalo",
+                    "qtdade_solicitada": 2
+                  },
+                  "3": {
+                    "status": "Capa em papel 150g e espirais de plástico",
+                    "qtdade_solicitada": 2
+                  }
+                },
+                "num_paginas": 290,
+                "num_copias": 145,
+                "folhas_impressas": 42050,
                 "centro_custos": {
                   "1": {
                     "descricao": "Aprendizagem Industrial Presencial",
-                    "qtdade_solicitada": 11
+                    "qtdade_solicitada": 0
                   },
                   "2": {
                     "descricao": "Técnico de Nível Média Presencial",
-                    "qtdade_solicitada": 1
+                    "qtdade_solicitada": 0
                   },
                   "3": {
                     "descricao": "Graduação Tecnológica Presencial",
-                    "qtdade_solicitada": 53
+                    "qtdade_solicitada": 29
                   },
                   "4": {
                     "descricao": "Pós-Graduação Presencial",
@@ -2635,31 +2731,27 @@
                   "7": {
                     "descricao": "Qualificação Profissional Presencial",
                     "qtdade_solicitada": 0
-                  },
-                  "8": {
-                    "descricao": "Aperfeiç./Especializ. Profis. Presencial",
-                    "qtdade_solicitada": 0
                   }
                 },
                 "curso": {
                   "1": {
                     "descricao": "CT-DS",
-                    "qtdade_solicitada": 11
+                    "qtdade_solicitada": 0
                   },
                   "2": {
                     "descricao": "CT-MP",
-                    "qtdade_solicitada": 52
+                    "qtdade_solicitada": 29
                   },
                   "3": {
                     "descricao": "CST-MP",
-                    "qtdade_solicitada": 2
+                    "qtdade_solicitada": 0
                   },
                   "4": {
                     "descricao": "Pós-Graduação",
                     "qtdade_solicitada": 0
                   }
                 },
-                "custo_total": 432.85
+                "custo_total": 296.9
               }
             },
             "headers": {
@@ -2677,15 +2769,15 @@
               },
               "Content-Length": {
                 "type": "string",
-                "default": "1155"
+                "default": "1680"
               },
               "ETag": {
                 "type": "string",
-                "default": "W/\"483-a/hcoe7aay05JVjM7VL+tGZRN1U\""
+                "default": "W/\"690-aBNDSBy/it9sBpct2rGCe6Xu/EA\""
               },
               "Date": {
                 "type": "string",
-                "default": "Fri, 05 Nov 2021 15:26:45 GMT"
+                "default": "Sun, 07 Nov 2021 20:14:22 GMT"
               },
               "Connection": {
                 "type": "string",
@@ -2724,7 +2816,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/generatedObject15"
+              "$ref": "#/definitions/generatedObject22"
             },
             "headers": {
               "X-Powered-By": {
@@ -2741,15 +2833,15 @@
               },
               "Content-Length": {
                 "type": "string",
-                "default": "3870"
+                "default": "6678"
               },
               "ETag": {
                 "type": "string",
-                "default": "W/\"f1e-nn2gDxzMAjG24yNl8pUsI41ROOs\""
+                "default": "W/\"1a16-7zh/QbF6NNCWhVapL5Os41KG890\""
               },
               "Date": {
                 "type": "string",
-                "default": "Fri, 05 Nov 2021 15:27:10 GMT"
+                "default": "Sun, 07 Nov 2021 20:14:01 GMT"
               },
               "Connection": {
                 "type": "string",
@@ -2783,8 +2875,7 @@
             "name": "emailOrNif",
             "in": "formData",
             "required": true,
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": ""
           },
           {
@@ -3158,14 +3249,14 @@
           {
             "name": "nome",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": ""
           },
           {
             "name": "telefone",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int64",
             "description": ""
@@ -3173,15 +3264,15 @@
           {
             "name": "email",
             "in": "formData",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": ""
           },
           {
             "name": "image",
             "in": "formData",
-            "required": true,
-            "type": "string",
+            "required": false,
+            "type": "file",
             "description": ""
           }
         ],
@@ -3309,16 +3400,14 @@
             "name": "senha",
             "in": "formData",
             "required": true,
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": ""
           },
           {
             "name": "confirmSenha",
             "in": "formData",
             "required": true,
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": ""
           }
         ],
@@ -3615,16 +3704,14 @@
             "name": "senhaNova",
             "in": "formData",
             "required": true,
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": ""
           },
           {
             "name": "confirmSenhaNova",
             "in": "formData",
             "required": true,
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": ""
           }
         ],
@@ -3820,7 +3907,7 @@
             "name": "file",
             "in": "formData",
             "required": true,
-            "type": "string",
+            "type": "file",
             "description": ""
           }
         ],
@@ -3979,18 +4066,18 @@
         ],
         "parameters": [
           {
+            "name": "accessToken",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int32",
-            "description": ""
-          },
-          {
-            "name": "accessToken",
-            "in": "header",
-            "required": true,
-            "type": "string",
             "description": ""
           },
           {
@@ -4058,7 +4145,7 @@
         }
       }
     },
-    "/myRequests/rated=0": {
+    "/myRequests/rated={rated}": {
       "get": {
         "summary": "Meus Pedidos",
         "tags": [
@@ -4070,6 +4157,13 @@
           "application/json; charset=utf-8"
         ],
         "parameters": [
+          {
+            "name": "rated",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "0 = ainda não avaliados, 1 = avaliados"
+          },
           {
             "name": "accessToken",
             "in": "header",
@@ -7186,41 +7280,77 @@
         "message"
       ]
     },
-    "Estatísticasdomêsdenovembrodoanode2021": {
-      "title": "Estatísticasdomêsdenovembrodoanode2021",
+    "EstatisticasMensais/:ano/:mes(solicitandoestatisticasmensaispassandoanoemêscomoparâmetro)": {
+      "title": "EstatisticasMensais/:ano/:mes(solicitandoestatisticasmensaispassandoanoemêscomoparâmetro)",
       "example": {
         "mes": "Novembro",
         "ano": "2021",
-        "pedidos": 65,
+        "pedidos": 29,
         "avaliacao_pedido": {
           "0": {
             "status": "Ainda não avaliado.",
-            "qtdade_solicitada": 61
+            "qtdade_solicitada": 8
           },
           "1": {
             "status": "Atendeu!",
-            "qtdade_solicitada": 2
+            "qtdade_solicitada": 4
           },
           "2": {
             "status": "Não atendeu!",
+            "qtdade_solicitada": 17
+          }
+        },
+        "servico_copiaTamanho": {
+          "1": {
+            "status": "Preto&Branco - Tamanho A5",
+            "qtdade_solicitada": 23
+          },
+          "2": {
+            "status": "Preto&Branco - Tamanho A4",
+            "qtdade_solicitada": 2
+          },
+          "3": {
+            "status": "Preto&Branco - Tamanho A3",
+            "qtdade_solicitada": 2
+          },
+          "4": {
+            "status": "Colorida - Tamanho A4",
+            "qtdade_solicitada": 0
+          },
+          "5": {
+            "status": "Preto&Branco - Reduzida",
             "qtdade_solicitada": 2
           }
         },
-        "num_paginas": 605,
-        "num_copias": 315,
-        "folhas_impressas": 190575,
+        "servico_capaAcabamento": {
+          "1": {
+            "status": "Capa em papel 150g e 2 grampos laterais",
+            "qtdade_solicitada": 23
+          },
+          "2": {
+            "status": "Capa em papel 150g e 2 grampos a cavalo",
+            "qtdade_solicitada": 2
+          },
+          "3": {
+            "status": "Capa em papel 150g e espirais de plástico",
+            "qtdade_solicitada": 2
+          }
+        },
+        "num_paginas": 290,
+        "num_copias": 145,
+        "folhas_impressas": 42050,
         "centro_custos": {
           "1": {
             "descricao": "Aprendizagem Industrial Presencial",
-            "qtdade_solicitada": 11
+            "qtdade_solicitada": 0
           },
           "2": {
             "descricao": "Técnico de Nível Média Presencial",
-            "qtdade_solicitada": 1
+            "qtdade_solicitada": 0
           },
           "3": {
             "descricao": "Graduação Tecnológica Presencial",
-            "qtdade_solicitada": 53
+            "qtdade_solicitada": 29
           },
           "4": {
             "descricao": "Pós-Graduação Presencial",
@@ -7237,31 +7367,27 @@
           "7": {
             "descricao": "Qualificação Profissional Presencial",
             "qtdade_solicitada": 0
-          },
-          "8": {
-            "descricao": "Aperfeiç./Especializ. Profis. Presencial",
-            "qtdade_solicitada": 0
           }
         },
         "curso": {
           "1": {
             "descricao": "CT-DS",
-            "qtdade_solicitada": 11
+            "qtdade_solicitada": 0
           },
           "2": {
             "descricao": "CT-MP",
-            "qtdade_solicitada": 52
+            "qtdade_solicitada": 29
           },
           "3": {
             "descricao": "CST-MP",
-            "qtdade_solicitada": 2
+            "qtdade_solicitada": 0
           },
           "4": {
             "descricao": "Pós-Graduação",
             "qtdade_solicitada": 0
           }
         },
-        "custo_total": 432.85
+        "custo_total": 296.9
       },
       "type": "object",
       "properties": {
@@ -7276,6 +7402,18 @@
           "format": "int32"
         },
         "avaliacao_pedido": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
+        },
+        "servico_copiaTamanho": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
+        },
+        "servico_capaAcabamento": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/generatedObject"
@@ -7296,13 +7434,13 @@
         "centro_custos": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/generatedObject3"
+            "$ref": "#/definitions/generatedObject11"
           }
         },
         "curso": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/generatedObject3"
+            "$ref": "#/definitions/generatedObject11"
           }
         },
         "custo_total": {
@@ -7315,6 +7453,8 @@
         "ano",
         "pedidos",
         "avaliacao_pedido",
+        "servico_copiaTamanho",
+        "servico_capaAcabamento",
         "num_paginas",
         "num_copias",
         "folhas_impressas",
@@ -7327,7 +7467,7 @@
       "title": "generatedObject",
       "example": {
         "status": "Ainda não avaliado.",
-        "qtdade_solicitada": 61
+        "qtdade_solicitada": 8
       },
       "type": "object",
       "properties": {
@@ -7344,11 +7484,11 @@
         "qtdade_solicitada"
       ]
     },
-    "generatedObject3": {
-      "title": "generatedObject3",
+    "generatedObject11": {
+      "title": "generatedObject11",
       "example": {
         "descricao": "Aprendizagem Industrial Presencial",
-        "qtdade_solicitada": 11
+        "qtdade_solicitada": 0
       },
       "type": "object",
       "properties": {
@@ -7365,15 +7505,65 @@
         "qtdade_solicitada"
       ]
     },
-    "generatedObject15": {
-      "title": "generatedObject15",
+    "generatedObject22": {
+      "title": "generatedObject22",
       "example": {
         "ano": 2021,
         "mes": "Agosto",
         "pedidos": 0,
-        "num_paginas": null,
-        "num_copias": null,
-        "folhas_impressas": null,
+        "avaliacao_pedido": {
+          "0": {
+            "status": "Ainda não avaliado.",
+            "qtdade_solicitada": 0
+          },
+          "1": {
+            "status": "Atendeu!",
+            "qtdade_solicitada": 0
+          },
+          "2": {
+            "status": "Não atendeu!",
+            "qtdade_solicitada": 0
+          }
+        },
+        "servico_copiaTamanho": {
+          "1": {
+            "status": "Preto&Branco - Tamanho A5",
+            "qtdade_solicitada": 0
+          },
+          "2": {
+            "status": "Preto&Branco - Tamanho A4",
+            "qtdade_solicitada": 0
+          },
+          "3": {
+            "status": "Preto&Branco - Tamanho A3",
+            "qtdade_solicitada": 0
+          },
+          "4": {
+            "status": "Colorida - Tamanho A4",
+            "qtdade_solicitada": 0
+          },
+          "5": {
+            "status": "Preto&Branco - Reduzida",
+            "qtdade_solicitada": 0
+          }
+        },
+        "servico_capaAcabamento": {
+          "1": {
+            "status": "Capa em papel 150g e 2 grampos laterais",
+            "qtdade_solicitada": 0
+          },
+          "2": {
+            "status": "Capa em papel 150g e 2 grampos a cavalo",
+            "qtdade_solicitada": 0
+          },
+          "3": {
+            "status": "Capa em papel 150g e espirais de plástico",
+            "qtdade_solicitada": 0
+          }
+        },
+        "num_paginas": 0,
+        "num_copias": 0,
+        "folhas_impressas": 0,
         "centro_custos": {
           "1": {
             "descricao": "Aprendizagem Industrial Presencial",
@@ -7401,10 +7591,6 @@
           },
           "7": {
             "descricao": "Qualificação Profissional Presencial",
-            "qtdade_solicitada": 0
-          },
-          "8": {
-            "descricao": "Aperfeiç./Especializ. Profis. Presencial",
             "qtdade_solicitada": 0
           }
         },
@@ -7441,25 +7627,46 @@
           "type": "integer",
           "format": "int32"
         },
+        "avaliacao_pedido": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
+        },
+        "servico_copiaTamanho": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
+        },
+        "servico_capaAcabamento": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
+        },
         "num_paginas": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32"
         },
         "num_copias": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32"
         },
         "folhas_impressas": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32"
         },
         "centro_custos": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/generatedObject3"
+            "$ref": "#/definitions/generatedObject11"
           }
         },
         "curso": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/generatedObject3"
+            "$ref": "#/definitions/generatedObject11"
           }
         },
         "custo_total": {
@@ -7471,6 +7678,9 @@
         "ano",
         "mes",
         "pedidos",
+        "avaliacao_pedido",
+        "servico_copiaTamanho",
+        "servico_capaAcabamento",
         "num_paginas",
         "num_copias",
         "folhas_impressas",
@@ -7485,9 +7695,59 @@
         "ano": 2021,
         "mes": "Outubro",
         "pedidos": 0,
-        "num_paginas": null,
-        "num_copias": null,
-        "folhas_impressas": null,
+        "avaliacao_pedido": {
+          "0": {
+            "status": "Ainda não avaliado.",
+            "qtdade_solicitada": 0
+          },
+          "1": {
+            "status": "Atendeu!",
+            "qtdade_solicitada": 0
+          },
+          "2": {
+            "status": "Não atendeu!",
+            "qtdade_solicitada": 0
+          }
+        },
+        "servico_copiaTamanho": {
+          "1": {
+            "status": "Preto&Branco - Tamanho A5",
+            "qtdade_solicitada": 0
+          },
+          "2": {
+            "status": "Preto&Branco - Tamanho A4",
+            "qtdade_solicitada": 0
+          },
+          "3": {
+            "status": "Preto&Branco - Tamanho A3",
+            "qtdade_solicitada": 0
+          },
+          "4": {
+            "status": "Colorida - Tamanho A4",
+            "qtdade_solicitada": 0
+          },
+          "5": {
+            "status": "Preto&Branco - Reduzida",
+            "qtdade_solicitada": 0
+          }
+        },
+        "servico_capaAcabamento": {
+          "1": {
+            "status": "Capa em papel 150g e 2 grampos laterais",
+            "qtdade_solicitada": 0
+          },
+          "2": {
+            "status": "Capa em papel 150g e 2 grampos a cavalo",
+            "qtdade_solicitada": 0
+          },
+          "3": {
+            "status": "Capa em papel 150g e espirais de plástico",
+            "qtdade_solicitada": 0
+          }
+        },
+        "num_paginas": 0,
+        "num_copias": 0,
+        "folhas_impressas": 0,
         "centro_custos": {
           "1": {
             "descricao": "Aprendizagem Industrial Presencial",
@@ -7515,10 +7775,6 @@
           },
           "7": {
             "descricao": "Qualificação Profissional Presencial",
-            "qtdade_solicitada": 0
-          },
-          "8": {
-            "descricao": "Aperfeiç./Especializ. Profis. Presencial",
             "qtdade_solicitada": 0
           }
         },
@@ -7555,25 +7811,46 @@
           "type": "integer",
           "format": "int32"
         },
+        "avaliacao_pedido": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
+        },
+        "servico_copiaTamanho": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
+        },
+        "servico_capaAcabamento": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
+        },
         "num_paginas": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32"
         },
         "num_copias": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32"
         },
         "folhas_impressas": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32"
         },
         "centro_custos": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/generatedObject3"
+            "$ref": "#/definitions/generatedObject11"
           }
         },
         "curso": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/generatedObject3"
+            "$ref": "#/definitions/generatedObject11"
           }
         },
         "custo_total": {
@@ -7585,6 +7862,9 @@
         "ano",
         "mes",
         "pedidos",
+        "avaliacao_pedido",
+        "servico_copiaTamanho",
+        "servico_capaAcabamento",
         "num_paginas",
         "num_copias",
         "folhas_impressas",
@@ -7598,22 +7878,72 @@
       "example": {
         "ano": 2021,
         "mes": "Novembro",
-        "pedidos": 65,
-        "num_paginas": 605,
-        "num_copias": 315,
-        "folhas_impressas": 190575,
+        "pedidos": 29,
+        "avaliacao_pedido": {
+          "0": {
+            "status": "Ainda não avaliado.",
+            "qtdade_solicitada": 8
+          },
+          "1": {
+            "status": "Atendeu!",
+            "qtdade_solicitada": 4
+          },
+          "2": {
+            "status": "Não atendeu!",
+            "qtdade_solicitada": 17
+          }
+        },
+        "servico_copiaTamanho": {
+          "1": {
+            "status": "Preto&Branco - Tamanho A5",
+            "qtdade_solicitada": 23
+          },
+          "2": {
+            "status": "Preto&Branco - Tamanho A4",
+            "qtdade_solicitada": 2
+          },
+          "3": {
+            "status": "Preto&Branco - Tamanho A3",
+            "qtdade_solicitada": 2
+          },
+          "4": {
+            "status": "Colorida - Tamanho A4",
+            "qtdade_solicitada": 0
+          },
+          "5": {
+            "status": "Preto&Branco - Reduzida",
+            "qtdade_solicitada": 2
+          }
+        },
+        "servico_capaAcabamento": {
+          "1": {
+            "status": "Capa em papel 150g e 2 grampos laterais",
+            "qtdade_solicitada": 23
+          },
+          "2": {
+            "status": "Capa em papel 150g e 2 grampos a cavalo",
+            "qtdade_solicitada": 2
+          },
+          "3": {
+            "status": "Capa em papel 150g e espirais de plástico",
+            "qtdade_solicitada": 2
+          }
+        },
+        "num_paginas": 290,
+        "num_copias": 145,
+        "folhas_impressas": 42050,
         "centro_custos": {
           "1": {
             "descricao": "Aprendizagem Industrial Presencial",
-            "qtdade_solicitada": 11
+            "qtdade_solicitada": 0
           },
           "2": {
             "descricao": "Técnico de Nível Média Presencial",
-            "qtdade_solicitada": 1
+            "qtdade_solicitada": 0
           },
           "3": {
             "descricao": "Graduação Tecnológica Presencial",
-            "qtdade_solicitada": 53
+            "qtdade_solicitada": 29
           },
           "4": {
             "descricao": "Pós-Graduação Presencial",
@@ -7630,31 +7960,27 @@
           "7": {
             "descricao": "Qualificação Profissional Presencial",
             "qtdade_solicitada": 0
-          },
-          "8": {
-            "descricao": "Aperfeiç./Especializ. Profis. Presencial",
-            "qtdade_solicitada": 0
           }
         },
         "curso": {
           "1": {
             "descricao": "CT-DS",
-            "qtdade_solicitada": 11
+            "qtdade_solicitada": 0
           },
           "2": {
             "descricao": "CT-MP",
-            "qtdade_solicitada": 52
+            "qtdade_solicitada": 29
           },
           "3": {
             "descricao": "CST-MP",
-            "qtdade_solicitada": 2
+            "qtdade_solicitada": 0
           },
           "4": {
             "descricao": "Pós-Graduação",
             "qtdade_solicitada": 0
           }
         },
-        "custo_total": 432.85
+        "custo_total": 296.9
       },
       "type": "object",
       "properties": {
@@ -7668,6 +7994,24 @@
         "pedidos": {
           "type": "integer",
           "format": "int32"
+        },
+        "avaliacao_pedido": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
+        },
+        "servico_copiaTamanho": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
+        },
+        "servico_capaAcabamento": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/generatedObject"
+          }
         },
         "num_paginas": {
           "type": "integer",
@@ -7684,13 +8028,13 @@
         "centro_custos": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/generatedObject3"
+            "$ref": "#/definitions/generatedObject11"
           }
         },
         "curso": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/generatedObject3"
+            "$ref": "#/definitions/generatedObject11"
           }
         },
         "custo_total": {
@@ -7702,6 +8046,9 @@
         "ano",
         "mes",
         "pedidos",
+        "avaliacao_pedido",
+        "servico_copiaTamanho",
+        "servico_capaAcabamento",
         "num_paginas",
         "num_copias",
         "folhas_impressas",

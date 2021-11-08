@@ -12,7 +12,7 @@ module.exports = function (app) {
 
     ////USUARIO COMUM
 
-    //Post
+    //POST
 
     //Enviar e-mail de recuperação e inserir email na tabela resetToken
     app.post('/forgotPassword', controller.forgotPasswordPost);

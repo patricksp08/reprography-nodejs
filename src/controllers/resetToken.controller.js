@@ -1,17 +1,12 @@
-//Biblioteca do sequelize 
-const Sequelize = require("sequelize");
-//Operadores do sequelize
-const Op = Sequelize.Op;
-
 //Arquivos de config
 const config = require("../.config/auth.config.json");
 
-//Inicializando as models e as recebendo
-const { initModels } = require("../models/init-models")
-var { resettoken, usuario } = initModels(sequelize)
+//Services
+const serviceUsuario = require("../services/usuario.service");
+const serviceResetToken = require("../services/resetToken.service");
 
 //Uitlizado para criptografar as senhas no banco de dados
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 //Usado para criar o token de reset aleatório
 const crypto = require('crypto');
 
@@ -23,13 +18,13 @@ module.exports = {
 
   // ROTAS POST
 
-  forgotPasswordPost: async (req, res, next) => {
+  forgotPasswordPost: async (req, res) => {
     //Assegure que você tem um usuário com esse email
 
     // const { mail } = req.body;
     var mail = req.body.mail
 
-    var email = await usuario.findOne({ where: { email: mail } });
+    var email = await serviceUsuario.findOneByEmail(mail);
     if (email == null) {
       /**
        * Nós não queremos avisar á atacantes
@@ -43,14 +38,7 @@ module.exports = {
      * anteriormente para este usuário. Isso preveni
      * que tokens antigas sejam usadas.
      **/
-    await resettoken.update({
-      used: 1
-    },
-      {
-        where: {
-          email: mail
-        }
-      });
+    await serviceResetToken.updateByEmail(mail);
 
     //Cria um resete de token aleatório
     var token = crypto.randomBytes(64).toString('base64');
@@ -60,17 +48,21 @@ module.exports = {
     expireDate.setDate(expireDate.getDate() + 1 / 24);
 
     //Inserindo dados da token dentro do BD
-    await resettoken.create({
-      email: mail,
-      expiration: expireDate,
-      token: token,
-      used: 0
-    });
+    await serviceResetToken.addToken({
+      param: {
+        email: mail,
+        expiration: expireDate,
+        token: token,
+        used: 0
+      }
+    })
+
     res.json({ status: 'ok' });
-    var output = template.forgotPasswordEmail(token, mail)
-    var email = mail;
+
+    //Envio de e-mail de recuperação de senha
+    var output = template.forgotPasswordEmail(token, mail);
     var title = "Recuperação de Senha";
-    await mailer.sendEmails(email, title, output, { attachments: null });
+    await mailer.sendEmails(mail, title, output, { attachments: null });
     return;
   },
 
@@ -78,7 +70,7 @@ module.exports = {
 
   //RESET PASSWORD 
 
-  resetPassword: async (req, res, next) => {
+  resetPassword: async (req, res) => {
 
     let { email, token, senha, senha2 } = req.body;
 
@@ -95,39 +87,27 @@ module.exports = {
     // if (!isValidPassword(req.body.password1)) {
     //   return res.json({ status: 'error', message: 'Senha não contêm os requerimentos minímos. Por favor, tente novamente.' });
     // }
-
-    var record = await resettoken.findOne({
-      where: {
-        email: email,
-        expiration: { [Op.gt]: Sequelize.fn('CURDATE') },
-        token: token,
-        used: 0
-      }
-    });
+    var record = await serviceResetToken.findOneByEmailandToken(email, token)
+    // var record = await resettoken.findOne({
+    //   where: {
+    //     email: email,
+    //     expiration: { [Op.gt]: Sequelize.fn('CURDATE') },
+    //     token: token,
+    //     used: 0
+    //   }
+    // });
 
     if (record == null) {
       return res.json({ status: 'error', message: 'Token não encontrado. Por favor, faça o processo de resetar a senha novamente.' });
     }
 
-    await resettoken.update({
-      used: 1
-    },
-      {
-        where: {
-          email: email
-        }
-      });
+    await serviceResetToken.updateByEmail(email);
 
     const newPassword = await bcrypt.hash(senha, config.jwt.saltRounds);
 
-    await usuario.update({
-      senha: newPassword,
-    },
-      {
-        where: {
-          email: email
-        }
-      });
+    var usuario = await serviceUsuario.findOneByEmail(email);
+
+    await serviceUsuario.updateUser({ user: usuario, param: { senha: newPassword } });
 
     return res.json({ status: 'ok', message: 'Senha resetada. Por favor, tente efetuar o login com sua nova senha' });
   },

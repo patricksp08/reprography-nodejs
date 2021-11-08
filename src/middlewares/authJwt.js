@@ -3,6 +3,7 @@ const config = require("../.config/auth.config");
 //Método que verifica o token enviado na requisição com o token e a palavra de segurança setada no back-end
 const { verify } = require("jsonwebtoken");
 
+//Service do usuário
 const service = require("../services/usuario.service");
 
 //Verifica se a requisição contém os valores setados no config.header e no config.secret
@@ -28,16 +29,21 @@ const validateToken = (req, res, next) => {
 };
 
 isAdmin = (req, res, next) => {
-  service.findUserbyPk(req.user.nif, {attributes: null}).then(user => {
+  service.findUserbyPk(req.user.nif, { attributes: null }).then(user => {
     service.getRoles(user).then(roles => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].descricao === "admin") {
-          if(next){
+          if (next) {
             next();
             return;
           }
-          else{
-            return res.json(req.array)
+
+          //Exceção para detPedidos... Para podermos verificar se o usuário é admin após verificar se
+          // o nif do pedido que ele está tentando acessar é igual ao dele (foi ele que requisitou)
+          //se não for, verificamos se ele é admin, se for ele recebe a array do pedido que solicitou
+          //se ele não for admin, recebe a mensagem abaixo "Você precisa ser Administrador...".
+          else {
+            return res.json(req.array);
           }
         }
       }

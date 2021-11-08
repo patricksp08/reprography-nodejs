@@ -128,7 +128,7 @@ exports.InserirRegistros = async () => {
                 descricao: "Físico",
             },
         ]);
-         models.tipo_usuario.bulkCreate([
+        models.tipo_usuario.bulkCreate([
             {
                 id: 1,
                 descricao: "user",
@@ -138,7 +138,7 @@ exports.InserirRegistros = async () => {
                 descricao: "admin",
             },
         ]);
-         models.servicoCopiaTamanho.bulkCreate([
+        models.servicoCopiaTamanho.bulkCreate([
             {
                 id_servicoCA: 1,
                 descricao: "Preto&Branco - Tamanho A5",
@@ -177,7 +177,7 @@ exports.InserirRegistros = async () => {
             },
         ]);
         await models.servicoCapaAcabamento.bulkCreate([
-            
+
             {
                 id_servicoCT: 1,
                 descricao: "Capa em papel 150g e 2 grampos laterais",
@@ -205,7 +205,7 @@ exports.InserirRegistros = async () => {
         ]);
         console.log("\n(||||||||| | | -------- Registros Inseridos com sucesso!!! -------- | | |||||||||)")
     } catch {
-        console.log({error: "Registros já inseridos! (Validation error)"})
+        console.log({ error: "Registros já inseridos! (Validation error)" })
     }
 }
 
@@ -217,7 +217,7 @@ exports.InserirUsuario = async () => {
             senha: hash,
             nome: "ADMIN ACCOUNT",
             email: config.adminAccount.email,
-            id_depto: 1,
+            depto: 1,
             cfp: 0,
             imagem: "uploads/user-img/default/usuario.png",
             // ativado: 0,
@@ -239,6 +239,6 @@ exports.InserirUsuario = async () => {
             }
         }
     } catch {
-        console.log({error: "Usuário ADMIN já inserido! (Validation error)"})
+        console.log({ error: "Usuário ADMIN já inserido! (Validation error)" })
     }
 }
