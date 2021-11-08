@@ -188,7 +188,7 @@ Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
 $ npm run dev
 
 # Para iniciar normalmente
-$ npm run
+$ npm run start
 ```
 
 ⚡ Aguarde a execução e a API estará rodando na URL:  `http://localhost:3002`
