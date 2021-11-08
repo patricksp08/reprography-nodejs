@@ -30,12 +30,14 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 #### Runtime environment
 <a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS</a>
 
-
 #### Linguagem
- **<a href="https://www.javascript.com">:small_blue_diamond: Javascript </a>**<img align="center"  height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png" style="max-width:100%;"></img> 
- 
+ **<a href="https://www.javascript.com">:small_blue_diamond: Javascript </a>**
+
+#### Banco de dados
+**<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
+
 #### Framework
- **<a href="https://expressjs.com">:small_blue_diamond: Express </a>**<img align="center"  height="30" width="30" src="https://d2m06gn7cjwia2.cloudfront.net/express.png" style="max-width:100%;"></img> 
+ **<a href="https://expressjs.com">:small_blue_diamond: Express </a>*
  
 #### Editor de texto:
  **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
@@ -43,9 +45,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 #### Documentação:
 **<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center" height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>
 
-#### Banco de dados
 
-**<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
 
 ## Dependências do projeto
 
