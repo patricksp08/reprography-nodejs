@@ -120,7 +120,7 @@ E assim você terá sua aplicação rodando localmente.
 <br>
 
 
-### Documentações:
+## Documentações:
 
   * [Regras de negócio](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/Regras_de_negocio_e_classes.txt)
 
@@ -131,7 +131,7 @@ E assim você terá sua aplicação rodando localmente.
  * [Diagrama de Caso de Uso](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/diagramas/diagramas_casos_de_uso/Diagrama_de_Caso_de_Uso.png)
 
 
-## :triangular_flag_on_post: Endpoints
+### :triangular_flag_on_post: Endpoints
 
 
 Criando a documentação com o Swagger, conseguimos simplificar não só o desenvolvimento da nossa API e da squad como um todo, mas também o relacionamento com as outras partes do projeto (squad front-end, infra...). Por isso tentamos ao máximo deixa-lá autoexplicativa e completa. 
