@@ -98,7 +98,7 @@ Além disto é bom ter um editor para trabalhar com o código como: [VSCode](htt
 
 Aqui ficam as configurações de JWT e da primeira conta da aplicação.
 
- - Altere os campos com os valores como **"changeThis"**.
+ - Altere os campos que contém o valor **"changeThis"**.
  - Em jwt.secret será a palavra secreta a ser verificada dentro do token, que podemos verificar se está presente no header da requisição, por exemplo.
  - Em Header será o nome da key a ser armazenada no header.
  - Já em AdminAccount, temos alguns campos para mudar que dizem respeito a primeira conta da API, que é administrador e usaremos para criar os outros usuários.
