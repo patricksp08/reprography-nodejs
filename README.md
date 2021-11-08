@@ -75,6 +75,16 @@ Aguarde a execução e estará rodando na URL  `http://localhost:3002`
 E assim você terá sua aplicaçãco rodando localmente.
 <br>
 
+
+## :triangular_flag_on_post: Endpoints
+
+Com nossa docmentação feita com o Swagger, conseguimos simplificar o desenvolvimento da noss API, através do conjunto e ferramentas que o próprio Swagger nos disponibiliza, ajudando a projetar e documentrar APIs em escala.
+
+Documentação da API (Swagger) rodando em: `http://localhost:3002/docs/`
+
+![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/info_api/screenshots/swagger/swagger.png)
+
+
 ## Regras de negócio e classes: 
 
 ### USUARIO pode:
@@ -123,14 +133,3 @@ Todas as permissões de usuário +
 - Um pedido só poderá ser avaliado se ele existir e não tiver sido avaliado ainda;
 - Um usuário só pode logar se estiver com a sua conta ativada;
 - Todo usuário no seu primeiro acesso precisa inserir uma nova senha para a sua conta, atualizando a senha padrão do sistema para usuários criados pela gerência (senai115).
-
----------------------------------------------
-
-
-## :triangular_flag_on_post: Endpoints
-
-Com nossa docmentação feita com o Swagger, conseguimos simplificar o desenvolvimento da noss API, através do conjunto e ferramentas que o próprio Swagger nos disponibiliza, ajudando a projetar e documentrar APIs em escala.
-
-Documentação da API (Swagger) rodando em: `http://localhost:3002/docs/`
-
-![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/info_api/screenshots/swagger/swagger.png)
