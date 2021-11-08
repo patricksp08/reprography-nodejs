@@ -40,11 +40,11 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
     </td>
 
    <td valign="top" align="center">
-      <img height="110" width="110" href="https://www.javascript.com" src="https://lh3.googleusercontent.com/proxy/WJkD7LaygVUq0RJLsKv-uDZqwjuIROISkU4SLwTfHlOeZMgxglJmEQoUEpomsFVZ7OxJ2QMrG6VAH4A_yVzjxlvcbC0YZjkhaYHOeBV3C_e3jxzEtkF4tlqQFazqkTbrr7_XiS2F6axbYUU83xo" style="max-width:100%;"></img>
+      <img height="100" width="100" href="https://www.javascript.com" src="https://lh3.googleusercontent.com/proxy/WJkD7LaygVUq0RJLsKv-uDZqwjuIROISkU4SLwTfHlOeZMgxglJmEQoUEpomsFVZ7OxJ2QMrG6VAH4A_yVzjxlvcbC0YZjkhaYHOeBV3C_e3jxzEtkF4tlqQFazqkTbrr7_XiS2F6axbYUU83xo" style="max-width:100%;"></img>
       </td>
   
    <td valign="top" align="center">
-      <img height="80" width="90" href="https://mariadb.org" src="https://e3z7c6v7.rocketcdn.me/blog/wp-content/uploads/2018/03/mariadb.png" style="max-width:100%;"></img>
+      <img height="100" width="100" href="https://mariadb.org" src="https://e3z7c6v7.rocketcdn.me/blog/wp-content/uploads/2018/03/mariadb.png" style="max-width:100%;"></img>
     </td>
 
    <td valign="top" align="center">
@@ -52,11 +52,11 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
     </td>
 
    <td valign="top" align="center">
-      <img height="60" width="60" href="https://code.visualstudio.com/Download" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img>
+      <img height="100" width="100" href="https://code.visualstudio.com/Download" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img>
     </td>
 
    <td valign="top" align="center">
-      <img height="80" width="80" href="https://swagger.io" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>
+      <img height="100" width="100" href="https://swagger.io" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>
     </td>
   </tr>
 </table>
