@@ -38,14 +38,15 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 #### Framework
  **<a href="https://expressjs.com">:small_blue_diamond: Express </a>**
- 
- <div style="display: flex">
-<h3>Editor de texto:</h3>
- [b]<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img>[/b]
- 
-<h3>Documentação:</h3>
-[b]<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center" height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>[/b]
-</div>
+
+<table>
+  <tr>
+    <td valign="top"><h3>Editor de texto:</h3>
+ <a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img></td>
+    <td valign="top"><h3>Documentação:</h3>
+<a href="https://swagger.io">:small_blue_diamond: Swagger </a><img align="center" height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img></td>
+  </tr>
+</table>
 
 ## Dependências do projeto
 
