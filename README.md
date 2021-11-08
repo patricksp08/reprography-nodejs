@@ -18,10 +18,11 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
  **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
 
-**<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center"  height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img> 
+**<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center" height="30" width="30" src="https:// upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>
 
 
 ### Dependências do projeto
+
 - Nodejs
   * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
   * Swagger-autogen 2.11.2
@@ -36,6 +37,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 #### Banco de dados
 
 **<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
+
 
 
 ## :arrow_forward: Como iniciar a aplicação:
@@ -67,13 +69,16 @@ npm run
 ```
 
 Aguarde a execução e estará rodando na URL  `http://localhost:3002`
+
 <br>
 
 E assim você terá sua aplicação rodando localmente.
 <br>
 
 
+
 ## :triangular_flag_on_post: Endpoints
+
 
 Criando a documentação com o Swagger, conseguimos simplificar não só o desenvolvimento da nossa API e da squad como um todo, mas também o relacionamento com as outras partes do projeto (squad front-end, infra...). Por isso tentamos ao máximo deixa-lá autoexplicativa e completa. 
 
