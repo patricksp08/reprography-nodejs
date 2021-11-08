@@ -1,7 +1,5 @@
 //Biblioteca do sequelize 
 const Sequelize = require("sequelize");
-const { ROLES } = require("../models");
-
 //Operadores do sequelize
 const Op = Sequelize.Op;
 
@@ -13,24 +11,21 @@ var { usuario, tipo_usuario } = initModels(sequelize)
 module.exports = {
 
     //Registrar usuário
-    addUser: async ({ nif, hash, nome, telefone, depto, email, cfp, image }) => {
-        const user = await usuario.create({
-            nif, senha: hash, nome, telefone,
-            id_depto: depto, email, cfp, imagem: image,
-        });
+    addUser: async ({ param }) => {
+        const user = await usuario.create(param);
 
         return user;
     },
 
-    findAllUsers: async (param) => {
+    findAllUsers: async (ativado) => {
         const usuarios = await usuario.findAll({
             where: {
-                ativado: param
+                ativado: ativado
             },
             include: [
                 'roles'
             ],
-               
+
         });
 
         return usuarios;
@@ -47,10 +42,10 @@ module.exports = {
         return user;
     },
 
-    findOneByEmail: async (param) => {
+    findOneByEmail: async (email) => {
         const user = await usuario.findOne({
             where: {
-                email: param
+                email: email
             }
         });
 
@@ -103,7 +98,6 @@ module.exports = {
 
         return roles;
     },
-
 
     setRoles: async (user, roles) => {
         var userRoles = await user.setRoles(roles);

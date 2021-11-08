@@ -1,42 +1,33 @@
+//Roles definidas em models/index.js (["user", "admin"])
 const db = require("../models");
-const sequelize = db.sequelize;
 const ROLES = db.ROLES;
 
-////Inicializando as models e recebendo nas configurando
-const { initModels } = require("../models/init-models.js");
-var models = initModels(sequelize);
-usuario = models.usuario;
+//Service do Usuário
+const service = require("../services/usuario.service");
 
 //Verifica se já existe um usuário com NIF e/ou email passados pelo input 
 checkDuplicateNifOrEmail = (req, res, next) => {
   // NIF
-  usuario.findOne({
-    where: {
-      nif: req.body.nif
-    }
-  }).then(user => {
-    if (user) {
-      res.status(400).send({
-        message: "Error! Usuário já cadastrado!"
-      });
-      return;
-    }
-
-    // Email
-    usuario.findOne({
-      where: {
-        email: req.body.email
-      }
-    }).then(user => {
+  service.findUserbyPk(req.body.nif, {attributes: null})
+    .then(user => {
       if (user) {
         res.status(400).send({
-          message: "Error! Email já cadastrado!"
+          message: "Error! Usuário já cadastrado!"
         });
         return;
       }
-      next();
+
+      // Email
+      service.findOneByEmail(req.body.email).then(user => {
+        if (user) {
+          res.status(400).send({
+            message: "Error! Email já cadastrado!"
+          });
+          return;
+        }
+        next();
+      });
     });
-  });
 };
 
 //Verifica se o Cargo passado na hora do registro existe no back-end (existentes: User, Moderator, Admin)
@@ -46,13 +37,10 @@ checkRolesExisted = (req, res, next) => {
   var { admin } = req.body;
 
   if (admin == 1) {
-    admin = ["admin"]
-  }
-  else if (admin == 2) {
-    admin = ["moderator"]
+    admin = ["admin"];
   }
   else {
-    admin = ["user"]
+    admin = ["user"];
   }
 
   if (admin) {
@@ -61,7 +49,7 @@ checkRolesExisted = (req, res, next) => {
         res.status(400).send({
           message: "Error! Role inexistente = " + admin[i]
         });
-        return
+        return;
       }
     }
   }

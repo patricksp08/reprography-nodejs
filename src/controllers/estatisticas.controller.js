@@ -1,13 +1,20 @@
+//Biblioteca do sequelize 
 const Sequelize = require("sequelize");
+//Operadores do sequelize
 const Op = Sequelize.Op;
 
 //Inicializando as models e as recebendo
 const { initModels } = require("../models/init-models");
-var { pedido, det_pedido, tipos_copia, tipos_capa, tamanho_pagina, centro_custos, curso, avaliacao_pedido } = initModels(sequelize);
+var { pedido, det_pedido, centro_custos, curso, avaliacao_pedido, servico_pedido, servicoCapaAcabamento, servicoCopiaTamanho } = initModels(sequelize);
 
 const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
 module.exports = {
+
+    // verificacoes: (startedDate, endDate) => {
+    //Passar pra cá as chamadas no banco para 
+    //serem utilizadas nas duas funções (estatisticasMensais e estatisticasQuatroMeses)
+    // },
 
     //Estatisticas sobre as tabelas pedido e det_pedido por Mês. 
     //Aqui o usuário vai passar o Ano e o Mês que quer consultar.
@@ -38,60 +45,61 @@ module.exports = {
         });
 
         //Cursos - CT-DS, CT-MP, CST-MP e Pós-Graduação
-        const num_curso = 4;
+        const num_curso = await curso.findAll();
 
         //Objeto que será preenchido com descricao e quantidade
         var cursoObj = {};
 
         //Percorrendo os quatro tipos de curso e trazendo os valores quando id_curso = 1, 2, 3 e 4
-        for (let i = 1; i <= num_curso; i++) {
+        for (let i = 1; i <= num_curso.length; i++) {
 
             const cursoDesc = await curso.findOne({ where: { id_curso: i } }, { attributes: ["descricao"] });
 
-            let cursoCount = await pedido.count({
+            let cursoCount = await det_pedido.count({
                 where: {
                     createdAt: {
                         [Op.between]: [startedDate, endDate]
                     },
                     id_curso: i
                 }
-            })
+            });
 
             cursoObj[i] = {
                 descricao: cursoDesc.descricao,
                 qtdade_solicitada: cursoCount,
             }
-        }
+        };
 
 
-        const num_centro_custos = 8;
+        const num_centro_custos = await centro_custos.findAll();
         var centro_custosObj = {};
 
-        for (let i = 1; i <= num_centro_custos; i++) {
+        for (let i = 1; i <= num_centro_custos.length; i++) {
 
             const centro_custosDesc = await centro_custos.findOne({ where: { id_centro_custos: i } }, { attributes: ["descricao"] });
 
-            const centro_custosCount = await pedido.count({
+            const centro_custosCount = await det_pedido.count({
                 where: {
                     createdAt: {
                         [Op.between]: [startedDate, endDate]
                     },
                     id_centro_custos: i
                 }
-            })
+            });
 
             centro_custosObj[i] = {
                 descricao: centro_custosDesc.descricao,
                 qtdade_solicitada: centro_custosCount,
             }
-        }
+        };
 
         //Lenght de avaliações... vai do 0 ao 2... 0 = não avaliado, 1 = atendeu, 2 = não atendeu!
-        const num_avaliacao_pedido = 2;
+        const num_avaliacao_pedido = await avaliacao_pedido.findAll();
         //Objeto 
         var avaliacao_pedidoObj = {};
 
-        for (let i = 0; i <= num_avaliacao_pedido; i++) {
+        //Começa em 0 pois existe avaliação com id 0 (ainda não avaliado...)
+        for (let i = 0; i < num_avaliacao_pedido.length; i++) {
 
             const avaliacao_pedidoDesc = await avaliacao_pedido.findOne({ where: { id_avaliacao_pedido: i } }, { attributes: ["descricao"] });
 
@@ -102,13 +110,13 @@ module.exports = {
                     },
                     id_avaliacao_pedido: i
                 }
-            })
+            });
 
             avaliacao_pedidoObj[i] = {
                 status: avaliacao_pedidoDesc.descricao,
                 qtdade_solicitada: avaliacao_pedidoCount,
             }
-        }
+        };
 
 
         //Det Pedido 
@@ -133,97 +141,70 @@ module.exports = {
 
         var folhas_impressas = (total_copias * num_paginas);
 
-        //Copias Preto e Branco e Coloridas
-        const num_tipos_copia = 2;
+        //servico_pedido
 
-        //Objeto que será preenchido com descricao e quantidade
-        var objColor = {};
+        //Lenght Servico CT
+        const num_servicoCT = await servicoCopiaTamanho.findAll();
+        //Objeto 
+        var servicoCTObj = {};
 
-        //Percorrendo os dois tipos de copia e trazendo os valores quando id_tipos_copia = 1 e 2
-        for (let i = 1; i <= num_tipos_copia; i++) {
+        for (let i = 1; i <= num_servicoCT.length; i++) {
 
-            const tipos_copiaDesc = await tipos_copia.findOne({ where: { id_tipos_copia: i } }, { attributes: ["descricao"] });
+            const servicoCTDesc = await servicoCopiaTamanho.findOne({ where: { id_servico: i } }, { attributes: ["descricao"] });
 
-            var tipos_copiaCount = await det_pedido.count({
+            const servicoCTCount = await servico_pedido.count({
                 where: {
                     createdAt: {
                         [Op.between]: [startedDate, endDate]
                     },
-                    id_tipos_copia: i
+                    servicoCT: i
                 }
-            })
-
-            objColor[i] = {
-                descricao: tipos_copiaDesc.descricao,
-                qtdade_solicitada: tipos_copiaCount
-            }
-        }
-
-        //Tipos de capa: 1 = (PAPEL) ; 2 = (PVC)
-        const num_tipos_capa = 2;
-
-        //Objeto que será preenchido com descricao e quantidade
-        var objCapa = {};
-
-        //Percorrendo os dois tipos de capa e trazendo os valores quando id_tipos_capa = 1 e 2
-        for (let i = 1; i <= num_tipos_capa; i++) {
-
-            const tipos_capaDesc = await tipos_capa.findOne({ where: { id_tipos_capa: i } }, { attributes: ["descricao"] });
-
-            var tipos_capaCount = await det_pedido.count({
-                where: {
-                    createdAt: {
-                        [Op.between]: [startedDate, endDate]
-                    },
-                    id_tipos_capa: i
-                },
             });
 
-            objCapa[i] = {
-                descricao: tipos_capaDesc.descricao,
-                qtdade_solicitada: tipos_capaCount
+            servicoCTObj[i] = {
+                status: servicoCTDesc.descricao,
+                qtdade_solicitada: servicoCTCount,
             }
-        }
+        };
 
+        //Lenght Servico CT
+        const num_servicoCA = await servicoCapaAcabamento.findAll();
+        //Objeto 
+        var servicoCAObj = {};
 
-        const num_tamanho_pagina = 5;
-        var tamanho_paginaObj = {};
+        for (let i = 1; i <= num_servicoCA.length; i++) {
 
-        for (let i = 1; i <= num_tamanho_pagina; i++) {
+            const servicoCADesc = await servicoCapaAcabamento.findOne({ where: { id_servico: i } }, { attributes: ["descricao"] });
 
-            const tamanho_paginaDesc = await tamanho_pagina.findOne({ where: { id_tamanho: i } }, { attributes: ["descricao"] });
-
-            const tamanho_paginaCount = await det_pedido.count({
+            const servicoCACount = await servico_pedido.count({
                 where: {
                     createdAt: {
                         [Op.between]: [startedDate, endDate]
                     },
-                    id_tamanho: i
+                    servicoCA: i
                 }
-            })
+            });
 
-            tamanho_paginaObj[i] = {
-                descricao: tamanho_paginaDesc.descricao,
-                qtdade_solicitada: tamanho_paginaCount,
+            servicoCAObj[i] = {
+                status: servicoCADesc.descricao,
+                qtdade_solicitada: servicoCACount,
             }
-        }
-
+        };
 
         return res.json({
             mes: meses[mes - 1],
             ano: ano,
             pedidos: pedidos,
             avaliacao_pedido: avaliacao_pedidoObj,
+            servico_copiaTamanho: servicoCTObj,
+            servico_capaAcabamento: servicoCAObj,
             num_paginas: num_paginas,
             num_copias: total_copias,
             folhas_impressas: folhas_impressas,
-            tipos_copia: objColor,
-            tipos_capa: objCapa,
-            tamanho_pagina: tamanho_paginaObj,
             centro_custos: centro_custosObj,
             curso: cursoObj,
             custo_total: custo_total
-        })
+        });
     },
 
     //Estatisticas dos ultimos 3 meses + mês Atual.
@@ -244,13 +225,13 @@ module.exports = {
             //queiramos retornar os valores dos meses 12, 11 e 10
             if (i === -2) {
                 i = 10
-            }
+            };
             if (i === -1) {
                 i = 11
-            }
+            };
             if (i === 0) {
                 i = 12
-            }
+            };
 
             let endDate = new Date(`${ano}-${i}-31 23:59:59`);
             let startedDate = new Date(`${ano}-${i}-01 00:00:00`);
@@ -276,60 +257,61 @@ module.exports = {
             });
 
             //Cursos - CT-DS, CT-MP, CST-MP e Pós-Graduação
-            const num_curso = 4;
+            const num_curso = await curso.findAll();
 
             //Objeto que será preenchido com descricao e quantidade
             var cursoObj = {};
 
             //Percorrendo os quatro tipos de curso e trazendo os valores quando id_curso = 1, 2, 3 e 4
-            for (let i = 1; i <= num_curso; i++) {
+            for (let i = 1; i <= num_curso.length; i++) {
 
                 const cursoDesc = await curso.findOne({ where: { id_curso: i } }, { attributes: ["descricao"] });
 
-                let cursoCount = await pedido.count({
+                let cursoCount = await det_pedido.count({
                     where: {
                         createdAt: {
                             [Op.between]: [startedDate, endDate]
                         },
                         id_curso: i
                     }
-                })
+                });
 
                 cursoObj[i] = {
                     descricao: cursoDesc.descricao,
                     qtdade_solicitada: cursoCount,
                 }
-            }
+            };
 
 
-            const num_centro_custos = 8;
+            const num_centro_custos = await centro_custos.findAll();
             var centro_custosObj = {};
 
-            for (let i = 1; i <= num_centro_custos; i++) {
+            for (let i = 1; i <= num_centro_custos.length; i++) {
 
                 const centro_custosDesc = await centro_custos.findOne({ where: { id_centro_custos: i } }, { attributes: ["descricao"] });
 
-                const centro_custosCount = await pedido.count({
+                const centro_custosCount = await det_pedido.count({
                     where: {
                         createdAt: {
                             [Op.between]: [startedDate, endDate]
                         },
                         id_centro_custos: i
                     }
-                })
+                });
 
                 centro_custosObj[i] = {
                     descricao: centro_custosDesc.descricao,
                     qtdade_solicitada: centro_custosCount,
                 }
-            }
+            };
 
             //Lenght de avaliações... vai do 0 ao 2... 0 = não avaliado, 1 = atendeu, 2 = não atendeu!
-            const num_avaliacao_pedido = 2;
+            const num_avaliacao_pedido = await avaliacao_pedido.findAll();
             //Objeto 
             var avaliacao_pedidoObj = {};
 
-            for (let i = 0; i <= num_avaliacao_pedido; i++) {
+            //Começa em 0 pois existe avaliação com id 0 (ainda não avaliado...)
+            for (let i = 0; i < num_avaliacao_pedido.length; i++) {
 
                 const avaliacao_pedidoDesc = await avaliacao_pedido.findOne({ where: { id_avaliacao_pedido: i } }, { attributes: ["descricao"] });
 
@@ -340,13 +322,13 @@ module.exports = {
                         },
                         id_avaliacao_pedido: i
                     }
-                })
+                });
 
                 avaliacao_pedidoObj[i] = {
                     status: avaliacao_pedidoDesc.descricao,
                     qtdade_solicitada: avaliacao_pedidoCount,
                 }
-            }
+            };
 
 
             //Det Pedido 
@@ -371,108 +353,82 @@ module.exports = {
 
             var folhas_impressas = (total_copias * num_paginas);
 
-            //Copias Preto e Branco e Coloridas
-            const num_tipos_copia = 2;
+            //servico_pedido
 
-            //Objeto que será preenchido com descricao e quantidade
-            var objColor = {};
+            //Lenght Servico CT
+            const num_servicoCT = await servicoCopiaTamanho.findAll();
+            //Objeto 
+            var servicoCTObj = {};
 
-            //Percorrendo os dois tipos de copia e trazendo os valores quando id_tipos_copia = 1 e 2
-            for (let i = 1; i <= num_tipos_copia; i++) {
+            for (let i = 1; i <= num_servicoCT.length; i++) {
 
-                const tipos_copiaDesc = await tipos_copia.findOne({ where: { id_tipos_copia: i } }, { attributes: ["descricao"] });
+                const servicoCTDesc = await servicoCopiaTamanho.findOne({ where: { id_servico: i } }, { attributes: ["descricao"] });
 
-                var tipos_copiaCount = await det_pedido.count({
+                const servicoCTCount = await servico_pedido.count({
                     where: {
                         createdAt: {
                             [Op.between]: [startedDate, endDate]
                         },
-                        id_tipos_copia: i
+                        servicoCT: i
                     }
-                })
-
-                objColor[i] = {
-                    descricao: tipos_copiaDesc.descricao,
-                    qtdade_solicitada: tipos_copiaCount
-                }
-            }
-
-            //Tipos de capa: 1 = (PAPEL) ; 2 = (PVC)
-            const num_tipos_capa = 2;
-
-            //Objeto que será preenchido com descricao e quantidade
-            var objCapa = {};
-
-            //Percorrendo os dois tipos de capa e trazendo os valores quando id_tipos_capa = 1 e 2
-            for (let i = 1; i <= num_tipos_capa; i++) {
-
-                const tipos_capaDesc = await tipos_capa.findOne({ where: { id_tipos_capa: i } }, { attributes: ["descricao"] });
-
-                var tipos_capaCount = await det_pedido.count({
-                    where: {
-                        createdAt: {
-                            [Op.between]: [startedDate, endDate]
-                        },
-                        id_tipos_capa: i
-                    },
                 });
 
-                objCapa[i] = {
-                    descricao: tipos_capaDesc.descricao,
-                    qtdade_solicitada: tipos_capaCount
+                servicoCTObj[i] = {
+                    status: servicoCTDesc.descricao,
+                    qtdade_solicitada: servicoCTCount,
                 }
-            }
+            };
 
+            //Lenght Servico CT
+            const num_servicoCA = await servicoCapaAcabamento.findAll();
+            //Objeto 
+            var servicoCAObj = {};
 
-            const num_tamanho_pagina = 5;
-            var tamanho_paginaObj = {};
+            for (let i = 1; i <= num_servicoCA.length; i++) {
 
-            for (let i = 1; i <= num_tamanho_pagina; i++) {
+                const servicoCADesc = await servicoCapaAcabamento.findOne({ where: { id_servico: i } }, { attributes: ["descricao"] });
 
-                const tamanho_paginaDesc = await tamanho_pagina.findOne({ where: { id_tamanho: i } }, { attributes: ["descricao"] });
-
-                const tamanho_paginaCount = await det_pedido.count({
+                const servicoCACount = await servico_pedido.count({
                     where: {
                         createdAt: {
                             [Op.between]: [startedDate, endDate]
                         },
-                        id_tamanho: i
+                        servicoCA: i
                     }
-                })
+                });
 
-                tamanho_paginaObj[i] = {
-                    descricao: tamanho_paginaDesc.descricao,
-                    qtdade_solicitada: tamanho_paginaCount,
+                servicoCAObj[i] = {
+                    status: servicoCADesc.descricao,
+                    qtdade_solicitada: servicoCACount,
                 }
-            }
+            };
 
             //Continuando o Looping para trazer os meses antes de janeiro (1) -> dezembro (12)...
             if (i === 10 && mes < 4) {
                 i = -2
-            }
+            };
             if (i === 11 && mes < 4) {
                 i = -1
-            }
+            };
             if (i === 12 && mes < 4) {
                 i = 0
-            }
+            };
 
             mesObj[i] = {
                 ano: ano,
                 mes: meses[i - 1],
                 pedidos: pedidos,
+                avaliacao_pedido: avaliacao_pedidoObj,
+                servico_copiaTamanho: servicoCTObj,
+                servico_capaAcabamento: servicoCAObj,
                 num_paginas: num_paginas,
                 num_copias: total_copias,
                 folhas_impressas: folhas_impressas,
-                tipos_copia: objColor,
-                tipos_capa: objCapa,
-                tamanho_pagina: tamanho_paginaObj,
                 centro_custos: centro_custosObj,
                 curso: cursoObj,
                 custo_total: custo_total
             }
         };
         return res.json(mesObj);
-
     },
 };

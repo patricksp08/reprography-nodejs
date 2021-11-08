@@ -1,6 +1,5 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/estatisticas.controller");
-// const serializer = require("../serializers/estatisticas-serializer");
 
 module.exports = function (app) {
     app.use(function (req, res, next) {
