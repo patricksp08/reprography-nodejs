@@ -61,7 +61,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   </tr>
 </table>
 
-## Dependências do projeto
+### Dependências do projeto
 
 - Nodejs
   * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
