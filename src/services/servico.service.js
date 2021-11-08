@@ -90,5 +90,5 @@ module.exports = {
 
     destroyServico: async () => {
 
-    }
-}
+    },
+};

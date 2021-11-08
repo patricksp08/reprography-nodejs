@@ -15,7 +15,7 @@ checkDuplicateNifOrEmail = (req, res, next) => {
           message: "Error! Usuário já cadastrado!"
         });
         return;
-      }
+      };
 
       // Email
       service.findOneByEmail(req.body.email).then(user => {

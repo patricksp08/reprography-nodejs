@@ -16,6 +16,9 @@ const validateToken = (req, res, next) => {
   }
   try {
     const validToken = verify(accessToken, config.jwt.secret);
+    //  ==>  //Aqui ele passa os dados do usuário, nif: ... , email: ... 
+    //Importante para usarmospor exemplo quando alguém realizar um pedido, 
+    //para sabermos quem foi que realizou aquele pedido.
     req.user = validToken;
     if (validToken) {
       return next();
@@ -23,9 +26,6 @@ const validateToken = (req, res, next) => {
   } catch (error) {
     res.json({ error })
   }
-  //  ==>  //Aqui ele passa os dados do usuário, nif: ... , email: ... 
-  //Importante para usarmospor exemplo quando alguém realizar um pedido, 
-  //para sabermos quem foi que realizou aquele pedido.
 };
 
 isAdmin = (req, res, next) => {
