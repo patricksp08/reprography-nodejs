@@ -34,7 +34,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
  **<a href="https://www.javascript.com">:small_blue_diamond: Javascript </a>**
 
 #### Banco de dados
-**<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
+**<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center" height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
 
 #### Framework
  **<a href="https://expressjs.com">:small_blue_diamond: Express </a>**
