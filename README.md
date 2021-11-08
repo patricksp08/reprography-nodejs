@@ -16,7 +16,6 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ## 📌 Recursos utilizados neste projeto:
 
-
  **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
 
 **<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center" height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>
@@ -28,7 +27,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
   * Swagger-autogen 2.11.2
   * Nodemon 2.0.13 - Para restartar o server sempre que houver uma alteração. 
-  * Jwt - Para proteger rotas privadas.
+  * Jwt - Para verificação de token.
   * Bcrypt 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
   * Cors 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
   * Multer 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
@@ -40,20 +39,24 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 **<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
 
 
-
 ## :arrow_forward: Como iniciar a aplicação:
 
-#### Requisitos
+### Pré-requisitos
 
-- Node.js (v14.18.1)
-- NPM (6.14.15)
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js][nodejs]. 
+Além disto é bom ter um editor para trabalhar com o código como [VSCode][vscode]
 
+
+### Configurando
+
+```bash
  * Clone ou baixe o repositório<br>
  * Depois, extraia a pasta .config localizada em info_api/docs para /src <br>
  * Altere as informações referente a conexão do banco de dados (.config/db.config.json)<br>
  * Crie o database que inseriu nesse arquivo em seu banco de dados (mysql/mariadb) - exemplo: bdrepro <br>
  * Altere as informações referentes ao envio de e-mail (.config/mailer.config.json)
-
+```
 
 ### Instalando os pacotes
 
@@ -66,16 +69,29 @@ npm install
 
 Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
 ``` bash
+# Para iniciar em modo de desenvolvimento (requer nodemon)
+$ npm run dev
+
+# Para iniciar normalmente
 npm run
 ```
 
 Aguarde a execução e estará rodando na URL  `http://localhost:3002`
 
 <br>
-
 E assim você terá sua aplicação rodando localmente.
 <br>
 
+
+### Outras configurações:
+
+ [* Regras de negócio](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/Regras_de_negocio_e_classes.txt)
+
+Diagramas: 
+
+ * [Diagrama de Classe](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/diagramas/diagramas_de_classe/Diagramas%20de%20Classe%20%20Back-End%20V1.png)
+ * [Diagramas de Atividade](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/info_api/docs/diagramas/diagramas_de_atividade)
+ * [Diagramas de Caso de Uso]()
 
 
 ## :triangular_flag_on_post: Endpoints
