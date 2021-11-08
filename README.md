@@ -38,7 +38,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
    <td valign="top" align="center"><h3>Framework</h3>
  <a href="https://expressjs.com">:small_blue_diamond: Express </a></td>
     <td valign="top" align="center"><h3>Editor de texto:</h3>
-<img height="30" width="30" href="https://code.visualstudio.com/Download" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img></td>
+<img height="100" width="100" href="https://code.visualstudio.com/Download" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img></td>
     <td valign="top" align="center"><h3>Documentação:</h3>
 <img height="100" width="100" href="https://swagger.io" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img></td>
   </tr>
