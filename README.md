@@ -21,9 +21,6 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 **<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center"  height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img> 
 
-### 📃 Funcionalidades do Back-End
-O banco de dados MySQL foi hospedado no MariaDB.
-Rotas foram protegidas por meio de JWT em conjunto com Swagger.
 
 ### Dependências do projeto
 - Nodejs
