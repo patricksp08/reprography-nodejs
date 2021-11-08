@@ -180,7 +180,7 @@ $ npm install
 
 ### Iniciando o servidor
 
-**- Importante: Antes de iniciar a aplicação, primeiro crie o banco de dados que você inseriu no arquivo de conexão "db.config.json".**
+**Importante: Antes de iniciar a aplicação, primeiro crie o banco de dados que você inseriu no arquivo de conexão "db.config.json".**
 
 Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
 ``` bash
