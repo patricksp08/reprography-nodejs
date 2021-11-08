@@ -183,4 +183,4 @@ Documentação da API (Swagger) rodando em: `http://localhost:3002/docs/`
 
 ## 📝 Licença
 
-Este projeto esta sobe a licença MIT.
+Este projeto está sobre a licença MIT.
