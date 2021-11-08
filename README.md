@@ -40,7 +40,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
     <td valign="top"><h3>Editor de texto:</h3>
 <img align="center"  height="30" width="30" href="https://code.visualstudio.com/Download" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img></td>
     <td valign="top"><h3>Documentação:</h3>
-<img align="center" height="30" width="30" href="https://swagger.io" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img></td>
+<img align="center" height="150" width="150" href="https://swagger.io" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img></td>
   </tr>
 </table>
 
