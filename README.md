@@ -150,6 +150,14 @@ Documentação da API (Swagger) rodando em: `http://localhost:3002/docs/`
     <br />
     <sub><b>Patrick</b></sub><br />:snowflake::snowman::snowflake:
      </td>
+         <td align="center"><a href="https://github.com/MrCyberpunKx">
+    <img src="https://avatars.githubusercontent.com/u/71890228?v=4" width="100px" alt="Imagem do perfil de Lucca"/>
+    <br />
+    <sub><b>Patrick</b></sub><br />:snowflake::snowman::snowflake:
+     </td>
+     
+     
+     
  </tr>
     
 </table>
