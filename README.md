@@ -30,7 +30,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 <table>
   <tr>
     <td valign="top" align="center"><h3>Runtime environment:</h3>
-   <img height="120" width="120" href="https://nodejs.org/en/" src="https://logospng.org/download/node-js/logo-node-js-1024.png" style="max-width:100%;">
+   <img height="120" width="120" href="https://nodejs.org/en/" src="https://lh3.googleusercontent.com/proxy/xhjXBUKHEip2W11W7zD8xGbVSjEHvKBX6lofS07KB3LTls-D400I0sTdEAwPj7GerKIZko1lGCWee-njMLGz0Yr9ITMu9zeJkJR_zdKGSpeqLBtg67f6Md0yHLQrsCmlF4_A_Y3VukP9bV9gAmByGUT0rVrNLkCpEvg" style="max-width:100%;">
     </td>
     <td valign="top" align="center"><h3>Linguagem:</h3>
       <a href="https://www.javascript.com">:small_blue_diamond: Javascript </a></td>
