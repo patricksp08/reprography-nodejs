@@ -230,7 +230,7 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
 
 ## :rocket: Desenvolvedores :octocat:
 
-<table>
+<table align="center">
   <tr>
     <td align="center"><a href="https://github.com/Luccazx12">
     <img src="https://avatars.githubusercontent.com/u/71888383?v=4" width="100px" alt="Imagem do perfil de Lucca"/>
@@ -262,12 +262,7 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
     <br />
     <sub><b>Tiago Soares</b></sub><br />:snowflake::snowman::snowflake:
      </td>
-      
-     
-     
-  
  </tr>
-    
 </table>
 
 ## 📝 Licença
