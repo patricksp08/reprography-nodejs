@@ -52,7 +52,8 @@ Routes were secured through JWT in conjunction with Swagger.
  * Change the information regarding the database connection (db.config.json )<br>
  * Create the database you inserted in this file (example: bdrepro)<br>
  * Change the information regarding sending email (mailer.config.json)
-#### requirements
+ 
+#### Requirements
 
 - Node.js (v14.18.1)
 - NPM (6.14.15)
