@@ -137,4 +137,4 @@ With our documentation made with Swagger, we were able to simplify the developme
 
 API documentation (Swagger) running on: `http://localhost:3002/docs`
 
-![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/info_api/screenshots/swagger/swagger.jpg)
+![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/info_api/screenshots/swagger/swagger.png)
