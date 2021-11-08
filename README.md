@@ -85,7 +85,7 @@ E assim você terá sua aplicação rodando localmente.
 
 ### Documentações:
 
- [* Regras de negócio](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/Regras_de_negocio_e_classes.txt)
+  * [Regras de negócio](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/Regras_de_negocio_e_classes.txt)
 
 Diagramas: 
 
