@@ -42,7 +42,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
     </td>
 
    <td valign="top" align="center"><h3>Framework:</h3>
-      <img height="100" width="100" href="https://expressjs.com" src="https://4thpointer.com/wp-content/uploads/2020/12/ExpressJS.png" style="max-width:100%;"></img>
+      <img height="100" width="100" href="https://expressjs.com" src="https://fd-development.com/images/expressjs.png" style="max-width:100%;"></img>
     </td>
 
    <td valign="top" align="center"><h3>Editor de texto:</h3>
