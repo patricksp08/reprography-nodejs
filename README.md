@@ -40,16 +40,17 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ## :arrow_forward: Como iniciar a aplicação:
 
- * Primeiro baixe a pasta de Config zipada, em info_api/  <br>
- * Extraia ela no diretório da API (/src)
- * Altere as informações referente a conexão do banco de dados (db.config.json )<br>
- * Crie o database que inseriu nesse arquivo (exemplo: bdrepro)<br>
- * Altere as informações referentes ao envio de e-mail (mailer.config.json)
-
 #### Requisitos
 
 - Node.js (v14.18.1)
 - NPM (6.14.15)
+
+ * Clone ou baixe o repositório<br>
+ * Depois, extraia a pasta .config localizada em info_api/docs para /src <br>
+ * Altere as informações referente a conexão do banco de dados (.config/db.config.json)<br>
+ * Crie o database que inseriu nesse arquivo em seu banco de dados (mysql/mariadb) - exemplo: bdrepro <br>
+ * Altere as informações referentes ao envio de e-mail (.config/mailer.config.json)
+
 
 ### Instalando os pacotes
 
