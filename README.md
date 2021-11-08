@@ -93,9 +93,7 @@ E assim você terá sua aplicaçãco rodando localmente.
 
 ### Gerente/ADMIN pode:
 
-Todas as permissões de usuário 
-
-+
+Todas as permissões de usuário +
 
 - Registrar Usuários;
 - Vizualizar todos os usuários;
