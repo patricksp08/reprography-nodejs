@@ -7,7 +7,7 @@
 
 <div align="center">
  <img src="https://img.shields.io/badge/Node.js-43853D?style=&logo=node-dot-js&logoColor=white" />
- <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+ <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=&logo=javascript&logoColor=white" />
  <img src="https://img.shields.io/badge/Express.js-000000?style=&logo=express&logoColor=white" />
 <img src="https://img.shields.io/github/license/luccazx12/reprography-nodejs">
  <img src="https://img.shields.io/github/repo-size/luccazx12/reprography-nodejs">
