@@ -160,6 +160,12 @@ Documentação da API (Swagger) rodando em: `http://localhost:3002/docs/`
     <br />
     <sub><b>Oseias Farias Jesus</b></sub><br />:snowflake::snowman::snowflake:
      </td>
+    <td align="center"><a href="https://github.com/JoaoOFS">
+    <img src="https://avatars.githubusercontent.com/u/71888050?v=4" width="100px" alt="Imagem do perfil de Lucca"/>
+    <br />
+    <sub><b>João Otávio</b></sub><br />:snowflake::snowman::snowflake:
+     </td>
+      
      
      
      
