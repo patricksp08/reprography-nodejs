@@ -6,6 +6,8 @@
 <h2 align="center">Sistema Reprográfico - Back-end</h2>
 
 <div align="center">
+ <img src="https://img.shields.io/badge/Node.js-43853D?style=&logo=node-dot-js&logoColor=white" />
+ <img src="https://img.shields.io/badge/Express.js-000000?style=&logo=express&logoColor=white" />
 <img src="https://img.shields.io/github/license/luccazx12/reprography-nodejs">
  <img src="https://img.shields.io/github/repo-size/luccazx12/reprography-nodejs">
  <img src="https://img.shields.io/github/last-commit/luccazx12/reprography-nodejs">
