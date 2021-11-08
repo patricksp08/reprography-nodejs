@@ -28,7 +28,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 ## 📌 Recursos utilizados neste projeto:
 
 #### Runtime environment
-<a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS</a>
+**<a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS</a>**
 
 #### Linguagem
  **<a href="https://www.javascript.com">:small_blue_diamond: Javascript </a>**
@@ -37,7 +37,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 **<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
 
 #### Framework
- **<a href="https://expressjs.com">:small_blue_diamond: Express </a>*
+ **<a href="https://expressjs.com">:small_blue_diamond: Express </a>**
  
 #### Editor de texto:
  **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img> 
