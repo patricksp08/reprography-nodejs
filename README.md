@@ -51,7 +51,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode][vsco
 ### Configurando
 
 ```bash
- * Clone ou baixe o repositório<br>
+ * Clone ou baixe o repositório
  * Depois, extraia a pasta .config localizada em info_api/docs para /src
  * Altere as informações referente a conexão do banco de dados (.config/db.config.json)
  * Crie o database que inseriu nesse arquivo em seu banco de dados (mysql/mariadb) - exemplo: bdrepro
@@ -62,7 +62,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode][vsco
 
 Execute o comando abaixo para instalar as dependências:
 ``` bash
-npm install
+$ npm install
 ```
 
 ### Iniciando o servidor
@@ -73,7 +73,7 @@ Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
 $ npm run dev
 
 # Para iniciar normalmente
-npm run
+$ npm run
 ```
 
 Aguarde a execução e estará rodando na URL  `http://localhost:3002`
