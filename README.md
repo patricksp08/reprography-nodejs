@@ -27,22 +27,18 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ## 📌 Recursos utilizados neste projeto:
 
-#### Runtime environment
-**<a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS</a>**
-
-#### Linguagem
- **<a href="https://www.javascript.com">:small_blue_diamond: Javascript </a>**
-
-#### Banco de dados
-**<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center" height="50" width="60" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
-
-#### Framework
- **<a href="https://expressjs.com">:small_blue_diamond: Express </a>**
-
 <table>
   <tr>
+      <td valign="top"><h3>Runtime environment</h3>
+<a href="https://nodejs.org/en/">:small_blue_diamond: NodeJS</a></td>
+   <td valign="top"><h3>Linguagem</h3>
+<a href="https://www.javascript.com">:small_blue_diamond: Javascript </a></td>
+     <td valign="top"><h3>Banco de dados</h3>
+<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a><img align="center" height="50" width="60" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img></td>
+   <td valign="top"><h3>Framework</h3>
+ <a href="https://expressjs.com">:small_blue_diamond: Express </a></td>
     <td valign="top"><h3>Editor de texto:</h3>
- <a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img></td>
+ <a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a><img align="center"  height="30" width="30" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img></td>
     <td valign="top"><h3>Documentação:</h3>
 <a href="https://swagger.io">:small_blue_diamond: Swagger </a><img align="center" height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img></td>
   </tr>
