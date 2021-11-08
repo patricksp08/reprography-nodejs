@@ -30,8 +30,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 <table>
   <tr>
     <td valign="top" align="center"><h3>Runtime environment:</h3>
-     https://logospng.org/download/node-js/logo-node-js-1024.png
-   <img height="100" width="100" href="https://nodejs.org/en/" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;">
+   <img height="100" width="100" href="https://nodejs.org/en/" src="https://logospng.org/download/node-js/logo-node-js-1024.png" style="max-width:100%;">
     </td>
     <td valign="top" align="center"><h3>Linguagem:</h3>
       <a href="https://www.javascript.com">:small_blue_diamond: Javascript </a></td>
