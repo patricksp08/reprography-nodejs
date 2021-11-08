@@ -87,13 +87,84 @@ Além disto é bom ter um editor para trabalhar com o código como: [VSCode](htt
 
 ### Configurando
 
+1. Clone ou baixe esse repositório na sua máquina.
+2. Extraia o arquivo [".config.zip"](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/.config.zip) localizado em ["./info_api/"](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/info_api) para a pasta ["./src"](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/src).
+3. Depois, dentro da pasta .config, há três arquivos para configurarmos: auth.config.json, db.config.json e mailer.config.json.
+
+##### auth.config.json
+
+Aqui ficam as configurações de JWT e da primeira conta da aplicação.
+
+ - Altere os campos com os valores como "changeThis".
+ - Em jwt.secret será a palavra secreta a ser verificada dentro do token, que podemos verificar se está presente no header da requisição, por exemplo.
+ - Em Header será o nome da key a ser armazenada no header.
+ - Já em AdminAccount, temos alguns campos para mudar que dizem respeito a primeira conta da API, que é administrador e usaremos para criar os outros usuários.
+
 ```bash
- * Clone ou baixe o repositório
- * Depois, extraia a pasta .config localizada em info_api/docs para /src
- * Altere as informações referente a conexão do banco de dados (.config/db.config.json)
- * Crie o database que inseriu nesse arquivo em seu banco de dados (mysql/mariadb) - exemplo: bdrepro
- * Altere as informações referentes ao envio de e-mail (.config/mailer.config.json)
+{
+  "jwt": {
+    "secret": "changeThis",
+    "header": "changeThis",
+    "saltRounds": 10
+  },
+  "adminAccount": {
+    "email": "changeThis@changeThis.com",
+    "pass": "changeThis",
+    "defaultImage": "uploads/user-img/default/usuario.png"
+  }
+}
 ```
+
+##### db.config.json
+
+Aqui ficam as configurações de conexão com o banco de dados. 
+
+- Altere os campos que contém o valor "changeThis".
+- Lembrando que só deixamos o começo do arquivo como exemplo. Mude o resto (conexões de test, produção...) a seu gosto de uso.
+
+```bash
+{
+    "development": {
+        "username": "changeThis",
+        "password": "changeThis",
+        "database": "changeThis",
+        "host": "changeThis",
+        "port": "changeThis",
+        "dialect": "mariadb",
+        "dialectOptions": {
+            "useUTC": false,
+            "dateStrings": true,
+            "typeCast": true
+        },
+        "timezone": "-03:00"
+    },
+                                 ...
+```    
+
+##### mailer.config.json
+
+Aqui ficam as configurações de envio de e-mail. 
+
+- Altere os campos que contém o valor "changeThis".
+- Em "auth" temos as informações do e-mail que será utilizado para a aplicação. Com ele, será enviado e-mails de recuperação de senha para usuários cadastrados, caso solicitem, e e-mails de pedido e avaliação para o e-mail listado como "reproEmail" (empresa responsável pelas reprografias) quando solicitados.
+
+```bash
+{
+  "hotmail": {
+    "secureConnection": false,
+    "service": "hotmail",
+    "auth": {
+      "user": "changeThis@changeThis.com",
+      "pass": "changeThis"
+    },
+    "tls": {
+      "ciphers": "SSLv3"
+    }
+  },
+  "reproEmail": "changeThis@changeThis.com",
+  "host": "http://localhost:3002"
+}
+```   
 
 ### Instalando os pacotes
 
