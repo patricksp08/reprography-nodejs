@@ -7,6 +7,7 @@
 
 <div align="center">
  <img src="https://img.shields.io/badge/Node.js-43853D?style=&logo=node-dot-js&logoColor=white" />
+ <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=&logo=javascript&logoColor=black" />
  <img src="https://img.shields.io/badge/Express.js-000000?style=&logo=express&logoColor=white" />
 <img src="https://img.shields.io/github/license/luccazx12/reprography-nodejs">
  <img src="https://img.shields.io/github/repo-size/luccazx12/reprography-nodejs">
@@ -90,7 +91,7 @@ Além disto é bom ter um editor para trabalhar com o código como: [VSCode](htt
 
 1. Clone ou baixe esse repositório na sua máquina.
 2. Extraia o arquivo [".config.zip"](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/.config.zip) localizado em ["./info_api/"](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/info_api) para a pasta ["./src"](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/src).
-3. Depois, dentro da pasta .config, há três arquivos para configurarmos: auth.config.json, db.config.json e mailer.config.json.
+3. Depois, dentro da pasta .config, há três arquivos para configurarmos: **auth.config.json, db.config.json e mailer.config.json.**
 
 
 #### auth.config.json
