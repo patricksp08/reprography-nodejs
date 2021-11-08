@@ -28,13 +28,13 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 ## 📌 Recursos utilizados neste projeto:
 
 <table>
+ <th>Teste<th>
   <tr>
     <td valign="top" align="center"><h3>Runtime environment:</h3>
       <img height="100" width="100" href="https://nodejs.org/en/" src="https://lh3.googleusercontent.com/proxy/xhjXBUKHEip2W11W7zD8xGbVSjEHvKBX6lofS07KB3LTls-D400I0sTdEAwPj7GerKIZko1lGCWee-njMLGz0Yr9ITMu9zeJkJR_zdKGSpeqLBtg67f6Md0yHLQrsCmlF4_A_Y3VukP9bV9gAmByGUT0rVrNLkCpEvg" style="max-width:100%;"></img>
     </td>
 
-   <th valign="top" align="center"><h3>Linguagem:</h3></th>
- <td>
+   <td valign="top" align="center"><h3>Linguagem:</h3>
       <img height="110" width="110" href="https://www.javascript.com" src="https://lh3.googleusercontent.com/proxy/WJkD7LaygVUq0RJLsKv-uDZqwjuIROISkU4SLwTfHlOeZMgxglJmEQoUEpomsFVZ7OxJ2QMrG6VAH4A_yVzjxlvcbC0YZjkhaYHOeBV3C_e3jxzEtkF4tlqQFazqkTbrr7_XiS2F6axbYUU83xo" style="max-width:100%;"></img>
       </td>
     
