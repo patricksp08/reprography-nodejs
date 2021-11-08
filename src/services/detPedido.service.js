@@ -9,5 +9,5 @@ module.exports = {    //Todos os pedidos feito por tal pessoa (nif)
         });
 
         return pedidos;
-    }
-}
+    },
+};

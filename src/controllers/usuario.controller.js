@@ -31,30 +31,28 @@ module.exports = {
             );
         }
 
-        var user = await service.findOneByEmail(emailOrNif)
+        var user = await service.findOneByEmail(emailOrNif);
 
         //Login com usuário ou NIF
         if (user == null) {
-            user = await service.findUserbyPk(emailOrNif, { attributes: null })
+            user = await service.findUserbyPk(emailOrNif, { attributes: null });
             if (!user) {
-                return res.json({ status: 'error', message: "E-mail/NIF ou Senha Inválidos!" })
+                return res.json({ status: 'error', message: "E-mail/NIF ou Senha Inválidos!" });
             }
             else if (user.ativado === 0 && user.primeiro_acesso === 0) {
-                return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" })
+                return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" });
             }
-
-
         }
         else {
 
             if (user.ativado === 0 && user.primeiro_acesso === 1) {
-                return res.json({ status: 'error', message: "Primeiro acesso requer NIF ao invés do e-mail." })
-            }
+                return res.json({ status: 'error', message: "Primeiro acesso requer NIF ao invés do e-mail." });
+            };
 
             if (user.ativado === 0) {
-                return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" })
-            }
-        }
+                return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" });
+            };
+        };
 
         await bcrypt.compare(senha, user.senha).then((match) => {
             if (!match) {
@@ -69,7 +67,7 @@ module.exports = {
             service.getRoles(user).then(roles => {
                 for (let i = 0; i < roles.length; i++) {
                     authorities.push(roles[i].id + "_ROLE_" + roles[i].descricao.toUpperCase());
-                }
+                };
 
                 var token = sign({ nif: user.nif, nome: user.nome, email: user.email, imagem: user.imagem, roles: authorities, }, config.jwt.secret, {
                     expiresIn: 86400 // 24 hours
@@ -107,7 +105,7 @@ module.exports = {
         const { senha, confirmSenha } = req.body;
 
         if (senha !== confirmSenha) {
-            return res.json({ status: "error", message: "Os campos Nova senha e Confirmar senha não coincidem." })
+            return res.json({ status: "error", message: "Os campos Nova senha e Confirmar senha não coincidem." });
         }
 
         const user = await service.findUserbyPk(req.user.nif, { attributes: null });
@@ -126,7 +124,7 @@ module.exports = {
 
     //Altera 
     alterarMeuUsuario: async (req, res) => {
-        const user = await service.findUserbyPk(req.user.nif, { attributes: null })
+        const user = await service.findUserbyPk(req.user.nif, { attributes: null });
 
         let { nome, telefone, email, image } = req.body;
 
@@ -149,7 +147,7 @@ module.exports = {
         const { senhaAntiga, senhaNova, confirmSenhaNova } = req.body;
 
         if (senhaNova !== confirmSenhaNova) {
-            return res.json({ status: "error", message: "Os campos Nova senha e Confirmar senha não coincidem." })
+            return res.json({ status: "error", message: "Os campos Nova senha e Confirmar senha não coincidem." });
         }
 
         await service.findUserbyPk(req.user.nif, { attributes: null })
@@ -168,15 +166,15 @@ module.exports = {
 
     //Usuário pode excluir a própria conta (exclui pelo nif do usuário logado)
     desativarMeuUsuario: async (req, res) => {
-        const user = await service.findUserbyPk(req.user.nif, { attributes: null })
+        const user = await service.findUserbyPk(req.user.nif, { attributes: null });
 
         if (user == null) {
-            return res.status(404).json({ status: 'error', message: "Não há nenhum usuário (ativado) com esse NIF" })
-        }
+            return res.status(404).json({ status: 'error', message: "Não há nenhum usuário (ativado) com esse NIF" });
+        };
 
-        await service.updateUser({ user, param: { ativado: 0 } })
+        await service.updateUser({ user, param: { ativado: 0 } });
 
-        return res.json({ status: 'ok', message: `Sua conta foi desativada com sucesso!` })
+        return res.json({ status: 'ok', message: `Sua conta foi desativada com sucesso!` });
     },
 
 
@@ -200,10 +198,10 @@ module.exports = {
         //Ele faz a busca de admin na tabela roles, e registra o id de Admin no usuário a ser criado 
         //na tabela user_roles
         if (admin == 1) {
-            admin = ["admin"]
+            admin = ["admin"];
         }
         else {
-            admin = ["user"]
+            admin = ["user"];
         }
 
         bcrypt.hash(senha, config.jwt.saltRounds, function (err, hash) {
@@ -212,18 +210,18 @@ module.exports = {
                 if (admin) {
                     service.getDescRoles(admin)
                         .then(roles => {
-                            service.setRoles(user, roles)
+                            service.setRoles(user, roles);
                         });
                 }
                 else {
-                    service.setRoles([1])
+                    service.setRoles([1]);
                 }
                 return res.status(200).json({ status: "ok", message: `Usuário com nif ${user.nif} criado com sucesso!` });
             })
                 .catch(err => {
                     res.status(500).json({ message: err.message });
                 });
-        })
+        });
     },
 
     buscarTodos: async (req, res) => {
@@ -232,7 +230,7 @@ module.exports = {
         let users = await service.findAllUsers(enabled);
 
         if (users.length < 1) {
-            return res.json({ status: 'error', message: "Sem registros..." })
+            return res.json({ status: 'error', message: "Sem registros..." });
         }
 
         for (let i = 0; i < users.length; i++) {
@@ -249,7 +247,7 @@ module.exports = {
         let users = await service.findAllByName(req.params.user);
 
         if (users.length < 1) {
-            return res.json({ status: 'error', message: `Usuários com nome ${req.params.user} não encontrados` })
+            return res.json({ status: 'error', message: `Usuários com nome ${req.params.user} não encontrados` });
         }
 
         for (let i = 0; i < users.length; i++) {
@@ -262,7 +260,7 @@ module.exports = {
     },
 
     buscarPorNif: async (req, res) => {
-        const user = await service.findUserbyPk(req.params.nif, { attributes: { exclude: ["senha"] } })
+        const user = await service.findUserbyPk(req.params.nif, { attributes: { exclude: ["senha"] } });
 
         if (user == null) {
             return res.status(404).json({ status: 'error', message: "Usuário não encontrado!" });
@@ -287,10 +285,10 @@ module.exports = {
         if (admin) {
 
             if (admin == 1) {
-                admin = ["admin"]
+                admin = ["admin"];
             }
             else {
-                admin = ["user"]
+                admin = ["user"];
             }
 
             const roles = await service.getDescRoles(admin);
@@ -348,4 +346,4 @@ module.exports = {
     //     return res.status(200).json({ status: 'ok', message: `Conta com NIF ${user.nif} excluida com sucesso!!` });
     // }
 
-}
+};

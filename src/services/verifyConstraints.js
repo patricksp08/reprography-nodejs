@@ -11,7 +11,7 @@ const verifyConstraints = async ({ centro_custos, curso, modo_envio, avaliacao, 
         var dataDepartamento = await models.departamento.findOne({
             where: { id_depto: departamento }
         });
-    }
+    };
 
     //Pedido&Det_Pedido
 
@@ -19,25 +19,25 @@ const verifyConstraints = async ({ centro_custos, curso, modo_envio, avaliacao, 
         var dataCentroCustos = await models.centro_custos.findOne({
             where: { id_centro_custos: centro_custos }
         });
-    }
+    };
 
     if (curso) {
         var dataCurso = await models.curso.findOne({
             where: { id_curso: curso }
         });
-    }
+    };
 
     if (modo_envio) {
         var dataModoEnvio = await models.modo_envio.findOne({
             where: { id_modo_envio: modo_envio }
         });
-    }
+    };
 
     if (avaliacao || avaliacao === 0) {
         var dataAvaliacaoPedido = await models.avaliacao_pedido.findOne({
             where: { id_avaliacao_pedido: avaliacao }
         });
-    }
+    };
 
     if (servicoCA) {
         var dataServicoCA = await models.servicoCapaAcabamento.findOne({
@@ -46,7 +46,7 @@ const verifyConstraints = async ({ centro_custos, curso, modo_envio, avaliacao, 
             },
             attributes: ["id_servico", "descricao"]
         });
-    }
+    };
 
     if (servicoCT) {
         var dataServicoCT = await models.servicoCopiaTamanho.findOne({
@@ -55,7 +55,7 @@ const verifyConstraints = async ({ centro_custos, curso, modo_envio, avaliacao, 
             },
             attributes: ["id_servico", "descricao"]
         });
-    }
+    };
 
     return data = [
         dataDepartamento !== undefined ? dataDepartamento.dataValues : null,
@@ -65,6 +65,7 @@ const verifyConstraints = async ({ centro_custos, curso, modo_envio, avaliacao, 
         dataModoEnvio !== undefined ? dataModoEnvio.dataValues : null,
         dataServicoCA !== undefined ? dataServicoCA.dataValues : null,
         dataServicoCT !== undefined ? dataServicoCT.dataValues : null,
-    ]
-}
+    ];
+};
+
 module.exports = verifyConstraints;

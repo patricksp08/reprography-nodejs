@@ -22,7 +22,7 @@ module.exports = {
             pedidos.servico_pedidos[0].dataValues.servicoCA = constraints[5].descricao;
             pedidos.servico_pedidos[0].dataValues.servicoCT = constraints[6].descricao;
             pedidos.id_modo_envio = await constraints[4].descricao;
-        }
+        };
 
         //Retorna mensagem se encontrar um pedido nulo.
         if (pedidos == null) {
@@ -40,4 +40,4 @@ module.exports = {
             await authJwt.isAdmin(req, res);
         }
     }
-}
+};

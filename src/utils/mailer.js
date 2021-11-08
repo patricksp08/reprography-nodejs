@@ -26,10 +26,10 @@ exports.sendEmails = async (email, title, output, { attachments }) => {
         html: output,
         attachments: attachments,
         date: Date.now()
-    }
+    };
     //Envia o email
     await transport.sendMail(message, function (err, info) {
         if (err) { console.log(err) }
         else { console.log(info); }
     });
-}
+};

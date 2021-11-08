@@ -22,7 +22,7 @@ module.exports = {
     //Assegure que você tem um usuário com esse email
 
     // const { mail } = req.body;
-    var mail = req.body.mail
+    var mail = req.body.mail;
 
     var email = await serviceUsuario.findOneByEmail(mail);
     if (email == null) {
@@ -87,7 +87,7 @@ module.exports = {
     // if (!isValidPassword(req.body.password1)) {
     //   return res.json({ status: 'error', message: 'Senha não contêm os requerimentos minímos. Por favor, tente novamente.' });
     // }
-    var record = await serviceResetToken.findOneByEmailandToken(email, token)
+    var record = await serviceResetToken.findOneByEmailandToken(email, token);
     // var record = await resettoken.findOne({
     //   where: {
     //     email: email,
@@ -111,4 +111,4 @@ module.exports = {
 
     return res.json({ status: 'ok', message: 'Senha resetada. Por favor, tente efetuar o login com sua nova senha' });
   },
-}
+};

@@ -55,29 +55,28 @@ module.exports = {
         var { id, type } = req.params;
         var { quantidade, valor_unitario } = req.body;
 
-        const servicos = await service.findServicoByPk({ type, id }) //aqui temos que passar o type e o id, para ele buscar pela service.
+        const servicos = await service.findServicoByPk({ type, id }); //aqui temos que passar o type e o id, para ele buscar pela service.
 
         if (servicos === null) {
             return res.json({ message: "Não há nenhum serviço" });
         }
         else {
-            await service.updateServico({ servico: servicos, param: { quantidade, valor_unitario } }).then(servico => { //no update aqui temos que passar a array que recebemos do find...
-                var status = "ok";
-                var okMessage = "atualizado com sucesso!";
-                var errorMessage = "inválido!";
+            await service.updateServico({ servico: servicos, param: { quantidade, valor_unitario } }); //no update aqui temos que passar a array que recebemos do find...
+            var status = "ok";
+            var okMessage = "atualizado com sucesso!";
+            var errorMessage = "inválido!";
 
-                if (type === "ca") {
-                    var message = `${caMessage} ${okMessage}`;
-                }
-                else if (type === "ct") {
-                    message = `${ctMessage} ${okMessage}`;
-                }
-                else {
-                    status = "error";
-                    message = `${typeError} Serviço ${errorMessage}`;
-                }
-                return res.json({ status: status, message: message })
-            });
+            if (type === "ca") {
+                var message = `${caMessage} ${okMessage}`;
+            }
+            else if (type === "ct") {
+                message = `${ctMessage} ${okMessage}`;
+            }
+            else {
+                status = "error";
+                message = `${typeError} Serviço ${errorMessage}`;
+            }
+            return res.json({ status: status, message: message });
         }
     },
 
@@ -85,7 +84,7 @@ module.exports = {
 
         const { type, id, enable } = req.params;
 
-        const servicos = await service.findServicoByPk({ type, id })
+        const servicos = await service.findServicoByPk({ type, id });
 
         if (servicos == null) {
             return res.status(404).json({ status: 'error', message: "Serviço não encontrado!" });
@@ -107,6 +106,6 @@ module.exports = {
             status = "error";
             message = `${typeError} Serviço ${errorMessage}`;
         }
-        return res.json({ status: status, message: message })
+        return res.json({ status: status, message: message });
     }
-}
+};
