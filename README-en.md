@@ -16,7 +16,7 @@ This application was requested by the coordinator of the Senai Suiço-Brasileira
 
  **<a href="https://code.visualstudio.com/Download">:small_blue_diamond: Visual Studio Code </a>**<img align="center" height="30" width="30" src ="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img>
 
-**<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center" height="30" width="30" src="https:// upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>
+**<a href="https://swagger.io">:small_blue_diamond: Swagger </a>**<img align="center" height="30" width="30" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>
 
 
 ### Project dependencies
@@ -33,7 +33,7 @@ This application was requested by the coordinator of the Senai Suiço-Brasileira
 
 #### Database
 
-**<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center" height="60" width="70" src="https:// www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img>
+**<a href="https://mariadb.org">:small_blue_diamond: MariaDB</a>**<img align="center"  height="60" width="70" src="https://www.softizy.com/blog/wp-content/uploads/2014/05/mariadb.png" style="max-width:100%;"></img> 
 
 
 ## :arrow_forward: How to start the application:
