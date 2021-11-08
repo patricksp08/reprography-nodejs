@@ -38,7 +38,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
     </td>
 
    <td valign="top" align="center"><h3>Banco de dados:</h3>
-      <img height="80" width="100" href="https://mariadb.org" src="https://e3z7c6v7.rocketcdn.me/blog/wp-content/uploads/2018/03/mariadb.png" style="max-width:100%;"></img>
+      <img width="25%" href="https://mariadb.org" src="https://e3z7c6v7.rocketcdn.me/blog/wp-content/uploads/2018/03/mariadb.png" style="max-width:100%;"></img>
     </td>
 
    <td valign="top" align="center"><h3>Framework:</h3>
