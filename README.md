@@ -123,7 +123,7 @@ Aqui ficam as configurações de JWT e da primeira conta da aplicação.
 Aqui ficam as configurações de conexão com o banco de dados. 
 
 - Altere os campos que contém o valor "changeThis".
-- Lembrando que só deixamos o começo do arquivo como exemplo. Mude o resto (conexões de test, produção...) a seu gosto de uso.
+- Lembrando que só deixamos o começo do arquivo como exemplo. Mude o resto (conexões de test, produção...) a seu gosto e uso.
 
 ```bash
 {
