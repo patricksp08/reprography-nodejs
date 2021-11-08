@@ -113,7 +113,7 @@ $ npm run dev
 $ npm run
 ```
 
-⚡ Aguarde a execução e estará rodando na URL:  `http://localhost:3002`
+⚡ Aguarde a execução e a API estará rodando na URL:  `http://localhost:3002`
 
 <br>
 E assim você terá sua aplicação rodando localmente.
