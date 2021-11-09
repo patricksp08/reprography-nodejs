@@ -12,7 +12,7 @@ const bcrypt = require("bcrypt");
 
 exports.InserirRegistros = async () => {
     try {
-        models.avaliacao_pedido.bulkCreate([
+        await models.avaliacao_pedido.bulkCreate([
             {
                 id_avaliacao_pedido: 0,
                 descricao: "Ainda não avaliado."
