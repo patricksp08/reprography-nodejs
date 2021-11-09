@@ -6,13 +6,23 @@ const caMessage = "Serviço Capa&Acabamento";
 const ctMessage = "Serviço Copia&Tamanho";
 const typeError = "Insira um tipo de serviço existente.";
 
+//Verificando usuário como admin
+const { authJwt } = require("../middlewares");
+
 module.exports = {
 
     servicosGet: async (req, res) => {
         const { enabled } = req.params;
 
         const servicos = await service.findAllServicos(enabled);
-        return res.json(servicos);
+
+        if(enabled == 1){
+            return res.json(servicos);
+        }
+        else{
+            req.array = [servicos];
+            await authJwt.isAdmin(req, res);
+        }
     },
 
     servicosGetByPk: async (req, res) => {
