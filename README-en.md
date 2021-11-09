@@ -16,7 +16,7 @@
 
 
 ## Introduction
-Welcome, this project is our Final Course Paper <a href="https://pt.wikipedia.org/wiki/Trabalho_de_conclus%C3%A3o_de_curso"> (TCC) </a> of the technical course of Development of systems of the SENAI Suiço-Brasileira Paulo Ernesto Tolle School.
+Welcome, this project is our Final Course Paper <a href="https://pt.wikipedia.org/wiki/Trabalho_de_conclus%C3%A3o_de_curso">(TCC)</a> of the technical course of Development of systems of the SENAI Suiço-Brasileira Paulo Ernesto Tolle School.
 
 #### [Project Front-end Github](https://github.com/ViictorSR388/reprografia_front-end)
 
@@ -27,7 +27,7 @@ This application was requested by the coordinator of the Senai Suiço-Brasileira
 ## 📌 Resources used in this project:
 
 
-<table>
+<table align="center">
  <th><h3>Runtime environment</h3></th>
  <th><h3>Language</h3></th>
  <th><h3>Data Base</h3></th>
