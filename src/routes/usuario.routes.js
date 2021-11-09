@@ -1,6 +1,6 @@
 const { authJwt } = require("../middlewares");
-const { upload } = require("../middlewares/");
-const { verifySignUp } = require("../middlewares/");
+const { upload } = require("../middlewares");
+const { verifySignUp } = require("../middlewares");
 const controller = require("../controllers/usuario.controller");
 
 module.exports = function (app) {

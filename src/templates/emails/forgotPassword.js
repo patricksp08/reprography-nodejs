@@ -1,4 +1,4 @@
-const { host } = require("../../.config/mailer.config.json");
+const { hostPort } = require("../../config/mailer.config");
 
 const forgotPasswordEmail = (token, mail) => `
 
@@ -374,7 +374,7 @@ const forgotPasswordEmail = (token, mail) => `
                                     <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                       <tbody>
                                         <tr>
-                                          <td> <a href="${host}/newPassword?token=${encodeURIComponent(token)}&email=${mail}" target="_blank">CONTINUAR RECUPERAÇÃO</a> </td>
+                                          <td> <a href="${hostPort}/newPassword?token=${encodeURIComponent(token)}&email=${mail}" target="_blank">CONTINUAR RECUPERAÇÃO</a> </td>
                                         </tr>
                                       </tbody>
                                     </table>

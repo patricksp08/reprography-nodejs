@@ -1,21 +1,21 @@
 'use strict';
 
-const config = require("../.config/db.config.json");
+const { config } = require("../config/db.config.js");
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
-  config.development.database,
-  config.development.username,
-  config.development.password,
+  config.database,
+  config.username,
+  config.password,
   {
-    host: config.development.host,
-    dialect: config.development.dialect,
+    host: config.host,
+    dialect: config.dialect,
     dialectOptions: {
-      useUTC: config.development.dialectOptions.useUTC, //for reading from database
-      dateStrings: config.development.dialectOptions.dateStrings,
-      typeCast: config.development.dialectOptions.typeCast
+      useUTC: config.dialectOptions.useUTC, //for reading from database
+      dateStrings: config.dialectOptions.dateStrings,
+      typeCast: config.dialectOptions.typeCast
     },
-    timezone: config.development.timezone //for writing to database
+    timezone: config.timezone //for writing to database
   });
 const fs = require('fs');
 const path = require('path');

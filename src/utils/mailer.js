@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const mailer = require('../.config/mailer.config');
+const mailer = require('../config/mailer.config');
 
 //Criando conexão SMTP
 var mailConfig = {
