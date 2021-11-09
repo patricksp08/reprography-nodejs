@@ -41,7 +41,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
     </td>
 
    <td valign="top" align="center">
-      <img height="90" width="90" href="https://www.javascript.com" src="https://www.seekpng.com/png/full/80-803501_javascript-logo-logo-de-java-script-png.png" style="max-width:100%;"></img>
+      <img height="80" width="80" href="https://www.javascript.com" src="https://www.seekpng.com/png/full/80-803501_javascript-logo-logo-de-java-script-png.png" style="max-width:100%;"></img>
       </td>
   
    <td valign="top" align="center">
