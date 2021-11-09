@@ -1,6 +1,6 @@
-require('dotenv').config({
-  path: process.env.NODE_ENV === "dev" ? ".env.dev" : ".env"
-})
+require("dotenv").config({
+  path: process.env.NODE_ENV === "dev" ? ".env.dev" : ".env",
+});
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 //Usando rota de Uploads para renderizar as imagens que estão em /uploads no diretório da API
-app.use('/uploads', express.static('uploads'));
+app.use("/uploads", express.static("uploads"));
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,37 +41,52 @@ require("./routes/pedido.routes")(app);
 //Deatlhes do Pedido router
 require("./routes/detPedido.routes")(app);
 //ResetToken Router
-require('./routes/resetToken.routes')(app);
+require("./routes/resetToken.routes")(app);
 //Servico Router
-require('./routes/servico.routes')(app);
+require("./routes/servico.routes")(app);
 //Estatisticas Router
-require('./routes/estatisticas.routes')(app);
+require("./routes/estatisticas.routes")(app);
 //Swagger Routes
-require('./routes/swagger.routes')(app);
+require("./routes/swagger.routes")(app);
 
 //Imports para as informações que vamos trazer no console (consumo de ram, uso de cpu...)
-const os = require('os');
-const utils = require('os-utils');
+const os = require("os");
+const utils = require("os-utils");
 // const process = require("process");
-const diskspace = require('diskspace');
+const diskspace = require("diskspace");
 //Sincronizando o sequelize com o banco de dados (utilizar o { force: true } somente em desenvolvimento,
 // para conseguir limpar o banco e testar com novos registros.)
 db.sequelize.sync({ force: false }).then(() => {
   app.listen(port, async () => {
     await inserirRegistros.InserirRegistros();
     await inserirRegistros.InserirUsuario();
-    await console.log(`\n(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`);
+    await console.log(
+      `\n(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`
+    );
+    console.log(
+      (message =
+        process.env.NODE_ENV === "dev"
+          ? "\nDevelopment Mode."
+          : "\nProduction Mode.")
+    );
     //Informações sobre a CPU, ARQUITETURA, TOTAL DE MEMÓRIA RAM DISPONÍVEL NO SISTEMA E SEU USO.
     console.log("\nCPUS: ", os.cpus());
     console.log("\nArquitetura do processador: " + process.arch);
     console.log("Plataforma que a API está rodando: " + process.platform);
     console.log("\nTotal de memória ram: " + os.totalmem() + " B");
-    console.log("Uso Atual de memória ram: " + Math.round((os.totalmem - os.freemem())) + " B");
+    console.log(
+      "Uso Atual de memória ram: " +
+        Math.round(os.totalmem - os.freemem()) +
+        " B"
+    );
     console.log("Memória ram livre: " + Math.round(os.freemem()) + " B");
 
     //Listando disco tanto do windows quanto do linux
-    if (process.platform == "linux") { var disc = "/" }
-    else { var disc = "C*" }
+    if (process.platform == "linux") {
+      var disc = "/";
+    } else {
+      var disc = "C*";
+    }
 
     //Verificando disco (espaço total... livre e status)
     diskspace.check(disc, function (err, result) {
@@ -87,9 +102,15 @@ db.sequelize.sync({ force: false }).then(() => {
         setTimeout(() => {
           while (0 === 0) {
             console.log("\n--------------------------------------------");
-            console.log("\nInformações que serão atualizadas em 60 segundos:\n");
-            console.log('CPU Usage (%): ' + v * 100 + "%");
-            console.log("Uso de memória ram: " + Math.round((os.totalmem - os.freemem())) + " B");
+            console.log(
+              "\nInformações que serão atualizadas em 60 segundos:\n"
+            );
+            console.log("CPU Usage (%): " + v * 100 + "%");
+            console.log(
+              "Uso de memória ram: " +
+                Math.round(os.totalmem - os.freemem()) +
+                " B"
+            );
             console.log("Memória Livre: " + os.freemem() + " B \n");
             console.log("--------------------------------------------");
             break;
