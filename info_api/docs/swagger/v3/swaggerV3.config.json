@@ -2262,9 +2262,9 @@
     },
     "/services/enabled={enabled}": {
       "get": {
-        "summary": "Servicos (solicitando todos os serviços - gerente)",
+        "summary": "Solicitando todos os serviços. (Somente gerentes conseguem ver os serviços desabilitados)",
         "tags": [
-          "ADMIN"
+          "USER"
         ],
         "operationId": "Servicos(solicitandotodososserviços-gerente)",
         "deprecated": false,
@@ -2288,6 +2288,51 @@
           }
         ],
         "responses": {
+           "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Primeiroacessoerror1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Você precisa ser Administrador para executar essa ação!"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "accessToken, Origin, Content-Type, Accept"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "78"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"4e-KGj37nkwv9ZeYcgQq0x3C4OzIXg\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Mon, 01 Nov 2021 20:41:34 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
           "200": {
             "description": "OK",
             "schema": {
