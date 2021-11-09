@@ -93,8 +93,7 @@ Além disto é bom ter um editor para trabalhar com o código como: [VSCode](htt
 
 3. Coloque o arquivo `.env.sample` em [/src](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/src) e lembre-se de renomear este arquivo para `.env.dev` caso queira usá-lo em desenvolvimento ou `.env` caso queira utilizá-lo em produção. 
 
-##### Lembrando: 
-O que setará que você está executando a API em desenvolvimento é o comando `NODE_ENV=dev` antes do comando de start. Mas já deixamos tudo configurado para você no package.json. Caso execute o script "dev", ele executará com as variáveis de ambiente (importante ter o `.env.dev` criado), caso contrário, executará com as variáveis de ambiente normais. 
+**Lembrando**: Aquilo que definirá que você está executando a API em  modo de **desenvolvimento** é o comando `NODE_ENV=dev` antes do comando de start. Mas já deixamos tudo configurado para você no package.json. Caso execute o script "dev", ele executará com as variáveis de ambiente (importante ter o `.env.dev` criado), caso contrário, executará com as variáveis de ambiente normais. 
 
 5. O arquivo `.env.sample` é usado para configurar todas as variáveis de ambiente que você precisa, como as informações sobre o seu **banco de dados**. Altere todas as informações para que a aplicação funcione adequadamente.
 
