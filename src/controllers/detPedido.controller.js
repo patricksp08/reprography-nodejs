@@ -1,9 +1,11 @@
 //Services
-
 //Service dos detalhes do Pedido.
 const pedidoService = require("../services/detPedido.service");
 //Service que envia descrição de constraints para o front-end/email
 const verifyConstraints = require("../services/verifyConstraints");
+
+//Verificando usuário como admin
+const { authJwt } = require("../middlewares");
 
 module.exports = {
 
