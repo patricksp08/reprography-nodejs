@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: process.env.NODE_ENV === "dev" ? ".env.dev" : ".env"
+})
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -26,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./models");
 
 //Função para inserir os registros fixos de alguams tabelas (como tipo_usuario, tipo_copia, etc...)
-const { inserirRegistros } = require("./utils/");
+const { inserirRegistros } = require("./utils");
 
 // Routers
 
@@ -48,9 +52,8 @@ require('./routes/swagger.routes')(app);
 //Imports para as informações que vamos trazer no console (consumo de ram, uso de cpu...)
 const os = require('os');
 const utils = require('os-utils');
-const process = require("process");
+// const process = require("process");
 const diskspace = require('diskspace');
-
 //Sincronizando o sequelize com o banco de dados (utilizar o { force: true } somente em desenvolvimento,
 // para conseguir limpar o banco e testar com novos registros.)
 db.sequelize.sync({ force: false }).then(() => {
@@ -58,7 +61,6 @@ db.sequelize.sync({ force: false }).then(() => {
     await inserirRegistros.InserirRegistros();
     await inserirRegistros.InserirUsuario();
     await console.log(`\n(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`);
-
     //Informações sobre a CPU, ARQUITETURA, TOTAL DE MEMÓRIA RAM DISPONÍVEL NO SISTEMA E SEU USO.
     console.log("\nCPUS: ", os.cpus());
     console.log("\nArquitetura do processador: " + process.arch);

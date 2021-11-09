@@ -90,104 +90,51 @@ Além disto é bom ter um editor para trabalhar com o código como: [VSCode](htt
 ### Configurando
 
 1. Clone ou baixe esse repositório na sua máquina.
-2. Extraia o arquivo [".config.zip"](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/.config.zip) localizado em ["./info_api/"](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/info_api) para a pasta ["./src"](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/src).
-3. Depois, dentro da pasta .config, há três arquivos para configurarmos: **auth.config.json, db.config.json e mailer.config.json.**
 
+3. Coloque o arquivo `.env.sample` em [/src](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/src) e lembre-se de renomear este arquivo para `.env.dev` caso queira usá-lo em desenvolvimento ou `.env` caso queira utilizá-lo em produção. 
 
-#### auth.config.json
+##### Lembrando: 
+O que setará que você está executando a API em desenvolvimento é o comando `NODE_ENV=dev` antes do comando de start. Mas já deixamos tudo configurado para você no package.json. Caso execute o script "dev", ele executará com as variáveis de ambiente (importante ter o `.env.dev` criado), caso contrário, executará com as variáveis de ambiente normais. 
 
-Aqui ficam as configurações de JWT e da primeira conta da aplicação.
-
- - Altere os campos que contém o valor **"changeThis"**.
- - Em jwt.secret será a palavra secreta a ser verificada dentro do token, que podemos verificar se está presente no header da requisição, por exemplo.
- - Em Header será o nome da key a ser armazenada no header.
- - Já em AdminAccount, temos alguns campos para mudar que dizem respeito a primeira conta da API, que é administrador e usaremos para criar os outros usuários.
+5. O arquivo `.env.sample` é usado para configurar todas as variáveis de ambiente que você precisa, como as informações sobre o seu **banco de dados**. Altere todas as informações para que a aplicação funcione adequadamente.
 
 ```bash
-{
-  "jwt": {
-    "secret": "changeThis",
-    "header": "changeThis",
-    "saltRounds": 10
-  },
-  "adminAccount": {
-    "email": "changeThis@changeThis.com",
-    "pass": "changeThis",
-    "defaultImage": "uploads/user-img/default/usuario.png"
-  }
-}
+# Banco de Dados
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASSWORD=
+DB_DATABASE=
+DB_DIALECT=
+
+# Mailer
+MAILER_SERVICE= #exemplo: hotmail
+MAILER_USER=
+MAILER_PASS=
+MAILER_COMPANY_EMAIL=
+MAILER_HOST_PORT= #Host e porta do front-end que será enviado no e-mail de recuperação de senha
+
+#JWT 
+JWT_SECRET_KEY=
+HEADER_KEY=
+SALT_ROUNDS=
+
+#First Account in application
+ADMIN_EMAIL=
+ADMIN_PASS=
 ```
 
-
-#### db.config.json
-
-Aqui ficam as configurações de conexão com o banco de dados. 
-
-- Altere os campos que contém o valor **"changeThis"**.
-- Lembrando que só deixamos o começo do arquivo como exemplo. Mude o resto (conexões de test, produção...) a seu gosto e uso.
-
-```bash
-{
-    "development": {
-        "username": "changeThis",
-        "password": "changeThis",
-        "database": "changeThis",
-        "host": "changeThis",
-        "port": "changeThis",
-        "dialect": "mariadb",
-        "dialectOptions": {
-            "useUTC": false,
-            "dateStrings": true,
-            "typeCast": true
-        },
-        "timezone": "-03:00"
-    },
-                                 ...
-```    
-
-
-#### mailer.config.json
-
-Aqui ficam as configurações de envio de e-mail. 
-
-- Altere os campos que contém o valor **"changeThis"**.
-- Em "auth" temos as informações do e-mail que será utilizado para a aplicação. Com ele, será enviado e-mails de recuperação de senha para usuários cadastrados, caso solicitem, e e-mails de pedido e avaliação para o e-mail listado como "reproEmail" (empresa responsável pelas reprografias) quando solicitados.
-
-```bash
-{
-  "hotmail": {
-    "secureConnection": false,
-    "service": "hotmail",
-    "auth": {
-      "user": "changeThis@changeThis.com",
-      "pass": "changeThis"
-    },
-    "tls": {
-      "ciphers": "SSLv3"
-    }
-  },
-  "reproEmail": "changeThis@changeThis.com",
-  "host": "http://localhost:3002"
-}
-```   
-
-### Instalando os pacotes
-
-Execute o comando abaixo para instalar as dependências:
-``` bash
-$ npm install
-```
 
 ### Iniciando o servidor
 
-**Importante:** Antes de iniciar a aplicação, primeiro crie o **banco de dados** que você inseriu no arquivo de conexão **"db.config.json".**
+**Importante:** Antes de iniciar a aplicação, primeiro crie o **banco de dados** que você inseriu em DB_DATABASE no arquivo de configuração das variáveis de ambiente.
 
 Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
 ``` bash
-# Para iniciar em modo de desenvolvimento (requer nodemon)
+# Para iniciar em modo de desenvolvimento (requer nodemon) -> Executará o script "dev" do package.json.
 $ npm run dev
 
-# Para iniciar normalmente
+# Para iniciar normalmente -> Executará o script "start" do package.json.
 $ npm run start
 ```
 

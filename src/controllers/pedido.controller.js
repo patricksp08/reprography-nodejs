@@ -6,8 +6,8 @@ const servicoService = require("../services/servico.service");
 const verifyConstraints = require("../services/verifyConstraints");
 
 //Envio de e-mail
-const { mailer } = require("../utils/");
-const mailerConfig = require('../.config/mailer.config');
+const { mailer } = require("../utils");
+const mailerConfig = require('../config/mailer.config');
 const template = require("../templates/emails");
 
 //Utilizado para excluir imagens

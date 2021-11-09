@@ -1,5 +1,5 @@
 //Arquivos de config
-const config = require("../.config/auth.config.json");
+const config = require("../config/auth.config");
 
 //Services
 const serviceUsuario = require("../services/usuario.service");
@@ -12,7 +12,7 @@ const crypto = require('crypto');
 
 //Envio de e-mail
 const template = require("../templates/emails");
-const { mailer } = require("../utils/");
+const { mailer } = require("../utils");
 
 module.exports = {
 

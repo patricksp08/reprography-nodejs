@@ -14,19 +14,19 @@ var _tipo_usuario = require("./tipo_usuario");
 var _user_roles = require("./user_roles");
 var _usuario = require("./usuario");
 
-const config = require("../.config/db.config.json");
+const { config } = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 
-sequelize = new Sequelize(config.development.database, config.development.username, config.development.password,
+sequelize = new Sequelize(config.database, config.username, config.password,
   {
-    host: config.development.host,
-    dialect: config.development.dialect,
+    host: config.host,
+    dialect: config.dialect,
     dialectOptions: {
-      useUTC: config.development.dialectOptions.useUTC, //for reading from database
-      dateStrings: config.development.dialectOptions.dateStrings,
-      typeCast: config.development.dialectOptions.typeCast
+      useUTC: config.dialectOptions.useUTC, //for reading from database
+      dateStrings: config.dialectOptions.dateStrings,
+      typeCast: config.dialectOptions.typeCast
     },
-    timezone: config.development.timezone //for writing to database
+    timezone: config.timezone //for writing to database
   });
 
 function initModels(sequelize) {

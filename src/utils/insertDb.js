@@ -1,4 +1,4 @@
-const config = require("../.config/auth.config.json");
+const config = require("../config/auth.config");
 //Biblioteca do sequelize 
 const Sequelize = require("sequelize");
 //Operadores do sequelize

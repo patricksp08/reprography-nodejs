@@ -1,6 +1,6 @@
 const { authJwt } = require("../middlewares");
-const { upload } = require("../middlewares/");
-const { verifyService } = require("../middlewares/");
+const { upload } = require("../middlewares");
+const { verifyService } = require("../middlewares");
 const controller = require("../controllers/pedido.controller");
 
 module.exports = function (app) {
