@@ -105,11 +105,13 @@ DB_DATABASE=
 DB_DIALECT=
 
 # Mailer
-MAILER_SERVICE= #exemplo: hotmail
+#exemplo: hotmail
+MAILER_SERVICE= 
 MAILER_USER=
 MAILER_PASS=
 MAILER_COMPANY_EMAIL=
-MAILER_HOST_PORT= #Host e porta do front-end que será enviado no e-mail de recuperação de senha
+#Host e porta do front-end que será enviado no e-mail de recuperação de senha
+MAILER_HOST_PORT= 
 
 #JWT 
 JWT_SECRET_KEY=
