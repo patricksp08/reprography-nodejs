@@ -238,7 +238,7 @@ exports.InserirUsuario = async () => {
                 }
             }
         };
-    } catch {
-        console.log({ error: "Usuário ADMIN já inserido! (Validation error)" })
+    } catch (err) {
+        console.log(err)
     }
 };
