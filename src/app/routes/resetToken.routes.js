@@ -1,4 +1,4 @@
-const { mailer } = require("../utils");
+const { mailer } = require("../../mailer/mailer");
 const controller = require("../controllers/resetToken.controller");
 
 module.exports = function (app) {

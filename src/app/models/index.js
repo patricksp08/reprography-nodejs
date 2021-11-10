@@ -1,13 +1,9 @@
 'use strict';
 
-const { config } = require("../config/db.config.js");
+const { config } = require("../../config/db.config.js");
 
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  {
+const sequelize = new Sequelize(config.database,config.username, config.password, {
     host: config.host,
     dialect: config.dialect,
     dialectOptions: {
@@ -17,6 +13,7 @@ const sequelize = new Sequelize(
     },
     timezone: config.timezone //for writing to database
   });
+
 const fs = require('fs');
 const path = require('path');
 const basename = path.basename(__filename);

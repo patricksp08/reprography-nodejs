@@ -4,8 +4,8 @@ const Sequelize = require("sequelize");
 //Operadores do sequelize
 const Op = Sequelize.Op;
 
-const { initModels } = require("../models/init-models");
-const { sequelize } = require("../models");
+const { initModels } = require("../app/models/init-models");
+const { sequelize } = require("../app/models/index.js");
 var models = initModels(sequelize);
 
 const bcrypt = require("bcrypt");

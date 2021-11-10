@@ -1,5 +1,5 @@
 //Arquivo de config
-const config = require("../config/auth.config");
+const config = require("../../config/auth.config");
 
 //Services
 

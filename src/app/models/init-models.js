@@ -14,20 +14,19 @@ var _tipo_usuario = require("./tipo_usuario");
 var _user_roles = require("./user_roles");
 var _usuario = require("./usuario");
 
-const { config } = require("../config/db.config.js");
+const { config } = require("../../config/db.config.js");
 const Sequelize = require("sequelize");
 
-sequelize = new Sequelize(config.database, config.username, config.password,
-  {
-    host: config.host,
-    dialect: config.dialect,
-    dialectOptions: {
-      useUTC: config.dialectOptions.useUTC, //for reading from database
-      dateStrings: config.dialectOptions.dateStrings,
-      typeCast: config.dialectOptions.typeCast
-    },
-    timezone: config.timezone //for writing to database
-  });
+sequelize = new Sequelize(config.database, config.username, config.password, {
+  host: config.host,
+  dialect: config.dialect,
+  dialectOptions: {
+    useUTC: config.dialectOptions.useUTC, //for reading from database
+    dateStrings: config.dialectOptions.dateStrings,
+    typeCast: config.dialectOptions.typeCast,
+  },
+  timezone: config.timezone, //for writing to database
+});
 
 function initModels(sequelize) {
   var avaliacao_pedido = _avaliacao_pedido(sequelize, DataTypes);
@@ -45,28 +44,77 @@ function initModels(sequelize) {
   var user_roles = _user_roles(sequelize, DataTypes);
   var usuario = _usuario(sequelize, DataTypes);
 
-  tipo_usuario.belongsToMany(usuario, { as: 'userId_usuarios', through: user_roles, foreignKey: "roleId", otherKey: "userId" });
-  usuario.belongsToMany(tipo_usuario, { as: 'roles', through: user_roles, foreignKey: "userId", otherKey: "roleId" });
-  pedido.belongsTo(avaliacao_pedido, { as: "id_avaliacao_pedido_avaliacao_pedido", foreignKey: "id_avaliacao_pedido" });
-  avaliacao_pedido.hasMany(pedido, { as: "pedidos", foreignKey: "id_avaliacao_pedido" });
-  det_pedido.belongsTo(centro_custos, { as: "id_centro_custos_centro_custo", foreignKey: "id_centro_custos" });
-  centro_custos.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_centro_custos" });
+  tipo_usuario.belongsToMany(usuario, {
+    as: "userId_usuarios",
+    through: user_roles,
+    foreignKey: "roleId",
+    otherKey: "userId",
+  });
+  usuario.belongsToMany(tipo_usuario, {
+    as: "roles",
+    through: user_roles,
+    foreignKey: "userId",
+    otherKey: "roleId",
+  });
+  pedido.belongsTo(avaliacao_pedido, {
+    as: "id_avaliacao_pedido_avaliacao_pedido",
+    foreignKey: "id_avaliacao_pedido",
+  });
+  avaliacao_pedido.hasMany(pedido, {
+    as: "pedidos",
+    foreignKey: "id_avaliacao_pedido",
+  });
+  det_pedido.belongsTo(centro_custos, {
+    as: "id_centro_custos_centro_custo",
+    foreignKey: "id_centro_custos",
+  });
+  centro_custos.hasMany(det_pedido, {
+    as: "det_pedidos",
+    foreignKey: "id_centro_custos",
+  });
   det_pedido.belongsTo(curso, { as: "id_curso_curso", foreignKey: "id_curso" });
   curso.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_curso" });
-  curso.belongsTo(departamento, { as: "id_depto_departamento", foreignKey: "id_depto" });
+  curso.belongsTo(departamento, {
+    as: "id_depto_departamento",
+    foreignKey: "id_depto",
+  });
   departamento.hasMany(curso, { as: "cursos", foreignKey: "id_depto" });
-  usuario.belongsTo(departamento, { as: "id_depto_departamento", foreignKey: "depto" });
+  usuario.belongsTo(departamento, {
+    as: "id_depto_departamento",
+    foreignKey: "depto",
+  });
   departamento.hasMany(usuario, { as: "usuarios", foreignKey: "depto" });
-  pedido.belongsTo(modo_envio, { as: "id_modo_envio_modo_envio", foreignKey: "id_modo_envio" });
+  pedido.belongsTo(modo_envio, {
+    as: "id_modo_envio_modo_envio",
+    foreignKey: "id_modo_envio",
+  });
   modo_envio.hasMany(pedido, { as: "pedidos", foreignKey: "id_modo_envio" });
-  det_pedido.belongsTo(pedido, { as: "id_pedido_pedido", foreignKey: "id_pedido" });
+  det_pedido.belongsTo(pedido, {
+    as: "id_pedido_pedido",
+    foreignKey: "id_pedido",
+  });
   pedido.hasMany(det_pedido, { as: "det_pedidos", foreignKey: "id_pedido" });
   servico_pedido.belongsTo(pedido, { as: "pedido", foreignKey: "pedidoId" });
-  pedido.hasMany(servico_pedido, { as: "servico_pedidos", foreignKey: "pedidoId" });
-  servico_pedido.belongsTo(servicoCapaAcabamento, { as: "servicoCA_servicoCapaAcabamento", foreignKey: "servicoCA" });
-  servicoCapaAcabamento.hasMany(servico_pedido, { as: "servico_pedidos", foreignKey: "servicoCA" });
-  servico_pedido.belongsTo(servicoCopiaTamanho, { as: "servicoCT_servicoCopiaTamanho", foreignKey: "servicoCT" });
-  servicoCopiaTamanho.hasMany(servico_pedido, { as: "servico_pedidos", foreignKey: "servicoCT" });
+  pedido.hasMany(servico_pedido, {
+    as: "servico_pedidos",
+    foreignKey: "pedidoId",
+  });
+  servico_pedido.belongsTo(servicoCapaAcabamento, {
+    as: "servicoCA_servicoCapaAcabamento",
+    foreignKey: "servicoCA",
+  });
+  servicoCapaAcabamento.hasMany(servico_pedido, {
+    as: "servico_pedidos",
+    foreignKey: "servicoCA",
+  });
+  servico_pedido.belongsTo(servicoCopiaTamanho, {
+    as: "servicoCT_servicoCopiaTamanho",
+    foreignKey: "servicoCT",
+  });
+  servicoCopiaTamanho.hasMany(servico_pedido, {
+    as: "servico_pedidos",
+    foreignKey: "servicoCT",
+  });
   user_roles.belongsTo(tipo_usuario, { as: "role", foreignKey: "roleId" });
   tipo_usuario.hasMany(user_roles, { as: "user_roles", foreignKey: "roleId" });
   pedido.belongsTo(usuario, { as: "nif_usuario", foreignKey: "nif" });
@@ -90,7 +138,7 @@ function initModels(sequelize) {
     user_roles,
     usuario,
   };
-};
+}
 
 module.exports = initModels;
 module.exports.initModels = initModels;

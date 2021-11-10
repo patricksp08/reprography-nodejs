@@ -1,4 +1,4 @@
-const { hostPort } = require("../../config/mailer.config");
+const { hostPort } = require("../../../config/mailer.config");
 
 const forgotPasswordEmail = (token, mail) => `
 
