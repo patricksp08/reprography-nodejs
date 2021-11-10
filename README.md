@@ -80,10 +80,10 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ### Pré-requisitos
 
-Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+* Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
 
-Além disto é bom ter um editor para trabalhar com o código como: [VSCode](https://code.visualstudio.com).
+* Além disto é bom ter um editor para trabalhar com o código como: [VSCode](https://code.visualstudio.com).
 
 
 
@@ -91,11 +91,9 @@ Além disto é bom ter um editor para trabalhar com o código como: [VSCode](htt
 
 1. Clone ou baixe esse repositório na sua máquina.
 
-3. Coloque o arquivo `.env.sample` em [/src](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/src) e lembre-se de renomear este arquivo para `.env.dev` caso queira usá-lo em desenvolvimento ou `.env` caso queira utilizá-lo em produção. 
+2.  Instale as dependências do projeto, com o comando `npm install` ou `yarn install` caso tenha o [yarn](https://yarnpkg.com) instalado.
 
-**Lembrando**: Aquilo que definirá que você está executando a API em  modo de **desenvolvimento** é o comando `NODE_ENV=dev` antes do comando de start. Mas já deixamos tudo configurado para você no package.json. Caso execute o script "dev", ele executará com as variáveis de ambiente (importante ter o `.env.dev` criado), caso contrário, executará com as variáveis de ambiente normais. 
-
-5. O arquivo `.env.sample` é usado para configurar todas as variáveis de ambiente que você precisa, como as informações sobre o seu **banco de dados**. Altere todas as informações para que a aplicação funcione adequadamente.
+3. O arquivo `.env.sample` é usado para configurar todas as variáveis de ambiente que você precisa, como as informações sobre o seu **banco de dados**. Altere todas as informações para que a aplicação funcione adequadamente.
 
 ```bash
 # Banco de Dados
@@ -123,6 +121,8 @@ ADMIN_EMAIL=
 ADMIN_PASS=
 ```
 
+3. Lembre-se de renomear este arquivo para `.env` para conseguir executar a aplicação.
+
 
 ### Iniciando o servidor
 
@@ -131,10 +131,19 @@ ADMIN_PASS=
 Execute o comando abaixo para iniciar o Nodejs e conectar ao banco de dados:
 ``` bash
 # Para iniciar em modo de desenvolvimento (requer nodemon) -> Executará o script "dev" do package.json.
-$ npm run dev
+$ npm run start
 
 # Para iniciar normalmente -> Executará o script "start" do package.json.
-$ npm run start
+$ npm run dev
+```
+
+Caso prefira o Yarn:
+```bash
+# Para iniciar em modo de desenvolvimento (requer nodemon) -> Executará o script "dev" do package.json.
+$ yarn start
+
+# Para iniciar normalmente -> Executará o script "start" do package.json.
+$ yarn dev
 ```
 
 ⚡ Aguarde a execução e a API estará rodando na URL:  `http://localhost:3002`
