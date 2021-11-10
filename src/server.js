@@ -1,8 +1,8 @@
 require("dotenv").config();
 
 const express = require("express");
-const cors = require("cors");
 const app = express();
+const cors = require("cors");
 
 //Imports para as informações que vamos trazer no console (consumo de ram, uso de cpu...)
 const os = require("os");
@@ -11,13 +11,15 @@ const process = require("process");
 const diskspace = require("diskspace");
 
 //Models
-const db = require("./app/models");
+const db = require("./database");
 
 //Routers
 const router = require("./app/routes/index.js");
 
 //Função para inserir os registros fixos de alguams tabelas (como tipo_usuario, tipo_copia, etc...)
 const inserirRegistros = require("./database/insertDb");
+
+const port = process.env.PORT || 3002;
 
 // var corsOptions = {
 //   origin: "http://localhost:3000"
@@ -41,10 +43,10 @@ process.title = "Reprographic System"
 //Sincronizando o sequelize com o banco de dados (utilizar o { force: true } somente em desenvolvimento,
 // para conseguir limpar o banco e testar com novos registros.)
 db.sequelize.sync({ force: false }).then(() => {
-  app.listen(process.env.PORT || 3002, async () => {
+  app.listen(port, async () => {
     await inserirRegistros.InserirRegistros();
     await inserirRegistros.InserirUsuario();
-    await console.log(`\n(||||||||| | | -------- Server running on port ${process.env.PORT || 3002  } -------- | | |||||||||)`);
+    await console.log(`\n(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`);
     // let message = process.env.NODE_ENV === "dev" ? "\nDevelopment Mode." : "\nProduction Mode.";
     // console.log(message);
     //Informações sobre a CPU, ARQUITETURA, TOTAL DE MEMÓRIA RAM DISPONÍVEL NO SISTEMA E SEU USO.
@@ -58,7 +60,7 @@ db.sequelize.sync({ force: false }).then(() => {
     //Listando disco tanto do windows quanto do linux
     var disc = "C*";
     if (process.platform == "linux") {
-      var disc = "/";
+      disc = "/";
     }
 
     //Verificando disco (espaço total... livre e status)

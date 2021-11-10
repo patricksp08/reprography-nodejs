@@ -1,7 +1,7 @@
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocsV1 = require("../../config/swagger/v1/swaggerV1.config.json");
-const swaggerDocsV2 = require("../../config/swagger/v2/swaggerV2.config.json");
-const swaggerDocsV3 = require("../../config/swagger/v3/swaggerV3.config.json");
+const swaggerDocsV1 = require("../../swagger/v1/swaggerV1.json");
+const swaggerDocsV2 = require("../../swagger/v2/swaggerV2.json");
+const swaggerDocsV3 = require("../../swagger/v3/swaggerV3.json");
 
 module.exports = function (app) {
   //Swagger Routes
