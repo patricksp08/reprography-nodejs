@@ -1,5 +1,5 @@
 //Roles definidas em models/index.js (["user", "admin"])
-const db = require("../models");
+const db = require("../../database");
 const ROLES = db.ROLES;
 
 //Service do Usuário

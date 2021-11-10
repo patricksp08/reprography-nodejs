@@ -1,8 +1,8 @@
 require("dotenv").config();
 
 const express = require("express");
-const cors = require("cors");
 const app = express();
+const cors = require("cors");
 
 //Imports para as informações que vamos trazer no console (consumo de ram, uso de cpu...)
 const os = require("os");
@@ -11,7 +11,7 @@ const process = require("process");
 const diskspace = require("diskspace");
 
 //Models
-const db = require("./app/models");
+const db = require("./database");
 
 //Routers
 const router = require("./app/routes/index.js");
@@ -42,7 +42,7 @@ process.title = "Reprographic System"
 
 //Sincronizando o sequelize com o banco de dados (utilizar o { force: true } somente em desenvolvimento,
 // para conseguir limpar o banco e testar com novos registros.)
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(port, async () => {
     await inserirRegistros.InserirRegistros();
     await inserirRegistros.InserirUsuario();
@@ -60,7 +60,7 @@ db.sequelize.sync({ force: true }).then(() => {
     //Listando disco tanto do windows quanto do linux
     var disc = "C*";
     if (process.platform == "linux") {
-      var disc = "/";
+      disc = "/";
     }
 
     //Verificando disco (espaço total... livre e status)

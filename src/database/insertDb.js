@@ -5,7 +5,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 const { initModels } = require("../app/models/init-models");
-const { sequelize } = require("../app/models/index.js");
+const { sequelize } = require("./index.js");
 var models = initModels(sequelize);
 
 const bcrypt = require("bcrypt");
@@ -238,7 +238,7 @@ exports.InserirUsuario = async () => {
                 }
             }
         };
-    } catch (err) {
-        console.log(err)
+    } catch {
+        console.log({ error: "Usuário ADMIN já inserido! (Validation error)" })
     }
 };
