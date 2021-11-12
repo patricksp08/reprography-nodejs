@@ -1,6 +1,6 @@
-<h3 align="center">📄 Bem vindo a Documentação do Projeto 📄</h3>
+<h2 align="center">📄 Bem vindo a Documentação do Projeto 📄</h3>
 
-<h2 align="center">Sistema Reprográfico - Back-end</h2>
+<h3 align="center">Sistema Reprográfico - Back-end</h2>
 
 ## 📌 Sobre a Documentação:
 Aqui você encontrará todas as informações necessárias referente a documentação do projeto. Como já mencionado antes, desenvolvemos nossa documentação com [Swagger](https://swagger.io/), sendo simples de entender e realizar testes para o projeto com um todo. Logo abaixo temos nosso sumário para ajudar na navegação das pastas da documentação.
