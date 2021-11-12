@@ -3,7 +3,7 @@
 ## 📌 Sobre a Documentação:
 Aqui você encontrará todas as informações necessárias referente a documentação do projeto. Como já mencionado antes, desenvolvemos nossa documentação com Swagger, sendo simples de entender e realizar testes para o projeto com um todo. Logo abaixo temos nosso sumário para ajudar na navegação das pastas da documentação.
 
-### Sumário
+### :triangular_flag_on_post: Sumário
 
 - X
   * A
