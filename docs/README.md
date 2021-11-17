@@ -1,5 +1,5 @@
 <h2 align="center">📄 Bem vindo a Documentação do Projeto 📄 </br>
- <p><a href="https://github.com/Luccazx12/reprography-nodejs/blob/main/docs/README-en.md">English Version</a></p>
+<a align="left" font-size="10px" href="https://github.com/Luccazx12/reprography-nodejs/blob/main/docs/README-en.md">English Version</a>
  </h3>
 
 
