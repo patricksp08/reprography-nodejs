@@ -15,15 +15,14 @@
 <a href="https://github.com/Squad-Back-End/reprography-nodejs/blob/master/README-en.md">English Version</a>
 
  # Índice
-- [Sobre o Projeto](#sobreoprojeto)
-- [Recursos utilizados neste projeto](#Recursos utilizados neste projeto)
-- [Dependências do projeto](#Dependências do projeto)
-- [Pré-requisitos](#Pré-requisitos)
+- [Sobre o Projeto](#SobreoProjeto)
+- [Recursos Utilizados Neste Projeto](#RecursosUtilizadosNesteProjeto)
+- [Dependências Do Projeto](#DependênciasDoProjeto)
+- [Como iniciar a aplicação](#ComoIniciarAAplicação)
 - [Configurando](#Configurando)
-- [Iniciando o servidor](#Iniciando o servidor)
+- [Iniciando O Servidor](#IniciandoOServidor)
 - [Documentações](#Documentações)
-- [Swagger](#Swagger)
-- [Como contribuir para o projeto](#Como contribuir para o projeto)
+- [Como Contribuir Para O Projeto](#ComoContribuirParaOProjeto)
 - [Desenvolvedores](#Desenvolvedores)
 
 
@@ -33,10 +32,10 @@ Bem-vindo, este projeto é o nosso Trabalho de Conclusão de Curso <a href="http
 #### [Github do Front-end do projeto](https://github.com/ViictorSR388/reprografia_front-end)
  
 
-## Sobre o Projeto <a name="sobreoprojeto"></a>
+## <a name="SobreoProjeto"></a> Sobre o Projeto
 Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasileira, com o intuito de fazer o controle das impressões realizadas pelos diversos setores da escola (professores, funcionários, etc), podendo assim, administrar melhor gastos e desperdícios.
 
-## 📌 Recursos utilizados neste projeto:
+## <a name="RecursosUtilizadosNesteProjeto"></a>📌 Recursos utilizados neste projeto:
 
 <table align="center">
  <th><h3>Runtime environment</h3></th>
@@ -72,7 +71,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   </tr>
 </table>
 
-### Dependências do projeto
+### <a name="DependênciasDoProjeto"></a>Dependências do projeto
 
 - Nodejs
   * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
@@ -86,7 +85,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   * MariaDB 2.5.4 - É o banco de dados que nos usamos. 
 
 
-## :arrow_forward: Como iniciar a aplicação:
+## <a name="ComoIniciarAAplicação"></a> :arrow_forward: Como iniciar a aplicação:
 
 ### Pré-requisitos
 
@@ -97,7 +96,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 
 
-### Configurando
+### <a name="Configurando"></a>Configurando
 
 1. Clone ou baixe esse repositório na sua máquina.
 
@@ -138,7 +137,7 @@ ADMIN_PASS=
 3. Lembre-se de renomear este arquivo para `.env` para conseguir executar a aplicação.
 
 
-### Iniciando o servidor
+### <a name="IniciandoOServidor"></a>Iniciando o servidor
 
 **Importante:** Antes de iniciar a aplicação, primeiro crie o **banco de dados** que você inseriu em DB_DATABASE no arquivo de configuração das variáveis de ambiente.
 
@@ -167,11 +166,11 @@ E assim você terá sua aplicação rodando localmente.
 <br>
 
 
-## 📄 Documentações:
+## <a name="Documentações"></a> 📄 Documentações:
 
  * [Área de documentação](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs)
 
-### :triangular_flag_on_post: Swagger
+### <a name="Swagger"></a> :triangular_flag_on_post: Swagger
 
 
 Criando a documentação com o Swagger, conseguimos simplificar não só o desenvolvimento da nossa API e da squad como um todo, mas também o relacionamento com as outras partes do projeto (squad front-end, infra...). Por isso tentamos ao máximo deixa-lá autoexplicativa e completa. 
@@ -181,7 +180,7 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
 ![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/docs/screenshots/swagger/swagger.png)
 
 
-## 😯 Como contribuir para o projeto
+## <a name="ComoContribuirParaOProjeto"></a>😯 Como contribuir para o projeto
 
 1. Faça um **fork** do projeto.
 2. Crie uma nova branch com as suas alterações: `git checkout -b my-feature`
@@ -190,7 +189,7 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
 > Caso tenha alguma dúvida confira este [guia de como contribuir no GitHub](https://github.com/firstcontributions/first-contributions)
 
 
-## :rocket: Desenvolvedores :octocat:
+## <a name="Desenvolvedores"></a> :rocket: Desenvolvedores :octocat:
 
 <table align="center">
   <tr>
