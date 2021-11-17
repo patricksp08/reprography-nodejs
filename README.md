@@ -1,7 +1,4 @@
 <h3 align="center">🚧 ⚠️ Em Desenvolvimento... ⚠️ 🚧</h3>
-
-# Indice
-- [Configurando](#configurando)
  
  
 <h2 align="center">Sistema Reprográfico - Back-end</h2>
@@ -16,6 +13,18 @@
  </div>
 
 <a href="https://github.com/Squad-Back-End/reprography-nodejs/blob/master/README-en.md">English Version</a>
+
+ # Índice
+- [Sobre o Projeto](#Sobre o Projeto)
+- [Recursos utilizados neste projeto](#Recursos utilizados neste projeto)
+- [Dependências do projeto](#Dependências do projeto)
+- [Pré-requisitos](#Pré-requisitos)
+- [Configurando](#Configurando)
+- [Iniciando o servidor](#Iniciando o servidor)
+- [Documentações](#Documentações)
+- [Swagger](#Swagger)
+- [Como contribuir para o projeto](#Como contribuir para o projeto)
+- [Desenvolvedores](#Desenvolvedores)
 
 
 ## Apresentação
