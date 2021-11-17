@@ -22,6 +22,7 @@
 - [Configurando](#Configurando)
 - [Iniciando O Servidor](#IniciandoOServidor)
 - [Documentações](#Documentações)
+- [Swagger](#Swagger)
 - [Como Contribuir Para O Projeto](#ComoContribuirParaOProjeto)
 - [Desenvolvedores](#Desenvolvedores)
 
