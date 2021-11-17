@@ -1,5 +1,7 @@
-<h2 align="center">📄 Bem vindo a Documentação do Projeto 📄</h3>
-<a href="https://github.com/Luccazx12/reprography-nodejs/blob/main/docs/README-en.md">English Version</a>
+<h2 align="center">📄 Bem vindo a Documentação do Projeto 📄
+ <a href="https://github.com/Luccazx12/reprography-nodejs/blob/main/docs/README-en.md">English Version</a>
+ </h3>
+
 
 
   * [Regras de negócio](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/Regras_de_negocio_e_classes.txt)
