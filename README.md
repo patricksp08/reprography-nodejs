@@ -15,7 +15,7 @@
 <a href="https://github.com/Squad-Back-End/reprography-nodejs/blob/master/README-en.md">English Version</a>
 
  # Índice
-- [Sobre o Projeto](#Sobre o Projeto)
+- [SobreoProjeto](#Sobre o Projeto)
 - [Recursos utilizados neste projeto](#Recursos utilizados neste projeto)
 - [Dependências do projeto](#Dependências do projeto)
 - [Pré-requisitos](#Pré-requisitos)
