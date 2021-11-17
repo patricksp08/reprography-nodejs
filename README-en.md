@@ -18,7 +18,7 @@
 ## Introduction
 Welcome, this project is our Final Course Paper <a href="https://pt.wikipedia.org/wiki/Trabalho_de_conclus%C3%A3o_de_curso">(TCC)</a> of the technical course of Development of systems of the SENAI Suiço-Brasileira Paulo Ernesto Tolle School.
 
-#### [Project Front-end Github](https://github.com/ViictorSR388/reprografia_front-end)
+#### [Front-end Github Project](https://github.com/ViictorSR388/reprografia_front-end)
 
 
 ## About the project
@@ -109,6 +109,7 @@ DB_DIALECT=
 MAILER_SERVICE= #example: hotmail
 MAILER_USER=
 MAILER_PASS=
+#Email that requests / reprography evaluations will be sent
 MAILER_COMPANY_EMAIL=
 MAILER_HOST_PORT= #Front-end Host and Port that will be sent in password recovery email
 
@@ -135,8 +136,16 @@ $ npm run dev
 # To start normally -> will run the "start" script of package.json.
 $ npm run start
 ```
+If you prefer Yarn:
+```bash
+# To start in development mode (requires nodemon) -> will run the package.json "dev" script.
+$ yarn start
 
-Wait for execution and it will be running on the URL `http://localhost:3002`
+# To start normally -> will run the "start" script of package.json.
+$ yarn dev
+```
+
+⚡ Wait for the API to run and the API will be running at the URL: `http://localhost:3002`
 
 <br>
 And so you will have your application running locally.
@@ -145,13 +154,7 @@ And so you will have your application running locally.
 
 ## 📄 Documentation:
 
-  * [Business rules](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/business_rules_and_classes.txt)
-
-#### Diagrams: 
-
- * [Class Diagram](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/diagramas/diagramas_de_classe/Diagramas%20de%20Classe%20%20Back-End%20V1.png)
- * [Activity Diagrams](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/info_api/docs/diagramas/diagramas_de_atividade)
- * [Use Case Diagram](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/info_api/docs/diagramas/diagramas_casos_de_uso/Diagrama_de_Caso_de_Uso.png)
+ * [Documentation area](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs)
 
 
 ### :triangular_flag_on_post: Swagger
@@ -207,12 +210,7 @@ By creating the documentation with Swagger, we were able to simplify not only th
     <br />
     <sub><b>Tiago Soares</b></sub><br />:snowflake::snowman::snowflake:
      </td>
-      
-     
-     
-  
  </tr>
-    
 </table>
 
 ## 📝 license
