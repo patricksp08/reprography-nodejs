@@ -110,7 +110,7 @@ MAILER_SERVICE=
 MAILER_USER=
 MAILER_PASS=
 MAILER_COMPANY_EMAIL=
-#Host e porta do front-end que será enviado no e-mail de recuperação de senha
+#Host e porta do front-end que será enviado no e-mail de recuperação de senha - exemplo: http://localhost:3002
 MAILER_HOST_PORT= 
 
 #JWT 
