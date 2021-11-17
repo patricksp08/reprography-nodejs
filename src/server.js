@@ -46,7 +46,7 @@ db.sequelize.sync({ force: false }).then(() => {
   app.listen(port, async () => {
     await inserirRegistros.InserirRegistros();
     await inserirRegistros.InserirUsuario();
-    await console.log(`\n(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`);
+    console.log(`\n(||||||||| | | -------- Server running on port ${port} -------- | | |||||||||)`);
     // let message = process.env.NODE_ENV === "dev" ? "\nDevelopment Mode." : "\nProduction Mode.";
     // console.log(message);
     //Informações sobre a CPU, ARQUITETURA, TOTAL DE MEMÓRIA RAM DISPONÍVEL NO SISTEMA E SEU USO.
