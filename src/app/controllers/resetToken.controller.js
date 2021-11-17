@@ -12,7 +12,7 @@ const crypto = require('crypto');
 
 //Envio de e-mail
 const template = require("../templates/emails");
-const { mailer } = require("../../mailer/mailer");
+const mailer = require("../../mailer/mailer");
 
 module.exports = {
 
