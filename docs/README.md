@@ -1,6 +1,6 @@
-<h2 align="center">📄 Bem vindo a Documentação do Projeto 📄 </br>
 <a href="https://github.com/Luccazx12/reprography-nodejs/blob/main/docs/README-en.md">English Version</a>
- </h3>
+
+<h2 align="center">📄 Bem vindo a Documentação do Projeto 📄 </br></h2>
 
 
 
