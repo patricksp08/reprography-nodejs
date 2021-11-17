@@ -157,14 +157,14 @@ E assim você terá sua aplicação rodando localmente.
 
 ## 📄 Documentações:
 
-[Área de documentação](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs)
+ * [Área de documentação](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs)
 
 ### :triangular_flag_on_post: Swagger
 
 
 Criando a documentação com o Swagger, conseguimos simplificar não só o desenvolvimento da nossa API e da squad como um todo, mas também o relacionamento com as outras partes do projeto (squad front-end, infra...). Por isso tentamos ao máximo deixa-lá autoexplicativa e completa. 
 
-⚡ Documentação da API rodando em: `http://localhost:3002/docs/`
+⚡ Swagger rodando em: `http://localhost:3002/docs/`
 
 ![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/docs/screenshots/swagger/swagger.png)
 
