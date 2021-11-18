@@ -38,7 +38,7 @@ Bem-vindo, este projeto é o nosso Trabalho de Conclusão de Curso <a href="http
 ## <a name="SobreoProjeto"></a> Sobre o Projeto
 Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasileira, com o intuito de fazer o controle das impressões realizadas pelos diversos setores da escola (professores, funcionários, etc), podendo assim, administrar melhor gastos e desperdícios.
 
-## <a name="RecursosUtilizadosNesteProjeto"></a>📌 Recursos utilizados neste projeto:
+## <a name="RecursosUtilizadosNesteProjeto"></a>📌 Recursos utilizados neste projeto
 
 <table align="center">
  <th><h3>Runtime environment</h3></th>
@@ -74,7 +74,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   </tr>
 </table>
 
-### <a name="DependênciasDoProjeto"></a>Dependências do projeto
+### <a name="DependênciasDoProjeto"></a>Dependências do projeto:
 
   * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
   * Swagger-autogen 2.11.2
@@ -87,9 +87,9 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   * MariaDB 2.5.4 - É o banco de dados que nos usamos. 
 
 
-## <a name="ComoIniciarAAplicação"></a> :arrow_forward: Como iniciar a aplicação:
+## <a name="ComoIniciarAAplicação"></a> :arrow_forward: Como iniciar a aplicação
 
-### <a name="preRequisitos"></a>Pré-requisitos
+### <a name="preRequisitos"></a>Pré-requisitos:
 
 * Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
@@ -98,7 +98,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 
 
-### <a name="Configurando"></a>Configurando
+### <a name="Configurando"></a>Configurando:
 
 1. Clone ou baixe esse repositório na sua máquina.
 
@@ -139,7 +139,7 @@ ADMIN_PASS=
 3. Lembre-se de renomear este arquivo para `.env` para conseguir executar a aplicação.
 
 
-### <a name="IniciandoOServidor"></a>Iniciando o servidor
+### <a name="IniciandoOServidor"></a>Iniciando o servidor:
 
 **Importante:** Antes de iniciar a aplicação, primeiro crie o **banco de dados** que você inseriu em DB_DATABASE no arquivo de configuração das variáveis de ambiente.
 
@@ -168,11 +168,11 @@ E assim você terá sua aplicação rodando localmente.
 <br>
 
 
-## <a name="Documentações"></a> 📄 Documentações:
+## <a name="Documentações"></a> 📄 Documentações
 
  * [Área de documentação](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs)
 
-### <a name="Swagger"></a> :triangular_flag_on_post: Swagger
+### <a name="Swagger"></a> :triangular_flag_on_post: Swagger:
 
 
 Criando a documentação com o Swagger, conseguimos simplificar não só o desenvolvimento da nossa API e da squad como um todo, mas também o relacionamento com as outras partes do projeto (squad front-end, infra...). Por isso tentamos ao máximo deixa-lá autoexplicativa e completa. 
