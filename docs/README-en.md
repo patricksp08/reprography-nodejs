@@ -2,7 +2,7 @@
 
 
 
-  * [Business rules](https://github.com/Luccazx12/reprography-nodejs/blob/main/docs/business_rules_and_classes.txt)
+  * [Business rules](https://github.com/Luccazx12/reprography-nodejs/blob/main/docs/business_rules/README-en.md)
 
 ### Diagrams: 
 
