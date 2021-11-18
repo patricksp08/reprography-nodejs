@@ -28,7 +28,7 @@ Welcome, this project is our Final Course Paper <a href="https://pt.wikipedia.or
    - [Prerequisites](#preRequisites)
    - [Configuring](#Configuring)
    - [Starting the server](#StartingTheServer)
-- [Documentation](#Documentation)
+- [Documentation](#Docs)
    - [Swagger](#Swagger)
 - [How to contribute to with the project](#HowtoContributeToWithTheProject)
 - [Developers](#Developers)
@@ -165,7 +165,7 @@ And so you will have your application running locally.
 <br>
 
 
-## <a name="Documentation"></a> 📄 Documentation:
+## <a name="Docs"></a> 📄 Documentation:
 
  * [Documentation area](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs)
 
