@@ -20,11 +20,23 @@ Welcome, this project is our Final Course Paper <a href="https://pt.wikipedia.or
 
 #### [Front-end Github Project](https://github.com/ViictorSR388/reprografia_front-end)
 
+ # Index
+- [About the project](#AboutTheProject)
+- [Resources used in this project](#ResourcesUsedInThisProject)
+- [Project dependencies](#ProjectDependencies)
+- [How to start the application](#HowToStartTheApplication)
+- [Configuring](#Configuring)
+- [Starting the server](#StartingTheServer)
+- [Documentation](#Documentation)
+- [Swagger](#Swagger)
+- [How to contribute to with the project](#HowtoContributeToWithTheProject)
+- [Developers](#Developers)
 
-## About the project
+
+## <a name="AboutTheProject"></a> About the project
 This application was requested by the coordinator of the Senai Suiço-Brasileira school, in order to control the prints made by the different sectors of the school (teachers, employees, etc.), thus being able to better manage costs and waste.
 
-## 📌 Resources used in this project:
+## <a name="ResourcesUsedInThisProject"></a> 📌 Resources used in this project:
 
 
 <table align="center">
@@ -62,7 +74,7 @@ This application was requested by the coordinator of the Senai Suiço-Brasileira
 </table>
 
 
-### Project dependencies
+### <a name="ProjectDependencies"></a> Project dependencies
 - Nodejs
   * Express 4.17.1 - It is a framework for Node.js that provides minimal resources for building web servers.
   * Swagger-autogen 2.11.2
@@ -75,8 +87,7 @@ This application was requested by the coordinator of the Senai Suiço-Brasileira
   * MariaDB 2.5.4 - It's the database we use.
 
 
-
-## :arrow_forward: How to start the application:
+## <a name="HowToStartTheApplication"></a> :arrow_forward: How to start the application:
 
 ### Pre-requisites
 
@@ -86,7 +97,7 @@ Before you start, you will need to have installed on your machine the following 
 Besides, it's good to have an editor to work with the code as: [VSCode](https://code.visualstudio.com).
 
 
-### Configuring
+### <a name="Configuring"></a> Configuring
 
 1. Clone or download this repository to your machine.
 
@@ -124,7 +135,7 @@ ADMIN_PASS=
 ```
 
 
-### Starting the server
+### <a name="StartingTheServer"></a> Starting the server
 
 **Important:** Before you start the application, first create the **database** that you entered in DB_DATABASE in the configuration file of the environment variables.
 
@@ -152,12 +163,12 @@ And so you will have your application running locally.
 <br>
 
 
-## 📄 Documentation:
+## <a name="Documentation"></a> 📄 Documentation:
 
  * [Documentation area](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs)
 
 
-### :triangular_flag_on_post: Swagger
+### <a name="Swagger"></a> :triangular_flag_on_post: Swagger
 
 
 By creating the documentation with Swagger, we were able to simplify not only the development of our API and squad as a whole, but also the relationship with the other parts of the project (front-end squad, infra...). So we try our best to make it self-explanatory and complete.
@@ -167,7 +178,7 @@ By creating the documentation with Swagger, we were able to simplify not only th
 ![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/info_api/screenshots/swagger/swagger.png)
 
 
-## 😯 How to contribute to with the project
+## <a name="HowtoContributeToWithTheProject"></a> 😯 How to contribute to with the project
 
 1. Do a **fork** of the project.
 2. Create a new branch with your changes: `git checkout -b my-feature`
@@ -176,7 +187,7 @@ By creating the documentation with Swagger, we were able to simplify not only th
 > If you have any questions check out this [guide on how to contribute to GitHub](https://github.com/firstcontributions/first-contributions)
 
 
-## :rocket: Developers :octocat:
+## <a name="Developers"></a> :rocket: Developers :octocat:
 
 <table align="center">
   <tr>
