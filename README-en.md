@@ -177,7 +177,7 @@ By creating the documentation with Swagger, we were able to simplify not only th
 
 ⚡ API Documentation (Swagger) running on: `http://localhost:3002/docs/`
 
-![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/info_api/screenshots/swagger/swagger.png)
+![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/docs/swagger/swagger.png)
 
 
 ## <a name="HowtoContributeToWithTheProject"></a> 😯 How to contribute to with the project
