@@ -43,9 +43,10 @@ module.exports = {
             var status = "ok";
             var okMessage = "criado com sucesso!";
             var errorMessage = "inválido!";
-
+            var message = "";
+            
             if (type === "ca") {
-                var message = `${caMessage} ${okMessage}`;
+                message = `${caMessage} ${okMessage}`;
             }
             else if (type === "ct") {
                 message = `${ctMessage} ${okMessage}`;
@@ -75,9 +76,10 @@ module.exports = {
             var status = "ok";
             var okMessage = "atualizado com sucesso!";
             var errorMessage = "inválido!";
+            var message = "";
 
             if (type === "ca") {
-                var message = `${caMessage} ${okMessage}`;
+                message = `${caMessage} ${okMessage}`;
             }
             else if (type === "ct") {
                 message = `${ctMessage} ${okMessage}`;
@@ -105,9 +107,10 @@ module.exports = {
         var status = "ok";
         var okMessage = "atualizado com sucesso!";
         var errorMessage = "inválido!";
+        var message = "";
 
         if (type === "ca") {
-            var message = `Status do ${caMessage} ${okMessage}`;
+            message = `Status do ${caMessage} ${okMessage}`;
         }
         else if (type === "ct") {
             message = `Status do ${ctMessage} ${okMessage}`;

@@ -191,20 +191,20 @@ module.exports = {
             };
         };
 
-        return res.json({
+        return res.json([{
             mes: meses[mes - 1],
             ano: ano,
             pedidos: pedidos,
-            avaliacao_pedido: avaliacao_pedidoObj,
-            servico_copiaTamanho: servicoCTObj,
-            servico_capaAcabamento: servicoCAObj,
+            avaliacao_pedido: [avaliacao_pedidoObj],
+            servico_copiaTamanho: [servicoCTObj],
+            servico_capaAcabamento: [servicoCAObj],
             num_paginas: num_paginas,
             num_copias: total_copias,
             folhas_impressas: folhas_impressas,
-            centro_custos: centro_custosObj,
+            centro_custos: [centro_custosObj],
             curso: cursoObj,
             custo_total: custo_total
-        });
+        }]);
     },
 
     //Estatisticas dos ultimos 3 meses + mês Atual.
@@ -418,13 +418,13 @@ module.exports = {
                 ano: ano,
                 mes: meses[i - 1],
                 pedidos: pedidos,
-                avaliacao_pedido: avaliacao_pedidoObj,
-                servico_copiaTamanho: servicoCTObj,
-                servico_capaAcabamento: servicoCAObj,
+                avaliacao_pedido: [avaliacao_pedidoObj],
+                servico_copiaTamanho: [servicoCTObj],
+                servico_capaAcabamento: [servicoCAObj],
                 num_paginas: num_paginas,
                 num_copias: total_copias,
                 folhas_impressas: folhas_impressas,
-                centro_custos: centro_custosObj,
+                centro_custos: [centro_custosObj],
                 curso: cursoObj,
                 custo_total: custo_total
             };
