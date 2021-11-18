@@ -98,7 +98,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 
 
-### <a name="Configurando"></a>Configurando:
+### <a name="Configurando"></a>Configurando
 
 1. Clone ou baixe esse repositório na sua máquina.
 
