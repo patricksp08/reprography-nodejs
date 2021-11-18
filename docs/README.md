@@ -4,7 +4,7 @@
 
 
 
-  * [Regras de negócio](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/Regras_de_negocio_e_classes.txt)
+  * [Regras de negócio](https://github.com/Luccazx12/reprography-nodejs/blob/main/docs/business_rules/README.md)
 
 ### Diagramas: 
 
