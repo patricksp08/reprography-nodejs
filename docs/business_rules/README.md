@@ -41,7 +41,7 @@ Pode:
 
 ... Todas as permissões de usuário 
 
- +
+ "+"
 
 - Registrar Usuários;
 - Vizualizar todos os usuários;
