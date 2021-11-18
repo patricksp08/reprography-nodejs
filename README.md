@@ -17,7 +17,7 @@
  # Índice
 - [Sobre o projeto](#SobreoProjeto)
 - [Recursos utilizados neste projeto](#RecursosUtilizadosNesteProjeto)
-- [Dependências do projeto](#DependênciasDoProjeto)
+     - [Dependências do projeto](#DependênciasDoProjeto)
 - [Como iniciar a aplicação](#ComoIniciarAAplicação)
 - [Configurando](#Configurando)
 - [Iniciando o servidor](#IniciandoOServidor)
