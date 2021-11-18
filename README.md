@@ -19,10 +19,11 @@
 - [Recursos utilizados neste projeto](#RecursosUtilizadosNesteProjeto)
      - [Dependências do projeto](#DependênciasDoProjeto)
 - [Como iniciar a aplicação](#ComoIniciarAAplicação)
-- [Configurando](#Configurando)
-- [Iniciando o servidor](#IniciandoOServidor)
+     - [Pré-requisitos](#preRequisitos)  
+     - [Configurando](#Configurando)
+     - [Iniciando o servidor](#IniciandoOServidor)
 - [Documentações](#Documentações)
-- [Swagger](#Swagger)
+     - [Swagger](#Swagger)
 - [Como contribuir para o projeto](#ComoContribuirParaOProjeto)
 - [Desenvolvedores](#Desenvolvedores)
 
@@ -88,7 +89,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ## <a name="ComoIniciarAAplicação"></a> :arrow_forward: Como iniciar a aplicação:
 
-### Pré-requisitos
+### <a name="preRequisitos"></a>Pré-requisitos
 
 * Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
