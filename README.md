@@ -49,27 +49,27 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
  <th><h3>Documentação</h3></th>
   <tr>
     <td valign="top" align="center">
-      <img height="80" width="80" href="https://nodejs.org/en/" src="https://cdn-icons-png.flaticon.com/512/919/919825.png" style="max-width:100%;"></img>
+      <a href="https://nodejs.org/en/" ><img height="80" width="80" src="https://cdn-icons-png.flaticon.com/512/919/919825.png" style="max-width:100%;"></img></a>
     </td>
 
    <td valign="top" align="center">
-      <img height="80" width="80" href="https://www.javascript.com" src="https://www.seekpng.com/png/full/80-803501_javascript-logo-logo-de-java-script-png.png" style="max-width:100%;"></img>
+      <a href="https://www.javascript.com"><img height="80" width="80" src="https://www.seekpng.com/png/full/80-803501_javascript-logo-logo-de-java-script-png.png" style="max-width:100%;"></img></a>
       </td>
   
    <td valign="top" align="center">
-      <img height="80" width="80" href="https://mariadb.org" src="https://e3z7c6v7.rocketcdn.me/blog/wp-content/uploads/2018/03/mariadb.png" style="max-width:100%;"></img>
+      <a href="https://mariadb.org"><img height="80" width="80" src="https://e3z7c6v7.rocketcdn.me/blog/wp-content/uploads/2018/03/mariadb.png" style="max-width:100%;"></img></a>
     </td>
 
    <td valign="top" align="center">
-      <img height="80" width="80" href="https://expressjs.com" src="https://hackr.io/tutorials/learn-express-js/logo/logo-express-js?ver=1557508379" style="max-width:100%;"></img>
+      <a href="https://expressjs.com"><img height="80" width="80" src="https://hackr.io/tutorials/learn-express-js/logo/logo-express-js?ver=1557508379" style="max-width:100%;"></img></a>
     </td>
 
    <td valign="top" align="center">
-      <img height="80" width="80" href="https://code.visualstudio.com/Download" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img>
+      <a href="https://code.visualstudio.com/Download"><img height="80" width="80" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img></a>
     </td>
 
    <td valign="top" align="center">
-      <img height="80" width="80" href="https://swagger.io" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img>
+      <a href="https://swagger.io"><img height="80" width="80"src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img></a>
     </td>
   </tr>
 </table>
@@ -136,7 +136,7 @@ ADMIN_EMAIL=
 ADMIN_PASS=
 ```
 
-3. Lembre-se de renomear este arquivo para `.env` para conseguir executar a aplicação.
+4. Lembre-se de renomear este arquivo para `.env` para conseguir executar a aplicação.
 
 
 ### <a name="IniciandoOServidor"></a>Iniciando o servidor
