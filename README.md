@@ -15,15 +15,15 @@
 <a href="https://github.com/Squad-Back-End/reprography-nodejs/blob/master/README-en.md">English Version</a>
 
  # Índice
-- [Sobre o Projeto](#SobreoProjeto)
-- [Recursos Utilizados Neste Projeto](#RecursosUtilizadosNesteProjeto)
-- [Dependências Do Projeto](#DependênciasDoProjeto)
+- [Sobre o projeto](#SobreoProjeto)
+- [Recursos utilizados neste projeto](#RecursosUtilizadosNesteProjeto)
+- [Dependências do projeto](#DependênciasDoProjeto)
 - [Como iniciar a aplicação](#ComoIniciarAAplicação)
 - [Configurando](#Configurando)
-- [Iniciando O Servidor](#IniciandoOServidor)
+- [Iniciando o servidor](#IniciandoOServidor)
 - [Documentações](#Documentações)
 - [Swagger](#Swagger)
-- [Como Contribuir Para O Projeto](#ComoContribuirParaOProjeto)
+- [Como contribuir para o projeto](#ComoContribuirParaOProjeto)
 - [Desenvolvedores](#Desenvolvedores)
 
 
