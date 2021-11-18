@@ -136,7 +136,7 @@ ADMIN_EMAIL=
 ADMIN_PASS=
 ```
 
-3. Lembre-se de renomear este arquivo para `.env` para conseguir executar a aplicação.
+4. Lembre-se de renomear este arquivo para `.env` para conseguir executar a aplicação.
 
 
 ### <a name="IniciandoOServidor"></a>Iniciando o servidor
