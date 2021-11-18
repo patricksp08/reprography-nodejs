@@ -179,7 +179,7 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
 
 ⚡ Swagger rodando em: `http://localhost:3002/docs/`
 
-![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/docs/screenshots/swagger/swagger.png)
+![image](https://raw.githubusercontent.com/Squad-Back-End/reprography-nodejs/master/docs/swagger/swagger.png)
 
 
 ## <a name="ComoContribuirParaOProjeto"></a>😯 Como contribuir para o projeto
