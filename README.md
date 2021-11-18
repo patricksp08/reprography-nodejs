@@ -139,7 +139,7 @@ ADMIN_PASS=
 3. Lembre-se de renomear este arquivo para `.env` para conseguir executar a aplicação.
 
 
-### <a name="IniciandoOServidor"></a>Iniciando o servidor:
+### <a name="IniciandoOServidor"></a>Iniciando o servidor
 
 **Importante:** Antes de iniciar a aplicação, primeiro crie o **banco de dados** que você inseriu em DB_DATABASE no arquivo de configuração das variáveis de ambiente.
 
@@ -172,7 +172,7 @@ E assim você terá sua aplicação rodando localmente.
 
  * [Área de documentação](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs)
 
-### <a name="Swagger"></a> :triangular_flag_on_post: Swagger:
+### <a name="Swagger"></a> :triangular_flag_on_post: Swagger
 
 
 Criando a documentação com o Swagger, conseguimos simplificar não só o desenvolvimento da nossa API e da squad como um todo, mas também o relacionamento com as outras partes do projeto (squad front-end, infra...). Por isso tentamos ao máximo deixa-lá autoexplicativa e completa. 
