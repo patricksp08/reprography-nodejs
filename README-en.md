@@ -20,17 +20,19 @@ Welcome, this project is our Final Course Paper <a href="https://pt.wikipedia.or
 
 #### [Front-end Github Project](https://github.com/ViictorSR388/reprografia_front-end)
 
- # Index
+ ## Index
 - [About the project](#AboutTheProject)
 - [Resources used in this project](#ResourcesUsedInThisProject)
-- [Project dependencies](#ProjectDependencies)
+   - [Project dependencies](#ProjectDependencies)
 - [How to start the application](#HowToStartTheApplication)
-- [Configuring](#Configuring)
-- [Starting the server](#StartingTheServer)
-- [Documentation](#Documentation)
-- [Swagger](#Swagger)
+   - [Prerequisites](#preRequisites)
+   - [Configuring](#Configuring)
+   - [Starting the server](#StartingTheServer)
+- [Documentation](#Docs)
+   - [Swagger](#Swagger)
 - [How to contribute to with the project](#HowtoContributeToWithTheProject)
 - [Developers](#Developers)
+- [License](#License)
 
 
 ## <a name="AboutTheProject"></a> About the project
@@ -89,7 +91,7 @@ This application was requested by the coordinator of the Senai Suiço-Brasileira
 
 ## <a name="HowToStartTheApplication"></a> :arrow_forward: How to start the application:
 
-### Pre-requisites
+### <a name="preRequisites"></a> Pre-requisites
 
 Before you start, you will need to have installed on your machine the following tools:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
@@ -163,7 +165,7 @@ And so you will have your application running locally.
 <br>
 
 
-## <a name="Documentation"></a> 📄 Documentation:
+## <a name="Docs"></a> 📄 Documentation:
 
  * [Documentation area](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs)
 
@@ -224,6 +226,6 @@ By creating the documentation with Swagger, we were able to simplify not only th
  </tr>
 </table>
 
-## 📝 license
+## 📝 <a name="License"></a> License
 
 This project is under the MIT license.

@@ -14,24 +14,26 @@
 
 <a href="https://github.com/Squad-Back-End/reprography-nodejs/blob/master/README-en.md">English Version</a>
 
- # Índice
-- [Sobre o Projeto](#SobreoProjeto)
-- [Recursos Utilizados Neste Projeto](#RecursosUtilizadosNesteProjeto)
-- [Dependências Do Projeto](#DependênciasDoProjeto)
-- [Como iniciar a aplicação](#ComoIniciarAAplicação)
-- [Configurando](#Configurando)
-- [Iniciando O Servidor](#IniciandoOServidor)
-- [Documentações](#Documentações)
-- [Swagger](#Swagger)
-- [Como Contribuir Para O Projeto](#ComoContribuirParaOProjeto)
-- [Desenvolvedores](#Desenvolvedores)
-
-
 ## Apresentação
 Bem-vindo, este projeto é o nosso Trabalho de Conclusão de Curso <a href="https://pt.wikipedia.org/wiki/Trabalho_de_conclus%C3%A3o_de_curso">(TCC)</a> do curso técnico de Desenvolvimento de sistemas da a Escola SENAI Suíço-Brasileira Paulo Ernesto Tolle.
 
 #### [Github do Front-end do projeto](https://github.com/ViictorSR388/reprografia_front-end)
- 
+
+
+ ## Índice
+- [Sobre o projeto](#SobreoProjeto)
+- [Recursos utilizados neste projeto](#RecursosUtilizadosNesteProjeto)
+    - [Dependências do projeto](#DependênciasDoProjeto)
+- [Como iniciar a aplicação](#ComoIniciarAAplicação)
+    - [Pré-requisitos](#preRequisitos)  
+    - [Configurando](#Configurando)
+    - [Iniciando o servidor](#IniciandoOServidor)
+- [Documentações](#Documentações)
+    - [Swagger](#Swagger)
+- [Como contribuir para o projeto](#ComoContribuirParaOProjeto)
+- [Desenvolvedores](#Desenvolvedores)
+- [Licença](#licença)
+
 
 ## <a name="SobreoProjeto"></a> Sobre o Projeto
 Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasileira, com o intuito de fazer o controle das impressões realizadas pelos diversos setores da escola (professores, funcionários, etc), podendo assim, administrar melhor gastos e desperdícios.
@@ -88,7 +90,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ## <a name="ComoIniciarAAplicação"></a> :arrow_forward: Como iniciar a aplicação:
 
-### Pré-requisitos
+### <a name="preRequisitos"></a>Pré-requisitos
 
 * Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
@@ -227,6 +229,6 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
  </tr>
 </table>
 
-## 📝 Licença
+## <a href="https://github.com/Squad-Back-End/reprography-nodejs/blob/master/LICENSE">📝</a> <a name="Licença"></a> Licença
 
 Este projeto está sobre a licença MIT.
