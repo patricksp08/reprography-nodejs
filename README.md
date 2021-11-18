@@ -229,6 +229,6 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
  </tr>
 </table>
 
-## 📝 <a name="Licença"></a> Licença
+## <a href="https://github.com/Squad-Back-End/reprography-nodejs/blob/master/LICENSE">📝</a> <a name="Licença"></a> Licença
 
 Este projeto está sobre a licença MIT.
