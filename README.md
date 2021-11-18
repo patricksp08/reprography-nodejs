@@ -76,7 +76,6 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ### <a name="DependênciasDoProjeto"></a>Dependências do projeto
 
-- Nodejs
   * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
   * Swagger-autogen 2.11.2
   * Nodemon 2.0.13 - Para restartar o server sempre que houver uma alteração. 
