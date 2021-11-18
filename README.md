@@ -26,6 +26,7 @@
     - [Swagger](#Swagger)
 - [Como contribuir para o projeto](#ComoContribuirParaOProjeto)
 - [Desenvolvedores](#Desenvolvedores)
+- [Licença](#licença)
 
 
 ## Apresentação
@@ -228,6 +229,6 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
  </tr>
 </table>
 
-## 📝 Licença
+## 📝 <a name="Licença"></a> Licença
 
 Este projeto está sobre a licença MIT.
