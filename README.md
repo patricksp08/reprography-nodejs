@@ -17,13 +17,13 @@
  # Índice
 - [Sobre o projeto](#SobreoProjeto)
 - [Recursos utilizados neste projeto](#RecursosUtilizadosNesteProjeto)
-     - [Dependências do projeto](#DependênciasDoProjeto)
+    - [Dependências do projeto](#DependênciasDoProjeto)
 - [Como iniciar a aplicação](#ComoIniciarAAplicação)
-     - [Pré-requisitos](#preRequisitos)  
-     - [Configurando](#Configurando)
-     - [Iniciando o servidor](#IniciandoOServidor)
+    - [Pré-requisitos](#preRequisitos)  
+    - [Configurando](#Configurando)
+    - [Iniciando o servidor](#IniciandoOServidor)
 - [Documentações](#Documentações)
-     - [Swagger](#Swagger)
+    - [Swagger](#Swagger)
 - [Como contribuir para o projeto](#ComoContribuirParaOProjeto)
 - [Desenvolvedores](#Desenvolvedores)
 
