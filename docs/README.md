@@ -5,7 +5,7 @@
 
 
   * [Regras de negócio](https://github.com/Luccazx12/reprography-nodejs/blob/main/docs/business_rules/README.md)
-  * [Swagger](https://github.com/Luccazx12/reprography-nodejs/tree/main/docs/swagger/README.md)
+  * [Swagger](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/swagger/README.md)
 
 ### Diagramas: 
 
