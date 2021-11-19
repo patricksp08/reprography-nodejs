@@ -1,3 +1,5 @@
+<h3 align="center">📌 Tabela de Requisitos Funcionais</h3>
+
 <table>
   <tr align="center">
     <th>#</th>
@@ -56,7 +58,7 @@
   </tr>
 </table>
 
-<br><br>
+<br><br> <h3 align="center">📌 Tabela de Requisitos Não Funcionais</h3>
 
 <table>
   <tr align="center">
