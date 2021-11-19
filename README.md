@@ -76,18 +76,17 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ### <a name="DependênciasDoProjeto"></a>Dependências do projeto:
 
-  * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
-  * Swagger-autogen 2.11.2
-  * Nodemon 2.0.13 - Para restartar o server sempre que houver uma alteração. 
-  * Jsonwebtoken - Para verificação de token.
-  * Bcrypt 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
-  * Crypto -
-  * Cors 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
-  * Multer 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
-  * Nodemailer -
-  * Body-Parser 1.19.0 - Analisa os dados codificados JSON, buffer, string e URL enviados usando a solicitação HTTP POST.
-  * MariaDB 2.5.4 - É o banco de dados que nos usamos.
-  * Dotenv -
+  * [Express](https://www.npmjs.com/package/express) 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
+  * [Swagger-autogen](https://www.npmjs.com/package/swagger-autogen) 2.11.2
+  * [Nodemon](https://www.npmjs.com/package/nodemon) 2.0.13 - Para restartar o server sempre que houver uma alteração. 
+  * [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Para verificação de token.
+  * [Bcrypt](https://www.npmjs.com/package/bcrypt) 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
+  * [Crypto](https://www.npmjs.com/package/crypto) -
+  * [Cors](https://www.npmjs.com/package/cors) 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
+  * [Multer](https://www.npmjs.com/package/multer) 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
+  * [Nodemailer](https://www.npmjs.com/package/nodemailer) -
+  * [MariaDB](https://www.npmjs.com/package/mariadb) 2.5.4 - É o banco de dados que nos usamos (dependência utilizada para conexão da ORM com banco de dados)
+  * [Dotenv](https://www.npmjs.com/package/dotenv) -
 
 
 ## <a name="ComoIniciarAAplicação"></a> :arrow_forward: Como iniciar a aplicação
