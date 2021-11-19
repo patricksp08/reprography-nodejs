@@ -77,7 +77,6 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 ### <a name="DependênciasDoProjeto"></a>Dependências do projeto:
 
   * [Express](https://www.npmjs.com/package/express) 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
-  * [Swagger-autogen](https://www.npmjs.com/package/swagger-autogen) 2.11.2
   * [Nodemon](https://www.npmjs.com/package/nodemon) 2.0.13 - Para restartar o server sempre que houver uma alteração. 
   * [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) 8.5.1 - Uilizado para criação e posteriormente verificação de token para autenticação.
   * [Bcrypt](https://www.npmjs.com/package/bcrypt) 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
