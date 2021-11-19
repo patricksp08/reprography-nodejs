@@ -3,6 +3,8 @@
 
 
   * [Business rules](https://github.com/Luccazx12/reprography-nodejs/blob/main/docs/business_rules/README-en.md)
+  * [Swagger](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/swagger/README-en.md)
+
 
 ### Diagrams: 
 

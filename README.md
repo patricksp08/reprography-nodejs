@@ -43,9 +43,9 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 <table align="center">
  <th><h3>Runtime environment</h3></th>
  <th><h3>Linguagem</h3></th>
+  <th><h3>  ORM  </h3></th>
  <th><h3>Banco de dados</h3></th>
  <th><h3>Framework</h3></th>
- <th><h3>Editor de código</h3></th>
  <th><h3>Documentação</h3></th>
   <tr>
     <td valign="top" align="center">
@@ -54,6 +54,10 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
    <td valign="top" align="center">
       <a href="https://www.javascript.com"><img height="80" width="80" src="https://www.seekpng.com/png/full/80-803501_javascript-logo-logo-de-java-script-png.png" style="max-width:100%;"></img></a>
+      </td>
+      
+   <td valign="top" align="center">
+      <a href="https://sequelize.org"><img height="80" width="100" src="https://sequelize.org/master/image/brand_logo.png" style="max-width:100%;"></img></a>
       </td>
   
    <td valign="top" align="center">
@@ -65,10 +69,6 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
     </td>
 
    <td valign="top" align="center">
-      <a href="https://code.visualstudio.com/Download"><img height="80" width="80" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img></a>
-    </td>
-
-   <td valign="top" align="center">
       <a href="https://swagger.io"><img height="80" width="80"src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img></a>
     </td>
   </tr>
@@ -76,15 +76,16 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
 ### <a name="DependênciasDoProjeto"></a>Dependências do projeto:
 
-  * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
-  * Swagger-autogen 2.11.2
-  * Nodemon 2.0.13 - Para restartar o server sempre que houver uma alteração. 
-  * Jwt - Para verificação de token.
-  * Bcrypt 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
-  * Cors 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
-  * Multer 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
-  * Body-Parser 1.19.0 - Analisa os dados codificados JSON, buffer, string e URL enviados usando a solicitação HTTP POST.
-  * MariaDB 2.5.4 - É o banco de dados que nos usamos. 
+  * [Express](https://www.npmjs.com/package/express) 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
+  * [Nodemon](https://www.npmjs.com/package/nodemon) 2.0.13 - Para restartar o server sempre que houver uma alteração. 
+  * [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) 8.5.1 - Uilizado para criação e posteriormente verificação de token para autenticação.
+  * [Bcrypt](https://www.npmjs.com/package/bcrypt) 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
+  * [Crypto](https://www.npmjs.com/package/crypto) 1.0.1 - Utilizado para criar um Token aleatório que será transformado em string.
+  * [Cors](https://www.npmjs.com/package/cors) 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens.
+  * [Multer](https://www.npmjs.com/package/multer) 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
+  * [Nodemailer](https://www.npmjs.com/package/nodemailer) 6.6.3 - Utilizado para enviar e-mails.
+  * [MariaDB](https://www.npmjs.com/package/mariadb) 2.5.4 - É o banco de dados que nos usamos (dependência utilizada para conexão da ORM com banco de dados).
+  * [Dotenv](https://www.npmjs.com/package/dotenv) 10.0.0 - Utilizado para setar as variáveis de ambiente (dados sensíveis).
 
 
 ## <a name="ComoIniciarAAplicação"></a> :arrow_forward: Como iniciar a aplicação
