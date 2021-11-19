@@ -2,6 +2,7 @@
 
 ## **SWAGGER**
 
+![swagger](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/swagger/swagger.png)
 
 ### O que é o Swagger
 
@@ -29,6 +30,7 @@ O Swagger permite criar a documentação da API de 3 formas:
 3- Codegen: Converte todas as anotações contidas no código fonte das APIs REST em documentação.
 
 
+
 ### **Por quê utilizá-lo?**
 
 ***Interface simples;***
@@ -42,5 +44,3 @@ O Swagger permite criar a documentação da API de 3 formas:
 ***Geração de documentação da API;***
 
 ***Geração de códigos do Cliente e do Servidor, com suporte a várias linguagens de programação;***
-
-![swagger](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/swagger/swagger.png)
