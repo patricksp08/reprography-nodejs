@@ -81,7 +81,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   * [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) 8.5.1 - Uilizado para criação e posteriormente verificação de token para autenticação.
   * [Bcrypt](https://www.npmjs.com/package/bcrypt) 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
   * [Crypto](https://www.npmjs.com/package/crypto) 1.0.1 - Utilizado para criar um Token aleatório que será transformado em string.
-  * [Cors](https://www.npmjs.com/package/cors) 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens.
+  * [Cors](https://www.npmjs.com/package/cors) 2.8.5 - É um mecânismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens.
   * [Multer](https://www.npmjs.com/package/multer) 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
   * [Nodemailer](https://www.npmjs.com/package/nodemailer) 6.6.3 - Utilizado para enviar e-mails.
   * [MariaDB](https://www.npmjs.com/package/mariadb) 2.5.4 - É o banco de dados que nos usamos (dependência utilizada para conexão da ORM com banco de dados).
