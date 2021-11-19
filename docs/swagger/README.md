@@ -1,6 +1,6 @@
 
 
-## **SWAGGER**
+## <h2 align="center">Swagger</h2>
 
 ![swagger](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/swagger/swagger.png)
 
