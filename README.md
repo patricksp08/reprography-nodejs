@@ -226,6 +226,11 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
     <br />
     <sub><b>Tiago Soares</b></sub><br />:snowflake::snowman::snowflake:
      </td>
+     <td align="center"><a href="https://github.com/MauricioAlvesM">
+    <img src="https://avatars.githubusercontent.com/u/39388652?s=96&v=4" width="100px" alt="Imagem do perfil de Mauricio"/>
+    <br />
+     <sub><b>Mauricio Moreira</b></sub><br />:snowflake:TechLead:snowflake:
+     </td>
  </tr>
 </table>
 
