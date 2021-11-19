@@ -104,9 +104,9 @@
     <td>Não Funcional</td>
     <td>Obrigatório</td>
   </tr>
-  <tr align="center">
+  <tr>
     <td>6</td>
-    <td align="left">Login(Recuperação)</td>
+    <td align="left">Login (Recuperação)</td>
     <td align="left">Caso o usuário esqueça sua senha, é possivel recuperar através do email enviado para recuperação</td>
     <td>Não Funcional</td>
     <td>Importante</td>
