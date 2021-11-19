@@ -43,6 +43,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 <table align="center">
  <th><h3>Runtime environment</h3></th>
  <th><h3>Linguagem</h3></th>
+  <th><h3>ORM</h3></th>
  <th><h3>Banco de dados</h3></th>
  <th><h3>Framework</h3></th>
  <th><h3>Editor de código</h3></th>
@@ -54,6 +55,10 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
    <td valign="top" align="center">
       <a href="https://www.javascript.com"><img height="80" width="80" src="https://www.seekpng.com/png/full/80-803501_javascript-logo-logo-de-java-script-png.png" style="max-width:100%;"></img></a>
+      </td>
+      
+   <td valign="top" align="center">
+      <a href="https://sequelize.org"><img height="80" width="80" src="https://sequelize.org/master/image/brand_logo.png" style="max-width:100%;"></img></a>
       </td>
   
    <td valign="top" align="center">
