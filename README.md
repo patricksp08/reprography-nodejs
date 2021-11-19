@@ -58,7 +58,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
       </td>
       
    <td valign="top" align="center">
-      <a href="https://sequelize.org"><img height="80" width="100" src="https://sequelize.org/master/image/brand_logo.png" style="max-width:100%;"></img></a>
+      <a href="https://sequelize.org"><img height="60" width="100" src="https://sequelize.org/master/image/brand_logo.png" style="max-width:100%;"></img></a>
       </td>
   
    <td valign="top" align="center">
@@ -73,7 +73,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
       <a href="https://code.visualstudio.com/Download"><img height="80" width="80" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img></a>
     </td>
 
-   <td valign="top" align="center" width="50px">
+   <td valign="top" align="center" style="width: 200px">
       <a href="https://swagger.io"><img height="80" width="80"src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" style="max-width:100%;"></img></a>
     </td>
   </tr>
