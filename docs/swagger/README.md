@@ -1,6 +1,9 @@
 
 
-## **O que é o SWAGGER e por quê utiliza-lo:**
+## **SWAGGER**
+
+
+### O que é o Swagger
 
 Swagger é uma linguagem de descrição de interface para descrever APIs RESTful expressas usando JSON.
 O Swagger é usado junto com um conjunto de ferramentas de software de código aberto para projetar, construir, documentar e usar serviços da Web RESTful.
@@ -25,7 +28,8 @@ O Swagger permite criar a documentação da API de 3 formas:
 
 3- Codegen: Converte todas as anotações contidas no código fonte das APIs REST em documentação.
 
-### **Por quê utilizar?**
+
+### **Por quê utilizá-lo?**
 
 ***Interface simples;***
 
@@ -39,4 +43,4 @@ O Swagger permite criar a documentação da API de 3 formas:
 
 ***Geração de códigos do Cliente e do Servidor, com suporte a várias linguagens de programação;***
 
-![swagger_logo](https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png)
+![swagger](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/swagger/swagger.png)
