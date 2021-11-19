@@ -114,7 +114,7 @@
     <tr>
     <td>7</td>
     <td align="left">Serviços</td>
-    <td align="left">Todos serviços devem ser delimitados, não podendo ultrapaçar o limite disponiblizado pela empresa contratada</td>
+    <td align="left">Todos serviços devem ser delimitados, não podendo ultrapassar o limite disponiblizado pela empresa contratada</td>
    <td>Não Funcional</td>
     <td>Obrigatório</td>
   </tr>
