@@ -79,12 +79,15 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   * Express 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
   * Swagger-autogen 2.11.2
   * Nodemon 2.0.13 - Para restartar o server sempre que houver uma alteração. 
-  * Jwt - Para verificação de token.
+  * Jsonwebtoken - Para verificação de token.
   * Bcrypt 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
+  * Crypto -
   * Cors 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
   * Multer 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
+  * Nodemailer -
   * Body-Parser 1.19.0 - Analisa os dados codificados JSON, buffer, string e URL enviados usando a solicitação HTTP POST.
-  * MariaDB 2.5.4 - É o banco de dados que nos usamos. 
+  * MariaDB 2.5.4 - É o banco de dados que nos usamos.
+  * Dotenv -
 
 
 ## <a name="ComoIniciarAAplicação"></a> :arrow_forward: Como iniciar a aplicação
