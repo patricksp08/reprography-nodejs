@@ -46,7 +46,6 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   <th><h3>  ORM  </h3></th>
  <th><h3>Banco de dados</h3></th>
  <th><h3>Framework</h3></th>
- <th><h3>Editor de código</h3></th>
  <th><h3>Documentação</h3></th>
   <tr>
     <td valign="top" align="center">
@@ -67,10 +66,6 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
 
    <td valign="top" align="center">
       <a href="https://expressjs.com"><img height="80" width="80" src="https://hackr.io/tutorials/learn-express-js/logo/logo-express-js?ver=1557508379" style="max-width:100%;"></img></a>
-    </td>
-
-   <td valign="top" align="center">
-      <a href="https://code.visualstudio.com/Download"><img height="80" width="80" src="https://cdn.freebiesupply.com/logos/large/2x/visual-studio-code-logo-png-transparent.png" style="max-width:100%;"></img></a>
     </td>
 
    <td valign="top" align="center">
