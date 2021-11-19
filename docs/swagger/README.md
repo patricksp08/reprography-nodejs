@@ -41,6 +41,6 @@ O Swagger permite criar a documentação da API de 3 formas:
 
 - ***Modelagem da API;***
 
--***Geração de documentação da API;***
+- ***Geração de documentação da API;***
 
 - **Geração de códigos do Cliente e do Servidor, com suporte a várias linguagens de programação;***
