@@ -58,7 +58,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
       </td>
       
    <td valign="top" align="center">
-      <a href="https://sequelize.org"><img height="80" width="90" src="https://sequelize.org/master/image/brand_logo.png" style="max-width:100%;"></img></a>
+      <a href="https://sequelize.org"><img height="80" width="110" src="https://sequelize.org/master/image/brand_logo.png" style="max-width:100%;"></img></a>
       </td>
   
    <td valign="top" align="center">
