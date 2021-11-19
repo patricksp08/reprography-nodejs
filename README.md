@@ -79,7 +79,7 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   * [Express](https://www.npmjs.com/package/express) 4.17.1 - É um framework para Node.js que fornece recursos mínimos para construção de servidores web.
   * [Swagger-autogen](https://www.npmjs.com/package/swagger-autogen) 2.11.2
   * [Nodemon](https://www.npmjs.com/package/nodemon) 2.0.13 - Para restartar o server sempre que houver uma alteração. 
-  * [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Para verificação de token.
+  * [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) 8.5.1 - Uilizado para criação e posteriormente verificação de token para autenticação.
   * [Bcrypt](https://www.npmjs.com/package/bcrypt) 5.0.1 - Para Cryptografar as senhas de usuários antes de salvar no banco.
   * [Crypto](https://www.npmjs.com/package/crypto) 1.0.1 - Utilizado para criar um Token aleatório que será transformado em string.
   * [Cors](https://www.npmjs.com/package/cors) 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
