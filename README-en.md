@@ -76,7 +76,7 @@ This application was requested by the coordinator of the Senai Suiço-Brasileira
 </table>
 
 
-### <a name="ProjectDependencies"></a> Project dependencies
+### <a name="ProjectDependencies"></a> Project dependencies:
   * [Express](https://www.npmjs.com/package/express) 4.17.1 - It is a framework for Node.js that provides minimal resources for building web servers.
   * [Nodemon](https://www.npmjs.com/package/nodemon) 2.0.13 -  To restart the server whenever there is a change.
   * [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) 8.5.1 - To protect private routes.
