@@ -84,9 +84,9 @@ Esta aplicação foi requerida pela coordenadora da escola Senai Suiço-Brasilei
   * [Crypto](https://www.npmjs.com/package/crypto) 1.0.1 - Utilizado para criar um Token aleatório que será transformado em string.
   * [Cors](https://www.npmjs.com/package/cors) 2.8.5 - É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens
   * [Multer](https://www.npmjs.com/package/multer) 1.4.2 - É um middleware node.js para lidar com multipart, que é usado principalmente para fazer upload de arquivos.
-  * [Nodemailer](https://www.npmjs.com/package/nodemailer) 6.6.3 -
-  * [MariaDB](https://www.npmjs.com/package/mariadb) 2.5.4 - É o banco de dados que nos usamos (dependência utilizada para conexão da ORM com banco de dados)
-  * [Dotenv](https://www.npmjs.com/package/dotenv) 10.0.0 -
+  * [Nodemailer](https://www.npmjs.com/package/nodemailer) 6.6.3 - Utilizado para enviar e-mails.
+  * [MariaDB](https://www.npmjs.com/package/mariadb) 2.5.4 - É o banco de dados que nos usamos (dependência utilizada para conexão da ORM com banco de dados).
+  * [Dotenv](https://www.npmjs.com/package/dotenv) 10.0.0 - Utilizado para setar as variáveis de ambiente (dados sensíveis).
 
 
 ## <a name="ComoIniciarAAplicação"></a> :arrow_forward: Como iniciar a aplicação
