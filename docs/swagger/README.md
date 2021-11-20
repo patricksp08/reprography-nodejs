@@ -2,7 +2,7 @@
 
 ## <h2 align="center">Swagger</h2>
 
-> Swagger-UI rodando em http://localhost:3002/docs
+> Swagger-UI rodando em `http://localhost:3002/docs`
 
 ![swagger](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/swagger/swagger.png)
 
