@@ -199,7 +199,7 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
     <td align="center"><a href="https://github.com/Luccazx12">
     <img src="https://avatars.githubusercontent.com/u/71888383?v=4" width="100px" alt="Imagem do perfil de Lucca"/>
     <br />
-     <sub><b>Lucca</b></sub><br />:snowflake:TechLead:snowflake:
+     <sub><b>Lucca</b></sub><br />:snowflake:<sub>TechLead</sub>:snowflake:
      </td>
     <td align="center"><a href="https://github.com/patricksp08">
     <img src="https://avatars.githubusercontent.com/u/71887999?v=4" width="100px" alt="Imagem do perfil de Ṕatrick"/>
@@ -214,7 +214,12 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
      <td align="center"><a href="https://github.com/Oseias-maker">
     <img src="https://avatars.githubusercontent.com/u/71889159?v=4" width="100px" alt="Imagem do perfil de Oséias"/>
     <br />
-    <sub><b>Oseias Farias Jesus</b></sub><br />:snowflake::snowman::snowflake:
+    <sub><b>Oseias Farias</b></sub><br />:snowflake::snowman::snowflake:
+     </td>
+       <td align="center"><a href="https://github.com/MauricioAlvesM">
+    <img src="https://avatars.githubusercontent.com/u/39388652?s=96&v=4" width="100px" alt="Imagem do perfil de Mauricio"/>
+    <br />
+     <sub><b>Mauricio Moreira</b></sub><br />:snowflake::snowman::snowflake:
      </td>
     <td align="center"><a href="https://github.com/JoaoOFS">
     <img src="https://avatars.githubusercontent.com/u/71888050?v=4" width="100px" alt="Imagem do perfil de João"/>
@@ -226,6 +231,7 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
     <br />
     <sub><b>Tiago Soares</b></sub><br />:snowflake::snowman::snowflake:
      </td>
+
  </tr>
 </table>
 
