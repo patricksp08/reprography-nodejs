@@ -16,11 +16,11 @@ O Swagger é um framework composto por diversas ferramentas que, independente da
 
 ### **O Swagger permite criar a documentação da API de 3 formas:**
 
-1- Automaticamente: Simultaneamente ao desenvolvimento da API é gerada a documentação.
+1. Automaticamente: Simultaneamente ao desenvolvimento da API é gerada a documentação.
 
-2- Manualmente: Permite ao desenvolvedor escrever livremente as especificações da API e as publicar posteriormente em seu próprio servidor.
+2. Manualmente: Permite ao desenvolvedor escrever livremente as especificações da API e as publicar posteriormente em seu próprio servidor.
 
-3- Codegen: Converte todas as anotações contidas no código fonte das APIs REST em documentação.
+3. Codegen: Converte todas as anotações contidas no código fonte das APIs REST em documentação.
 
 
 ### **Por quê utilizá-lo?**
