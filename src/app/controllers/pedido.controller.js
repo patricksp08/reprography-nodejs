@@ -7,7 +7,7 @@ const verifyConstraints = require("../services/verifyConstraints");
 
 //Envio de e-mail
 const mailer = require("../../mailer/mailer.js");
-const mailerConfig = require('../../config/mailer.config');
+const { mailerConfig } = require('../../config/');
 const template = require("../templates/emails");
 
 //Utilizado para excluir imagens
