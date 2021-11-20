@@ -80,7 +80,7 @@
     <td>2</td>
     <td align="left">Sistema multiplataforma</td>
     <td align="left">A compatibilidade do sistemas e todas suas funcionalidades devem ser compatíveis em outros sistemas, como Linux e MacOS.</td>
-    <td>Não Funcional/td>
+    <td>Não Funcional</td>
     <td>Importante</td>
   </tr>
   <tr>
