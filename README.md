@@ -214,7 +214,7 @@ Criando a documentação com o Swagger, conseguimos simplificar não só o desen
      <td align="center"><a href="https://github.com/Oseias-maker">
     <img src="https://avatars.githubusercontent.com/u/71889159?v=4" width="100px" alt="Imagem do perfil de Oséias"/>
     <br />
-    <sub><b>Oseias Farias Jesus</b></sub><br />:snowflake::snowman::snowflake:
+    <sub><b>Oseias Farias</b></sub><br />:snowflake::snowman::snowflake:
      </td>
        <td align="center"><a href="https://github.com/MauricioAlvesM">
     <img src="https://avatars.githubusercontent.com/u/39388652?s=96&v=4" width="100px" alt="Imagem do perfil de Mauricio"/>
