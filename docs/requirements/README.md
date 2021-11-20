@@ -1,4 +1,4 @@
-<h3 align="center">📌 Tabela de Requisitos Funcionais</h3>
+<h3 align="center">📌 Requisitos Funcionais</h3>
 
 <table>
   <tr align="center">
@@ -58,7 +58,7 @@
   </tr>
 </table>
 
-<br><br> <h3 align="center">📌 Tabela de Requisitos Não Funcionais</h3>
+<br><br> <h3 align="center">📌 Requisitos Não Funcionais</h3>
 
 <table>
   <tr align="center">
@@ -80,7 +80,7 @@
     <td>2</td>
     <td align="left">Sistema multiplataforma</td>
     <td align="left">A compatibilidade do sistemas e todas suas funcionalidades devem ser compatíveis em outros sistemas, como Linux e MacOS.</td>
-    <td>Não Funcional/td>
+    <td>Não Funcional</td>
     <td>Importante</td>
   </tr>
   <tr>
