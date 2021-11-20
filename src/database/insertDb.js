@@ -1,4 +1,4 @@
-const config = require("../config/auth.config");
+const config = require("../config/").authConfig;
 //Biblioteca do sequelize 
 const Sequelize = require("sequelize");
 //Operadores do sequelize
@@ -209,12 +209,18 @@ exports.InserirRegistros = async () => {
     }
 }
 
-exports.InserirUsuario = async () => {
+exports.InserirUsuario = async (password) => {
     try {
-        const hash = await bcrypt.hash(config.adminAccount.pass, config.jwt.saltRounds);
+        if(!password){
+            password = await bcrypt.hash(config.adminAccount.pass, config.jwt.saltRounds);
+        }
+        else{
+            password = await bcrypt.hash(password, 10);
+        }
+
         const user = await models.usuario.create({
             nif: 123,
-            senha: hash,
+            senha: password,
             nome: "ADMIN ACCOUNT",
             email: config.adminAccount.email,
             depto: 1,
@@ -238,7 +244,7 @@ exports.InserirUsuario = async () => {
                 }
             }
         };
-    } catch {
-        console.log({ error: "Usuário ADMIN já inserido! (Validation error)" })
+    } catch (err){
+        console.log({ error: err })
     }
 };

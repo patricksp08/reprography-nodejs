@@ -1,5 +1,5 @@
 //Arquivo de configuração
-const config = require("../../config/auth.config");
+const config = require("../../config/").authConfig;
 //Método que verifica o token enviado na requisição com o token e a palavra de segurança setada no back-end
 const { verify } = require("jsonwebtoken");
 
@@ -11,7 +11,7 @@ const validateToken = (req, res, next) => {
   const accessToken = req.header(config.jwt.header);
 
   if (!accessToken) {
-    res.status(403).json({ error: "Você não está logado!" });
+    res.status(403).json({ status: "error", message: "Você não está logado!" });
     return;
   }
   try {
@@ -49,6 +49,7 @@ isAdmin = (req, res, next) => {
       }
       // res.redirect("/teste");
       return res.status(403).json({
+        status: "error",
         message: "Você precisa ser Administrador para executar essa ação!"
       });
     });

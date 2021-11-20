@@ -99,8 +99,8 @@ module.exports = {
         return roles;
     },
 
-    setRoles: async (user, roles) => {
-        var userRoles = await user.setRoles(roles);
+    setRoles: (user, roles) => {
+        var userRoles = user.setRoles(roles);
 
         return userRoles;
     },

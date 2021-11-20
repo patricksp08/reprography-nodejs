@@ -14,7 +14,7 @@ var _tipo_usuario = require("./tipo_usuario");
 var _user_roles = require("./user_roles");
 var _usuario = require("./usuario");
 
-const { config } = require("../../config/db.config.js");
+const config = require("../../config/").dbConfig;
 const Sequelize = require("sequelize");
 
 sequelize = new Sequelize(config.database, config.username, config.password, {

@@ -1,5 +1,5 @@
 //Arquivo de config
-const config = require("../../config/auth.config");
+const config = require("../../config/").authConfig;
 
 //Services
 
@@ -26,9 +26,7 @@ module.exports = {
         const { emailOrNif, senha } = req.body;
 
         if (!emailOrNif || !senha) {
-            return res.status(400).send(
-                'Requisição faltando campos de email ou senha!'
-            );
+            return res.status(400).json({status: "error", message: "Requisição faltando campos de email ou senha!"});
         }
 
         var user = await service.findOneByEmail(emailOrNif);
@@ -57,7 +55,6 @@ module.exports = {
         await bcrypt.compare(senha, user.senha).then((match) => {
             if (!match) {
                 return res.json({
-                    accessToken: null,
                     status: 'error',
                     message: "E-mail/NIF ou Senha Inválidos!"
                 });
@@ -181,14 +178,14 @@ module.exports = {
     //Gerentes --- (ADMIN)
 
     //Registrar usuário
-    adicionarUsuario: (req, res) => {
+    adicionarUsuario: async (req, res) => {
         let { nif, nome, telefone, depto, email, cfp, admin } = req.body;
 
         // Imagem padrão caso não seja inserida nenhuma imagem.
         var image = config.adminAccount.defaultImage;
 
         //Senha padrão
-        const senha = "senai115";
+        const senha = config.defaultPassword;
 
         if (req.file) {
             image = req.file.path;
@@ -204,24 +201,18 @@ module.exports = {
             admin = ["user"];
         }
 
-        bcrypt.hash(senha, config.jwt.saltRounds, function (err, hash) {
+        bcrypt.hash(senha, config.jwt.saltRounds, async (err, hash) => {
             if (err) throw (err);
-            service.addUser({ param: { nif: nif, senha: hash, nome: nome, telefone: telefone, depto, email: email, cfp: cfp, imagem: image } }).then(user => {
+            var user = await service.addUser({ param: { nif: nif, senha: hash, nome: nome, telefone: telefone, depto, email: email, cfp: cfp, imagem: image } })
                 if (admin) {
-                    service.getDescRoles(admin)
-                        .then(roles => {
-                            service.setRoles(user, roles);
-                        });
+                    var roles = await service.getDescRoles(admin);
+                    await service.setRoles(user, roles);
                 }
                 else {
                     service.setRoles([1]);
                 }
                 return res.status(200).json({ status: "ok", message: `Usuário com nif ${user.nif} criado com sucesso!` });
             })
-                .catch(err => {
-                    res.status(500).json({ message: err.message });
-                });
-        });
     },
 
     buscarTodos: async (req, res) => {

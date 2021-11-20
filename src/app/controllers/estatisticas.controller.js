@@ -202,7 +202,7 @@ module.exports = {
             num_copias: total_copias,
             folhas_impressas: folhas_impressas,
             centro_custos: [centro_custosObj],
-            curso: cursoObj,
+            curso: [cursoObj],
             custo_total: custo_total
         }]);
     },
@@ -425,7 +425,7 @@ module.exports = {
                 num_copias: total_copias,
                 folhas_impressas: folhas_impressas,
                 centro_custos: [centro_custosObj],
-                curso: cursoObj,
+                curso: [cursoObj],
                 custo_total: custo_total
             };
         };
