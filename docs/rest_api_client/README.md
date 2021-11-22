@@ -1,3 +1,5 @@
+<a href="https://github.com/Squad-Back-End/reprography-nodejs/edit/master/docs/rest_api_client/README-en.md">English Version</a>
+
 <h2 align="center"> 📚 Bem vindo as documentações Rest API do projeto 📚 </h2>
 
 ### Rest API's utilizadas no projeto:
