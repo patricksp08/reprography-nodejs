@@ -1,5 +1,7 @@
 # Thunder
 
+* [English version](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/rest_api_client/thunder%20client/README-en.md)
+
 ## O que é Thunder:
 
 No mundo do desenvolvimento Web, o Postman é a ferramenta mais escolhida para realizar testes em API’s. No entanto, depender de uma ferramenta externa pode muitas vezes dificultar o desenvolvimento e testagem. Por essa razão, o Thunder Client foi desenvolvido como uma extensão para o VsCode para centralizar todo esse processo dentro de um só local.
