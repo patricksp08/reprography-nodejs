@@ -1,5 +1,7 @@
 ## POSTMAN
 
+* [English Version](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/rest_api_client/postman/README-en.md)
+
 ### O que é Postman:
 
 O Postman é uma ferramenta que dá suporte à documentação das requisições feitas pela API. Ele possui ambiente para a documentação, execução de testes de APIs e requisições em geral.
