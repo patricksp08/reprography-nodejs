@@ -26,64 +26,65 @@ module.exports = {
         const { emailOrNif, senha } = req.body;
 
         if (!emailOrNif || !senha) {
-            return res.status(400).json({status: "error", message: "Requisição faltando campos de email ou senha!"});
+            return res.status(400).json({ status: "error", message: "Requisição faltando campos de email ou senha!" });
         }
 
-        var user = await service.findOneByEmail(emailOrNif);
+        try {
+            let user = await service.findOneByEmail(emailOrNif);
 
-        //Login com usuário ou NIF
-        if (user == null) {
-            user = await service.findUserbyPk(emailOrNif, { attributes: null });
-            if (!user) {
-                return res.json({ status: 'error', message: "E-mail/NIF ou Senha Inválidos!" });
+            //Login com usuário ou NIF
+            if (user == null) {
+                user = await service.findUserbyPk(emailOrNif, { attributes: null });
+                if (!user) {
+                    return res.json({ status: 'error', message: "E-mail/NIF ou Senha Inválidos!" });
+                }
+                else if (user.ativado === 0 && user.primeiro_acesso === 0) {
+                    return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" });
+                }
             }
-            else if (user.ativado === 0 && user.primeiro_acesso === 0) {
-                return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" });
-            }
-        }
-        else {
+            else {
 
-            if (user.ativado === 0 && user.primeiro_acesso === 1) {
-                return res.json({ status: 'error', message: "Primeiro acesso requer NIF ao invés do e-mail." });
-            };
-
-            if (user.ativado === 0) {
-                return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" });
-            };
-        };
-
-        await bcrypt.compare(senha, user.senha).then((match) => {
-            if (!match) {
-                return res.json({
-                    status: 'error',
-                    message: "E-mail/NIF ou Senha Inválidos!"
-                });
-            };
-
-            var authorities = [];
-            service.getRoles(user).then(roles => {
-                for (let i = 0; i < roles.length; i++) {
-                    authorities.push(roles[i].id + "_ROLE_" + roles[i].descricao.toUpperCase());
+                if (user.ativado === 0 && user.primeiro_acesso === 1) {
+                    return res.json({ status: 'error', message: "Primeiro acesso requer NIF ao invés do e-mail." });
                 };
 
-                var token = sign({ nif: user.nif, nome: user.nome, email: user.email, imagem: user.imagem, roles: authorities, }, config.jwt.secret, {
-                    expiresIn: 86400 // 24 hours
-                });
+                if (user.ativado === 0) {
+                    return res.json({ status: 'error', message: "Sua conta está desativada, contate um administrador!" });
+                };
+            };
 
-                return res.status(200).json({
-                    nif: user.nif,
-                    nome: user.nome,
-                    email: user.email,
-                    imagem: user.imagem,
-                    roles: authorities,
-                    accessToken: token,
-                    primeiro_acesso: user.primeiro_acesso
+            await bcrypt.compare(senha, user.senha).then((match) => {
+                if (!match) {
+                    return res.json({
+                        status: 'error',
+                        message: "E-mail/NIF ou Senha Inválidos!"
+                    });
+                };
+
+                let authorities = [];
+                service.getRoles(user).then(roles => {
+                    for (let i = 0; i < roles.length; i++) {
+                        authorities.push(roles[i].id + "_ROLE_" + roles[i].descricao.toUpperCase());
+                    };
+
+                    const token = sign({ nif: user.nif, nome: user.nome, email: user.email, imagem: user.imagem, roles: authorities, }, config.jwt.secret, {
+                        expiresIn: 86400 // 24 hours
+                    });
+
+                    return res.status(200).json({
+                        nif: user.nif,
+                        nome: user.nome,
+                        email: user.email,
+                        imagem: user.imagem,
+                        roles: authorities,
+                        accessToken: token,
+                        primeiro_acesso: user.primeiro_acesso
+                    });
                 });
-            });
-        })
-            .catch(err => {
-                res.status(500).json({ status: 'error', message: err.message });
-            });
+            })
+        } catch (error) {
+            res.status(500).json({ status: 'error', message: err.message });
+        }
     },
 
     informacoesBasicas: async (req, res) => {
@@ -204,15 +205,15 @@ module.exports = {
         bcrypt.hash(senha, config.jwt.saltRounds, async (err, hash) => {
             if (err) throw (err);
             var user = await service.addUser({ param: { nif: nif, senha: hash, nome: nome, telefone: telefone, depto, email: email, cfp: cfp, imagem: image } })
-                if (admin) {
-                    var roles = await service.getDescRoles(admin);
-                    await service.setRoles(user, roles);
-                }
-                else {
-                    service.setRoles([1]);
-                }
-                return res.status(200).json({ status: "ok", message: `Usuário com nif ${user.nif} criado com sucesso!` });
-            })
+            if (admin) {
+                var roles = await service.getDescRoles(admin);
+                await service.setRoles(user, roles);
+            }
+            else {
+                service.setRoles([1]);
+            }
+            return res.status(200).json({ status: "ok", message: `Usuário com nif ${user.nif} criado com sucesso!` });
+        })
     },
 
     buscarTodos: async (req, res) => {

@@ -244,7 +244,7 @@ exports.InserirUsuario = async (password) => {
                 }
             }
         };
-    } catch (err){
-        console.log({ error: err })
+    } catch{
+        console.log({ error: "Registros já inseridos! (Validation error)" })
     }
 };
