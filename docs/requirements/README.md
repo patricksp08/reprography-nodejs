@@ -1,3 +1,5 @@
+ <a href="https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/requirements/README-en.md">English Version</a>
+
 <h3 align="center">📌 Requisitos Funcionais</h3>
 
 <table>
