@@ -1,6 +1,6 @@
 # Thunder
 
-* [English version](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/rest_api_client/thunder%20client/README-en.md)
+[English version](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/rest_api_client/thunder%20client/README-en.md)
 
 ## O que é Thunder:
 
