@@ -62,6 +62,8 @@ Pronto, suas Collections e Enviroments foram importadas:
 
 ![Thunder4](https://user-images.githubusercontent.com/71890228/142863383-568635ee-32ef-4386-ab44-965e88a87c50.png)
 
+E assim terminamos a importação.
+
 Como importar Collections e Enviroments via Thunder Client feito com o auxilio deste [Tutorial.](https://developers.refinitiv.com/en/article-catalog/article/how-to-test-http-rest-api-easily-with-visual-studio-code---thund)
 
 
