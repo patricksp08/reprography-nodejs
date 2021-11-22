@@ -1,8 +1,8 @@
 <a href="https://github.com/Squad-Back-End/reprography-nodejs/edit/master/docs/rest_api_client/README-en.md">English Version</a>
 
-<h2 align="center"> 📚 Bem vindo as documentações Rest API do projeto 📚 </h2>
+<h2 align="center"> 📚 Rest API's Clients 📚 </h2>
 
-### Rest API's utilizadas no projeto:
+### Rest API's Clients utilizados no projeto:
 
 * #### [Postman](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs/rest_api_client/postman)
 * #### [Thunder](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs/rest_api_client/thunder%20client)
