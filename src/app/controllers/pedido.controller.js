@@ -13,6 +13,10 @@ const template = require("../templates/emails");
 //Validators
 const validators = require("../validators/pedido.validator");
 
+//Constants
+const constants = require("../constants/pedido.constant");
+const status = require("../constants/status.constant");
+
 //Utilizado para excluir imagens
 const { unlink } = require("fs");
 
@@ -26,17 +30,17 @@ module.exports = {
     buscarTodos: async (req, res) => {
         const { rated } = req.params;
 
-        const ratedValid = validators.isParameterValid(rated);
+        const ratedValid = await validators.isParameterValid(rated);
 
         if (!ratedValid) {
-            return res.json({ message: "Insira um parâmetro válido!" });
+            return res.json({ status: status.error, message: constants.invalidParameter });
         };
 
         try {
             let pedidos = await pedidoService.findAllRated(ratedValid);
 
             if (pedidos.length < 1) {
-                return res.json({ message: "Nenhum pedido encontrado!" });
+                return res.json({ status: status.error, message: constants.notFoundArray });
             }
 
             //Verificando Constraints
@@ -47,10 +51,10 @@ module.exports = {
                 pedidos[i].dataValues.id_modo_envio = constraints[4].descricao;
 
             }
-            return res.json(pedidos);
+            return res.status(200).json(pedidos);
         }
-        catch (error) {
-            console.log(error);
+        catch (err) {
+            res.status(500).json({ status: status.error, message: err.message });
         };
     },
 
@@ -59,7 +63,7 @@ module.exports = {
             let pedidos = await pedidoService.findByName(req.params.pedido);
 
             if (pedidos.length < 1) {
-                return res.json({ message: "Nenhum pedido encontrado!" });
+                return res.json({ status: status.error, message: constants.notFoundArray });
             };
 
             //Verificando Constraints
@@ -70,10 +74,10 @@ module.exports = {
                 pedidos[i].dataValues.id_modo_envio = constraints[4].descricao;
 
             }
-            return res.json(pedidos);
+            return res.status(200).json(pedidos);
         }
-        catch (error) {
-            console.log(error);
+        catch (err) {
+            res.status(500).json({ status: status.error, message: err.message });
         };
     },
 
@@ -83,7 +87,7 @@ module.exports = {
             let pedidos = await pedidoService.findByPk(req.params.id);
 
             if (pedidos == null) {
-                return res.json({ message: "Pedido não encontrado!" });
+                return res.json({ status: status.error, message: constants.notFound });
             };
 
             const constraints = await verifyConstraints({ modo_envio: pedidos.dataValues.id_modo_envio, avaliacao: pedidos.dataValues.id_avaliacao_pedido });
@@ -91,10 +95,10 @@ module.exports = {
             pedidos.dataValues.id_avaliacao_pedido = constraints[1].descricao;
             pedidos.dataValues.id_modo_envio = constraints[4].descricao;
 
-            return res.json(pedidos);
+            return res.status(200).json(pedidos);
         }
-        catch (error) {
-            console.log(error);
+        catch (err) {
+            res.status(500).json({ status: status.error, message: err.message });
         };
     },
 
@@ -102,17 +106,17 @@ module.exports = {
     buscarPorNif: async (req, res) => {
         const { rated } = req.params;
 
-        const ratedValid = validators.isParameterValid(rated);
+        const ratedValid = await validators.isParameterValid(rated);
 
         if (!ratedValid) {
-            return res.json({ message: "Insira um parâmetro válido!" });
+            return res.json({ status: status.error, message: constants.invalidParameter });
         };
 
         try {
             let pedidos = await pedidoService.findAllRatedbyNif(req.params.nif, ratedValid);
 
             if (pedidos.length < 1) {
-                return res.json({ message: "Nenhum pedido encontrado!" });
+                return res.json({ status: status.error, message: constants.notFoundArray });
             }
 
             for (let i = 0; i < pedidos.length; i++) {
@@ -122,10 +126,10 @@ module.exports = {
                 pedidos[i].dataValues.id_modo_envio = constraints[4].descricao;
 
             }
-            return res.json(pedidos);
+            return res.status(200).json(pedidos);
         }
-        catch (error) {
-            console.log(error);
+        catch (err) {
+            res.status(500).json({ status: status.error, message: err.message });
         };
     },
 
@@ -138,17 +142,17 @@ module.exports = {
     meusPedidos: async (req, res) => {
         const { rated } = req.params;
 
-        const ratedValid = validators.isParameterValid(rated);
+        const ratedValid = await validators.isParameterValid(rated);
 
         if (!ratedValid) {
-            return res.json({ message: "Insira um parâmetro válido!" });
+            return res.json({ status: status.error, message: constants.invalidParameter });
         };
 
         try {
             let pedidos = await pedidoService.findAllRatedbyNif(req.user.nif, ratedValid);
 
             if (pedidos.length < 1) {
-                return res.json({ message: "Nenhum pedido encontrado!" });
+                return res.json({ status: status.error, message: constants.notFoundArray });
             }
 
             //Verificando Constraints 
@@ -159,10 +163,10 @@ module.exports = {
                 pedidos[i].dataValues.id_modo_envio = constraints[4].descricao;
 
             }
-            return res.json(pedidos);
+            return res.status(200).json(pedidos);
         }
-        catch (error) {
-            console.log(error);
+        catch (err) {
+            res.status(500).json({ status: status.error, message: err.message });
         };
     },
 
@@ -236,12 +240,12 @@ module.exports = {
 
                     await mailer.sendEmails(email, title, output, { attachments: attachments });
 
-                    return res.json({ message: "Pedido realizado com sucesso!" });
+                    return res.status(200).json({ status: status.ok, message: "Pedido realizado com sucesso!" });
                 });
             });
         }
-        catch (error) {
-            console.log(error);
+        catch (err) {
+            res.status(500).json({ status: status.error, message: err.message });
         };
     },
 
@@ -252,18 +256,18 @@ module.exports = {
         const { id_avaliacao_pedido, avaliacao_obs } = req.body;
 
         if (!id_avaliacao_pedido) {
-            return res.json({ error: "Informe se o pedido lhe atendeu ou não, por favor!" });
+            return res.json({ status: status.error, message: "Informe se o pedido lhe atendeu ou não, por favor!" });
         }
 
         try {
             const pedidos = await pedidoService.findByPk(req.params.id);
 
             if (pedidos == null) {
-                return res.json({ message: "Esse pedido não existe!" });
+                return res.json({ status: status.error, message: constants.notFound });
             }
 
             if (pedidos.id_avaliacao_pedido !== 0) {
-                return res.json({ message: "Esse pedido já foi avaliado!" });
+                return res.json({ status: status.error, message: constants.alreadyRated });
             }
 
             if (req.user.nif === pedidos.nif) {
@@ -275,14 +279,14 @@ module.exports = {
                 const title = `Avaliação da Reprografia Nº${pedidos.id_pedido}`;
 
                 await mailer.sendEmails(email, title, output, { attachments: null });
-                return res.status(200).json({ message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
+                return res.status(200).json({ status: status.ok, message: `Avaliação do pedido ${req.params.id} atualizada com sucesso!` });
             }
             else {
-                return res.json({ error: "Você só pode alterar a avaliação de um pedido feito pelo seu usuário" });
+                return res.json({ status: status.error, message: "Você só pode alterar a avaliação de um pedido feito pelo seu usuário" });
             }
         }
-        catch (error) {
-            console.log(error);
+        catch (err) {
+            res.status(500).json({ status: status.error, message: err.message });
         };
     }
 };

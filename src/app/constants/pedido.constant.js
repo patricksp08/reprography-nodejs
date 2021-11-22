@@ -1,5 +1,5 @@
 module.exports = {
-    notFound = "Pedido não encontrado!",
-    notFoundArray = "Nenhum pedido encontrado!",
-    invalidParameter = "Insira um parâmetro válido!"
-}
+    notFound: "Pedido não encontrado!",
+    notFoundArray: "Nenhum pedido encontrado!",
+    invalidParameter: "Insira um parâmetro válido!"
+};

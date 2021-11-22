@@ -5,11 +5,10 @@ const isParameterValid = (params) => {
     else if (params == 0) {
         return [0, 0];
     }
-}
+};
 
 const validatorPedido = {
     isParameterValid: isParameterValid
 };
 
 module.exports = validatorPedido;
-
