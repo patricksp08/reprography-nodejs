@@ -63,60 +63,60 @@
 <table>
   <tr align="center">
     <th>#</th>
-    <th>Requisito</th>
-    <th>Descrição</th>
-    <th>Tipo</th>
-    <th>Prioridade</th>
+    <th>Requirement</th>
+    <th>Description</th>
+    <th>Type</th>
+    <th>Priority</th>
   </tr>
   <tr align="center">
    <tr>
     <td>1</td>
-    <td align="left">Disponibilidade do Sitema</td>
-    <td align="left">O sistema deve ter garantida uma disponibilidade maior que 98.05%</td>
-    <td>Não Funcional</td>
-    <td>Obrigatório</td>
+    <td align="left">System Availability</td>
+    <td align="left">The system must have an availability greater than 98.05% guaranteed</td>
+    <td>Not Functional</td>
+    <td>Required</td>
   </tr>
    <tr>
     <td>2</td>
-    <td align="left">Sistema multiplataforma</td>
-    <td align="left">A compatibilidade do sistemas e todas suas funcionalidades devem ser compatíveis em outros sistemas, como Linux e MacOS.</td>
-    <td>Não Funcional</td>
-    <td>Importante</td>
+    <td align="left">Multiplatform system</td>
+    <td align="left">System compatibility and all its functionality must be compatible on other systems, such as Linux and MacOS.</td>
+    <td>Not Functional</td>
+    <td>Important</td>
   </tr>
   <tr>
     <td>3</td>
-    <td align="left">Rotas</td>
-    <td align="left">As rotas devem ser autentificadas e seguras para a navegação do usuário durante o período de uso da aplicação.</td>
-   <td>Não Funcional</td>
-    <td>Obrigatório</td>
+    <td align="left">Routes</td>
+    <td align="left">The routes must be authenticated and safe for the user's navigation during the period of use of the application.</td>
+   <td>Not Functional</td>
+    <td>Required</td>
   </tr>
-    <tr>
+   <tr>
     <td>4</td>
-    <td align="left">Senhas</td>
-    <td align="left">Todas senhas devem ser criptografadas pelo sistema e database.</td>
-    <td>Não Funcional</td>
-    <td>Obrigatório</td>
+    <td align="left">Passwords</td>
+    <td align="left">All passwords must be encrypted by the system and database.</td>
+    <td>Not Functional</td>
+    <td>Required</td>
   </tr>
   </tr>
     <td>5</td>
-    <td align="left">Login (Autentificação)</td>
-    <td align="left">Só é possível realizar login caso o usuário seja autenticado no banco de dados.</td>
-    <td>Não Funcional</td>
-    <td>Obrigatório</td>
+    <td align="left">Login</td>
+    <td align="left">It is only possible to login if the user is authenticated in the database.</td>
+    <td>Not Functional</td>
+    <td>Required</td>
   </tr>
   <tr>
     <td>6</td>
-    <td align="left">Login (Recuperação)</td>
-    <td align="left">Caso o usuário esqueça sua senha, é possível recuperar através do email enviado para recuperação.</td>
-    <td>Não Funcional</td>
-    <td>Importante</td>
+    <td align="left">Login (Recovery)</td>
+    <td align="left">If the user forgets their password, it is possible to recover it through the email sent for recovery.</td>
+    <td>Not Functional</td>
+    <td>Important</td>
     </tr>
     <tr>
     <td>7</td>
-    <td align="left">Serviços</td>
-    <td align="left">Todos serviços devem ser delimitados, não podendo ultrapassar o limite disponibilizado pela empresa contratada.</td>
-   <td>Não Funcional</td>
-    <td>Obrigatório</td>
+    <td align="left">Services</td>
+    <td align="left">All services must be delimited, not exceeding the limit provided by the contracted company.</td>
+   <td>Not Functional</td>
+    <td>Required</td>
   </tr>
     <tr>
 </table>
