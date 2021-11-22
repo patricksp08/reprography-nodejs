@@ -1,5 +1,10 @@
 <h2 align="center"> 📚 Bem vindo as documentações Rest API do projeto 📚 </h2>
 
+### Rest API's utilizadas no projeto:
+
+* #### [Swagger]
+* #### [Thunder]
+
 
 ### O que é uma Rest API ?
 
@@ -10,4 +15,6 @@
 * #### DELETE: excluir as informações;
 * #### PUT: atualizações de registros.
 
-##### Rest, que é a abreviatura de Representational State Transfer, é um conjunto de restrições utilizadas para que as requisições HTTP atendam as diretrizes definidas na arquitetura
+##### Rest, que é a abreviatura de Representational State Transfer, é um conjunto de restrições utilizadas para que as requisições HTTP atendam as diretrizes definidas na arquitetura.
+
+
