@@ -1,4 +1,6 @@
-## POSTMAN
+# POSTMAN
+
+[English Version](https://github.com/Squad-Back-End/reprography-nodejs/blob/master/docs/rest_api_client/postman/README-en.md)
 
 ### O que é Postman:
 
@@ -75,4 +77,4 @@ Ao final aparecerá uma coleção chamada "DEFAULT", onde estará disponível to
 
 Assim terminamos a importação de Collection via Postman.
 
-* Tutorial de importação de collection criado com o auxilio deste [tutorial.](https://nfe.io/docs/documentacao/nota-fiscal-produto-eletronica/importar-colecao-postman/)
+* Importação de collection criado com o auxilio deste [tutorial.](https://nfe.io/docs/documentacao/nota-fiscal-produto-eletronica/importar-colecao-postman/)
