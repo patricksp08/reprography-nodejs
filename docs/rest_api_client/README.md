@@ -2,8 +2,8 @@
 
 ### Rest API's utilizadas no projeto:
 
-* #### [Swagger]
-* #### [Thunder]
+* #### [Postman](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs/rest_api_client/postman)
+* #### [Thunder](https://github.com/Squad-Back-End/reprography-nodejs/tree/master/docs/rest_api_client/thunder%20client)
 
 
 ### O que é uma Rest API ?
